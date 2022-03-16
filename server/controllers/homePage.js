@@ -1,4 +1,5 @@
 const { getLastTree, getLast, search } = require('../services/home');
+const { searchInputParser } = require('../helpers/inputParser')
 
 const router = require('express').Router();
 

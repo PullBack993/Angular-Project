@@ -3,13 +3,13 @@ const { hash, compare } = require('bcrypt');
 
 //TODO change password,password forgotten(req->email?)
 
-async function register(email, password) {
+async function register(usename, email, password) {
 
     const existing = getUserByEmail(email);
     if (existing) throw new Error('Email already exist!');
 
     const hashedPassword = await hash(password, 10);
-    const user = new User({ email, hashedPassword });
+    const user = new User({usename, email, hashedPassword });
     await user.save();
 
     if (!user) {
