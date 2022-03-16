@@ -14,7 +14,7 @@ router.post('/register',  async (req, res) => {
         if (password.length < 5) throw new Error('Password cannot be less then 5 characters');
         if (password.trim() != repass.trim()) throw new Error('Password don\'t match');
     
-        const user = await register(usename.trim(), email.trim(), password.trim());
+        const user = await register(username.trim(), email.trim(), password.trim());
         
         token = createToken(user, res);
         res.status(201).send({ user: user.email, token });
