@@ -1,4 +1,3 @@
-const { mapErrors } = require('../helpers/guards');
 const { register, login } = require('../services/user');
 const jwt = require('jsonwebtoken');
 require('dotenv/config');
