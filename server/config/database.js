@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv/config');
 
+
 module.exports = async (app) => {
     try {
         await mongoose.connect(process.env.DB_CONNECTION_STR, {

@@ -27,17 +27,16 @@ function authJwt() {
     return expressJwt({
         secret,
         algorithms: ['HS256'],
-        isRevoked: isRevoked
     }).unless({
         path: [
             // For all path/methods(dev)
             // { url: /(.*)/ }, 
-            { url: /\/api\/details\/(.*)/, methods: ['GET', 'OPTIONS'] },
-            { url: /\/api\/catalog\/(.*)/, method: ['GET',  'OPTIONS'] },
-            { url: /\/api\/home\/search\/(.*)/, method: ['GET',  'OPTION'] },
+            { url: /\/api\/details\/(.*)/, methods: ['GET','OPTIONS'] },
+            { url: /\/api\/catalog\/(.*)/, method: ['GET', 'OPTIONS'] },
+            { url: /\/api\/home\/search\/(.*)/, method: ['GET','OPTION'] },
             { url: '/api/home', method: ['GET', 'OPTION'] },
-            '/api/login',
-            '/api/register'
+            { url: /\/api\/login/, method: ['GET', 'POST', 'OPTION'] },
+            { url: /\/api\/register/, method: ['GET','POST','OPTION'] }
         ]
     });
 };

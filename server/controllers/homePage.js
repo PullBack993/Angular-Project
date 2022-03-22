@@ -1,15 +1,20 @@
-const { getLastTree, getLast, search } = require('../services/home');
-const { searchInputParser } = require('../helpers/inputParser')
+const { getLastTree, getLatest, search } = require("../services/home");
 
 const router = require('express').Router();
 
 router.get('/', async (req, res) => {
     try {
         const projects = await getLastTree();
-        const limit = Number(req.params.limit) || 0; // TODO check params or query
+        const limit = 3; // TODO promis all ?
         
-        const lastAd = await getLast(limit)
-        res.status(200).json({message: "success", ads:lastAd, latestProject : projects});
+        const lastAd = await getLatest(limit);
+        res
+          .status(200)
+          .send({
+            message: "success",
+            latestAds: lastAd,
+            latestProjects : projects,
+          });
         
     } catch (err) {
         console.log(err)
@@ -22,7 +27,7 @@ router.get('/search', async (req, res) => {
 
     try {
         const data = await search(input) || [];
-        res.status(200).json({ message: "success", data })
+        res.status(200).send({ message: "success", data })
         
     } catch (err) {
         console.log(err)

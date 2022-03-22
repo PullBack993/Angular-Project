@@ -14,31 +14,55 @@ router.post('/create', s3UploadImg(), async(req, res) => {
         data.date = (new Date()).getTime()
         const createdData = await create(data)
 
-        res.status(201).json({success: true, message: 'Successfully uploaded ' + req.files.length + ' files!', createdData })
+        res.status(201).send({success: true, message: 'Successfully uploaded ' + req.files.length + ' files!', createdData })
         
     } catch (err) {
-        return res.status(400).send({success:false, err:err.message ,message: "Ad cannot be created!"})
+        return res.status(400).json({success:false, err:err.message ,message: "Ad cannot be created!"})
+    };
+});
+//TODO check out on pagination!!!!
+router.get('/catalog/:limit', async (req, res) => {
+    try {
+        const data = await getLast( Number(req.query.limit));
+        res.status(200).send({message: 'success', data })
+        
+    } catch (err) {
+        res
+          .status(400)
+          .json({
+            success: false,
+            err: err.message,
+            message: "Cannot get items",
+            function: "GET -> catalog",
+          });
     };
 });
 
-router.get('/catalog', async (req, res) => {
-    try {
-        const data = await getLast( Number(req.query.limit));
-        res.status(200).json({message: 'success', data })
+// router.get('/catalog/:limit', async (req, res) => {
+//     try {
+//         const data = await getLast( Number(req.query.limit));
+//         res.status(200).send({message: 'success', data })
         
-    } catch (err) {
-        res.status(400).json({success: false, err:err.message ,message:"Cannot get items", function: "GET -> catalog" });
-    };
-});
+//     } catch (err) {
+//         res.status(400).send({success: false, err:err.message ,message:"Cannot get items", function: "GET -> catalog" });
+//     };
+// });
 
 router.get('/details/:id', async (req, res) => {
     try {
         const id = req.params.id
         const data = await getById(id)
-        res.status(200).json({success: true, message: "success", data })
+        res.status(200).send({success: true, message: "success", data })
         
     } catch (err) {
-        res.status(400).json({success: false, err:err.message, message:`Cannot get item with id ${id}!`,function: "GET -> details/:id"  });
+        res
+          .status(400)
+          .json({
+            success: false,
+            err: err.message,
+            message: `Cannot get item with id ${id}!`,
+            function: "GET -> details/:id",
+          });
     };
 });
 
@@ -46,10 +70,16 @@ router.get('/details/:id', async (req, res) => {
 router.delete('/delete/:id',/*isOwner() */ async (req, res) => {
     try {
         await deleteById(req.params.id)
-        res.status(200).json({success: true, message: "success" })
+        res.status(200).send({success: true, message: "success" })
         
     } catch (err) {
-        res.status(400).json({success: false, err:err.message, message: "Category not found!"});
+        res
+          .status(400)
+          .json({
+            success: false,
+            err: err.message,
+            message: "Category not found!",
+          });
     };
 });
 
@@ -58,10 +88,16 @@ router.get('/edit/:id',/*isOwner() */  async (req, res) => {
     try {
         const id = req.params.id;
         const data = await getById(id);
-        res.status(200).json({ success: true, data, message: "success" })
+        res.status(200).send({ success: true, data, message: "success" })
         
     } catch (err) {
-        res.status(400).json({success: false, err:err.message, message: "Cannot get edit!"});
+        res
+          .status(400)
+          .json({
+            success: false,
+            err: err.message,
+            message: "Cannot get edit!",
+          });
     };
 });
 
@@ -70,7 +106,7 @@ router.put('/edit/:id',/*isOwner() */  async (req, res) => {
         const updateData = homeInputParser(req)
         const id = req.params.id
         const data = await updateById(id, updateData)
-        res.status(200).json({success: true, data, message: "success" })
+        res.status(200).send({success: true, data, message: "success" })
 
     } catch (err) {
         res.status(400).json({success: false, err:err.message, message: "Cannot edit!"});

@@ -5,23 +5,22 @@ require('dotenv/config');
 const router = require('express').Router();
 
 router.post('/register',  async (req, res) => {
-    const { username, email, password, repass } = req.body;
+    const {username, email, password, repass } = req.body;
     
     try {
         checkInput(req.body);
         
-        if (password.length < 5) throw new Error('Password cannot be less then 5 characters');
-        if (password.trim() != repass.trim()) throw new Error('Password don\'t match');
+        if (password.length < 5) res.status(400).send('Password cannot be less then 5 characters');
+        if (password.trim() != repass.trim()) res.status(400).send('Password don\'t match');
     
-        const user = await register(username.trim(), email.trim(), password.trim());
+        const user = await register(username.trim(),email.trim(), password.trim());
         
         token = createToken(user, res);
         res.status(201).send({ user: user.email, token });
 
     } catch (err) {
         console.log(err)
-        const errors = mapErrors(err)
-        res.status(400).json({ message: errors });
+        res.status(400).json({ message: err.message });
     }
 });
 
@@ -33,12 +32,11 @@ router.post('/login', async (req, res) => {
         const user = await login(email.trim(), password.trim());
         const token = createToken(user);
 
-        res.status(201).send({ user:user, token });
+        res.status(201).send({ user: user.username, token });
         
     } catch (err) {
         console.log(err)
-        const errors = mapErrors(err);
-        res.status(400).json({ message: errors });
+        res.status(400).json({ message: err.message });
     };
 });
 
@@ -50,7 +48,7 @@ function createToken(user) {
 
 function checkInput(inputObj) {
     if (Object.values(inputObj).some(field => field == undefined || field == '') == true) {
-        throw new Error( 'All fields required')
+        res.status(400).json("All fields required");
     }
 };
 

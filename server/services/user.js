@@ -3,39 +3,41 @@ const { hash, compare } = require('bcrypt');
 
 //TODO change password,password forgotten(req->email?)
 
-async function register(usename, email, password) {
+async function register(username,email, password) {
 
-    const existing = getUserByEmail(email);
+    const existing = await getUserByEmail(email);
+    console.log(existing)
     if (existing) throw new Error('Email already exist!');
 
     const hashedPassword = await hash(password, 10);
-    const user = new User({usename, email, hashedPassword });
+    const user = new User({username, email, hashedPassword });
     await user.save();
 
     if (!user) {
-        return res.status(400).send('User cannot be created!')
+        throw new Error('User cannot be created!')
     }
 
-    res.send(user);
+    return user
 };
 
 async function login(email, password) {
-    const user = getUserByEmail(email);
+    const user = await getUserByEmail(email);
     if (!user) {
-        return res.status(400).send('User don\'t exist!');
+        throw new Error('User don\'t exist!');
     }
         
     const hasMatch = await compare(password, user.hashedPassword);
 
     if (!user || !hasMatch) {
-        return res.status(400).send('Incorect username or password');
+        throw new Error('Incorect username or password');
     }
 
-    res.send(user);
+    return user
 };
 
 async function getUserByEmail(email) {
     const user = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
+    console.log(user)
     return user
 };
 

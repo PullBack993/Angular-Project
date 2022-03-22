@@ -14,18 +14,19 @@ function searchInputParser(req) {
 
 function homeInputParser(req){
     const data = {
-        adType: req.body.adType,
-        estateType: req.body.estateType,
-        price: parseStringToNumber(req.body.price),
-        rooms: parseStringToNumber(req.body.rooms),
-        location: req.body.location,
-        imageUrls: req.body.imageUrls,
-        region: req.body.region,
-        area: parseStringToNumber(req.body.area),
-        floor: parseStringToNumber(req.body.floor),
-        constructionType: req.body.constructionType,
-        telNumber: parseStringToNumber(req.body.telNumber),
-        moreInfo: req.body.moreInfo,
+      adType: req.body.adType,
+      estateType: req.body.estateType,
+      price: parseStringToNumber(req.body.price),
+      rooms: parseStringToNumber(req.body.rooms),
+      location: req.body.location,
+      imageUrls: req.body.imageUrls,
+      region: req.body.region,
+      area: parseStringToNumber(req.body.area),
+      floor: parseStringToNumber(req.body.floor),
+      constructionType: req.body.constructionType,
+      telNumber: parseStringToNumber(req.body.telNumber),
+      moreInfo: req.body.moreInfo,
+      isNewProject: req.body.isNewProject,
     };
 
     return data;
