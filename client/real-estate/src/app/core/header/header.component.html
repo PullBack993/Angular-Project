@@ -1,0 +1,124 @@
+<header>
+    <nav class="navbar">
+        <ul class="navbar-links">
+            <li class="navbar-logo">
+                <img src="assets/images/6878.png" alt="" routerLink="/" />
+            </li>
+
+            <li class="navbar-dropdown">
+                <div class="navbar-text">Търсене
+                    <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                    <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                </div>
+
+                <ul class="navbar-submenu">
+                    <a routerLink="/property">
+                        <li class="navbar-title">
+                            Имоти
+                            <p class="navbar-text-holder">Намери твоят нов дом</p>
+                        </li>
+                    </a>
+
+                    <a routerLink="/new-projects">
+                        <li>
+                            Нови Проекти
+                            <p class="navbar-text-holder">Нови апартаменти и къщи</p>
+                        </li>
+                    </a>
+
+                    <a routerLink="/retail-outlet">
+                        <li>
+                            Търговски обекти
+                            <p class="navbar-text-holder">Офиси,Търговски обекти,Заведения</p>
+                        </li>
+                    </a>
+                </ul>
+            </li>
+
+            <li class="navbar-dropdown">
+                <div class="navbar-text">Продавам
+                    <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                    <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                </div>
+                <ul class="navbar-submenu">
+                    <a routerLink="/add-ad">
+                        <li class="navbar-title">
+                            Добави обява
+                            <p class="navbar-text-holder">Намерете правилния клиент</p>
+                        </li>
+                    </a>
+
+                    <a routerLink="/brokers">
+                        <li>
+                            Намери брокер
+                            <p class="navbar-text-holder">Продавайте по-ефективно с брокер</p>
+                        </li>
+                    </a>
+                    <a routerLink="/brokers-firms">
+                        <li>
+                            Брокерски фирми
+                            <p class="navbar-text-holder">Виж всички фирми</p>
+                        </li>
+                    </a>
+                </ul>
+            </li>
+
+            <li class="navbar-dropdown">
+                <div class="navbar-text">Наемам
+                    <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                    <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                </div>
+
+                <ul class="navbar-submenu">
+                    <a routerLink="/add-ad">
+                        <li class="navbar-title">
+                            Добави обява
+                            <p class="navbar-text-holder">Намерете правилния наемател</p>
+                        </li>
+                    </a>
+                    <a routerLink="/brokers">
+                        <li>
+                            Намери брокер
+                            <p class="navbar-text-holder">Отдайте по-бързо с брокер</p>
+                        </li>
+                    </a>
+                    <a routerLink="/advices">
+                        <li>
+                            Съвети за отдаване
+                            <p class="navbar-text-holder">Успешно отдаден!</p>
+                        </li>
+                    </a>
+                </ul>
+            </li>
+
+            <li class="navbar-dropdown">
+                <div class="navbar-text">Финансиране
+                    <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                    <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+
+                </div>
+                <ul class="navbar-submenu">
+                    <a routerLink="/calculator">
+                        <li class="navbar-title">
+                            Кредитен калкулатор
+                            <p class="navbar-text-holder">Изчисли месечна вноска</p>
+                        </li>
+                    </a>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="navbar-links">
+            <li class="navbar-dropdown">
+                <a routerLink="/add-ad">
+                    <div class="navbar-text">Добави обява</div>
+                </a>
+            </li>
+
+            <li class="navbar-dropdown">
+                <div class="navbar-text">Вход</div>
+            </li>
+        </ul>
+
+    </nav>
+</header>

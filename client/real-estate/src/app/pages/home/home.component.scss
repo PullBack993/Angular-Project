@@ -1,0 +1,9 @@
+@import '../../../style/images-paths.scss';
+
+.bg-image{
+  height: 500px;
+  background-image: url('#{$bgImg}');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

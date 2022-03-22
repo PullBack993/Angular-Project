@@ -1,0 +1,55 @@
+<h1 class="title">Само правилните имоти</h1>
+<div class="container">
+    <form class="container-form" >
+        <div class="search">
+            <input class="search-input-town" type="text" name="region" placeholder="Име на град или село">
+            <div class="service">
+                <select name="adType" class="service-type">
+                    <option value="" disabled="" hidden=""></option>
+                    <option selected="" value="rent">Наеми</option>
+                    <option value="buy">Купи</option>
+                </select>
+            </div>
+            <div>
+                <select name="estateType" class="service-option">
+                    <option value="" disabled="" hidden=""></option>
+                    <option selected="" value="apartment">Апартаменти</option>
+                    <option value="hose">Къщи</option>
+                    <option value="property">Парцели</option>
+                    <option value="parking">Гаражи</option>
+                    <option value="office">Офиси</option>
+                    <option value="retail">Търговски обекти</option>
+                    <option value="industrial">Индустриални обекти</option>
+                    <option value="gastronomy">Заведения</option>
+                    <option value="agriculture">Селско и горско стопанство</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="search">
+            <div class="service-price">
+                <input type="text" aria-invalid="false" placeholder="Цена до" name="price" value="" inputmode="numeric"
+                    class="input-price">
+            </div>
+
+            <div class="service-area">
+                <input type="text" aria-invalid="false" placeholder="Площ от" name="area" value="" inputmode="numeric"
+                    class="input-area">
+            </div>
+
+            <div class="service-rooms">
+                <select aria-invalid="false" name="rooms" class="select-rooms">
+                    <option selected="" value="">Стаи</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                    <option value="5">5+</option>
+                </select>
+            </div>
+            <div class="button">
+                <button type="submit" class="button-search">Търсене</button>
+            </div>
+        </div>
+    </form>
+</div>

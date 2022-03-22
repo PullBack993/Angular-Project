@@ -1,0 +1,25 @@
+<h1 class="projects-name">Най-нови и проспективни проекти</h1>
+<div class="container">
+    <ng-container *ngFor="let ad of ads">
+        <div class="container-data">
+            <a class="" aria-label="Premium Projekte in Wien"
+                href="https://www.immobilienscout24.at/lp/top-immobilie-3si.html">
+                <img src="{{ad.imageUrls[0]}}" alt="Premium Projekte in Wien" class="container-data-image">
+            </a>
+            <div class="description-container">
+                <h3 class="description-container-name">
+                    <a aria-label="Premium Projekte in Wien"
+                        href="https://www.immobilienscout24.at/lp/top-immobilie-3si.html"
+                        class="description-container-name-link">Премиум Проекти в България</a>
+                </h3>
+                <p class="broker-logo">3SI Makler GmbH</p>
+                <div class="description-inner-container">
+                    <figure class="logo-container">
+                        <img src="https://pictures.immobilienscout24.de/prod.www.immobilienscout24.at/pictureserver/loadPicture?id=feadd11f576a4978b8415ee67a89a9a3"
+                            class="logo" alt="3SI Makler GmbH">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
