@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IAds } from '../../models/ads';
 import { AdsService } from '../../services/ads.service';
 
 @Component({
@@ -7,16 +8,15 @@ import { AdsService } from '../../services/ads.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  ad: any = [];
-  projects: any = [];
+  ad: IAds[] = [];
+  projects: IAds[] = [];
 
-  constructor(private ads: AdsService) {}
+  constructor(private adsServie: AdsService) {}
 
   ngOnInit(): void {
-    this.ads.getAdsProjectsData().subscribe((res: any) => {
-      this.projects = res.latestProjects;
-      this.ad = res.latestAds;
+    this.adsServie.getAdsProjectsData().subscribe((data) => {
+      this.projects = data.latestProjects;
+      this.ad = data.latestAds;
     });
-    
   }
 }

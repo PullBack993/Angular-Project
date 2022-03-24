@@ -18,15 +18,17 @@
   text-align: center;
   &-data {
     width: 27%;
+    height: 390px;
     margin: 10px;
     box-shadow: $box-shadow;
     object-fit: cover;
     border-radius: 10px;
     position: relative;
     &-image {
+      object-fit: cover;
       max-width: 100%;
       width: 100%;
-      max-height: 55%;
+      height: 60%;
       border-top-right-radius: 10px;
       border-top-left-radius: 10px;
     }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Ads } from '../../models/ads';
+import { IAds } from '../../models/ads';
 
 @Component({
   selector: 'app-ads',
@@ -7,10 +7,9 @@ import { Ads } from '../../models/ads';
   styleUrls: ['./ads.component.scss']
 })
 export class AdsComponent implements OnInit {
-  @Input() ads: Ads[] = [];
+  @Input() ads: IAds[] = [];
 
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

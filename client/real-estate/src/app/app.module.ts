@@ -7,17 +7,20 @@ import { PagesRoutingModule } from './pages/app-pages-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-import { AdViewsComponent } from './components/ad-views/ad-views.component';
+import { PagesModule } from './pages/pages.module';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
-  declarations: [AppComponent, AdViewsComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     PagesRoutingModule,
-    CoreModule
+    PagesModule,
+    CoreModule,
+    ComponentsModule
   ],
   exports: [],
   providers: [],

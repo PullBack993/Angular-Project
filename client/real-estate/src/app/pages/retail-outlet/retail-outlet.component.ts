@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./retail-outlet.component.scss']
 })
 export class RetailOutletComponent implements OnInit {
+  value1: string = '';
 
-  constructor() { }
+  value2: string = '';
 
-  ngOnInit(): void {
-  }
+  value3: string = '';
 
+  value4: string = '';
+
+  constructor() {}
+
+  ngOnInit(): void {}
 }

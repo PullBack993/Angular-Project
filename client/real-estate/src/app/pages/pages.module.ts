@@ -9,13 +9,15 @@ import { BrokersComponent } from './brokers/brokers.component';
 import { BrokersFirmsComponent } from './brokers-firms/brokers-firms.component';
 import { AdvicesComponent } from './advices/advices.component';
 import { CalculatorComponent } from './calculator/calculator.component';
-import { SearchComponent } from '../components/search/search.component';
-import { ProjectsComponent } from '../components/projects/projects.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from '../app-routing.module';
 import { CoreModule } from '../core/core.module';
 import { HttpClientModule } from '@angular/common/http';
-import { AdsComponent } from '../components/ads/ads.component';
+import { PaginatorModule } from 'primeng/paginator';
+import { ComponentsModule } from '../components/components.module';
+import { HeaderComponent } from '../core/header/header.component';
+import { PasswordModule } from 'primeng/password';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,20 @@ import { AdsComponent } from '../components/ads/ads.component';
     BrokersFirmsComponent,
     AdvicesComponent,
     CalculatorComponent,
-    HomeComponent,
-    SearchComponent,
-    ProjectsComponent,
-    AdsComponent
+    HomeComponent
   ],
 
-  imports: [CommonModule, FontAwesomeModule, AppRoutingModule, CoreModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    AppRoutingModule,
+    HttpClientModule,
+    PaginatorModule,
+    ComponentsModule,
+    CoreModule,
+    PasswordModule,
+    DividerModule
+  ],
 
   exports: [],
   providers: []

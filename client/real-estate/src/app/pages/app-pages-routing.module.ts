@@ -13,6 +13,7 @@ import { RetailOutletComponent } from './retail-outlet/retail-outlet.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: HomeComponent
   },
   {
@@ -45,7 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'calculator',
-    component: CalculatorComponent,
+    component: CalculatorComponent
   }
 ];
 
