@@ -1,4 +1,4 @@
-const { create, getById, deleteById, updateById, likeAd, sortByDate, sortByLikes, getLast } = require('../services/home');
+const { create, getById, deleteById, updateById, likeAd, sortByDate, sortByLikes, getAll } = require('../services/home');
 const { homeInputParser } = require('../helpers/inputParser');
 const { s3UploadImg } = require('../helpers/s3Upload');
 
@@ -23,8 +23,13 @@ router.post('/create', s3UploadImg(), async(req, res) => {
 //TODO check out on pagination!!!!
 router.get('/catalog/:limit', async (req, res) => {
     try {
-        const data = await getLast( Number(req.query.limit));
-        res.status(200).send({message: 'success', data })
+        const data = await getAll(Number(req.params.limit) * 10);
+        console.log(data)
+        res.status(200)
+            .send({
+            message: 'success', data,
+            total_pages: data.total_pages,
+            total_results:data.total_results })
         
     } catch (err) {
         res

@@ -21,6 +21,15 @@ async function getLatest(limit) {
   return await Home.find({ isNewProject: { $in: false } }).sort({ date: -1 }).limit(limit).populate("owner");
 }
 
+async function getAll(limit) {
+  const data = await Home.find().sort({ date: -1 }).limit(limit).populate("owner");
+  const count = await Home.count()
+  data.total_pages = Math.round(count / 10);
+  data.total_results = count;
+  return data
+  
+}
+
 async function getById(id) {
   return await Home.findById(id).lean();
 }
@@ -73,4 +82,5 @@ module.exports = {
   sortByLikes,
   sortByDate,
   search,
+  getAll,
 };

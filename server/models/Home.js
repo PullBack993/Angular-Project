@@ -1,8 +1,9 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 //TODO *enum for adType, estateType, Location, Region
 
 const homeSchema = new Schema({
+  title: { type: String, required: true },
   adType: { type: String, required: [true, "Ad type is required"] },
   estateType: { type: String, required: [true, "Title is required!"] },
   price: { type: Number, required: [true, "Price is required"] },
@@ -14,6 +15,7 @@ const homeSchema = new Schema({
   floor: { type: Number, required: true },
   constructionType: { type: String, required: true },
   date: { type: Number },
+  tags: { type: String },
   telNumber: { type: Number, required: true },
   moreInfo: { type: String },
   isNewProject: { type: Boolean, default: false },
@@ -22,14 +24,14 @@ const homeSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
-homeSchema.virtual('id').get(function () {
-    return this._id.toHexString();
+homeSchema.virtual("id").get(function () {
+  return this._id.toHexString();
 });
 
-homeSchema.set('toJSON', {
-    virtuals: true,
+homeSchema.set("toJSON", {
+  virtuals: true,
 });
 
-const Home = model('Home', homeSchema);
+const Home = model("Home", homeSchema);
 
 module.exports = Home;
