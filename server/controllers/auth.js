@@ -15,8 +15,10 @@ router.post('/register',  async (req, res) => {
     
         const user = await register(username.trim(),email.trim(), password.trim());
         
-        token = createToken(user, res);
-        res.status(201).send({ user: user.email, token });
+        token = createToken(user);
+        const userData = removePassword(user)
+        res.cookie(authCookieName, token, { httpOnly: true, sameSite: 'none', secure: true })
+        res.status(201).send({ userData });
 
     } catch (err) {
         console.log(err)
@@ -31,8 +33,10 @@ router.post('/login', async (req, res) => {
         checkInput({ email: email, password: password });
         const user = await login(email.trim(), password.trim());
         const token = createToken(user);
-
-        res.status(201).send({ user: user.username, token });
+        const userData = removePassword(user);
+        
+        res.cookie(authCookieName, token, { httpOnly: true, sameSite: 'none', secure: true })
+        res.status(201).send({ userData });
         
     } catch (err) {
         console.log(err)
@@ -50,6 +54,11 @@ function checkInput(inputObj) {
     if (Object.values(inputObj).some(field => field == undefined || field == '') == true) {
         res.status(400).json("All fields required");
     }
+};
+
+const removePassword = (data) => {
+  const { password, __v, ...userData } = data;
+  return userData;
 };
 
 module.exports = router;
