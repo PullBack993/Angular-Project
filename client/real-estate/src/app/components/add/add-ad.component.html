@@ -1,0 +1,94 @@
+<div class="p-fluid grid">
+    <h1 class="header">Добави обява</h1>
+    <form action="POST" [formGroup]="addFormGroup" (ngSubmit)="onCreate($event)">
+
+        <div class="drop-down">
+            <div class="drop-down-container">
+                <div class="container-radio">
+                    <div class="container-radio-section">
+                        <p-radioButton formControlName="adType" name="adType" value="sell" class="radio-btn"
+                             inputId="sell">
+                        </p-radioButton>
+                        <label for="city1">Продавам</label>
+                    </div>
+                    <div class="container-radio-section">
+                        <p-radioButton name="adType" formControlName="adType" value="buy" class="radio-btn"
+                             inputId="buy">
+                        </p-radioButton>
+                        <label for="city1">Отдавам под наем</label>
+                    </div>
+                </div>
+
+                <p-dropdown class="drop-down-container-menu" formControlName="location" [placeholder]="'Местоположение'" [options]="cities"
+                    (onChange)="changeFromChild($event)" optionLabel="name"></p-dropdown>
+                <p-dropdown class="drop-down-container-menu" [placeholder]="'Район'" formControlName="region" [disabled]="shouldDisabled"
+                    [options]="region" optionLabel="name"></p-dropdown>
+
+
+            </div>
+            <div class="drop-down-container">
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="container-section">
+                <p-dropdown formControlName="estateType" class="drop-down-second" [style]="{'height': '48px'}" [options]="type"
+                    [placeholder]="'Вид на имота'" optionLabel="type"></p-dropdown>
+
+                <span class="p-float-label">
+                    <p-inputNumber formControlName="price" inputId="inputnumber"></p-inputNumber>
+                    <label for="inputnumber">цена</label>
+                </span>
+
+                <span class="p-float-label">
+                    <p-inputNumber formControlName="area" inputId="inputnumber"></p-inputNumber>
+                    <label for="inputnumber">квадратура</label>
+                </span>
+              
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="container-section">
+
+                <span class="p-float-label ">
+                    <p-inputNumber formControlName="telNumber" id="float-input" inputId="inputnumber"></p-inputNumber>
+                    <label for="inputnumber">телефон номер</label>
+                </span>
+                <span class="p-float-label title">
+                    <input formControlName="title" id="float-input" type="text" pInputText>
+                    <label for="float-input">Заглавие/Ключови думи</label>
+                </span>
+                <span class="p-float-label">
+                    <p-inputNumber formControlName="floor" inputId="inputnumber"></p-inputNumber>
+                    <label for="inputnumber">етаж</label>
+                </span>
+          
+            </div>
+        </div>
+        <div class="input">
+            <span class="p-float-label a">
+                <textarea id="float-input" formControlName="moreInfo" ls="30" pInputTextarea></textarea>
+                <label for="float-input">Допълнителна информация</label>
+            </span>
+
+        </div>
+
+        <div class="card" >
+            <p-fileUpload  
+            name="img" [customUpload]="true" (uploadHandler)="onFinished($event)" (onClear)="onClear($event)"
+                [invalidFileTypeMessageSummary]="'Невалиден тип на фаила'"
+                [invalidFileTypeMessageDetail]="'Позволени са само jpg,png,jpeg'" [chooseLabel]="'избери'"
+                [cancelLabel]="'откажи всички'" [fileLimit]="5" [showUploadButton]="true" [multiple]="true"
+                accept="image/*" [maxFileSize]="5000000">
+                <ng-template pTemplate="content">
+                    <ul *ngIf="uploadedFiles.length">
+                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                    </ul>
+                </ng-template>
+            </p-fileUpload>
+        </div>
+        <p-button label="Click" type="submit"></p-button>
+    </form>
+</div>

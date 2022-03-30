@@ -1,6 +1,8 @@
 <div class="bg-image">
-    <app-header></app-header>
     <app-search></app-search>
 </div>
+<ng-container *ngIf="projects">
+</ng-container>
+
 <app-projects [data]="projects"></app-projects>
 <app-ads [ads]="ad"></app-ads>

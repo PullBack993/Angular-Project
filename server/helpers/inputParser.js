@@ -36,8 +36,11 @@ function homeInputParser(req) {
 
 function parseStringToNumber(param) {
   if (param && param !== "") {
-    const data = Number(param.split(" ").join(""));
-    return data;
+    if ((typeof param) !== 'number') {
+      const data = Number(param.split(" ").join(""));
+      return data;
+    }
+      return param
   }
   throw new Error("Fields couldn't be empty");
 }

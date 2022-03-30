@@ -1,0 +1,85 @@
+@import '../../../style/color';
+.p-fluid {
+  box-shadow: $box-shadow;
+  margin-left: 13%;
+  margin-right: 13%;
+  width: 78%;
+  .header {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 25px;
+  }
+  .drop-down {
+    &-container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      &-menu {
+        width: 33%;
+        margin: 10px;
+      }
+    }
+  }
+
+  .container {
+    margin: 10px;
+    .p-float-label {
+      width: 33%;
+      margin-right: 10px;
+    }
+  }
+}
+.container-second {
+  width: 38%;
+}
+
+.drop-down-second {
+  width: 33%;
+  margin-right: 10px;
+}
+
+.container-section {
+  margin: 10px;
+  margin-bottom: 10px;
+  margin-bottom: 10px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.container-radio {
+  width: 40%;
+  display: flex;
+  margin-top: 20px;
+  &-section {
+    margin-left: 20px;
+    margin-right: 20px;
+    & > label {
+      margin-left: 4px;
+    }
+  }
+}
+.input {
+  width: 100%;
+}
+.a {
+  margin-left: 20px;
+  max-width: 98%;
+  max-height: 140px;
+  margin-right: 20px;
+}
+//  .container-radio {
+//         display: flex;
+//         margin-top: 19px;
+//         &-section {
+//           margin-left: 20px;
+//           & > label {
+//             margin-left: 4px;
+//           }
+//         }
+//       }
+.p-fluid .p-button{
+  width: 40%;
+  text-align: center;
+}

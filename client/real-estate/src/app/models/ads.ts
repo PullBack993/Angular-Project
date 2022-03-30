@@ -33,3 +33,21 @@ export interface IAdsCatalogDto{
   total_pages: number;
   total_results: number;
 }
+
+export interface ICreateAd {
+  title: string;
+  adType: string;
+  estateType: string;
+  price: number;
+  rooms: number;
+  location: string;
+  imageUrls: string[];
+  region: string;
+  area: number;
+  floor: number;
+  constructionType: string;
+  tags: string;
+  telNumber: number;
+  moreInfo: string;
+  isNewProject: boolean;
+}

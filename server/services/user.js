@@ -6,7 +6,6 @@ const { hash, compare } = require('bcrypt');
 async function register(username,email, password) {
 
     const existing = await getUserByEmail(email);
-    console.log(existing)
     if (existing) throw new Error('Email already exist!');
 
     const hashedPassword = await hash(password, 10);
@@ -37,7 +36,6 @@ async function login(email, password) {
 
 async function getUserByEmail(email) {
     const user = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
-    console.log(user)
     return user
 };
 

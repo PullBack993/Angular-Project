@@ -10,14 +10,13 @@ import { BrokersFirmsComponent } from './brokers-firms/brokers-firms.component';
 import { AdvicesComponent } from './advices/advices.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AppRoutingModule } from '../app-routing.module';
 import { CoreModule } from '../core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginatorModule } from 'primeng/paginator';
 import { ComponentsModule } from '../components/components.module';
-import { HeaderComponent } from '../core/header/header.component';
-import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
+import { PagesRoutingModule } from './app-pages-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -34,14 +33,13 @@ import { DividerModule } from 'primeng/divider';
 
   imports: [
     CommonModule,
+    PagesRoutingModule,
     FontAwesomeModule,
-    AppRoutingModule,
     HttpClientModule,
     PaginatorModule,
     ComponentsModule,
     CoreModule,
-    PasswordModule,
-    DividerModule
+
   ],
 
   exports: [],

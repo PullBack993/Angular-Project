@@ -10,13 +10,16 @@ import { AdsService } from '../../services/ads.service';
 export class HomeComponent implements OnInit {
   ad: IAds[] = [];
   projects: IAds[] = [];
+  isLoading: boolean = true;
 
   constructor(private adsServie: AdsService) {}
 
   ngOnInit(): void {
+    
     this.adsServie.getAdsProjectsData().subscribe((data) => {
       this.projects = data.latestProjects;
       this.ad = data.latestAds;
+      this.isLoading = false;
     });
   }
 }

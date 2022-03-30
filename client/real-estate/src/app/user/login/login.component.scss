@@ -1,0 +1,82 @@
+@import '../../../style/color';
+
+.img {
+  width: 7%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.main {
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 24px;
+  max-width: 431px;
+  margin: 0 auto;
+  margin-bottom: 0px;
+  margin-bottom: 25px;
+  .login-page {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-template-rows: 36px;
+    grid-column-gap: 48px;
+    justify-content: center;
+    align-items: center;
+
+    &-register {
+      text-decoration: none;
+      font-weight: 48px;
+      font-size: 20px;
+      color: #b2b2b2;
+    }
+    &-login {
+      text-decoration: none;
+      font-weight: 48px;
+      font-size: 24px;
+      color: #2563eb;
+    }
+  }
+  .container {
+    text-align: center;
+    &-input {
+      display: inline-block;
+    }
+    &-password {
+      display: block;
+      margin-bottom: 25px;
+    }
+    &-repass {
+      margin-bottom: 25px;
+    }
+    &-repass > input {
+      width: 305px;
+    }
+  }
+}
+.p-float-label {
+  margin: 25px 0px;
+}
+.p-float-label > input {
+  margin: 0px;
+  width: 305px;
+}
+
+.p-password-input {
+  width: 305px;
+}
+
+:host ::ng-deep .p-float-label label {
+  top: 20%;
+}
+.invalid {
+  border: 1px solid $error;
+  label{
+    color:  $error;
+  }
+  &-a{
+    color:  $error;
+
+  }
+  
+}

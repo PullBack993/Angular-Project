@@ -5,20 +5,31 @@ const { s3UploadImg } = require('../helpers/s3Upload');
 const router = require('express').Router();
 
 /* TODO check how can I take info from Angular(JWT) */ 
-router.post('/create', s3UploadImg(), async(req, res) => {
-    try {
-        req.body.imageUrls = req.files.map(img => img.location)
+router.post("/create", s3UploadImg() ,async (req, res) => {
+  try {
+    req.body.imageUrls = req.files.map((img) => img.location);
 
-        const data = homeInputParser(req)
-        data.owner = req.params.id 
-        data.date = (new Date()).getTime()
-        const createdData = await create(data)
+    const data = homeInputParser(req);
+    data.owner = req.params.id;
+    data.date = new Date().getTime();
+    const createdData = await create(data);
 
-        res.status(201).send({success: true, message: 'Successfully uploaded ' + req.files.length + ' files!', createdData })
-        
-    } catch (err) {
-        return res.status(400).json({success:false, err:err.message ,message: "Ad cannot be created!"})
-    };
+    res
+      .status(201)
+      .send({
+        success: true,
+        message: "Successfully uploaded " + req.files.length + " files!",
+        createdData,
+      });
+  } catch (err) {
+    return res
+      .status(400)
+      .json({
+        success: false,
+        err: err.message,
+        message: "Ad cannot be created!",
+      });
+  }
 });
 //TODO check out on pagination!!!!
 router.get('/catalog/:limit', async (req, res) => {

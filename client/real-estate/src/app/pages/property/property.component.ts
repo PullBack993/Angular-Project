@@ -18,12 +18,12 @@ export class PropertyComponent implements OnInit {
   }
   getPagedAds(page: number) {
     this.adsServie.getAds(page).subscribe((dataAds) => {
-      this.ads = dataAds.data
+      this.ads = dataAds.data;
       this.pages = dataAds.total_pages == 0 ? 1 : dataAds.total_pages;
-      console.log(this.pages)
-    })
+      console.log(this.pages);
+    });
   }
   paginate(event: any) {
-    this.getPagedAds(event.page + 1)
+    this.getPagedAds(event.page + 1);
   }
 }

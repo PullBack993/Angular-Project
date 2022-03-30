@@ -20,11 +20,14 @@ const upload = multer({
         s3: s3,
         bucket: process.env.S3_BUCKET_NAME,
         metadata: function (req, file, cb) {
+            console.log(req.body)
             cb(null, { fieldName: file.fieldname });
+            console.log('yes')
         },
         key: function (req, file, cb) {
             const isValid = FILE_TYPE_MAP[file.mimetype];
-            let uploadError = new Error('invalid image type');
+            let uploadError = new Error('invalid image type')
+            console.log(isValid)
 
             if (isValid) uploadError = null;
             

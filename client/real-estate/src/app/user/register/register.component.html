@@ -1,0 +1,99 @@
+<a routerLink=""> <img class="img" src="assets/images/6878.png" alt=""></a>
+
+<section class="main">
+    <header class="login-page">
+        <article>
+            <a class="login-page-login" routerLink="/login">
+                Вход
+            </a>
+        </article>
+        <article>
+            <a class="login-page-register">
+                Регистрация
+            </a>
+        </article>
+    </header>
+
+    <form [formGroup]="registerFormGroup" action="post" class="container">
+        <p-message *ngIf="errorMessage" [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+            [text]="errorMessage" styleClass="mr-2"></p-message>
+
+        <div class="container-input">
+
+            <span class="p-float-label">
+                <input [class.invalid]="checkTouch('username', registerFormGroup)" id="float-input-invalid"
+                    formControlName="username" type="text" pInputText>
+                <label for="float-input-invalid" [class.invalid-text]="checkTouch('username', registerFormGroup)"
+                    class="ng-invalid ng-dirty">Потребителско име</label>
+            </span>
+
+            <ng-container *ngIf="checkTouch('username', registerFormGroup)">
+                <p *ngIf="registerFormGroup.get('username')?.errors?.['required']">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Полето е задължително" styleClass="mr-2"></p-message>
+                </p>
+            </ng-container>
+
+            <span class="p-float-label">
+                <input [class.invalid]="checkTouch('email', registerFormGroup)" id="float-input" type="text"
+                    formControlName="email" pInputText>
+                <label [class.invalid-text]="checkTouch('email', registerFormGroup)" class="ng-invalid ng-dirty"
+                    for="float-input">Имейл</label>
+            </span>
+
+            <ng-container *ngIf="checkTouch('email', registerFormGroup)">
+                <p *ngIf="registerFormGroup.get('email')?.errors?.['required']">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Имейл полето е задължително" styleClass="mr-2"></p-message>
+                </p>
+                <p *ngIf="registerFormGroup.get('email')?.errors?.['email']">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Моля въведете валиден имейл" styleClass="mr-2"></p-message>
+                </p>
+            </ng-container>
+        </div>
+
+        <span class="container-password" formGroupName="passwords">
+            <p-password [class.invalid]="checkTouch('password', passwordsGroup)" formControlName="password"
+                [inputStyle]="{'width':'305px'}" [placeholder]="'Парола'" [promptLabel]="'Въведи пароoлa'"
+                [weakLabel]="'слаба'" [mediumLabel]="'средна'" [strongLabel]="'силна'" [feedback]="true">
+            </p-password>
+            <ng-container *ngIf="checkTouch('password', passwordsGroup)" class="invalid invalid-a">
+
+                <p *ngIf="passwordsGroup.get('password')?.errors?.['required']">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Паролата е задължителна" styleClass="mr-2"></p-message>
+                </p>
+                <p *ngIf="passwordsGroup.get('password')?.errors?.['minlength']">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Паролата трябва да бъде най-малко 4 символа" styleClass="mr-2"></p-message>
+                </p>
+            </ng-container>
+        </span>
+        <div class="container-repass" formGroupName="passwords">
+            <input formControlName="rePass" [class.invalid]="checkTouch('rePass', passwordsGroup)" type="password"
+                id="inputtext" pInputText placeholder="Повтори парола">
+            <ng-container *ngIf="checkTouch('rePass', passwordsGroup)" class="invalid invalid-a">
+            
+                <p *ngIf="passwordsGroup.get('rePass')?.errors?.['required']">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error" text="Паролата е задължителна"
+                        styleClass="mr-2"></p-message>
+                </p>
+                <p *ngIf="passwordsGroup.get('rePass')?.errors?.['minlength']">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Паролата трябва да бъде най-малко 4 символа" styleClass="mr-2"></p-message>
+                </p>
+                <p *ngIf="passwordsGroup.get('rePass')?.errors && passwordsGroup.get('password')?.touched && passwordsGroup.get('password')?.valid ">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Паролите не съвпадат" styleClass="mr-2"></p-message>
+                </p>
+            </ng-container>
+
+        </div>
+        <p-button label="Click" (onClick)="onRegister()" [disabled]="registerFormGroup.invalid" [disabled]="loading"
+            [style]="{'width':'305px'}" label="Вход"></p-button>
+        <p-progressSpinner *ngIf="loading"></p-progressSpinner>
+    </form>
+</section>
+
+<!-- passwordMissmatch -->

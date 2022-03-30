@@ -5,7 +5,7 @@ const { Schema, model } = require("mongoose");
 const homeSchema = new Schema({
   title: { type: String, required: true },
   adType: { type: String, required: [true, "Ad type is required"] },
-  estateType: { type: String, required: [true, "Title is required!"] },
+  estateType: { type: String, required: [true, "Estate type is required!"] },
   price: { type: Number, required: [true, "Price is required"] },
   rooms: { type: Number, require: [true, "Room section is required"] },
   location: { type: String, require: [true, "Location is required"] },
@@ -35,3 +35,8 @@ homeSchema.set("toJSON", {
 const Home = model("Home", homeSchema);
 
 module.exports = Home;
+
+
+
+
+

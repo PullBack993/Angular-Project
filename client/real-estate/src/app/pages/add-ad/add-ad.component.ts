@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-ad.component.scss']
 })
 export class AddAdComponent implements OnInit {
-
+  
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  
+    ngOnInit(): void {  }
 }
