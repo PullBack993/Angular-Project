@@ -7,7 +7,7 @@ const errorHandler = require("../helpers/error-handler");
 // const cors = require("./cors")
 
 module.exports = (app) => {
-  app.use(cors());
+  // app.use(cors());
   // origin: config.origin,
   // credentials: true,
   app.use((req, res, next) => {
