@@ -8,6 +8,7 @@ const errorHandler = require("../helpers/error-handler");
 
 module.exports = (app) => {
   app.use(cors());
+
   // origin: config.origin,
   // credentials: true,
   // app.use((req, res, next) => {
@@ -21,7 +22,6 @@ module.exports = (app) => {
   //   next();
   // })
   app.use(express.json());
-   
 
   app.use(cookiParser());
   app.use(authJwt());
