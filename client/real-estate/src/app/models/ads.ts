@@ -51,3 +51,18 @@ export interface ICreateAd {
   moreInfo: string;
   isNewProject: boolean;
 }
+
+export interface IConstructionType {
+  type: string;
+}
+
+export interface ITags {
+  tag: string;
+}
+
+export interface IAdType {
+  type: string;
+}
+export interface ICity {
+  name: string;
+}

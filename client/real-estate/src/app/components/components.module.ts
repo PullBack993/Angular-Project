@@ -22,6 +22,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { FileUploadModule } from 'primeng/fileupload';
 import { MessageService } from 'primeng/api';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../user/auth.interceptor';
 
 
 
@@ -41,10 +45,15 @@ import { InputNumberModule } from 'primeng/inputnumber';
     RadioButtonModule,
     FileUploadModule,
     StepsModule,
-    InputNumberModule
-    // UserModule
+    InputNumberModule,
+    MultiSelectModule,
+    InputSwitchModule
   ],
   exports: [SearchComponent, ProjectsComponent, AdsComponent, AdViewsComponent, ErrorsComponent, AddComponent],
-  providers: [MessageService]
+   providers: [MessageService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }]
 })
 export class ComponentsModule {}

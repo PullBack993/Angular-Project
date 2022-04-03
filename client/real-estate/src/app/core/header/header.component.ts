@@ -1,5 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { faEnvelope, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import {  Subscription } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,14 +11,30 @@ import { faEnvelope, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-
 // @HostListener('mouseenter') onMouseLeave(event){
 //   this.highlight('yellow')
 // }
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   icons = {
     faEnvelope,
     faCaretDown,
     faCaretUp
   };
+  userIsAuthenticated: boolean = false;
   showButtons: boolean = false;
-  constructor() {}
+  private authListenerSubs!: Subscription;
 
-  ngOnInit(): void {}
+  constructor(private authService: UserService) {}
+
+  ngOnInit() {
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
+      this.userIsAuthenticated = isAuthenticated;
+    }); 
+  }
+
+  onLogout() {
+    this.authService.logout();
+  }
+
+  ngOnDestroy(): void {
+    this.authListenerSubs.unsubscribe();
+  }
 }

@@ -113,10 +113,20 @@
                     <div class="navbar-text">Добави обява</div>
                 </a>
             </li>
-            <li class="navbar-dropdown">
+            <li *ngIf="!userIsAuthenticated" class="navbar-dropdown">
                 <a routerLink="/login">
                     <div class="navbar-text">Вход</div>
                 </a>
+            </li>
+            <li *ngIf="userIsAuthenticated" class="navbar-dropdown">
+                <a routerLink="/profile">
+                    <div class="navbar-text">Профил</div>
+                </a>
+            </li>
+            <li *ngIf="userIsAuthenticated" class="navbar-dropdown">
+                <button (click)="onLogout()" class="logout-btn">
+                    <div class="navbar-text">Изход</div>
+                </button>
             </li>
         </ul>
 

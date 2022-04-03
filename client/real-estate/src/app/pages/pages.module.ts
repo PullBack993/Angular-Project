@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PropertyComponent } from './property/property.component';
+import { HttpClientModule } from '@angular/common/http';
+
 import { NewProjectsComponent } from './new-projects/new-projects.component';
+
+import { PropertyComponent } from './property/property.component';
 import { RetailOutletComponent } from './retail-outlet/retail-outlet.component';
 import { HomeComponent } from './home/home.component';
 import { AddAdComponent } from './add-ad/add-ad.component';
@@ -11,10 +14,8 @@ import { AdvicesComponent } from './advices/advices.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CoreModule } from '../core/core.module';
-import { HttpClientModule } from '@angular/common/http';
 import { PaginatorModule } from 'primeng/paginator';
 import { ComponentsModule } from '../components/components.module';
-import { DividerModule } from 'primeng/divider';
 import { PagesRoutingModule } from './app-pages-routing.module';
 
 
@@ -38,11 +39,13 @@ import { PagesRoutingModule } from './app-pages-routing.module';
     HttpClientModule,
     PaginatorModule,
     ComponentsModule,
-    CoreModule,
-
+    CoreModule
   ],
 
   exports: [],
-  providers: []
+  providers: [
+   
+  ]
 })
 export class PagesModule {}
+

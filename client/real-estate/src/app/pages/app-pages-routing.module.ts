@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../user/auth.guard';
 import { AddAdComponent } from './add-ad/add-ad.component';
 import { AdvicesComponent } from './advices/advices.component';
 import { BrokersFirmsComponent } from './brokers-firms/brokers-firms.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
   },
   {
     path: 'add-ad',
-    component: AddAdComponent
+    component: AddAdComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'brokers',
@@ -52,6 +54,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class PagesRoutingModule {}

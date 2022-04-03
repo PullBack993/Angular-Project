@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://real-estate-angular-project.herokuapp.com/",
-    "secure": false
+    "target": "https://real-estate-angular-project.herokuapp.com",
+    "secure": true
   }
 }

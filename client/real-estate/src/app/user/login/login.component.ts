@@ -27,28 +27,10 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     this.loading = true;
-    this.errorMessage = '';
 
     const { email, password } = this.loginFormGroup.value;
     const body = { email, password };
 
-    this.userService.login$(body).subscribe({
-      next: (user) => {
-        console.log(user);
-        this.router.navigate(['']);
-      },
-      complete: () => {
-        console.log('login stream completed');
-      },
-      error: (err) => {
-        console.log(err.error.message);
-        if (err.error.message == "User don't exist!") {
-          this.errorMessage = 'Грешна парола или имейл';
-        } else {
-          this.errorMessage = err.error.message;
-        }
-        this.loading = false;
-      }
-    });
+    this.userService.login$(body)
   }
 }
