@@ -31,6 +31,6 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.loginFormGroup.value;
     const body = { email, password };
 
-    this.userService.login$(body)
+    this.userService.login(body)
   }
 }

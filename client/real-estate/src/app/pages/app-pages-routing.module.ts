@@ -6,10 +6,12 @@ import { AdvicesComponent } from './advices/advices.component';
 import { BrokersFirmsComponent } from './brokers-firms/brokers-firms.component';
 import { BrokersComponent } from './brokers/brokers.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
 import { NewProjectsComponent } from './new-projects/new-projects.component';
 import { PropertyComponent } from './property/property.component';
 import { RetailOutletComponent } from './retail-outlet/retail-outlet.component';
+import {EditComponent} from './edit/edit.component'
 
 const routes: Routes = [
   {
@@ -18,8 +20,16 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'property',
+    path: 'properties',
     component: PropertyComponent
+  },
+  {
+    path: 'edit/:id',
+    component: EditComponent
+  },
+  {
+    path: 'details/:id',
+    component: DetailsComponent
   },
   {
     path: 'new-projects',

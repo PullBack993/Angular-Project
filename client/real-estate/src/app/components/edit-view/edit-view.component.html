@@ -8,7 +8,7 @@
 
 </div> -->
 
-<div class="p-fluid grid" >
+<div class="p-fluid grid" *ngIf="adData">
     <h1 class="header">Добави обява</h1>
 
     <form action="POST" [formGroup]="addFormGroup" (ngSubmit)="onCreate($event)">
@@ -17,14 +17,15 @@
             <div class="drop-down-container">
                 <p-dropdown class="drop-down-container-first " formControlName="location"
                     [class.invalid]="checkTouch('location', addFormGroup)" [placeholder]="'Местоположение'"
-                    [style]="{'height': '48px'}" [options]="cities" (onChange)="changeFromChild($event)"
-                    optionLabel="name" >
+                    [style]="{'height': '48px'}" [ngModel]="onEdit(adData.location)" [options]="cities"
+                    (onChange)="changeFromChild($event)" optionLabel="name">
                 </p-dropdown>
 
 
                 <div class="as">
                     <p-dropdown class="drop-down-container-second" [placeholder]="'Район'" formControlName="region"
-                        [style]="{'height': '48px'}" [disabled]="shouldDisabled"  [options]="region" optionLabel="name">
+                        [style]="{'height': '48px'}" [disabled]="shouldDisabled" [ngModel]="region[index]"
+                        [options]="region" optionLabel="name">
                     </p-dropdown>
                     <ng-container *ngIf="checkTouch('region', addFormGroup)">
                         <p class="sa" *ngIf="addFormGroup.get('region')?.errors?.['required']">
@@ -37,7 +38,7 @@
 
 
                 <span class="p-float-label title">
-                    <input formControlName="title" type="text" pInputText>
+                    <input formControlName="title" [ngModel]="adData.title" type="text" pInputText>
                     <label [style]="{'top': '30%'}" for="float-input">Заглавие/Ключови думи</label>
                 </span>
             </div>
@@ -49,15 +50,18 @@
         <div class="container">
             <div class="container-section">
                 <p-dropdown formControlName="estateType" class="drop-down-second" [style]="{'height': '48px'}"
-                    [options]="type" [placeholder]="'Вид на имота'" optionLabel="type"></p-dropdown>
+                    [options]="type" [placeholder]="'Вид на имота'" [ngModel]="findEstateType(adData.estateType)"
+                    optionLabel="type">
+                </p-dropdown>
 
-                <p-multiSelect formControlName="tags" [options]="tags" [selectionLimit]="4" class="p-float-label s"
-                    [placeholder]="'Тагове'" optionLabel="tag">
+                <p-multiSelect formControlName="tags" [options]="tags" [selectionLimit]="4" [(ngModel)]="b"
+                    class="p-float-label s" [placeholder]="'Тагове'" optionLabel="tag" defaultValue="true">
                 </p-multiSelect>
 
-                <p-multiSelect formControlName="constructionType" 
-                    [options]="constructionType" [selectionLimit]="1" class="p-float-label s"
-                    [placeholder]="'Вид строителство'" optionLabel="type"></p-multiSelect>
+
+                <p-multiSelect formControlName="constructionType" [(ngModel)]="constType" [options]="constructionType"
+                    [selectionLimit]="1" class="p-float-label s" defaultValue="true" [placeholder]="'Вид строителство'"
+                    optionLabel="type"></p-multiSelect>
             </div>
         </div>
 
@@ -65,20 +69,20 @@
             <div class="container-section">
 
                 <span class="p-float-label">
-                    <p-inputNumber [useGrouping]="false" formControlName="price" name="price"
+                    <p-inputNumber [useGrouping]="false" formControlName="price" [ngModel]="adData.price" name="price"
                         title="price" inputId="inputnumber">
                     </p-inputNumber>
                     <label for="inputnumber">цена</label>
                 </span>
 
                 <span class="p-float-label">
-                    <p-inputNumber [useGrouping]="false" formControlName="area" 
+                    <p-inputNumber [useGrouping]="false" formControlName="area" [ngModel]="adData.area"
                         inputId="inputnumber"></p-inputNumber>
                     <label for="inputnumber">квадратура</label>
                 </span>
 
                 <span class="p-float-label">
-                    <p-inputNumber [useGrouping]="false" formControlName="floor" 
+                    <p-inputNumber [useGrouping]="false" formControlName="floor" [ngModel]="adData.floor"
                         inputId="inputnumber"></p-inputNumber>
                     <label for="inputnumber">етаж</label>
                 </span>
@@ -91,26 +95,26 @@
             <div class="container-section">
                 <div class="radio-container">
                     <div class="container-btn">
-                        <p-radioButton formControlName="adType" name="adType" value="sell" class="radio-btn"
-                            inputId="sell">
+                        <p-radioButton formControlName="adType"[ngModel]="adData.adType" name="adType" value="sell"
+                            class="radio-btn" inputId="sell">
                         </p-radioButton>
                         <label for="city1">Продавам</label>
                     </div>
 
                     <div class="container-btn">
-                        <p-radioButton name="adType" formControlName="adType" value="buy" class="radio-btn"
+                        <p-radioButton name="adType" formControlName="adType" [ngModel]="adData.adType"  value="buy" class="radio-btn"
                             inputId="buy">
                         </p-radioButton>
                         <label for="city1">Отдавам под наем</label>
                     </div>
 
-                    <p-inputSwitch (click)="onCheck()"></p-inputSwitch><span class="check">Нов проект?</span>
+                    <p-inputSwitch (click)="onCheck()" [ngModel]="checked" [ngModelOptions]="{standalone: true}"></p-inputSwitch><span class="check">Нов проект?</span>
                 </div>
 
 
                 <span class="p-float-label ">
-                    <p-inputNumber [useGrouping]="false"  formControlName="telNumber"
-                        id="float-input" inputId="inputnumber">
+                    <p-inputNumber [useGrouping]="false" formControlName="telNumber" id="float-input"
+                        [ngModel]="adData.telNumber" inputId="inputnumber">
                     </p-inputNumber>
                     <label for="inputnumber">телефонен номер</label>
                 </span>
@@ -121,8 +125,8 @@
 
         <div class="input">
             <span class="p-float-label a">
-                <textarea id="float-input" rows="10" cols="30" [autoResize]="true"
-                    formControlName="moreInfo" pInputTextarea></textarea>
+                <textarea id="float-input" rows="10" cols="30" [autoResize]="true" formControlName="moreInfo"
+                    [ngModel]="adData.moreInfo" pInputTextarea></textarea>
                 <label for="float-input">Допълнителна информация</label>
             </span>
         </div>
@@ -130,6 +134,7 @@
         <br>
 
         <div class="card">
+            <p-message severity="warn" text="ВНИМАНИЕ! При добавяне на нови снимки старите ще бъдат изтрити перманентно!"></p-message>
             <p-fileUpload name="img" type="files" [customUpload]="true" (uploadHandler)="onUpload($event)"
                 (onClear)="onClear()" [invalidFileTypeMessageSummary]="'Невалиден тип на фаила'"
                 [invalidFileTypeMessageDetail]="'Позволени са само jpg,png,jpeg'" [chooseLabel]="'избери'"

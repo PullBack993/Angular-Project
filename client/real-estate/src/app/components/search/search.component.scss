@@ -6,7 +6,7 @@
   font-size: 41px;
   margin: 0px;
   margin-top: 10px;
-  color: $mainColorDark;
+  color: $letterSubmenuColor;
 }
 
 .container {
@@ -30,7 +30,7 @@
       height: 40px;
       width: 58%;
       border-radius: 0.4rem;
-      border: 1px $mainColor solid;
+      border: 1px $main solid;
       text-indent: 10px;
     }
     .service {
@@ -41,8 +41,8 @@
         width: 87%;
         height: 40px;
         border-radius: 0.4rem;
-        border: 1px $mainColor solid;
-        background-color: white;
+        border: 1px $main solid;
+        background-color: $white;
         text-indent: 10px;
         z-index: 1;
       }
@@ -56,7 +56,7 @@
           width: 91%;
           height: 40px;
           border-radius: 0.4rem;
-          border: 1px $mainColor solid;
+          border: 1px $main solid;
           text-indent: 10px;
         }
         .input-area,
@@ -64,7 +64,7 @@
           width: 87%;
           height: 40px;
           border-radius: 0.4rem;
-          border: 1px $mainColor solid;
+          border: 1px $main solid;
           background-color: $white;
           text-indent: 10px;
           z-index: 1;
@@ -78,7 +78,8 @@
         height: 40px;
         border-radius: 0.6rem;
         font-weight: bold;
-        background-color: $mainColor;
+        background-color: $mainBg;
+        box-shadow: $baby-shadow;
       }
     }
   }

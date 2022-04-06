@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IAds } from '../../models/ads';
 import { AdsService } from '../../services/ads.service';
 
@@ -7,9 +7,10 @@ import { AdsService } from '../../services/ads.service';
   templateUrl: './property.component.html',
   styleUrls: ['./property.component.scss']
 })
-export class PropertyComponent implements OnInit {
+export class PropertyComponent implements OnInit, OnDestroy {
   ads: IAds[] = [];
   pages: number = 1;
+  totalResults!: number;
 
   constructor(private adsServie: AdsService) {}
 
@@ -17,13 +18,15 @@ export class PropertyComponent implements OnInit {
     this.getPagedAds(this.pages);
   }
   getPagedAds(page: number) {
-    this.adsServie.getAds(page).subscribe((dataAds) => {
-      this.ads = dataAds.data;
-      this.pages = dataAds.total_pages == 0 ? 1 : dataAds.total_pages;
+    this.adsServie.getAds(page).subscribe((res) => {
+      this.ads = res.data;
+      this.pages = res.total_pages == 0 ? 1 : res.total_pages;
+      this.totalResults = res.total_results;
       console.log(this.pages);
     });
   }
   paginate(event: any) {
     this.getPagedAds(event.page + 1);
   }
+  ngOnDestroy(): void {}
 }

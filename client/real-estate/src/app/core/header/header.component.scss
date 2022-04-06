@@ -50,9 +50,8 @@ header {
       }
       
       &:hover div {
-        border-bottom: 2px solid $mainColor;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        margin-top: 3px;
+        border-bottom: 2px solid $main;
         display: inline;
       }
 
@@ -92,7 +91,7 @@ header {
         &:hover {
           height: auto;
           overflow: visible;
-          background-color: $mainColor;
+          background-color: $mainBg;
         }
       }
     }

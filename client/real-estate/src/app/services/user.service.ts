@@ -31,7 +31,7 @@ export class UserService {
   register$(body: { username: string; email: string; password: string; repass: string }) {
     return this.http.post('http://localhost:3000/api/register', body);
   }
-  login$(body: { email: string; password: string }) {
+  login(body: { email: string; password: string }) {
     this.http.post<IUserDto>('http://localhost:3000/api/login', body).subscribe((res) => {
       const token = res.token;
       this.userToken = token;

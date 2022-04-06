@@ -5,6 +5,7 @@
   max-height: 342px;
   margin-bottom: 20px;
   margin-top: 20px;
+  cursor: pointer;
 
   &-main {
     height: 340px;
@@ -17,12 +18,16 @@
     .image {
       width: 60%;
       height: 340px;
-      object-fit: cover;
+      object-fit: unset;
       border-radius: 5% 0 0 5%;
+       &-container {
+          width: 35%;
+        }
 
       &-child {
         display: flex;
         height: 170px;
+       
         &-top {
           border-radius: 0 5% 0 0;
         }
@@ -30,10 +35,11 @@
           border-radius: 0 0 5% 0;
         }
         & > img {
-          object-fit: cover;
+          object-fit: unset;
           height: 170px;
           width: 100%;
         }
+        
       }
     }
   }
@@ -53,7 +59,7 @@
     padding: 0px;
     & > li {
       margin-left: 5px;
-      background-color: $whiteBlue;
+      background-color: $main;
       color: white;
       padding: 5px;
       border-radius: 11px;
@@ -91,9 +97,7 @@
       line-height: 1.3em;
       height: 4em;
       overflow: hidden;
-      &::after {
-        content: '...';
-      }
+     
     }
   }
 }

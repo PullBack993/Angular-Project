@@ -26,11 +26,25 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../user/auth.interceptor';
+import { EditViewComponent } from './edit-view/edit-view.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
+import { GalleriaModule } from 'primeng/galleria';
+
+import { DetailsViewComponent } from './details-view/details-view.component';
 
 @NgModule({
-  declarations: [SearchComponent, ProjectsComponent, AdsComponent, AdViewsComponent, ErrorsComponent, AddComponent],
+  declarations: [
+    SearchComponent,
+    ProjectsComponent,
+    AdsComponent,
+    AdViewsComponent,
+    ErrorsComponent,
+    AddComponent,
+    EditViewComponent,
+    DetailsViewComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -47,13 +61,27 @@ import { AuthInterceptor } from '../user/auth.interceptor';
     StepsModule,
     InputNumberModule,
     MultiSelectModule,
-    InputSwitchModule
+    InputSwitchModule,
+    GalleriaModule,
+    ProgressSpinnerModule
   ],
-  exports: [SearchComponent, ProjectsComponent, AdsComponent, AdViewsComponent, ErrorsComponent, AddComponent],
-   providers: [MessageService, {
+  exports: [
+    SearchComponent,
+    ProjectsComponent,
+    AdsComponent,
+    AdViewsComponent,
+    ErrorsComponent,
+    AddComponent,
+    EditViewComponent,
+    DetailsViewComponent
+  ],
+  providers: [
+    MessageService,
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }]
+    }
+  ]
 })
 export class ComponentsModule {}

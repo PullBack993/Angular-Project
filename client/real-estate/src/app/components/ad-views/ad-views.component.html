@@ -1,58 +1,65 @@
-<div class="container" *ngFor="let ad of adsData">
-    <div class="container-main">
-        <div class="container-main-child">
-            <img class="image" src="{{ad.imageUrls[0]}}" alt="">
-            <div class="container-child-second">
-                <div class="image-child">
-                    <img class="image-child-top" src={{ad.imageUrls[1]}} alt="">
+<br>
+<ng-container *ngFor="let ad of adsData">
+    <div class="container" [routerLink]="'/details/' + ad._id">
+        <div class="container-main">
+            <div class="container-main-child">
+                <img class="image" src="{{ad.imageUrls[0]}}" alt="">
+                <div class="image-container">
+
+                    <ng-container *ngIf="ad.imageUrls.length >= 3">
+                        <div class="image-child">
+                            <img class="image-child-top" src="{{ad.imageUrls[1]}}" alt="">
+                        </div>
+                        <div class="image-child">
+                            <img class="image-child-bottom" src="{{ad.imageUrls[2]}}" alt="">
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="ad.imageUrls.length == 2">
+                        <div class="image-child">
+                            <img class="image-child-top" src="{{ad.imageUrls[1]}}" alt="">
+                        </div>
+                        <div class="image-child">
+                            <img class="image-child-bottom" [src]="defaultImg" alt="">
+                        </div>
+
+                    </ng-container>
+                    <ng-container *ngIf="ad.imageUrls.length == 1">
+                        <div class="image-child">
+                            <img class="image-child-top" [src]="defaultImg">
+                        </div>
+                        <div class="image-child">
+                            <img class="image-child-bottom" [src]="defaultImg" alt="">
+                        </div>
+                    </ng-container>
+
                 </div>
-                <div class="image-child">
-                    <img class="image-child-bottom" src="../../../assets/test/4.jpg" alt="">
+            </div>
+        </div>
+        <div class="text-container">
+            <div>{{ad.location}}, {{ad.region}}</div>
+            <h2>{{ad.title}}</h2>
+            <ul class="object-options">
+                    <ng-container *ngFor="let tag of ad.tags">
+                    <li>{{tag}}</li>
+                </ng-container>
+                </ul>
+
+            <ul class="object-info">
+                <li class="ufaLY">{{ad.estateType}}<span>Вид имот</span></li>
+                <li class="ufaLY">{{ad.area}} m²<span>Площ</span></li>
+                <li class="price">{{ad.price}} €</li>
+            </ul>
+            <h3 class="description">Описание:</h3>
+            <div class="description-container">
+                <div class="description-container-text">
+                    {{ad.moreInfo}}
                 </div>
             </div>
         </div>
     </div>
-    <div class="text-container">
-        <div class="YqNih">Варна, кв.Левски</div>
-        <h2 class="rgzsa">Ново построена сграда високо качество !</h2>
-        <ul class="object-options">
-            <li class="WlSsj y7k9g">Нов проект</li>
-            <li class="WlSsj y7k9g">Парк</li>
-            <li class="WlSsj y7k9g">Тераса</li>
-
-        </ul>
-        <ul class="object-info">
-            <li class="ufaLY">2 – 3<span class="zgb1L">Zimmer</span></li>
-            <li class="ufaLY">50,98 – 112,12 m²<span class="zgb1L">Fläche</span></li>
-            <li class="price">237.000 € – 620.000 €</li>
-        </ul>
-        <h3 class="description">Описание:</h3>
-        <div class="description-container">
-            <div class="description-container-text"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi
-                nostrum quae ipsam
-                doloremque
-                quod
-                fuga atque sapiente recusandae, vel nulla iure? Rem debitis ad alias corrupti expedita vel harum
-                consectetur.
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi nostrum quae ipsam doloremque quod
-                fuga atque sapiente recusandae, vel nulla iure? Rem debitis ad alias corrupti expedita vel harum
-                consectetur.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi nostrum quae ipsam
-                doloremque quod
-                fuga atque sapiente recusandae, vel nulla iure? Rem debitis ad alias corrupti expedita vel harum
-                consectetur.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi nostrum quae ipsam
-                doloremque quod
-                fuga atque sapiente recusandae, vel nulla iure? Rem debitis ad alias corrupti expedita vel harum
-                consectetur.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi nostrum quae ipsam
-                doloremque quod
-                fuga atque sapiente recusandae, vel nulla iure? Rem debitis ad alias corrupti expedita vel harum
-                consectetur.
-            </div>
-        </div>
-    </div>
-
-
-</div>
-<div class="line"></div>
+    <div class="line"></div>
+</ng-container>
 
 <!-- <div class="container">
     <div class="container-main">
@@ -110,4 +117,4 @@
 
 
 </div>
-<div class="line"></div> -->
+<!-- <div class="line"></div> -->
