@@ -18,7 +18,6 @@ function homeInputParser(req) {
     adType: req.body.adType,
     estateType: req.body.estateType,
     price: parseStringToNumber(req.body.price),
-    rooms: parseStringToNumber(req.body.rooms),
     location: req.body.location,
     imageUrls: req.body.imageUrls,
     region: req.body.region,

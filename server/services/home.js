@@ -24,7 +24,7 @@ async function getLatest(limit) {
 async function getAll(limit) {
   const data = await Home.find().sort({ date: -1 }).limit(limit).populate("owner");
   const count = await Home.count()
-  data.total_pages = Math.round(count / 10);
+  data.total_pages = Math.ceil(count / 10);
   data.total_results = count;
   return data
   
@@ -43,7 +43,8 @@ async function updateById(id, data) {
 
   if (!current) throw new Error("Could not find ID in database");
 
-  Object.assign(current, data);
+  let a = Object.assign(current, data);
+  console.log(a)
   return current.save();
 }
 

@@ -22,12 +22,10 @@ const upload = multer({
         metadata: function (req, file, cb) {
             console.log(req.body)
             cb(null, { fieldName: file.fieldname });
-            console.log('yes')
         },
         key: function (req, file, cb) {
             const isValid = FILE_TYPE_MAP[file.mimetype];
             let uploadError = new Error('invalid image type')
-            console.log(isValid)
 
             if (isValid) uploadError = null;
             
@@ -46,3 +44,5 @@ function s3UploadImg() {
 module.exports = {
     s3UploadImg
 };
+
+

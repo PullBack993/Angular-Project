@@ -7,7 +7,6 @@ const homeSchema = new Schema({
   adType: { type: String, required: [true, "Ad type is required"] },
   estateType: { type: String, required: [true, "Estate type is required!"] },
   price: { type: Number, required: [true, "Price is required"] },
-  rooms: { type: Number, require: [true, "Room section is required"] },
   location: { type: String, require: [true, "Location is required"] },
   imageUrls: [{ type: String, default: "" }],
   region: { type: String, required: [true, "Region is required"] },
@@ -15,13 +14,13 @@ const homeSchema = new Schema({
   floor: { type: Number, required: true },
   constructionType: { type: String, required: true },
   date: { type: Number },
-  tags: { type: String },
+  tags: [{ type: String }],
   telNumber: { type: Number, required: true },
   moreInfo: { type: String },
   isNewProject: { type: Boolean, default: false },
 
   likedUsers: [{ type: Schema.Types.ObjectId, ref: "User" }],
-  owner: { type: Schema.Types.ObjectId, ref: "User" },
+  user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 homeSchema.virtual("id").get(function () {

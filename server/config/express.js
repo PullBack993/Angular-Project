@@ -1,5 +1,5 @@
-const express = require("express");
 const cors = require("cors");
+const express = require("express");
 const cookiParser = require("cookie-parser");
 const { authJwt } = require("../helpers/guards");
 const errorHandler = require("../helpers/error-handler");

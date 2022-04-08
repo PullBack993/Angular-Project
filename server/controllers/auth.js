@@ -19,12 +19,7 @@ router.post("/register", async (req, res) => {
 
     token = createToken(user);
     const userData = removePassword(user);
-    res.cookie("auth-cookie", token, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-    });
-    res.status(201).send({ userData });
+    res.status(201).send({ userData, token, expiresIn: 3600 });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -37,14 +32,10 @@ router.post("/login", async (req, res) => {
     checkInput({ email: email, password: password });
     const user = await login(email.trim(), password.trim());
     const token = createToken(user);
+    
     const userData = removePassword(user);
-
-    res.cookie("auth-cookie", token, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-    });
-    res.status(201).send({ userData });
+    
+    res.status(201).json({ userData, token,expiresIn: 3600 });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -53,7 +44,7 @@ router.post("/login", async (req, res) => {
 function createToken(user) {
   const userViewModel = { _id: user._id, email: user.email };
   const token = jwt.sign(userViewModel, process.env.TOKEN_SECRET, {
-    expiresIn: "1d",
+    expiresIn: "1h",
   });
   return token;
 }
@@ -69,8 +60,9 @@ function checkInput(inputObj) {
 }
 
 const removePassword = (data) => {
-  const { password, __v, ...userData } = data;
-  return userData;
+  const { email, id, isAdmin, isBroker, isNew, likedAd, username } = data;
+  const userData = { email, id, isAdmin, isBroker, isNew, likedAd, username }
+  return userData
 };
 
 module.exports = router;
