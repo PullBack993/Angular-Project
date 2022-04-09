@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { IUserDto } from '../models/user';
+import { IUser, IUserDto } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,12 @@ export class UserService {
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
-
+  getUser$() {
+    return this.http.get<IUser>('http://localhost:3000/api/editUser');
+  }
+  editUser(body: {}) {
+    return this.http.put('http://localhost:3000/api/editUser', body);
+  }
   register$(body: { username: string; email: string; password: string; repass: string }) {
     return this.http.post('http://localhost:3000/api/register', body);
   }
@@ -62,7 +67,7 @@ export class UserService {
       this.authStatusListener.next(true);
     }
   }
- 
+
   logout() {
     this.userToken = '';
     this.isAuthenticated = false;

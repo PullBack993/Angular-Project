@@ -27,7 +27,6 @@ export class DetailsViewComponent implements OnInit {
 
   ngOnInit() { }
 
-  
   onEdit() {
     this.activatedRoute.params.subscribe(({ id }) => {
       this.route.navigate([`/edit/${id}`])

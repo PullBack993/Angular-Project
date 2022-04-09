@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component,  OnDestroy, OnInit } from '@angular/core';
 import { faEnvelope, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import {  Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';

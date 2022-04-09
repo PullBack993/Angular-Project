@@ -87,7 +87,7 @@ export class AddComponent implements OnInit {
     this.loading = true;
     this.isUpload = false;
     const formData: FormData = new FormData();
-    if (this.uploadedFiles.length > 0) {
+    if (this.uploadedFiles.length != undefined) {
       for (const file of this.addFormGroup.controls['image'].value) {
         formData.append('img', file);
       }
@@ -113,9 +113,6 @@ export class AddComponent implements OnInit {
     }
 
     this.createService.createAd(formData).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
       complete: () => {
         console.log('sucess');
         this.route.navigate(['']);

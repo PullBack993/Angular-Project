@@ -130,7 +130,7 @@
         <br>
 
         <div class="card">
-            <p-fileUpload name="img" type="files" [customUpload]="true" (uploadHandler)="onUpload($event)"
+            <p-fileUpload name="img" type="file" [customUpload]="true" (uploadHandler)="onUpload($event)"
                 (onClear)="onClear()" [invalidFileTypeMessageSummary]="'Невалиден тип на фаила'"
                 [invalidFileTypeMessageDetail]="'Позволени са само jpg,png,jpeg'" [chooseLabel]="'избери'"
                 [cancelLabel]="'откажи всички'" [uploadLabel]="'Качи снимка/и'" [fileLimit]="5" [multiple]="true"

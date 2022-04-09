@@ -12,7 +12,6 @@ import { PasswordModule } from 'primeng/password';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ButtonModule } from 'primeng/button';
-import { UserModule } from '../user/user.module';
 import { AddComponent } from './add/add-ad.component';
 
 import { StepsModule } from 'primeng/steps';
@@ -28,11 +27,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../user/auth.interceptor';
 import { EditViewComponent } from './edit-view/edit-view.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
+import { TabMenuModule } from 'primeng/tabmenu';
 
 import { GalleriaModule } from 'primeng/galleria';
 
 import { DetailsViewComponent } from './details-view/details-view.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,8 @@ import { DetailsViewComponent } from './details-view/details-view.component';
     ErrorsComponent,
     AddComponent,
     EditViewComponent,
-    DetailsViewComponent
+    DetailsViewComponent,
+    ProfileViewComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +55,7 @@ import { DetailsViewComponent } from './details-view/details-view.component';
     MessagesModule,
     MessageModule,
     ButtonModule,
+    TabMenuModule,
     InputTextareaModule,
     DropdownModule,
     RadioButtonModule,
@@ -73,7 +75,8 @@ import { DetailsViewComponent } from './details-view/details-view.component';
     ErrorsComponent,
     AddComponent,
     EditViewComponent,
-    DetailsViewComponent
+    DetailsViewComponent,
+    ProfileViewComponent
   ],
   providers: [
     MessageService,

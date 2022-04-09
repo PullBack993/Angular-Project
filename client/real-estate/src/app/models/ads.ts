@@ -40,21 +40,22 @@ export interface IAdDto {
 }
 
 export interface ICreateAd {
+  _id: string;
   title: string;
   adType: string;
   estateType: string;
   price: number;
-  rooms: number;
   location: string;
-  imageUrls: string[];
+  imageUrls: string[] ;
   region: string;
   area: number;
   floor: number;
   constructionType: string;
-  tags: string;
+  tags: string[];
   telNumber: number;
   moreInfo: string;
   isNewProject: boolean;
+  owner: string;
 }
 
 export interface IConstructionType {

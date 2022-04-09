@@ -17,7 +17,7 @@
             <div class="drop-down-container">
                 <p-dropdown class="drop-down-container-first " formControlName="location"
                     [class.invalid]="checkTouch('location', addFormGroup)" [placeholder]="'Местоположение'"
-                    [style]="{'height': '48px'}" [ngModel]="onEdit(adData.location)" [options]="cities"
+                    [style]="{'height': '48px'}" [ngModel]="setLocation(adData.location)" [options]="cities"
                     (onChange)="changeFromChild($event)" optionLabel="name">
                 </p-dropdown>
 
@@ -50,11 +50,11 @@
         <div class="container">
             <div class="container-section">
                 <p-dropdown formControlName="estateType" class="drop-down-second" [style]="{'height': '48px'}"
-                    [options]="type" [placeholder]="'Вид на имота'" [ngModel]="findEstateType(adData.estateType)"
+                    [options]="type" [placeholder]="'Вид на имота'" [ngModel]="setEstateType(adData.estateType)"
                     optionLabel="type">
                 </p-dropdown>
 
-                <p-multiSelect formControlName="tags" [options]="tags" [selectionLimit]="4" [(ngModel)]="b"
+                <p-multiSelect formControlName="tags" [options]="tags" [selectionLimit]="4" [(ngModel)]="inputTags"
                     class="p-float-label s" [placeholder]="'Тагове'" optionLabel="tag" defaultValue="true">
                 </p-multiSelect>
 

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ICity, IConstructionType, IAdType, ITags, IAds, IAd2, IRegion } from '../../models/ads';
+import { ICity, IConstructionType, IAdType, ITags, IAds, IAd2, IRegion, ICreateAd } from '../../models/ads';
 import { adTypes, cities, construction, tags, townOptions } from '../helper';
 import { AdsService } from '../../services/ads.service';
 import { MessageService } from 'primeng/api';
@@ -30,13 +30,13 @@ export class EditViewComponent {
   createdId: string = '';
   location!: IAd2;
   index!: number;
-  b: ITags[];
+  inputTags: ITags[];
   constType!: [{ type: string }] | {};
   selectedValue: string = 'adType';
-    
 
   addFormGroup: FormGroup = this.fb.group({
     adType: new FormControl([], [Validators.required]),
+    image: new FormControl('null', ),
     title: new FormControl('', [Validators.required]),
     estateType: new FormControl('', [Validators.required]),
     price: new FormControl(null, [Validators.required]),
@@ -61,47 +61,43 @@ export class EditViewComponent {
     this.type = adTypes;
     this.constructionType = construction;
     this.townOptions = townOptions;
-    this.b = [];
+    this.inputTags = [];
     this.constType = [{}];
   }
 
-  onEdit(value: string) {
+  setLocation(value: string) {
     this.shouldDisabled = false;
     let location: any = this.cities.find((l) => l.name == value);
     this.location = location;
     if (this.adData.region) {
-      this.findRegion();
+      this.setRegion();
     }
     return location;
   }
-  findRegion() {
+  setRegion() {
     let regionArr = this.townOptions[this.location.searchValue as keyof typeof this.townOptions];
     let region = regionArr.findIndex((r) => r.name == this.adData.region);
     this.region = regionArr;
     this.index = region;
     this.adData.region = '';
     if (this.adData.tags != []) {
-      this.findTags();
+      this.setTags();
       this.setconstructionType();
-      console.log(this.checked);
-
       this.checked = this.adData.isNewProject;
-      console.log(this.checked)
-
     }
   }
   setconstructionType() {
     this.constType = [{ type: this.adData.constructionType }];
   }
-  findTags() {
-    this.adData.tags.forEach((e) => {
-      let a = { tag: e };
-      this.b.push(a);
+  setTags() {
+    this.adData.tags.forEach((inputTag) => {
+      let tag = { tag: inputTag };
+      this.inputTags.push(tag);
     });
     this.adData.tags = [];
   }
 
-  findEstateType(value: string) {
+  setEstateType(value: string) {
     let type = this.type.find((t) => t.type == value);
     return type;
   }
@@ -137,43 +133,67 @@ export class EditViewComponent {
   onCreate(event: Event) {
     this.loading = true;
     this.isUpload = false;
-    const formData: FormData = new FormData();
-    if (this.uploadedFiles.length > 0) {
-      for (const file of this.addFormGroup.controls['image'].value) {
-        formData.append('img', file);
-      }
-    }
     const { adType, title, price, area, floor, telNumber, moreInfo, estateType, location, region } =
       this.addFormGroup.value;
 
-    formData.append('adType', adType);
-    formData.append('title', title);
-    formData.append('price', price);
-    formData.append('area', area);
-    formData.append('floor', floor);
-    formData.append('telNumber', telNumber);
-    formData.append('moreInfo', moreInfo);
-    formData.append('isNewProject', JSON.stringify(this.checked));
-    formData.append('constructionType', this.addFormGroup.value.constructionType[0].type);
-    formData.append('estateType', estateType.type);
-    formData.append('location', location.name);
-    formData.append('region', region.name);
-
-    for (let i = 0; i < this.addFormGroup.value.tags.length; i++) {
-      formData.append('tags', this.addFormGroup.value.tags[i].tag);
-    }
-
-    this.createService.createAd(formData).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
-      complete: () => {
-        console.log('sucess');
-        this.route.navigate(['']);
-      },
-      error: (err) => {
-        console.log(err.error.message);
+    const formData: FormData = new FormData();
+    if (this.uploadedFiles != undefined) {
+      for (const file of this.addFormGroup.controls['image'].value) {
+        formData.append('img', file);
       }
-    });
+      formData.append('adType', adType);
+      formData.append('title', title);
+      formData.append('price', price);
+      formData.append('area', area);
+      formData.append('floor', floor);
+      formData.append('telNumber', telNumber);
+      formData.append('moreInfo', moreInfo);
+      formData.append('isNewProject', JSON.stringify(this.checked));
+      formData.append('constructionType', this.addFormGroup.value.constructionType[0].type);
+      formData.append('estateType', estateType.type);
+      formData.append('location', location.name);
+      formData.append('region', region.name);
+      formData.append('owner', this.adData.owner)
+      formData.append('_id', this.adData._id);
+
+      for (const url of this.adData.imageUrls) {
+          formData.append('deleteUrl', url)
+      }
+
+      for (let i = 0; i < this.addFormGroup.value.tags.length; i++) {
+        formData.append('tags', this.addFormGroup.value.tags[i].tag);
+      }
+    } 
+
+    const id = this.adData._id;
+    if (this.uploadedFiles != undefined && this.uploadedFiles.length > 0) {
+      this.createService.editAd(formData, id)
+    } else {
+
+      const tags = []
+      for (let i = 0; i < this.addFormGroup.value.tags.length; i++) {
+        tags.push(this.addFormGroup.value.tags[i].tag)
+      }
+
+      const body: ICreateAd = {
+        _id: this.adData._id,
+        owner: this.adData.owner,
+        title: title,
+        adType: adType,
+        estateType: estateType.type,
+        price: price,
+        location: location.name,
+        imageUrls: this.adData.imageUrls,
+        region: region.name,
+        area: area,
+        floor: floor,
+        constructionType: this.addFormGroup.value.constructionType[0].type,
+        tags: tags,
+        telNumber: telNumber,
+        moreInfo: moreInfo,
+        isNewProject: this.checked
+      };
+      this.createService.editAd(body, id)
+    }
   }
 }

@@ -19,6 +19,7 @@ import { ComponentsModule } from '../components/components.module';
 import { PagesRoutingModule } from './app-pages-routing.module';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { DetailsComponent } from './details/details.component';
     CalculatorComponent,
     HomeComponent,
     EditComponent,
-    DetailsComponent
+    DetailsComponent,
+    ProfileComponent
   ],
 
   imports: [

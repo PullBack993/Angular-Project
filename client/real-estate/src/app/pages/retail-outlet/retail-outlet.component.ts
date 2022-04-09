@@ -6,13 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./retail-outlet.component.scss']
 })
 export class RetailOutletComponent implements OnInit {
-  value1: string = '';
-
-  value2: string = '';
-
-  value3: string = '';
-
-  value4: string = '';
 
   constructor() {}
 
