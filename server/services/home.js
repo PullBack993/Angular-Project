@@ -18,16 +18,19 @@ async function search(searchInput) {
 }
 
 async function getLatest(limit) {
-  return await Home.find({ isNewProject: { $in: false } }).sort({ date: -1 }).limit(limit).populate("owner");
+  return await Home.find({ isNewProject: { $in: false } })
+    .sort({ date: -1 })
+    .limit(limit)
+    .populate("owner");
 }
 
 async function getAll(limit) {
-  const data = await Home.find().sort({ date: -1 }).limit(limit).populate("owner");
-  const count = await Home.count()
+  const data = await Home.find().sort({ date: -1 }).limit(limit);
+  // .populate("owner");
+  const count = await Home.count();
   data.total_pages = Math.ceil(count / 10);
   data.total_results = count;
-  return data
-  
+  return data;
 }
 
 async function getById(id) {
@@ -38,13 +41,13 @@ async function deleteById(id) {
   await Home.findByIdAndDelete(id);
 }
 
-async function updateById(id, data) {
-  const current = await Home.findById(id);
+async function updateById(id, userId, data) {
+  let current = await Home.findById(id);
 
   if (!current) throw new Error("Could not find ID in database");
+  if (current.owner != userId) throw new Error("Not allowed!");
 
-  let a = Object.assign(current, data);
-  console.log(a)
+  current = Object.assign(current, data);
   return current.save();
 }
 

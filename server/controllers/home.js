@@ -1,14 +1,19 @@
-const {create,getById,deleteById,updateById,likeAd,sortByDate,sortByLikes,getAll,} = require("../services/home");
+const {
+  create,
+  getById,
+  deleteById,
+  updateById,
+  likeAd,
+  sortByDate,
+  sortByLikes,
+  getAll,
+} = require("../services/home");
 const { homeInputParser } = require("../helpers/inputParser");
-const { s3UploadImg } = require("../helpers/s3Upload");
-const {isOwner} = require('../helpers/guards')
-require("dotenv/config");
-const AWS = require("aws-sdk");
+const { s3UploadImg,s3Delete } = require("../helpers/s3Upload");
+const { isOwner } = require("../helpers/guards");
 
-const s3 = new AWS.S3({
-  accessKeyId: process.env.S3_ACCESS_KEY,
-  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
-});
+
+
 
 const router = require("express").Router();
 
@@ -70,79 +75,54 @@ router.get("/details/:id", async (req, res) => {
   }
 });
 
-router.delete(
-  "/delete/:id",
-  isOwner(), async (req, res) => {
-    try {
-      await deleteById(req.params.id);
-      res.status(200).send({ success: true, message: "success" });
-    } catch (err) {
-      res.status(400).json({
-        success: false,
-        err: err.message,
-        message: "Category not found!",
-      });
-    }
+router.delete("/delete/:id", isOwner(), async (req, res) => {
+  try {
+    await deleteById(req.params.id);
+    res.status(200).send({ success: true, message: "success" });
+  } catch (err) {
+    res.status(400).json({
+      success: false,
+      err: err.message,
+      message: "Category not found!",
+    });
   }
-);
+});
 
-router.get(
-  "/edit/:id",
-  isOwner() ,async (req, res) => {
-    try {
-      const id = req.params.id;
-      const data = await getById(id);
-      res.status(200).send({ success: true, data, message: "success" });
-    } catch (err) {
-      res.status(400).json({
-        success: false,
-        err: err.message,
-        message: "Cannot get edit!",
-      });
-    }
+//TODO after front end is createt,check if owner (all)
+router.get("/edit/:id", isOwner(), async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await getById(id);
+    res.status(200).send({ success: true, data, message: "success" });
+  } catch (err) {
+    res.status(400).json({
+      success: false,
+      err: err.message,
+      message: "Cannot get edit!",
+    });
   }
-);
+});
 
-router.put("/edit/:id",isOwner() , s3UploadImg(), async (req, res) => {
+router.put("/edit/:id", s3UploadImg(), async (req, res) => {
   try {
     if (req.body.deleteUrl) {
-          
-      let params = {
-        Bucket: process.env.S3_BUCKET_NAME,
-        Prefix: "myfolder/",
-      };
-      params = { Bucket: process.env.S3_BUCKET_NAME };
-      const deleteParams = []
-      for (const url of req.body.deleteUrl) {
-        url[1] = url.split('https://real-estate-upload-bucket.s3.eu-central-1.amazonaws.com/')
-        deleteParams.push({Key: url})
-      }
-      params.Delete = {
-        Objects: deleteParams,
-      };
-      s3.deleteObjects(params, (err, data) => {
-        if (err) {
-          console.log(err, err.stack);
-        } else {
-          console.log("success");
-        }
-      });
+      s3Delete(req.body.deleteUrl)
+      //TODO check it ??
     }
 
-    if (req.files) {
-      req.body.imageUrls = req.files.map((img) => img.location);
-    }
-      const updateData = homeInputParser(req)
-      const id = req.params.id
-      const data = await updateById(id, updateData)
-      res.status(200).send({success: true, data, message: "success" })
-    } catch (err) {
-      res
-        .status(400)
-        .json({ success: false, err: err.message, message: "Cannot edit!" });
-    }
+    if (req.files) { req.body.imageUrls = req.files.map((img) => img.location) }
+    
+    const updateData = homeInputParser(req);
+    const id = req.params.id;
+    const userId = req.user._id;
+    const data = await updateById(id, userId, updateData);
+    res.status(200).send({ success: true, data, message: "success" });
+  } catch (err) {
+    res
+      .status(400)
+      .json({ success: false, err: err.message, message: "Cannot edit!" });
   }
-);
+});
 
 //TODO implement it correktly
 router.get(
@@ -165,5 +145,7 @@ router.get("/sort-likes", async (req, res) => {
     console.log(err);
   }
 });
+
+
 
 module.exports = router;

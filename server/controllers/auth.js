@@ -1,5 +1,6 @@
-const { register, login } = require("../services/user");
+const { register, login, editUser,getById } = require("../services/user");
 const jwt = require("jsonwebtoken");
+const { s3UploadImg, s3Delete } = require("../helpers/s3Upload");
 require("dotenv/config");
 
 const router = require("express").Router();
@@ -32,10 +33,10 @@ router.post("/login", async (req, res) => {
     checkInput({ email: email, password: password });
     const user = await login(email.trim(), password.trim());
     const token = createToken(user);
-    
+
     const userData = removePassword(user);
-    
-    res.status(201).json({ userData, token,expiresIn: 3600 });
+
+    res.status(201).json({ userData, token, expiresIn: 3600 });
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -58,11 +59,54 @@ function checkInput(inputObj) {
     res.status(400).json("All fields required");
   }
 }
+router.get("/editUser", async (req, res) => {
+  try {
+    const id = req.user._id
+    const user = await getById(id)
+    const userData = removePassword(user)
+    res.status(200).send({ success: true, userData });
+  } catch (err) {
+    res.status(401).send({message: err.message})
+  }
+})
+
+router.put("/editUser", s3UploadImg(), async (req, res) => {
+  try {
+    const { username, email } = req.body;
+
+    if (req.files != []) {
+      req.body.imageUrl = req.files[0].location;
+    }
+    if (req.body.deleteUrl !== undefined && req.body.deleteUrl) {
+      s3Delete(req.body.deleteUrl);
+    }
+    const user = await editUser(
+      req.user._id,
+      username,
+      email,
+      req.body.imageUrl
+    );
+    token = createToken(user);
+    const userData = removePassword(user)
+    res.status(201).send({success:true ,userData, token, expiresIn: 3600 });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
 
 const removePassword = (data) => {
-  const { email, id, isAdmin, isBroker, isNew, likedAd, username } = data;
-  const userData = { email, id, isAdmin, isBroker, isNew, likedAd, username }
-  return userData
+  const { email, id, isAdmin, isBroker, isNew, likedAd, username,imageUrl } = data;
+  const userData = {
+    email,
+    id,
+    isAdmin,
+    isBroker,
+    isNew,
+    likedAd,
+    username,
+    imageUrl,
+  };
+  return userData;
 };
 
 module.exports = router;

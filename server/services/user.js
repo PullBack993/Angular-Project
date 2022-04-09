@@ -1,45 +1,60 @@
-const User = require('../models/User');
-const { hash, compare } = require('bcrypt');
+const User = require("../models/User");
+const { hash, compare } = require("bcrypt");
 
 //TODO change password,password forgotten(req->email?)
+async function getById(id) {
+  const user = await User.findById(id);
+  if (!user) {
+    throw new Error("Not found");
+  }
+  return user;
+}
+async function editUser(userId, username, email, imageUrl) {
+  const user = await User.findById(userId);
+  user.username = username;
+  user.email = email;
+  user.imageUrl = imageUrl;
+  user.save();
+  return user;
+}
+async function register(username, email, password) {
+  const existing = await getUserByEmail(email);
+  if (existing) throw new Error("Email already exist!");
 
-async function register(username,email, password) {
+  const hashedPassword = await hash(password, 10);
+  const user = new User({ username, email, hashedPassword });
+  await user.save();
 
-    const existing = await getUserByEmail(email);
-    if (existing) throw new Error('Email already exist!');
+  if (!user) {
+    throw new Error("User cannot be created!");
+  }
 
-    const hashedPassword = await hash(password, 10);
-    const user = new User({username, email, hashedPassword });
-    await user.save();
-
-    if (!user) {
-        throw new Error('User cannot be created!')
-    }
-
-    return user
-};
+  return user;
+}
 
 async function login(email, password) {
-    const user = await getUserByEmail(email);
-    if (!user) {
-        throw new Error('User don\'t exist!');
-    }
-        
-    const hasMatch = await compare(password, user.hashedPassword);
+  const user = await getUserByEmail(email);
+  if (!user) {
+    throw new Error("User don't exist!");
+  }
 
-    if (!user || !hasMatch) {
-        throw new Error('Incorect username or password');
-    }
+  const hasMatch = await compare(password, user.hashedPassword);
 
-    return user
-};
+  if (!user || !hasMatch) {
+    throw new Error("Incorect username or password");
+  }
+
+  return user;
+}
 
 async function getUserByEmail(email) {
-    const user = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
-    return user
-};
+  const user = await User.findOne({ email: new RegExp(`^${email}$`, "i") });
+  return user;
+}
 
 module.exports = {
-    register,
-    login,
+  register,
+  login,
+  editUser,
+  getById,
 };

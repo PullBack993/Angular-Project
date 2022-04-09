@@ -20,7 +20,6 @@ const upload = multer({
         s3: s3,
         bucket: process.env.S3_BUCKET_NAME,
         metadata: function (req, file, cb) {
-            console.log(req.body)
             cb(null, { fieldName: file.fieldname });
         },
         key: function (req, file, cb) {

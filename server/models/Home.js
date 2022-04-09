@@ -18,9 +18,9 @@ const homeSchema = new Schema({
   telNumber: { type: Number, required: true },
   moreInfo: { type: String },
   isNewProject: { type: Boolean, default: false },
-
+  
+  owner: { type: String },
   likedUsers: [{ type: Schema.Types.ObjectId, ref: "User" }],
-  user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 homeSchema.virtual("id").get(function () {
