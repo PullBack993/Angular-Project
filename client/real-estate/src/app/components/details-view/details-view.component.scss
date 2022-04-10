@@ -1,16 +1,15 @@
 @import '../../../style/color';
 
 .main {
-    margin-top: 15px;
+  margin-top: 15px;
   .container {
     position: relative;
     display: flex;
     margin: 10px;
-    
 
     .images {
-      width: 54%;
-      height: 600px;
+      width: 70%;
+      height: 500px;
       object-fit: fill;
       border-radius: 1%;
     }

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -8,18 +9,26 @@ import { UserService } from '../../services/user.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
   errorMessage: string = '';
   loading: boolean = false;
+  authStatusSubscription!: Subscription
 
   loginFormGroup: FormGroup = this.fb.group({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authStatusSubscription = this.userService.getAuthStatusListener().subscribe(authStatus => {
+      this.loading= false
+    })
+  }
+  ngOnDestroy(): void {
+    this.authStatusSubscription.unsubscribe()
+  }
 
   checkTouch(controlName: string, sourceGroup: FormGroup) {
     return sourceGroup.controls[controlName]?.touched && sourceGroup.controls[controlName].invalid;
@@ -27,10 +36,10 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     this.loading = true;
-
     const { email, password } = this.loginFormGroup.value;
     const body = { email, password };
 
     this.userService.login(body)
   }
+
 }

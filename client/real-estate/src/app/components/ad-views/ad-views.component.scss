@@ -1,13 +1,13 @@
 @import '../../../style/color';
 
-.container {
+.main-container {
   display: flex;
   max-height: 342px;
   margin-bottom: 20px;
   margin-top: 20px;
   cursor: pointer;
 
-  &-main {
+  &-child {
     height: 340px;
     width: 740px;
     display: inline-block;
@@ -61,7 +61,7 @@
       margin-left: 5px;
       background-color: $main;
       color: white;
-      padding: 5px;
+      padding: 4px;
       border-radius: 11px;
       overflow-x: hidden;
     }

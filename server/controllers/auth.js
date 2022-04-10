@@ -1,6 +1,7 @@
 const { register, login, editUser,getById } = require("../services/user");
 const jwt = require("jsonwebtoken");
-const { s3UploadImg, s3Delete } = require("../helpers/s3Upload");
+const { s3UploadImg } = require("../helpers/s3Upload");
+const { s3Delete } = require("../helpers/s3Delete");
 require("dotenv/config");
 
 const router = require("express").Router();
@@ -74,8 +75,10 @@ router.put("/editUser", s3UploadImg(), async (req, res) => {
   try {
     const { username, email } = req.body;
 
-    if (req.files != []) {
+    if (req.files.length > 0) {
       req.body.imageUrl = req.files[0].location;
+    } else if (req.body.img && req.files.length <= 0) {
+      req.body.imageUrl = req.body.img
     }
     if (req.body.deleteUrl !== undefined && req.body.deleteUrl) {
       s3Delete(req.body.deleteUrl);

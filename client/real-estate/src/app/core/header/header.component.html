@@ -114,13 +114,13 @@
                 </a>
             </li>
             <li *ngIf="!userIsAuthenticated" class="navbar-dropdown">
-                <a routerLink="/login">
+                <a routerLink="/auth/login">
                     <div class="navbar-text">Вход</div>
                 </a>
             </li>
             <li *ngIf="userIsAuthenticated" class="navbar-dropdown">
-                <a routerLink="/profile">
-                    <div class="navbar-text" routerLink="/profile">Профил</div>
+                <a routerLink="/auth/profile">
+                    <div class="navbar-text" routerLink="/auth/profile">Профил</div>
                 </a>
             </li>
             <li *ngIf="userIsAuthenticated" class="navbar-dropdown">
@@ -133,3 +133,9 @@
 
     </nav>
 </header>
+<ng-container *ngIf="!!errorMessage">
+    <p-message *ngIf="isErrorType" severity="error" text="{{errorMessage}}"
+        [style]="{'position': 'absolute', 'margin-left':'80%'}"></p-message>
+    <p-message *ngIf="!isErrorType" severity="success" text="{{errorMessage}}"
+        [style]="{'position': 'absolute', 'margin-left':'80%'}"></p-message>
+</ng-container>

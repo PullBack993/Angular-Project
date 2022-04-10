@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { passwordChecker } from '../util';
 
@@ -9,9 +10,11 @@ import { passwordChecker } from '../util';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   errorMessage: string = '';
   loading: boolean = false;
+  authStatusSubscription!: Subscription;
+
   passwordControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
 
   get passwordsGroup(): FormGroup {
@@ -27,9 +30,17 @@ export class RegisterComponent implements OnInit {
     })
   });
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authStatusSubscription = this.userService.getAuthStatusListener().subscribe((authStatus) => {
+      this.loading = false;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.authStatusSubscription.unsubscribe();
+  }
 
   checkTouch(controlName: string, sourceGroup: FormGroup) {
     return sourceGroup.controls[controlName]?.touched && sourceGroup.controls[controlName].invalid;
@@ -42,22 +53,26 @@ export class RegisterComponent implements OnInit {
     const { password, rePass } = passwords;
     const body = { username, email, password, repass: rePass };
 
-    this.userService.register$(body).subscribe({
-      next: (user) => {
-        console.log(user);
-        this.router.navigate(['']);
-      },
-      complete: () => {
-        console.log('register stream complated');
-      },
-      error: (err) => {
-        if (err.error.message == 'Email already exist!') {
-          this.errorMessage = 'Имейла съществува';
-        } else {
-          this.errorMessage = err.error.message;
-        }
-        this.loading = false;
-      }
-    });
+    this.userService.register(body);
   }
 }
+
+
+
+// .subscribe({
+//       next: (user) => {
+//         console.log(user);
+//         this.router.navigate(['']);
+//       },
+//       complete: () => {
+//         console.log('register stream complated');
+//       },
+//       error: (err) => {
+//         if (err.error.message == 'Email already exist!') {
+//           this.errorMessage = 'Имейла съществува';
+//         } else {
+//           this.errorMessage = err.error.message;
+//         }
+//         this.loading = false;
+//       }
+//     });

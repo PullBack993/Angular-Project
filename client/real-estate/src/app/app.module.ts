@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
 import { UserModule } from './user/user.module';
 import { AuthInterceptor } from './user/auth.interceptor';
+import { ErrorHandlerInterceptor } from './core/error-handler.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,11 @@ import { AuthInterceptor } from './user/auth.interceptor';
   ],
   exports: [],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
    
   ],
   bootstrap: [AppComponent]

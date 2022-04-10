@@ -6,17 +6,17 @@ const s3 = new AWS.S3({
   secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
 });
 
-export function s3Delete(deleteParams) {
+function s3Delete(delUrl) {
 
   let params = {
     Bucket: process.env.S3_BUCKET_NAME,
-    Prefix: "myfolder/",
+    // Prefix: "real-estate-upload-bucket/",
   };
   let deleteParams = "";
-  if (Array.isArray(deleteParams)) {
-    deleteParams = deleteUrls(deleteParams);
+  if (Array.isArray(delUrl)) {
+    deleteParams = deleteUrls(delUrl);
   } else {
-    deleteParams = deleteUrls([deleteParams]);
+    deleteParams = deleteUrls([delUrl]);
   }
   params.Delete = {
     Objects: deleteParams,
@@ -38,4 +38,8 @@ function deleteUrls(arrUrls) {
     deleteParams.push({ Key: url[1] });
   });
   return deleteParams;
+}
+
+module.exports = {
+  s3Delete
 }

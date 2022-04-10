@@ -1,8 +1,8 @@
 <br>
 <ng-container *ngFor="let ad of adsData">
-    <div class="container" [routerLink]="'/details/' + ad._id">
-        <div class="container-main">
-            <div class="container-main-child">
+    <div class="main-container" [routerLink]="'/details/' + ad._id">
+        <div class="main-container-child">
+            <div class="main-container-child-child">
                 <img class="image" src="{{ad.imageUrls[0]}}" alt="">
                 <div class="image-container">
 

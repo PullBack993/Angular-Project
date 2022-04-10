@@ -27,12 +27,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../user/auth.interceptor';
 import { EditViewComponent } from './edit-view/edit-view.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { TabMenuModule } from 'primeng/tabmenu';
 
 import { GalleriaModule } from 'primeng/galleria';
 
 import { DetailsViewComponent } from './details-view/details-view.component';
-import { ProfileViewComponent } from './profile-view/profile-view.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +42,6 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
     AddComponent,
     EditViewComponent,
     DetailsViewComponent,
-    ProfileViewComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +52,6 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
     MessagesModule,
     MessageModule,
     ButtonModule,
-    TabMenuModule,
     InputTextareaModule,
     DropdownModule,
     RadioButtonModule,
@@ -76,7 +72,6 @@ import { ProfileViewComponent } from './profile-view/profile-view.component';
     AddComponent,
     EditViewComponent,
     DetailsViewComponent,
-    ProfileViewComponent
   ],
   providers: [
     MessageService,

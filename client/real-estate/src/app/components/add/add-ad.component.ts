@@ -25,6 +25,7 @@ export class AddComponent implements OnInit {
   message: string = '';
   createdId: string = '';
   loading: boolean = false;
+  isDisabled: boolean = true;
 
   addFormGroup: FormGroup = this.fb.group({
     adType: new FormControl([], [Validators.required]),
@@ -58,6 +59,8 @@ export class AddComponent implements OnInit {
     this.checked = !this.checked;
   }
   onClear() {
+    this.isDisabled = !this.isDisabled;
+
     this.uploadedFiles = [];
   }
   changeFromChild(event: any): void {
@@ -65,9 +68,9 @@ export class AddComponent implements OnInit {
     let region = townOptions[currentValue as keyof typeof townOptions];
     this.region = region;
     this.shouldDisabled = false;
-
   }
   onUpload(event: any) {
+    this.isDisabled = !this.isDisabled;
     this.uploadedFiles = [];
     for (let file of event.files) {
       this.uploadedFiles.push(file);

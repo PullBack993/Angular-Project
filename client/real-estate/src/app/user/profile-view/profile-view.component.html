@@ -1,0 +1,95 @@
+<div class="text-center"   role="status" *ngIf="!currentUser">
+    <div class=" spinner-grow text-primary" role="status">
+        <span class=" visually-hidden">Loading...</span>
+    </div>
+</div>
+<div class="main bg-light bg-opacity-10 mt-5 shadow p-3 mb-5 bg-body rounded" *ngIf="currentUser">
+
+    <div class="container">
+        <p-tabMenu [model]="homeItem" [activeItem]="activeItem" (click)="home()">
+        </p-tabMenu>
+        <p-tabMenu [model]="editItem" [activeItem]="activeItem" (click)="edit()">
+        </p-tabMenu>
+
+    </div>
+    <ng-container *ngIf="homeTemplate">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 order-lg-3">
+                <div class="card-profile-image">
+
+                    <img src="{{currentUser.userData.imageUrl}}" class="img-thumbnail rounded-circle image">
+
+                </div>
+            </div>
+        </div>
+        <div class="content-container card-text  mx-auto " style="width: 250px; ">
+            <div class="username">
+                <p class="text-muted mb-0 fw-lighter fs-9   mt-3">Потребителско име:</p>
+                <p class="name fs-7">{{currentUser.userData.username}}</p>
+            </div>
+        </div>
+        <div class="content-container   mx-auto" style="width: 250px; ">
+            <div class="email ">
+                <p class="text-muted mb-0 fs-6">Имеил</p>
+                <p class="email-text pr-3 ">{{currentUser.userData.email}}</p>
+            </div>
+        </div>
+
+    </ng-container>
+
+
+    <ng-container *ngIf="editTemplate" [formGroup]="form" ]>
+        <div class="container-input ">
+
+            <input type="text" class="form-control mt-3" placeholder="Username"
+                [ngModel]="currentUser.userData.username" formControlName="username" aria-label="username"
+                aria-describedby="basic-addon1">
+            <!-- <span class="p-float-label">
+                <input id="float-input-invalid" formControlName="username"  [(ngModel)]="a" type="text" pInputText>
+                <label for="float-input-invalid" class="ng-invalid ng-dirty">Потребителско име</label>
+            </span> -->
+
+            <ng-container *ngIf="">
+                <p *ngIf="">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Полето е задължително" styleClass="mr-2"></p-message>
+                </p>
+            </ng-container>
+            <input type="text" class="form-control mt-3 mb-3" placeholder="Имейл" [ngModel]="currentUser.userData.email"
+                formControlName="email" aria-label="email" aria-describedby="basic-addon1">
+            <!-- <span class="p-float-label">
+                <input [class.invalid]="" id="float-input" type="text" formControlName="email"[ngModel]="b" pInputText>
+                <label [class.invalid-text]="" class="ng-invalid ng-dirty" for="float-input">Имейл</label>
+            </span> -->
+
+            <ng-container *ngIf="">
+                <p *ngIf="">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Имейл полето е задължително" styleClass="mr-2"></p-message>
+                </p>
+                <p *ngIf="">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Моля въведете валиден имейл" styleClass="mr-2"></p-message>
+                </p>
+            </ng-container>
+            <button type="button" class="btn btn-outline-primary" (click)="filePicker.click()">Качи
+                профилна снимка</button>
+            <input class="filePicker" formControlName="image" type="file" accept="image/*" #filePicker
+                (change)="onImagePicked($event) ">
+            <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+
+                <div class="col-lg-4 order-lg-3 mx-auto">
+                    <div class="card-profile-image">
+                        <img class=" img-thumbnail d-block rounded-circle image" [src]="imagePreview" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-inline-flex grid gap-3 col-5">
+            <button type="submit" (click)="onSubmit($event)"
+                class="btn btn-primary m-0 d-grid gap-2 col-6">Запази</button>
+            <button type="button" class="btn btn-danger m-0 d-grid gap-2 col-6">Откажи</button>
+        </div>
+    </ng-container>
+
+</div>

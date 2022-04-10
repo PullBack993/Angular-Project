@@ -12,7 +12,6 @@ import { NewProjectsComponent } from './new-projects/new-projects.component';
 import { PropertyComponent } from './property/property.component';
 import { RetailOutletComponent } from './retail-outlet/retail-outlet.component';
 import {EditComponent} from './edit/edit.component'
-import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -26,12 +25,10 @@ const routes: Routes = [
   },
   {
     path: 'edit/:id',
-    component: EditComponent
+    component: EditComponent,
+    canActivate: [AuthGuard]
   },
-  {
-    path: 'profile',
-    component: ProfileComponent
-  },
+
   {
     path: 'details/:id',
     component: DetailsComponent
