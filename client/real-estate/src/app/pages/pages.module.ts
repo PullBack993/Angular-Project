@@ -19,6 +19,7 @@ import { ComponentsModule } from '../components/components.module';
 import { PagesRoutingModule } from './app-pages-routing.module';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
+import { SearchAdsComponent } from './search-ads/search-ads.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DetailsComponent } from './details/details.component';
     HomeComponent,
     EditComponent,
     DetailsComponent,
+    SearchAdsComponent,
   ],
 
   imports: [
@@ -46,9 +48,6 @@ import { DetailsComponent } from './details/details.component';
   ],
 
   exports: [],
-  providers: [
-   
-  ]
+  providers: []
 })
 export class PagesModule {}
-

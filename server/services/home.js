@@ -5,15 +5,10 @@ async function create(data) {
   return await newAd.save();
 }
 
-async function search(searchInput) {
-  const data = await Home.find({
-    region: searchInput.region,
-    adType: searchInput.adType,
-    estateType: searchInput.estateType,
-    price: { $lte: searchInput.price },
-    area: { $gte: searchInput.area },
-    rooms: { $gte: searchInput.rooms }.limit(searchInput.limit * 10),
-  });
+async function search(query) {
+  const data = await Home.find(query).limit(query.limit * 10)
+  data.totalPages = await Home.find(query).count();
+  console.log(data)
   return data;
 }
 

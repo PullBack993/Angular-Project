@@ -12,6 +12,8 @@ import { NewProjectsComponent } from './new-projects/new-projects.component';
 import { PropertyComponent } from './property/property.component';
 import { RetailOutletComponent } from './retail-outlet/retail-outlet.component';
 import {EditComponent} from './edit/edit.component'
+import { SearchAdsComponent } from './search-ads/search-ads.component';
+
 
 const routes: Routes = [
   {
@@ -22,6 +24,10 @@ const routes: Routes = [
   {
     path: 'properties',
     component: PropertyComponent
+  },
+  {
+    path: 'search',
+    component: SearchAdsComponent
   },
   {
     path: 'edit/:id',

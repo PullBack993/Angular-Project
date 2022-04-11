@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IAd2, IAds } from '../../models/ads';
+import {  IAds } from '../../models/ads';
 import { AdsService } from '../../services/ads.service';
 
 @Component({

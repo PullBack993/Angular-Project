@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ICity, IConstructionType, IAdType, ITags, IAds, IAd2, IRegion, ICreateAd } from '../../models/ads';
-import { adTypes, cities, construction, tags, townOptions } from '../helper';
+import { ICity, IConstructionType, IAdType, ITags, IAds, ILocation, IRegion, ICreateAd } from '../../models/ads';
+import { estateTypes, cities, construction, tags, townOptions } from '../helper';
 import { AdsService } from '../../services/ads.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
@@ -28,7 +28,7 @@ export class EditViewComponent {
   error: boolean = false;
   message: string = '';
   createdId: string = '';
-  location!: IAd2;
+  location!: ILocation;
   index!: number;
   inputTags: ITags[];
   constType!: [{ type: string }] | {};
@@ -58,7 +58,7 @@ export class EditViewComponent {
   ) {
     this.cities = cities();
     this.tags = tags;
-    this.type = adTypes;
+    this.type = estateTypes;
     this.constructionType = construction;
     this.townOptions = townOptions;
     this.inputTags = [];

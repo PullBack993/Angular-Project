@@ -46,7 +46,7 @@ export interface ICreateAd {
   estateType: string;
   price: number;
   location: string;
-  imageUrls: string[] ;
+  imageUrls: string[];
   region: string;
   area: number;
   floor: number;
@@ -130,7 +130,14 @@ export interface ICity {
   name: string;
 }
 
-export interface IAd2 {
+export interface ILocation {
   name: string;
   searchValue: string;
+}
+export interface ISearch {
+  location: string;
+  adType: string;
+  estateType?: string;
+  area?: number;
+  price?: number;
 }

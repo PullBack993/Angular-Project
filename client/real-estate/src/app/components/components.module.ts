@@ -4,7 +4,6 @@ import { SearchComponent } from './search/search.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { AdsComponent } from './ads/ads.component';
 import { AdViewsComponent } from './ad-views/ad-views.component';
-import { ErrorsComponent } from './errors/errors.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -38,7 +37,6 @@ import { DetailsViewComponent } from './details-view/details-view.component';
     ProjectsComponent,
     AdsComponent,
     AdViewsComponent,
-    ErrorsComponent,
     AddComponent,
     EditViewComponent,
     DetailsViewComponent,
@@ -68,7 +66,6 @@ import { DetailsViewComponent } from './details-view/details-view.component';
     ProjectsComponent,
     AdsComponent,
     AdViewsComponent,
-    ErrorsComponent,
     AddComponent,
     EditViewComponent,
     DetailsViewComponent,

@@ -6,7 +6,6 @@
   font-size: 41px;
   margin: 0px;
   margin-top: 10px;
-  color: $letterSubmenuColor;
 }
 
 .container {
@@ -27,61 +26,16 @@
     display: flex;
     margin: 15px;
     &-input-town {
-      height: 40px;
       width: 58%;
-      border-radius: 0.4rem;
-      border: 1px $main solid;
       text-indent: 10px;
     }
     .service {
       width: 20%;
       text-align: center;
-      &-type,
-      &-option {
-        width: 87%;
-        height: 40px;
-        border-radius: 0.4rem;
-        border: 1px $main solid;
-        background-color: $white;
-        text-indent: 10px;
-        z-index: 1;
-      }
-      &-price,
-      &-area,
-      &-rooms {
-        width: 20%;
-        text-align: center;
 
-        .input-price {
-          width: 91%;
-          height: 40px;
-          border-radius: 0.4rem;
-          border: 1px $main solid;
-          text-indent: 10px;
-        }
-        .input-area,
-        .select-rooms {
-          width: 87%;
-          height: 40px;
-          border-radius: 0.4rem;
-          border: 1px $main solid;
-          background-color: $white;
-          text-indent: 10px;
-          z-index: 1;
-        }
-      }
     }
     .button {
       width: 40%;
-      &-search {
-        width: 94%;
-        height: 40px;
-        border-radius: 0.6rem;
-        font-weight: bold;
-        background-color: $mainBg;
-        box-shadow: $baby-shadow;
-      }
     }
   }
 }
-

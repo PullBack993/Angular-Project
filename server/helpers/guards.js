@@ -29,13 +29,15 @@ function authJwt() {
   }).unless({
     path: [
       // For all path/methods(dev)
-      // { url: /(.*)/ },
+      { url: /(.*)/ },
+      { url: /\/api\/search\/(.*)/, methods: ["GET", "OPTIONS"] },
       { url: /\/api\/details\/(.*)/, methods: ["GET", "OPTIONS"] },
       { url: /\/api\/catalog\/(.*)/, method: ["GET", "OPTIONS"] },
-      { url: /\/api\/home\/search\/(.*)/, method: ["GET", "OPTION"] },
+      { url: /\/api\/home\/(.*)/, method: ["GET", "OPTION"] },
       { url: "/api/home", method: ["GET", "OPTION"] },
       `/api/login`,
       `/api/register`,
+      "/",
     ],
   });
 }

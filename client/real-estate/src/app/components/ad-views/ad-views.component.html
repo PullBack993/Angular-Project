@@ -1,64 +1,66 @@
 <br>
-<ng-container *ngFor="let ad of adsData">
-    <div class="main-container" [routerLink]="'/details/' + ad._id">
-        <div class="main-container-child">
-            <div class="main-container-child-child">
-                <img class="image" src="{{ad.imageUrls[0]}}" alt="">
-                <div class="image-container">
+<ng-container *ngIf="adsData">
+    <ng-container *ngFor="let ad of adsData">
+        <div class="main-container" [routerLink]="'/details/' + ad._id">
+            <div class="main-container-child">
+                <div class="main-container-child-child">
+                    <img class="image" src="{{ad.imageUrls[0]}}" alt="">
+                    <div class="image-container">
 
-                    <ng-container *ngIf="ad.imageUrls.length >= 3">
-                        <div class="image-child">
-                            <img class="image-child-top" src="{{ad.imageUrls[1]}}" alt="">
-                        </div>
-                        <div class="image-child">
-                            <img class="image-child-bottom" src="{{ad.imageUrls[2]}}" alt="">
-                        </div>
-                    </ng-container>
+                        <ng-container *ngIf="ad.imageUrls.length >= 3">
+                            <div class="image-child">
+                                <img class="image-child-top" src="{{ad.imageUrls[1]}}" alt="">
+                            </div>
+                            <div class="image-child">
+                                <img class="image-child-bottom" src="{{ad.imageUrls[2]}}" alt="">
+                            </div>
+                        </ng-container>
 
-                    <ng-container *ngIf="ad.imageUrls.length == 2">
-                        <div class="image-child">
-                            <img class="image-child-top" src="{{ad.imageUrls[1]}}" alt="">
-                        </div>
-                        <div class="image-child">
-                            <img class="image-child-bottom" [src]="defaultImg" alt="">
-                        </div>
+                        <ng-container *ngIf="ad.imageUrls.length == 2">
+                            <div class="image-child">
+                                <img class="image-child-top" src="{{ad.imageUrls[1]}}" alt="">
+                            </div>
+                            <div class="image-child">
+                                <img class="image-child-bottom" [src]="defaultImg" alt="">
+                            </div>
 
-                    </ng-container>
-                    <ng-container *ngIf="ad.imageUrls.length == 1">
-                        <div class="image-child">
-                            <img class="image-child-top" [src]="defaultImg">
-                        </div>
-                        <div class="image-child">
-                            <img class="image-child-bottom" [src]="defaultImg" alt="">
-                        </div>
-                    </ng-container>
+                        </ng-container>
+                        <ng-container *ngIf="ad.imageUrls.length == 1">
+                            <div class="image-child">
+                                <img class="image-child-top" [src]="defaultImg">
+                            </div>
+                            <div class="image-child">
+                                <img class="image-child-bottom" [src]="defaultImg" alt="">
+                            </div>
+                        </ng-container>
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="text-container">
-            <div>{{ad.location}}, {{ad.region}}</div>
-            <h2>{{ad.title}}</h2>
-            <ul class="object-options">
+            <div class="text-container">
+                <div>{{ad.location}}, {{ad.region}}</div>
+                <h2>{{ad.title}}</h2>
+                <ul class="object-options">
                     <ng-container *ngFor="let tag of ad.tags">
-                    <li>{{tag}}</li>
-                </ng-container>
+                        <li>{{tag}}</li>
+                    </ng-container>
                 </ul>
 
-            <ul class="object-info">
-                <li class="ufaLY">{{ad.estateType}}<span>Вид имот</span></li>
-                <li class="ufaLY">{{ad.area}} m²<span>Площ</span></li>
-                <li class="price">{{ad.price}} €</li>
-            </ul>
-            <h3 class="description">Описание:</h3>
-            <div class="description-container">
-                <div class="description-container-text">
-                    {{ad.moreInfo}}
+                <ul class="object-info">
+                    <li class="ufaLY">{{ad.estateType}}<span>Вид имот</span></li>
+                    <li class="ufaLY">{{ad.area}} m²<span>Площ</span></li>
+                    <li class="price">{{ad.price}} €</li>
+                </ul>
+                <h3 class="description">Описание:</h3>
+                <div class="description-container">
+                    <div class="description-container-text">
+                        {{ad.moreInfo}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="line"></div>
+        <div class="line"></div>
+    </ng-container>
 </ng-container>
 
 <!-- <div class="container">

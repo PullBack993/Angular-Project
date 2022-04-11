@@ -16,7 +16,7 @@ export const tags = [
   { tag: 'След Oсновен Ремонт' }
 ];
 
-export const adTypes = [
+export const estateTypes = [
   { type: '  1-СТАЕН' },
   { type: ' 2-СТАЕН' },
   { type: '3-СТАЕН' },
