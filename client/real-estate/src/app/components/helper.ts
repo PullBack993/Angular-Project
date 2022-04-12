@@ -17,10 +17,10 @@ export const tags = [
 ];
 
 export const estateTypes = [
-  { type: '  1-СТАЕН' },
-  { type: ' 2-СТАЕН' },
+  { type: '1-СТАЕН' },
+  { type: '2-СТАЕН' },
   { type: '3-СТАЕН' },
-  { type: ' 4-СТАЕН' },
+  { type: '4-СТАЕН' },
   { type: 'МНОГОСТАЕН' },
   { type: 'МЕЗОНЕТ' },
   { type: 'ОФИС' },
@@ -33,7 +33,7 @@ export const estateTypes = [
   { type: 'ЗАВЕДЕНИЕ' },
   { type: 'СКЛАД' },
   { type: 'ГАРАЖ' },
-  { type: '   ПРОМ. ПОМЕЩЕНИЕ' },
+  { type: 'ПРОМ. ПОМЕЩЕНИЕ' },
   { type: 'ПАРЦЕЛ' },
   { type: 'ЗЕМЕДЕЛСКА ЗЕМЯ' },
   { type: 'БИЗНЕС ИМОТ' }

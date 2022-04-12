@@ -10,6 +10,7 @@ import { IAds } from '../../models/ads';
 export class DetailsViewComponent implements OnInit {
   images!: string[];
   @Input() adData!: IAds;
+  @Input() isOwner!: boolean;
 
   get activeIndex(): number {
     return this._activeIndex;
@@ -34,8 +35,11 @@ export class DetailsViewComponent implements OnInit {
     
   }
   getImage() {
-    this.images = this.adData.imageUrls;
-    return this.images[this._activeIndex];
+    if (this.adData.imageUrls) {
+      this.images = this.adData.imageUrls;
+      return this.images[this._activeIndex];
+    }
+    return
   }
   next() {
     this.activeIndex++;

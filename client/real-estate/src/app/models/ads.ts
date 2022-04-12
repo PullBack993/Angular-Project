@@ -135,9 +135,10 @@ export interface ILocation {
   searchValue: string;
 }
 export interface ISearch {
-  location: string;
-  adType: string;
+  location?: string;
+  adType?: string;
   estateType?: string;
   area?: number;
   price?: number;
+   limit: number;
 }

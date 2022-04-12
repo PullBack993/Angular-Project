@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NewProjectsComponent } from './new-projects/new-projects.component';
-
 import { PropertyComponent } from './property/property.component';
-import { RetailOutletComponent } from './retail-outlet/retail-outlet.component';
 import { HomeComponent } from './home/home.component';
 import { AddAdComponent } from './add-ad/add-ad.component';
 import { BrokersComponent } from './brokers/brokers.component';
@@ -24,8 +21,6 @@ import { SearchAdsComponent } from './search-ads/search-ads.component';
 @NgModule({
   declarations: [
     PropertyComponent,
-    NewProjectsComponent,
-    RetailOutletComponent,
     AddAdComponent,
     BrokersComponent,
     BrokersFirmsComponent,

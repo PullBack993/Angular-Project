@@ -1,16 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { IAds, IAdType, ICity } from 'src/app/models/ads';
+import { Component,  OnInit } from '@angular/core';
+import {  IAdType, ICity } from 'src/app/models/ads';
 import { estateTypes, cities } from '../helper';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AdsService } from 'src/app/services/ads.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
-  animations: [trigger('blink', [state('void', style({ opacity: 0 })), transition('void <=> *', [animate('1s')])])]
 })
 export class SearchComponent implements OnInit {
   cities!: ICity[];
@@ -25,7 +22,7 @@ export class SearchComponent implements OnInit {
     area: new FormControl()
   });
 
-  constructor(private fb: FormBuilder, private searchService: AdsService, private router: Router) {
+  constructor(private fb: FormBuilder, private searchService: AdsService) {
     this.cities = cities();
     this.type = estateTypes;
   }
@@ -42,7 +39,7 @@ export class SearchComponent implements OnInit {
       price: this.form.value?.price,
       limit: 1
     };
-    console.log(body);
+
     this.searchService.search(body)
 
   }

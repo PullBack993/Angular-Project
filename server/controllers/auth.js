@@ -9,9 +9,9 @@ const router = require("express").Router();
 
 
 router.post("/register", async (req, res) => {
-  const { username, email, password, repass } = req.body;
-
+  
   try {
+    const { username, email, password, repass } = req.body;
     checkInput(req.body);
 
     if (password.length < 4)
@@ -23,6 +23,7 @@ router.post("/register", async (req, res) => {
 
     token = createToken(user);
     const userData = removePassword(user);
+
     res.status(201).send({ userData, token, expiresIn: 3600 });
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -30,9 +31,10 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
-
+  
   try {
+    
+  const { email, password } = req.body;
     checkInput({ email: email, password: password });
     const user = await login(email.trim(), password.trim());
     const token = createToken(user);
@@ -65,6 +67,7 @@ function checkInput(inputObj) {
 router.get("/editUser", async (req, res) => {
   try {
     const id = req.user._id
+
     const user = await getById(id)
     const userData = removePassword(user)
     res.status(200).send({ success: true, userData });

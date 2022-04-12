@@ -1,7 +1,6 @@
 const expressJwt = require("express-jwt");
 require("dotenv/config");
 
-//Modify it !
 function isOwner() {
   return (req, res, next) => {
     const id = req.params.id;
@@ -29,7 +28,7 @@ function authJwt() {
   }).unless({
     path: [
       // For all path/methods(dev)
-      { url: /(.*)/ },
+      // { url: /(.*)/ },
       { url: /\/api\/search\/(.*)/, methods: ["GET", "OPTIONS"] },
       { url: /\/api\/details\/(.*)/, methods: ["GET", "OPTIONS"] },
       { url: /\/api\/catalog\/(.*)/, method: ["GET", "OPTIONS"] },

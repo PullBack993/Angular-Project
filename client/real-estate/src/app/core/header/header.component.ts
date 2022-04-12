@@ -26,20 +26,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private authListenerSubs!: Subscription;
   private messageSubs!: Subscription;
 
-
-  constructor(private authService: UserService,private messageService: MessageService) {}
+  constructor(private authService: UserService, private messageService: MessageService) {}
 
   ngOnInit() {
-    this.messageSubs = this.messageService.onMessage$.subscribe(newMessage => {
+    this.messageSubs = this.messageService.onMessage$.subscribe((newMessage) => {
       this.errorMessage = newMessage.text;
-      this.isErrorType = newMessage.type === MessageType.error
+      this.isErrorType = newMessage.type === MessageType.error;
       if (this.errorMessage) {
         setTimeout(() => {
-          this.errorMessage = ''
+          this.errorMessage = '';
         }, 3000);
       }
-
-    })
+    });
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
       this.userIsAuthenticated = isAuthenticated;
@@ -54,5 +52,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authListenerSubs.unsubscribe();
     this.messageSubs.unsubscribe();
   }
- 
 }

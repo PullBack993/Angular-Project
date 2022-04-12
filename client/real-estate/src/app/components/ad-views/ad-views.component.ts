@@ -8,6 +8,8 @@ import { IAds } from '../../models/ads';
 export class AdViewsComponent implements OnInit {
   defaultImg: string = '../../../../../assets/images/index.png';
   @Input() adsData: IAds[] = [];
+  @Input() pages: number = 1
+  @Input() totalAds!: number
   constructor() {}
 
   ngOnInit(): void {}

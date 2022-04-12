@@ -9,7 +9,7 @@
 
     .images {
       width: 70%;
-      height: 500px;
+      height: 450px;
       object-fit: fill;
       border-radius: 1%;
     }
@@ -27,7 +27,7 @@
     .p-galleria-thumbnail-after-icon {
       position: absolute;
       bottom: 50%;
-      left: 46%;
+      left:54%;
       color: $white;
       font-size: 40px;
       padding: 14px;
@@ -78,13 +78,8 @@
     .object-info {
       padding-left: 10px;
       list-style-type: none;
-
-      & > li {
-        margin-bottom: 8px;
-        & > span {
-          margin-left: 5px;
-          color: $whiteBlue;
-        }
+      .text{
+        color: $whiteBlue;
       }
 
       .price {

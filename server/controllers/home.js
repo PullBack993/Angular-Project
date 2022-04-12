@@ -7,13 +7,12 @@ const {
   sortByDate,
   sortByLikes,
   getAll,
+  getNewProjects,
+  getRetailOutlet,
 } = require("../services/home");
 const { homeInputParser } = require("../helpers/inputParser");
-const { s3UploadImg,s3Delete } = require("../helpers/s3Upload");
+const { s3UploadImg, s3Delete } = require("../helpers/s3Upload");
 const { isOwner } = require("../helpers/guards");
-
-
-
 
 const router = require("express").Router();
 
@@ -41,9 +40,18 @@ router.post("/create", s3UploadImg(), async (req, res) => {
   }
 });
 
-router.get("/catalog/:limit", async (req, res) => {
+router.get("/catalog/:path/:limit", async (req, res) => {
   try {
-    const data = await getAll(Number(req.params.limit) * 10);
+    let data = "";
+    const limit = req.params.limit;
+    if (req.params.path == "properties") {
+      data = await getAll(Number(limit) * 10);
+    } else if (req.params.path == "new-projects") {
+      data = await getNewProjects((limit) * 10);
+    } else if (req.params.path == "retail-outlet") {
+      data = await getRetailOutlet((limit)* 10);
+    }
+
     res.status(200).send({
       message: "success",
       data,
@@ -88,7 +96,6 @@ router.delete("/delete/:id", isOwner(), async (req, res) => {
   }
 });
 
-//TODO after front end is createt,check if owner (all)
 router.get("/edit/:id", isOwner(), async (req, res) => {
   try {
     const id = req.params.id;
@@ -106,12 +113,13 @@ router.get("/edit/:id", isOwner(), async (req, res) => {
 router.put("/edit/:id", s3UploadImg(), async (req, res) => {
   try {
     if (req.body.deleteUrl) {
-      s3Delete(req.body.deleteUrl)
-      //TODO check it ??
+      s3Delete(req.body.deleteUrl);
     }
 
-    if (req.files) { req.body.imageUrls = req.files.map((img) => img.location) }
-    
+    if (req.files) {
+      req.body.imageUrls = req.files.map((img) => img.location);
+    }
+
     const updateData = homeInputParser(req);
     const id = req.params.id;
     const userId = req.user._id;
@@ -145,7 +153,5 @@ router.get("/sort-likes", async (req, res) => {
     console.log(err);
   }
 });
-
-
 
 module.exports = router;

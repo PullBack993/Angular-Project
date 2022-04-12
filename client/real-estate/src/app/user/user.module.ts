@@ -12,7 +12,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../components/components.module';
-import { ProfileViewComponent } from './profile-view/profile-view.component'
+import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { TabMenuModule } from 'primeng/tabmenu';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
     PasswordModule,
     ComponentsModule,
     ProgressSpinnerModule,
-    TabMenuModule,
+    TabMenuModule
   ]
 })
 export class UserModule {}

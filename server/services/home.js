@@ -1,3 +1,4 @@
+const { SEARCH_VALUES } = require("../helpers/util");
 const Home = require("../models/Home");
 
 async function create(data) {
@@ -6,9 +7,9 @@ async function create(data) {
 }
 
 async function search(query) {
-  const data = await Home.find(query).limit(query.limit * 10)
+  const data = await Home.find(query).limit(query.limit * 10);
   data.totalPages = await Home.find(query).count();
-  console.log(data)
+  console.log(data);
   return data;
 }
 
@@ -20,9 +21,35 @@ async function getLatest(limit) {
 }
 
 async function getAll(limit) {
-  const data = await Home.find().sort({ date: -1 }).limit(limit);
+  let data = await Home.find().sort({ date: -1 }).limit(limit);
   // .populate("owner");
   const count = await Home.count();
+  data.total_pages = Math.ceil(count / 10);
+  data.total_results = count;
+  return data;
+}
+
+async function getNewProjects(limit) {
+  let data = await Home.find({ isNewProject: true })
+    .sort({ date: -1 })
+    .limit(limit);
+  
+  const count = await Home.find({ isNewProject: true }).count();
+
+  data.total_pages = Math.ceil(count / 10);
+  data.total_results = count;
+  return data;
+}
+
+async function getRetailOutlet(limit) {
+  let data = await Home.find({
+    estateType: SEARCH_VALUES,
+  }).limit(limit);
+
+  const count = await Home.find({
+    estateType: SEARCH_VALUES,
+  }).count();
+
   data.total_pages = Math.ceil(count / 10);
   data.total_results = count;
   return data;
@@ -82,4 +109,6 @@ module.exports = {
   sortByDate,
   search,
   getAll,
+  getNewProjects,
+  getRetailOutlet,
 };

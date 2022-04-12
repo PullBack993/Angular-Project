@@ -8,9 +8,7 @@ import { BrokersComponent } from './brokers/brokers.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
-import { NewProjectsComponent } from './new-projects/new-projects.component';
 import { PropertyComponent } from './property/property.component';
-import { RetailOutletComponent } from './retail-outlet/retail-outlet.component';
 import {EditComponent} from './edit/edit.component'
 import { SearchAdsComponent } from './search-ads/search-ads.component';
 
@@ -41,11 +39,11 @@ const routes: Routes = [
   },
   {
     path: 'new-projects',
-    component: NewProjectsComponent
+    component: PropertyComponent
   },
   {
     path: 'retail-outlet',
-    component: RetailOutletComponent
+    component: PropertyComponent
   },
   {
     path: 'add-ad',

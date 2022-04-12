@@ -1,3 +1,5 @@
+<p-progressSpinner *ngIf="!adData"></p-progressSpinner>
+<ng-container *ngIf="adData">
 <div class="main">
     <div class="container">
         <img class="images" [src]="getImage()">
@@ -8,16 +10,25 @@
             <i class="p-galleria-thumbnail-after-icon pi pi-chevron-right"></i>
         </div>
         <div class="text-container">
-            <h2 >{{adData.title}}</h2>
+            <h2>{{adData.title}}</h2>
 
             <br>
 
             <div class="location">{{adData.location}}, {{adData.region}}</div>
             <br>
             <ul class="object-info">
-                <li label="estateType" class="">{{adData.estateType}}<span class="">Вид имот</span></li>
-                <li label="floor" class="floor">{{adData.floor}}<span class="">Етаж</span></li>
-                <li label="area" class="">{{adData.area}}m²<span class="">Площ</span></li>
+                <div class="d-flex">
+                    <span class="me-1 text">Вид имот:</span>
+                    <li label="estateType" class="">{{adData.estateType}}</li>
+                </div>
+                <div class="d-flex">
+                    <span class="me-1 text">Етаж:</span>
+                    <li label="floor" class="floor">{{adData.floor}}</li>
+                </div>
+                <div class="d-flex">
+                    <span class="me-1 text">Площ:</span>
+                    <li label="area" class="">{{adData.area}}m²</li>
+                </div>
                 <br>
                 <li class="price">{{adData.price}} €</li>
             </ul>
@@ -40,8 +51,11 @@
         <div class="description-container-text"> {{adData.moreInfo}}
         </div>
     </div>
-    <p-button (onClick)="onEdit()">edit</p-button>
-    <br>
-    <p-button>delete</p-button>
+    <ng-container *ngIf="isOwner">
+        <p-button (onClick)="onEdit()">edit</p-button>
+        <br>
+        <p-button>delete</p-button>
+    </ng-container>
 
 </div>
+</ng-container>
