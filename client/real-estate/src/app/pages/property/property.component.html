@@ -1,5 +1,9 @@
+<!-- TODO spiner -->
 <app-search></app-search>
+<app-spiner [isLoading]="isLoading"></app-spiner>
+<ng-container *ngIf="!isLoading">
 <app-ad-views [adsData]="ads"></app-ad-views>
 <div>
     <p-paginator [rows]="10" [totalRecords]="totalResults" (onPageChange)="paginate($event)"></p-paginator>
 </div>
+</ng-container>

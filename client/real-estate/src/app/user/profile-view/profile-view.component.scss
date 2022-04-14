@@ -1,3 +1,5 @@
+@import "../../../style/color";
+
 .main {
   margin-left: 35%;
   margin-right: 35%;
@@ -29,4 +31,13 @@
 }
 .filePicker {
   visibility: hidden;
+}
+.invalid {
+  border: 1px solid $error;
+  label {
+    color: $error;
+  }
+  &-text {
+    color: $error;
+  }
 }

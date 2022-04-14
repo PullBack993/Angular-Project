@@ -1,4 +1,10 @@
-<app-search></app-search>
-<ng-container *ngIf="ads">
-<app-ad-views [adsData]="ads"></app-ad-views>
+<ng-container *ngIf="isLoading">
+    <app-spiner></app-spiner>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+    <app-search></app-search>
+    <ng-container *ngIf="ads">
+        <app-ad-views [adsData]="ads"></app-ad-views>
+    </ng-container>
 </ng-container>

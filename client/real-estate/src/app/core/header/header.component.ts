@@ -9,9 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-// @HostListener('mouseenter') onMouseLeave(event){
-//   this.highlight('yellow')
-// }
+
 export class HeaderComponent implements OnInit, OnDestroy {
   icons = {
     faEnvelope,
@@ -23,8 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   errorMessage!: string;
   isErrorType!: boolean;
 
-  private authListenerSubs!: Subscription;
-  private messageSubs!: Subscription;
+  messageSubs!: Subscription;
 
   constructor(private authService: UserService, private messageService: MessageService) {}
 
@@ -39,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     });
     this.userIsAuthenticated = this.authService.getIsAuth();
-    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
+    this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
       this.userIsAuthenticated = isAuthenticated;
     });
   }
@@ -49,7 +46,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.authListenerSubs.unsubscribe();
     this.messageSubs.unsubscribe();
   }
 }

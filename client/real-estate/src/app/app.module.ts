@@ -9,7 +9,6 @@ import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
 import { UserModule } from './user/user.module';
 import { AuthInterceptor } from './user/auth.interceptor';
-import { ErrorHandlerInterceptor } from './core/error-handler.interceptor';
 
 @NgModule({
   declarations: [AppComponent],

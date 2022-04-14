@@ -8,7 +8,7 @@ import { AdsService } from '../../services/ads.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  ad: IAds[] = [];
+  ads: IAds[] = [];
   projects: IAds[] = [];
   isLoading: boolean = true;
 
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     
     this.adsServie.getAdsProjectsData().subscribe((data) => {
       this.projects = data.latestProjects;
-      this.ad = data.latestAds;
+      this.ads = data.latestAds;
       this.isLoading = false;
     });
   }

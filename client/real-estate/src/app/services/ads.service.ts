@@ -2,8 +2,11 @@ import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, of, switchMap } from 'rxjs';
-
 import { IAdDto, IAdsCatalogDto, IAdsDto, ISearch } from '../models/ads';
+import { environment } from 'src/environments/environment';
+import { MessageService, MessageType } from './message.service';
+
+const BACKEND_URL = environment.apiUrl
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +16,10 @@ export class AdsService {
 
   currentSearchData$ = this._searchData.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient,private messageService:MessageService, private router: Router) {}
 
   search(searchParams: ISearch) {
-    this.http.post('http://localhost:3000/api/home/search', searchParams).subscribe({
+    this.http.post(BACKEND_URL +'/home/search', searchParams).subscribe({
       next: (data) => {
         this._searchData.next(data);
         this.router.navigate(['/search']);
@@ -25,36 +28,40 @@ export class AdsService {
   }
 
   getAdsProjectsData() {
-    return this.http.get<IAdsDto>('https://real-estate-angular-project.herokuapp.com/api/home');
+    return this.http.get<IAdsDto>(BACKEND_URL + '/home');
   }
 
   getAds(limit: number, path: string) {
-    return this.http.get<IAdsCatalogDto>(`http://localhost:3000/api/catalog/${path}/${limit}`);
+    return this.http.get<IAdsCatalogDto>(BACKEND_URL + `/catalog/${path}/${limit}`);
   }
 
   createAd(files: {}) {
-    return this.http.post('http://localhost:3000/api/create', files);
+    return this.http.post(BACKEND_URL + '/create', files);
   }
 
   editAd(files: {}, id: string) {
-    return this.http.put(`http://localhost:3000/api/edit/${id}`, files).subscribe({
-      next: (data) => {
-        console.log(data);
-      },
+    return this.http.put(BACKEND_URL + `/edit/${id}`, files).subscribe({
       complete: () => {
         console.log('sucess');
-        this.router.navigate(['']);
+         this.messageService.notifyForMessage({ text: `Успешно редактирана обява!`, type: MessageType.success });
+        this.router.navigate(['/properties']);
       },
       error: (err) => {
-        this.router.navigate(['/login']);
-        console.log(err);
-        console.log(err.error.message);
+        this.router.navigate(['']);
+      }
+    });
+  }  
+
+  deleteById(id: string) {
+    this.http.delete(BACKEND_URL + `/delete/${id}`).subscribe({
+      next: (data) => {
+        this.router.navigate(['/properties']);
+         this.messageService.notifyForMessage({ text: `Успешно изтрита обява!`, type: MessageType.success });
       }
     });
   }
-
   getById(id: string) {
-    return this.http.get<IAdDto>(`http://localhost:3000/api/details/${id}`).pipe(
+    return this.http.get<IAdDto>(BACKEND_URL + `/details/${id}`).pipe(
       switchMap((res) => {
         return of(res.data);
       })

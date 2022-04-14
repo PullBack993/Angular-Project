@@ -1,4 +1,4 @@
-<div class="text-center"   role="status" *ngIf="!currentUser">
+<div class="text-center" role="status" *ngIf="!currentUser">
     <div class=" spinner-grow text-primary" role="status">
         <span class=" visually-hidden">Loading...</span>
     </div>
@@ -16,8 +16,15 @@
         <div class="row justify-content-center">
             <div class="col-lg-4 order-lg-3">
                 <div class="card-profile-image">
-
+                    <ng-container *ngIf="currentUser.userData.imageUrl">
                     <img src="{{currentUser.userData.imageUrl}}" class="img-thumbnail rounded-circle image">
+                    </ng-container>
+                    <ng-container *ngIf="!currentUser.userData.imageUrl">
+                    <img src="{{defaultImg}}" class="img-thumbnail rounded-circle image">
+
+                    </ng-container>
+
+
 
                 </div>
             </div>
@@ -38,29 +45,31 @@
     </ng-container>
 
 
-    <ng-container *ngIf="editTemplate" [formGroup]="form" ]>
+    <ng-container *ngIf="!homeTemplate" [formGroup]="form" ]>
         <div class="container-input ">
 
             <input type="text" class="form-control mt-3" placeholder="Username"
                 [ngModel]="currentUser.userData.username" formControlName="username" aria-label="username"
                 aria-describedby="basic-addon1">
-            <!-- <span class="p-float-label">
-                <input id="float-input-invalid" formControlName="username"  [(ngModel)]="a" type="text" pInputText>
-                <label for="float-input-invalid" class="ng-invalid ng-dirty">Потребителско име</label>
-            </span> -->
 
-            <ng-container *ngIf="">
-                <p *ngIf="">
+            <ng-container *ngIf="checkTouch('username', form)">
+                <p *ngIf="form.get('username')?.errors?.['required']">
                     <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
                         text="Полето е задължително" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
-            <input type="text" class="form-control mt-3 mb-3" placeholder="Имейл" [ngModel]="currentUser.userData.email"
-                formControlName="email" aria-label="email" aria-describedby="basic-addon1">
-            <!-- <span class="p-float-label">
-                <input [class.invalid]="" id="float-input" type="text" formControlName="email"[ngModel]="b" pInputText>
-                <label [class.invalid-text]="" class="ng-invalid ng-dirty" for="float-input">Имейл</label>
-            </span> -->
+
+            <input type="text" class="form-control mt-3 mb-3" [class.invalid]="checkTouch('email', form)"
+                placeholder="Имейл" [ngModel]="currentUser.userData.email" formControlName="email" aria-label="email"
+                aria-describedby="basic-addon1">
+
+            <ng-container *ngIf="checkTouch('email', form)">
+                <p *ngIf="form.get('email')?.errors?.['required']">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Полето е задължително" styleClass="mr-2"></p-message>
+                </p>
+            </ng-container>
+
 
             <ng-container *ngIf="">
                 <p *ngIf="">
@@ -86,9 +95,9 @@
             </div>
         </div>
         <div class="d-inline-flex grid gap-3 col-5">
-            <button type="submit" (click)="onSubmit($event)"
+            <button type="submit" [disabled]="form.invalid" (click)="onSubmit()"
                 class="btn btn-primary m-0 d-grid gap-2 col-6">Запази</button>
-            <button type="button" class="btn btn-danger m-0 d-grid gap-2 col-6">Откажи</button>
+            <button type="button" class="btn btn-danger m-0 d-grid gap-2 col-6" (click)="home()">Откажи</button>
         </div>
     </ng-container>
 

@@ -1,21 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SpinerComponent } from './spiner.component';
 
-import { DetailsViewComponent } from './details-view.component';
-
-describe('DetailsViewComponent', () => {
-  let component: DetailsViewComponent;
-  let fixture: ComponentFixture<DetailsViewComponent>;
+describe('SpinerComponent', () => {
+  let component: SpinerComponent;
+  let fixture: ComponentFixture<SpinerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DetailsViewComponent ]
+      declarations: [ SpinerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailsViewComponent);
+    fixture = TestBed.createComponent(SpinerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

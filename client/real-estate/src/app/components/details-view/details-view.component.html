@@ -1,61 +1,66 @@
-<p-progressSpinner *ngIf="!adData"></p-progressSpinner>
+
+<app-spiner *ngIf="!adData" [isLoading]="!adData"></app-spiner>
+
 <ng-container *ngIf="adData">
-<div class="main">
-    <div class="container">
-        <img class="images" [src]="getImage()">
-        <div (click)="prev()" *ngIf="images.length  < images.length + _activeIndex ">
-            <i class="p-galleria-thumbnail-prev-icon pi pi-chevron-left"></i>
-        </div>
-        <div (click)="next()" *ngIf="images.length  >=  _activeIndex + 2">
-            <i class="p-galleria-thumbnail-after-icon pi pi-chevron-right"></i>
-        </div>
-        <div class="text-container">
-            <h2>{{adData.title}}</h2>
+    <div class="main">
+        <div class="container">
+            <img class="images" [src]="getImage()">
+            <div (click)="prev()" *ngIf="images.length  < images.length + _activeIndex ">
+                <i class="p-galleria-thumbnail-prev-icon pi pi-chevron-left"></i>
+            </div>
+            <div (click)="next()" *ngIf="images.length  >=  _activeIndex + 2">
+                <i class="p-galleria-thumbnail-after-icon pi pi-chevron-right"></i>
+            </div>
+            <div class="text-container">
+                <h2>{{adData.title | shorten: 78}}</h2>
 
-            <br>
-
-            <div class="location">{{adData.location}}, {{adData.region}}</div>
-            <br>
-            <ul class="object-info">
-                <div class="d-flex">
-                    <span class="me-1 text">Вид имот:</span>
-                    <li label="estateType" class="">{{adData.estateType}}</li>
-                </div>
-                <div class="d-flex">
-                    <span class="me-1 text">Етаж:</span>
-                    <li label="floor" class="floor">{{adData.floor}}</li>
-                </div>
-                <div class="d-flex">
-                    <span class="me-1 text">Площ:</span>
-                    <li label="area" class="">{{adData.area}}m²</li>
-                </div>
                 <br>
-                <li class="price">{{adData.price}} €</li>
-            </ul>
 
-            <br>
+                <div class="location">{{adData.location}}, {{adData.region}}</div>
+                <br>
+                <ul class="object-info">
+                    <div class="d-flex">
+                        <span class="me-1 text">Вид имот:</span>
+                        <li label="estateType" class="">{{adData.estateType}}</li>
+                    </div>
+                    <div class="d-flex">
+                        <span class="me-1 text">Етаж:</span>
+                        <li label="floor" class="floor">{{adData.floor}}</li>
+                    </div>
+                    <div class="d-flex">
+                        <span class="me-1 text">Площ:</span>
+                        <li label="area" class="">{{adData.area}}m²</li>
+                    </div>
+                    <br>
+                    <li class="price">{{adData.price}} €</li>
+                </ul>
 
-            <ul class="object-options">
-                <ng-container *ngFor="let tag of adData.tags">
-                    <li>{{tag}}</li>
-                </ng-container>
-            </ul>
-            <p label="number" class="number">Телефонен номер:<span class="number-text">0{{adData.telNumber}}</span></p>
+                <br>
+
+                <ul class="object-options">
+                    <ng-container *ngFor="let tag of adData.tags">
+                        <li>{{tag}}</li>
+                    </ng-container>
+                </ul>
+                <p label="number" class="number">Телефонен номер:<span class="number-text">0{{adData.telNumber}}</span>
+                </p>
+            </div>
         </div>
-    </div>
 
-    <div class="title-description">
-        <p class="description">Описание:</p>
-    </div>
-    <div class="description-container">
-        <div class="description-container-text"> {{adData.moreInfo}}
+        <div class="title-description">
+            <p class="description">Описание:</p>
         </div>
-    </div>
-    <ng-container *ngIf="isOwner">
-        <p-button (onClick)="onEdit()">edit</p-button>
-        <br>
-        <p-button>delete</p-button>
-    </ng-container>
+        <div class="description-container">
+            <div class="description-container-text"> {{adData.moreInfo}}
+            </div>
+        </div>
+        <ng-container *ngIf="isOwner">
+            <div class="d-inline">
+                <p-button class="edit-btn" label="Редактирай"(onClick)="onEdit()"></p-button>
+                <p-confirmPopup></p-confirmPopup>
+                <button pButton type="button" (click)="confirm($event)"label="Изтрий" class="p-button-danger" icon="pi pi-trash"></button>
+            </div>
+        </ng-container>
 
-</div>
+    </div>
 </ng-container>

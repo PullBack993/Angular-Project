@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./user/user.module').then(u => u.UserModule)
-// loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-
+    loadChildren: () => import('./user/user.module').then((u) => u.UserModule)
+    // loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {        
+    path: '',
+    loadChildren: () => import('./pages/pages.module').then((p) => p.PagesModule)
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent
   }
 ];
 

@@ -10,6 +10,7 @@ import { AdsService } from 'src/app/services/ads.service';
 })
 export class SearchAdsComponent implements OnInit, OnDestroy {
   ads!: IAds[];
+  isLoading: boolean = true
   private subscription!: Subscription;
 
   constructor(private searchedData: AdsService) {}
@@ -18,7 +19,7 @@ export class SearchAdsComponent implements OnInit, OnDestroy {
     this.subscription = this.searchedData.currentSearchData$.subscribe((data) => {
       this.ads = data.data;
     });
-    console.log(this.ads);
+    this.isLoading = false
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe()

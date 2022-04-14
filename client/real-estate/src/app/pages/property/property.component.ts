@@ -15,6 +15,7 @@ export class PropertyComponent implements OnInit, OnDestroy {
   totalResults!: number;
   subscription!: Subscription;
   path!: string;
+  isLoading: boolean = true;
 
   constructor(private adsServie: AdsService, private activatedRoute: ActivatedRoute) {}
 
@@ -29,6 +30,7 @@ export class PropertyComponent implements OnInit, OnDestroy {
       this.ads = res.data;
       this.pages = res.total_pages == 0 ? 1 : res.total_pages;
       this.totalResults = res.total_results;
+      this.isLoading = false
     });
   }
   paginate(event: any) {

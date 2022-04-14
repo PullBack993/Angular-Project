@@ -8,8 +8,8 @@
     margin: 10px;
 
     .images {
-      width: 70%;
-      height: 450px;
+      width: 60%;
+      height: 500px;
       object-fit: fill;
       border-radius: 1%;
     }
@@ -18,21 +18,30 @@
       bottom: 50%;
       left: 0px;
       color: $white;
-      font-size: 40px;
+      font-size: 33px;
       padding: 14px;
       display: block;
-      width: 10%;
       cursor: pointer;
+      margin-left: 14px;
+      background: #4a4a4a4d;
+      border-radius: 50%;
+      opacity: 0.7;
+
+
+
     }
     .p-galleria-thumbnail-after-icon {
       position: absolute;
       bottom: 50%;
-      left:54%;
-      color: $white;
-      font-size: 40px;
+      left: 50%;
+      color: #fff;
+      font-size: 33px;
       padding: 14px;
       display: block;
       cursor: pointer;
+      background: #4a4a4a4d;
+      border-radius: 50%;
+      opacity: 0.7;
     }
     .text-container {
       width: 47%;
@@ -57,7 +66,7 @@
         margin-left: 5px;
         background-color: $main;
         color: $white;
-        padding: 4px;
+        padding: 2px;
         border-radius: 11px;
         overflow-x: hidden;
       }
@@ -78,7 +87,7 @@
     .object-info {
       padding-left: 10px;
       list-style-type: none;
-      .text{
+      .text {
         color: $whiteBlue;
       }
 
@@ -123,4 +132,34 @@
       margin-bottom: 30px;
     }
   }
+}
+.edit-btn{
+  margin-right: 5px;
+  margin-left: 15px;
+}
+
+
+.progress-spinner {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* Transparent Overlay */
+.progress-spinner:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.53);
 }

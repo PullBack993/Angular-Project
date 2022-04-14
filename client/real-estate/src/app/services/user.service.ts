@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { IUser, IUserDto } from '../models/user';
 import { MessageService, MessageType } from './message.service';
+import { environment } from 'src/environments/environment';
+
+const BACKEND_URL = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -32,14 +35,15 @@ export class UserService {
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
+
   getUser$() {
-    return this.http.get<IUser>('http://localhost:3000/api/editUser');
+    return this.http.get<IUser>(BACKEND_URL + '/editUser');
   }
   editUser(body: {}) {
-    return this.http.put('http://localhost:3000/api/editUser', body);
+    return this.http.put(BACKEND_URL + '/editUser', body);
   }
   register(body: { username: string; email: string; password: string; repass: string }) {
-    this.http.post<IUserDto>('http://localhost:3000/api/register', body).subscribe({
+    this.http.post<IUserDto>(BACKEND_URL + '/register', body).subscribe({
       next: (res) => {
         this.setUser(res);
       },
@@ -50,7 +54,7 @@ export class UserService {
   }
 
   login(body: { email: string; password: string }) {
-    this.http.post<IUserDto>('http://localhost:3000/api/login', body).subscribe({
+    this.http.post<IUserDto>(BACKEND_URL + '/login', body).subscribe({
       next: (res) => {
         this.setUser(res);
       },
@@ -106,6 +110,7 @@ export class UserService {
     console.log('create duration' + duration);
     this.tokenTime = setTimeout(() => {
       this.logout();
+      this.route.navigate(['/login'])
     }, duration * 1000);
   }
 

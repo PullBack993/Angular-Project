@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/models/user';
 import { UserService } from '../../services/user.service';
 
@@ -10,7 +10,8 @@ import { UserService } from '../../services/user.service';
   templateUrl: './profile-view.component.html',
   styleUrls: ['./profile-view.component.scss']
 })
-export class ProfileViewComponent implements OnInit {
+export class ProfileViewComponent implements OnInit, OnDestroy {
+  defaultImg: string = '../../../assets/images/profileImg.png';
   homeItem!: MenuItem[];
   editItem!: MenuItem[];
   homeTemplate: boolean = false;
@@ -18,42 +19,43 @@ export class ProfileViewComponent implements OnInit {
   activeItem!: MenuItem;
   imagePreview!: string;
   deleteUrl!: string;
-  // userData$!: Observable<IUser>
   currentUser!: IUser;
+  private subscription!: Subscription;
 
   form: FormGroup = this.fb.group({
     username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     image: new FormControl('null')
   });
-  constructor(private fb: FormBuilder, private userService: UserService, private route: Router) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit() {
     this.homeItem = [{ label: 'Профил', icon: 'pi pi-fw pi-home' }];
     this.editItem = [{ label: 'Редактирай', icon: 'pi pi-fw pi-pencil' }];
     this.activeItem = this.homeItem[0];
-    this.homeTemplate = true;
-    this.home();
+    this.homeInit();
   }
-  home() {
-    this.userService.getUser$().subscribe((userData) => {
-      console.log(userData);
-      this.currentUser = userData;
-    });
-    this.homeTemplate = true;
-    this.editTemplate = false;
 
-    console.log(this.activeItem);
-    this.activeItem = this.homeItem[0];
-    console.log('0');
+  homeInit() {
+    this.subscription = this.userService.getUser$().subscribe((userData) => {
+      this.currentUser = userData;
+      this.homeTemplate = true;
+      this.activeItem = this.homeItem[0];
+    });
   }
+
+  home() {
+    this.homeTemplate = true;
+    this.activeItem = this.homeItem[0];
+  }
+
   edit() {
     this.homeTemplate = false;
-    this.editTemplate = true;
-    console.log(this.activeItem);
     this.activeItem = this.editItem[0];
+  }
 
-    console.log('1');
+  checkTouch(controlName: string, sourceGroup: FormGroup) {
+    return sourceGroup.controls[controlName]?.touched && sourceGroup.controls[controlName].invalid;
   }
   onImagePicked(event: Event) {
     if (this.form.value.image != 'null') {
@@ -71,7 +73,7 @@ export class ProfileViewComponent implements OnInit {
       reader.readAsDataURL(fileBlob);
     }
   }
-  onSubmit(event: Event) {
+  onSubmit() {
     const formData = new FormData();
     formData.set('email', this.form.value.email), formData.set('username', this.form.value.username);
 
@@ -85,12 +87,15 @@ export class ProfileViewComponent implements OnInit {
     }
     this.userService.editUser(formData).subscribe({
       complete: () => {
-        this.home();
-        console.log('success');
+        this.homeInit();
       },
       error: (err) => {
         console.log(err.error.message);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

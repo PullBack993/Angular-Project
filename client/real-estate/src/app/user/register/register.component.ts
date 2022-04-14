@@ -56,23 +56,3 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.userService.register(body);
   }
 }
-
-
-
-// .subscribe({
-//       next: (user) => {
-//         console.log(user);
-//         this.router.navigate(['']);
-//       },
-//       complete: () => {
-//         console.log('register stream complated');
-//       },
-//       error: (err) => {
-//         if (err.error.message == 'Email already exist!') {
-//           this.errorMessage = 'Имейла съществува';
-//         } else {
-//           this.errorMessage = err.error.message;
-//         }
-//         this.loading = false;
-//       }
-//     });

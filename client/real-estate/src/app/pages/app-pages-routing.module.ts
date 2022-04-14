@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../user/auth.guard';
 import { AddAdComponent } from './add-ad/add-ad.component';
-import { AdvicesComponent } from './advices/advices.component';
-import { BrokersFirmsComponent } from './brokers-firms/brokers-firms.component';
-import { BrokersComponent } from './brokers/brokers.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
@@ -46,22 +43,11 @@ const routes: Routes = [
     component: PropertyComponent
   },
   {
-    path: 'add-ad',
+    path: 'create/ad',
     component: AddAdComponent,
     canActivate: [AuthGuard]
   },
-  {
-    path: 'brokers',
-    component: BrokersComponent
-  },
-  {
-    path: 'brokers-firms',
-    component: BrokersFirmsComponent
-  },
-  {
-    path: 'advices',
-    component: AdvicesComponent
-  },
+  
   {
     path: 'calculator',
     component: CalculatorComponent

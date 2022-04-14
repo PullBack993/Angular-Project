@@ -67,8 +67,9 @@
             </span>
 
         </div>
-        <p-button label="Click" (onClick)="onLogin()" [disabled]="loginFormGroup.invalid" [disabled]="loading" [style]="{'width':'305px'}"
-            label="Вход"></p-button>
+        <p-button (click)="onLogin()" type="submit" [disabled]="loginFormGroup.invalid || loading"  [style]="{'width':'305px'}"
+        
+            label="Вход"> </p-button>
             <p-progressSpinner *ngIf="loading"></p-progressSpinner>
     </form>
 </section>

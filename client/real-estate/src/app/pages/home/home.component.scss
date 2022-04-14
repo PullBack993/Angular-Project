@@ -16,3 +16,97 @@
   margin-top: 10px;
   color: $letterSubmenuColor;
 }
+
+
+
+@import '../../../style/color';
+
+.projects-name {
+  text-align: center;
+  font-size: 33px;
+  margin-top: 20px;
+  color: $mainColorDark;
+}
+
+.container {
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  flex-direction: row;
+  display: flex;
+  object-fit: cover;
+  text-align: center;
+  cursor: pointer;
+
+  &-data {
+    width: 27%;
+    height: 390px;
+    margin: 10px;
+    box-shadow: $box-shadow;
+    object-fit: cover;
+    border-radius: 10px;
+    position: relative;
+    &-image {
+      object-fit: cover;
+      max-width: 100%;
+      width: 100%;
+      height: 60%;
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+    }
+  }
+  .description-container {
+    &-name {
+      margin-top: 5px;
+      font-size: 20px;
+    }
+    .description-inner-container {
+      position: absolute;
+      font-size: 20px;
+      bottom: 10px;
+      text-align: center;
+      margin-left: 29%;
+    }
+    .logo-container {
+      align-items: center;
+      display: flex;
+      height: 48px;
+      justify-content: center;
+      margin: auto;
+      width: 144px;
+    }
+    .logo {
+      display: block;
+      height: auto;
+      max-height: calc(100% - 4px);
+      max-width: calc(100% - 4px);
+      width: auto;
+    }
+  }
+}
+
+.progress-spinner {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+/* Transparent Overlay */
+.progress-spinner:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.53);
+}
