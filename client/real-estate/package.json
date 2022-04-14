@@ -10,6 +10,11 @@
   },
   "private": true,
   "dependencies": {
+      "@angular/cli": "~13.3.0",
+    "@angular-devkit/build-angular": "~13.3.0",
+
+    "@angular/compiler-cli": "~13.3.0",
+      "typescript": "~4.6.2",
     "@angular/animations": "~13.3.0",
     "@angular/cdk": "^13.3.0",
     "@angular/common": "~13.3.0",
@@ -29,6 +34,7 @@
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
+  
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.0",
@@ -43,5 +49,9 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.6.2"
+  },
+  "engines": {
+    "node": "v14.17.0",
+    "npm": "8.5.4"
   }
 }
