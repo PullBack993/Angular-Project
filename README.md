@@ -1,6 +1,6 @@
 
 <p align="center" border="circle">
-  <img src="https://real-estate-upload-bucket.s3.eu-central-1.amazonaws.com/6878-1650019189415.png">
+  <a href="https://real-estate-upload-bucket.s3.eu-central-1.amazonaws.com/6878-1650019189415.png"></a>
 </p>
 
 ---
@@ -58,7 +58,7 @@
 
 
 
-# **About The Project:**
+# **About This Project:**
 
 The project is for creating and sharing real estate ads. Тhis project is for my exam which is in SoftUni, but I think to continue to develop my project, as I think there are many things that could be improved.Which would help many people find the right property.
 
