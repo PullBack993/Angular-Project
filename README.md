@@ -1,6 +1,7 @@
 
-<p align="center" border="circle">
-  <a href="https://real-estate-upload-bucket.s3.eu-central-1.amazonaws.com/6878-1650019189415.png"></a>
+
+<p align="center" >
+  <img src="https://real-estate-upload-bucket.s3.eu-central-1.amazonaws.com/6878-1650019189415.png">
 </p>
 
 ---
