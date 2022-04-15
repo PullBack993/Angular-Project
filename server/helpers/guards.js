@@ -1,15 +1,19 @@
 const expressJwt = require("express-jwt");
+const { getById } = require("../services/home");
 require("dotenv/config");
 
 function isOwner() {
-  return (req, res, next) => {
+  return async (req, res, next) => {
     const id = req.params.id;
     if (id && req.user) {
       try {
-        if (req.user._id  && (req.body.owner == req.user._id)) {
-          next();
-        } else {
-          res.status(401).send("Unauthorized");
+        const findAd = await getById(id);
+        if (findAd) {
+          if (req.user._id && findAd.owner == req.user._id) {
+            return next();
+          } else {
+            res.status(401).send("Unauthorized");
+          }
         }
       } catch (err) {
         res.status(401).send(err);
@@ -19,7 +23,6 @@ function isOwner() {
   };
 }
 
-
 function authJwt() {
   const secret = process.env.TOKEN_SECRET;
   return expressJwt({
@@ -27,8 +30,8 @@ function authJwt() {
     algorithms: ["HS256"],
   }).unless({
     path: [
-      // For all path/methods(dev)
-      // { url: /(.*)/ },
+      // Development all path will be available ==>  // { url: /(.*)/ },
+
       { url: /\/api\/search\/(.*)/, methods: ["GET", "OPTIONS"] },
       { url: /\/api\/details\/(.*)/, methods: ["GET", "OPTIONS"] },
       { url: /\/api\/catalog\/(.*)/, method: ["GET", "OPTIONS"] },

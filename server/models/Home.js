@@ -11,7 +11,7 @@ const homeSchema = new Schema({
   imageUrls: [{ type: String, default: "" }],
   region: { type: String, required: [true, "Region is required"] },
   area: { type: Number, required: true },
-  floor: { type: Number, required: true },
+  floor: { type: Number },
   constructionType: { type: String, required: true },
   date: { type: Number },
   tags: [{ type: String }],

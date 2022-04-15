@@ -9,7 +9,6 @@ async function create(data) {
 async function search(query) {
   const data = await Home.find(query).limit(query.limit * 10);
   data.totalPages = await Home.find(query).count();
-  console.log(data);
   return data;
 }
 
@@ -60,7 +59,10 @@ async function getById(id) {
 }
 
 async function deleteById(id) {
-  await Home.findByIdAndDelete(id);
+  const getAd = await getById(id)
+  const result = await Home.deleteOne(getAd);
+  return result;
+  
 }
 
 async function updateById(id, userId, data) {

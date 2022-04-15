@@ -3,15 +3,14 @@ const {
   getById,
   deleteById,
   updateById,
-  likeAd,
-  sortByDate,
   sortByLikes,
   getAll,
   getNewProjects,
   getRetailOutlet,
 } = require("../services/home");
 const { homeInputParser } = require("../helpers/inputParser");
-const { s3UploadImg, s3Delete } = require("../helpers/s3Upload");
+const {s3Delete} = require('../helpers/s3Delete')
+const { s3UploadImg  } = require("../helpers/s3Upload");
 const { isOwner } = require("../helpers/guards");
 
 const router = require("express").Router();
@@ -68,6 +67,19 @@ router.get("/catalog/:path/:limit", async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", isOwner(), async (req, res) => {
+  try {
+     const result = await deleteById(req.params.id);
+    res.status(200).send({result, success: true, message: "success" });
+  } catch (err) {
+    res.status(400).json({
+      success: false,
+      err: err.message,
+      message: "Category not found!",
+    });
+  }
+});
+
 router.get("/details/:id", async (req, res) => {
   try {
     const id = req.params.id;
@@ -83,18 +95,6 @@ router.get("/details/:id", async (req, res) => {
   }
 });
 
-router.delete("/delete/:id", isOwner(), async (req, res) => {
-  try {
-    await deleteById(req.params.id);
-    res.status(200).send({ success: true, message: "success" });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      err: err.message,
-      message: "Category not found!",
-    });
-  }
-});
 
 router.get("/edit/:id", isOwner(), async (req, res) => {
   try {
@@ -112,12 +112,16 @@ router.get("/edit/:id", isOwner(), async (req, res) => {
 
 router.put("/edit/:id", s3UploadImg(), async (req, res) => {
   try {
-    if (req.body.deleteUrl) {
+
+    if (req.body.deleteUrl !== undefined && req.body.deleteUrl) {
       s3Delete(req.body.deleteUrl);
     }
 
     if (req.files) {
       req.body.imageUrls = req.files.map((img) => img.location);
+    }
+    if (req.body.owner != req.user._id) {
+      throw new Erro("Unauthorized");
     }
 
     const updateData = homeInputParser(req);
@@ -132,7 +136,7 @@ router.put("/edit/:id", s3UploadImg(), async (req, res) => {
   }
 });
 
-//TODO implement it correktly
+//TODO 
 router.get(
   "/like/:id",
   /*isOwner() */ async (req, res) => {
@@ -145,7 +149,7 @@ router.get(
   }
 );
 
-//TODO implement it correktly
+//TODO
 router.get("/sort-likes", async (req, res) => {
   try {
     const home = await sortByLikes();
