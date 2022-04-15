@@ -50,8 +50,8 @@
 | Detail property          | ✅            | ✅    | 
 | Login/ Register          | ❌            | ✅    |
 | Search                   | ✅            | ❌    | 
-| Profile                  | ✅            | ❌    | 
 | Create property          | ✅            | ❌    | 
+| Profile                  | ✅(owner)     | ❌    | 
 | Profile edit(upload img) | ✅(owner)     | ❌    | 
 | Property edit            | ✅(owner)     | ❌    | 
 | Property delete          | ✅(owner)     | ❌    | 
