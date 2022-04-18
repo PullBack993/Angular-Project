@@ -1,4 +1,6 @@
 <br>
+<app-spiner *ngIf="!adsData" [isLoading]="!adsData"></app-spiner>
+
 <ng-container *ngIf="adsData">
     <ng-container *ngFor="let ad of adsData">
         <div class="main-container" [routerLink]="'/details/' + ad._id">
@@ -61,5 +63,7 @@
         </div>
         <div class="line"></div>
     </ng-container>
+    <ng-container *ngIf="adsData.length <= 0">
+        <p class="d-flex justify-content-center">Няма намерени резултати</p>
+    </ng-container>
 </ng-container>
-

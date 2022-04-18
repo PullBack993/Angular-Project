@@ -1,5 +1,5 @@
-import { Component,  OnInit } from '@angular/core';
-import {  IAdType, ICity } from 'src/app/models/ads';
+import { Component, OnInit } from '@angular/core';
+import { IAdType, ICity } from 'src/app/models/ads';
 import { estateTypes, cities } from '../helper';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AdsService } from 'src/app/services/ads.service';
@@ -7,7 +7,7 @@ import { AdsService } from 'src/app/services/ads.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
   cities!: ICity[];
@@ -27,7 +27,8 @@ export class SearchComponent implements OnInit {
     this.type = estateTypes;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onSearch() {
     const estateType = this.form?.value?.adType == 'НАЕМИ' ? 'rent' : 'sell';
@@ -40,7 +41,6 @@ export class SearchComponent implements OnInit {
       limit: 1
     };
 
-    this.searchService.search(body)
-
+    this.searchService.search(body);
   }
 }
