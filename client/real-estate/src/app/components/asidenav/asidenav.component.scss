@@ -1,7 +1,41 @@
 @import '../../../style/color';
 
-header {
+
+mat-sidenav{
+    background: #25314e;
+    width: 60%;
+    height: 100%;
+}
+mat-sidenav-content{
+    height: 100vh;
+
+    .main{
+        margin-left: 30px;
+    }
+}
+mat-toolbar{
+    .content-left{
+        display:flex;
+        mat-icon{
+            margin-left: 1rem;
+            margin-top: 1rem;
+            color: #6D8299;
+    
+        }
+    }
+    justify-content: space-between;
+    .box{
+        margin-top: 15px;
+    }
+}
+
+
+
+
+
+
   .navbar {
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,6 +44,7 @@ header {
     margin: 0;
     &-links {
       display: flex;
+          flex-direction: column;
       padding: 0;
       margin: 0;
       list-style: none;
@@ -76,13 +111,15 @@ header {
 
     &-submenu {
       display: none;
-      position: absolute;
+
       margin-top: 13px;
       padding: 5px;
+      border-radius: 8px;
       background-color: $bgColor;
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px $shadowColor;
       z-index: 1;
+          margin-right: 1rem;
       li {
         float: none;
         color: $letterColor;
@@ -105,36 +142,3 @@ header {
       margin: 0px;
     }
   }
-}
-
-@media (max-width: 570px) {
-  header {
-    .navbar {
-      .navbar-logo {
-        margin: 0px;
-        & img {
-          width: 45px;
-          margin-top: 1rem;
-        }
-      }
-      // .bar-container {
-      //   display: block;
-      //   margin-top: 1rem;
-      //   font-size: 1.5em;
-
-      // }
-
-      .navbar-dropdown {
-        width: 16%;
-        .navbar-down,
-        .navbar-up {
-          display: none;
-        }
-        .navbar-submenu {
-          margin-left: -3.5rem;
-        }
-      }
-    }
-  }
- 
-}

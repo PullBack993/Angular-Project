@@ -1,116 +1,145 @@
 <header>
-    <nav class="navbar">
-        <ul class="navbar-links">
-            <li class="navbar-logo">
-                <img src="assets/images/6878.png" alt="" routerLink="" />
-            </li>
-
-            <li class="navbar-dropdown">
-                <div class="navbar-dropdown-text">Търсене
-                    <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
-                    <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+    <ng-container *ngIf="isMobile">
+    <app-asidenav></app-asidenav>
+    </ng-container>
+    <!-- <li class="navbar-logo">
+            <img class="logo" src="assets/images/6878.png" alt="" routerLink="" />
+        </li>
+        <mat-sidenav #sidebar mode='side' opened>
+            <app-asidenav></app-asidenav>
+        </mat-sidenav> -->
+    <!-- <mat-sidenav-content>
+            <div class="content">
+                <div class="toolbar">
+                    <mat-toolbar>
+                        <mat-icon (click)="sidebar.toggle()">menu</mat-icon>
+                        <div class="box">
+                            <mat-icon>search</mat-icon>
+                            <mat-icon>bookmark_border</mat-icon>
+                            <mat-icon>mail_outline</mat-icon>
+                        </div>
+                    </mat-toolbar>
                 </div>
-
-                <ul class="navbar-submenu">
-                    <a routerLink="properties">
-                        <li class="navbar-title">
-                            Имоти
-                            <p class="navbar-text-holder">Намери твоят нов дом</p>
-                        </li>
-                    </a>
-
-                    <a routerLink="new-projects">
-                        <li>
-                            Нови Проекти
-                            <p class="navbar-text-holder">Нови апартаменти и къщи</p>
-                        </li>
-                    </a>
-
-                    <a routerLink="retail-outlet">
-                        <li>
-                            Търговски обекти
-                            <p class="navbar-text-holder">Офиси,Търговски обекти,Заведения</p>
-                        </li>
-                    </a>
-                </ul>
-            </li>
-
-            <li class="navbar-dropdown">
-                <div class="navbar-dropdown-text">Продавам
-                    <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
-                    <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                <div class="main">
+                    <router-outlet></router-outlet>
                 </div>
-                <ul class="navbar-submenu">
-                    <a routerLink="create/ad">
-                        <li class="navbar-title">
-                            Добави обява
-                            <p class="navbar-text-holder">Намерете правилния клиент</p>
-                        </li>
+            </div>
+        </mat-sidenav-content> -->
+
+    <ng-container *ngIf="!isMobile"> 
+        <nav class="navbar">
+            <ul class="navbar-links">
+                <li class="navbar-logo">
+                    <img class="logo" src="assets/images/6878.png" alt="" routerLink="" />
+                </li>
+
+                <li class="navbar-dropdown">
+                    <div class="navbar-dropdown-text">Търсене
+                        <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                    </div>
+
+                    <ul class="navbar-submenu">
+                        <a routerLink="properties">
+                            <li class="navbar-title">
+                                Имоти
+                                <p class="navbar-text-holder">Намери твоят нов дом</p>
+                            </li>
+                        </a>
+
+                        <a routerLink="new-projects">
+                            <li>
+                                Нови Проекти
+                                <p class="navbar-text-holder">Нови апартаменти и къщи</p>
+                            </li>
+                        </a>
+
+                        <a routerLink="retail-outlet">
+                            <li>
+                                Търговски обекти
+                                <p class="navbar-text-holder">Офиси,Търговски обекти,Заведения</p>
+                            </li>
+                        </a>
+                    </ul>
+                </li>
+
+                <li class="navbar-dropdown">
+                    <div class="navbar-dropdown-text">Продавам
+                        <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                    </div>
+                    <ul class="navbar-submenu">
+                        <a routerLink="create/ad">
+                            <li class="navbar-title">
+                                Добави обява
+                                <p class="navbar-text-holder">Намерете правилния клиент</p>
+                            </li>
+                        </a>
+
+
+                    </ul>
+                </li>
+
+                <li class="navbar-dropdown">
+                    <div class="navbar-dropdown-text">Наемам
+                        <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                    </div>
+
+                    <ul class="navbar-submenu">
+                        <a routerLink="create/ad">
+                            <li class="navbar-title">
+                                Добави обява
+                                <p class="navbar-text-holder">Намерете правилния наемател</p>
+                            </li>
+                        </a>
+
+                    </ul>
+                </li>
+
+                <li class="navbar-dropdown">
+                    <div class="navbar-dropdown-text">Финансиране
+                        <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+
+                    </div>
+                    <ul class="navbar-submenu">
+                        <a routerLink="calculator">
+                            <li class="navbar-title">
+                                Кредитен калкулатор
+                                <p class="navbar-text-holder">Изчисли месечна вноска</p>
+                            </li>
+                        </a>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-links">
+                <li class="navbar-dropdown" routerLink="create/ad">
+                    <a>
+                        <div class="navbar-dropdown-text">Добави обява</div>
                     </a>
+                </li>
 
-                  
-                </ul>
-            </li>
-
-            <li class="navbar-dropdown">
-                <div class="navbar-dropdown-text">Наемам
-                    <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
-                    <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
-                </div>
-
-                <ul class="navbar-submenu">
-                    <a routerLink="create/ad">
-                        <li class="navbar-title">
-                            Добави обява
-                            <p class="navbar-text-holder">Намерете правилния наемател</p>
-                        </li>
+                <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" routerLink="/auth/login">
+                    <a>
+                        <div class="navbar-dropdown-text">Вход</div>
                     </a>
-                   
-                </ul>
-            </li>
-
-            <li class="navbar-dropdown">
-                <div class="navbar-dropdown-text">Финансиране
-                    <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
-                    <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
-
-                </div>
-                <ul class="navbar-submenu">
-                    <a routerLink="calculator">
-                        <li class="navbar-title">
-                            Кредитен калкулатор
-                            <p class="navbar-text-holder">Изчисли месечна вноска</p>
-                        </li>
+                </li>
+                <li *ngIf="userIsAuthenticated" class="navbar-dropdown" routerLink="/auth/profile">
+                    <a>
+                        <div class="navbar-dropdown-text">Профил</div>
                     </a>
-                </ul>
-            </li>
-        </ul>
-        <ul class="navbar-links">
-            <li class="navbar-dropdown" routerLink="create/ad">
-                <a >
-                    <div class="navbar-dropdown-text">Добави обява</div>
-                </a>
-            </li>
-
-            <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" routerLink="/auth/login">
-                <a >
-                    <div class="navbar-dropdown-text">Вход</div>
-                </a>
-            </li>
-            <li *ngIf="userIsAuthenticated" class="navbar-dropdown" routerLink="/auth/profile">
-                <a >
-                    <div class="navbar-dropdown-text" >Профил</div>
-                </a>
-            </li>
-            <li *ngIf="userIsAuthenticated"  (click)="onLogout()"  class="navbar-dropdown">
-                <button  class="logout-btn">
-                    <div class="navbar-dropdown-text">Изход</div>
-                </button>
-            </li>
-        </ul>
+                </li>
+                <li *ngIf="userIsAuthenticated" (click)="onLogout()" class="navbar-dropdown">
+                    <button class="logout-btn">
+                        <div class="navbar-dropdown-text">Изход</div>
+                    </button>
+                </li>
+            </ul>
 
 
-    </nav>
+        </nav>
+    </ng-container> 
 </header>
 <ng-container *ngIf="!!errorMessage">
     <p-message *ngIf="isErrorType" severity="error" text="{{errorMessage}}"

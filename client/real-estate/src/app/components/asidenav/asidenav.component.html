@@ -1,0 +1,113 @@
+<mat-sidenav-container class="container">
+    <mat-sidenav #sidebar mode='side' opened>
+        <ul class="navbar-links">
+
+            <li class="navbar-dropdown">
+                <div   class="navbar-dropdown-text">Търсене
+
+                </div>
+
+                <ul class="navbar-submenu">
+                    <a routerLink="properties">
+                        <li class="navbar-title">
+                            Имоти
+                            <p (click)="sidebar.close()" class="navbar-text-holder">Намери твоят нов дом</p>
+                        </li>
+                    </a>
+
+                    <a routerLink="new-projects">
+                        <li>
+                            Нови Проекти
+                            <p (click)="sidebar.close()" class="navbar-text-holder">Нови апартаменти и къщи</p>
+                        </li>
+                    </a>
+
+                    <a routerLink="retail-outlet">
+                        <li>
+                            Търговски обекти
+                            <p (click)="sidebar.close()" class="navbar-text-holder">Офиси,Търговски обекти,Заведения</p>
+                        </li>
+                    </a>
+                </ul>
+            </li>
+
+            <li class="navbar-dropdown">
+                <div class="navbar-dropdown-text">Продавам
+
+                </div>
+                <ul class="navbar-submenu">
+                    <a routerLink="create/ad">
+                        <li (click)="sidebar.close()" class="navbar-title">
+                            Добави обява
+                            <p (click)="sidebar.close()" class="navbar-text-holder">Намерете правилния клиент</p>
+                        </li>
+                    </a>
+
+
+                </ul>
+            </li>
+
+            <li class="navbar-dropdown">
+                <div class="navbar-dropdown-text">Наемам
+                </div>
+
+                <ul class="navbar-submenu">
+                    <a routerLink="create/ad">
+                        <li (click)="sidebar.close()" class="navbar-title">
+                            Добави обява
+                            <p  class="navbar-text-holder">Намерете правилния наемател</p>
+                        </li>
+                    </a>
+
+                </ul>
+            </li>
+
+            <li class="navbar-dropdown">
+                <div class="navbar-dropdown-text">Финансиране
+
+                </div>
+                <ul class="navbar-submenu">
+                    <a routerLink="calculator">
+                        <li class="navbar-title">
+                            Кредитен калкулатор
+                            <p (click)="sidebar.close()" class="navbar-text-holder">Изчисли месечна вноска</p>
+                        </li>
+                    </a>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-links">
+            <li class="navbar-dropdown" routerLink="create/ad">
+                <a>
+                    <div (click)="sidebar.close()" class="navbar-dropdown-text">Добави обява</div>
+                </a>
+            </li>
+
+
+        </ul>
+
+    </mat-sidenav>
+
+    <div class="content">
+        <div class="toolbar">
+            <mat-toolbar>
+                <div class="content-left">
+                    <li class="navbar-logo">
+                        <img class="logo" src="../../../assets/images/6878.png" alt="" routerLink="" />
+                    </li>
+                    <mat-icon (click)="sidebar.toggle()">menu</mat-icon>
+
+                </div>
+
+                <div class="box">
+                    <mat-icon>search</mat-icon>
+                    <mat-icon>bookmark_border</mat-icon>
+                    <mat-icon>mail_outline</mat-icon>
+                </div>
+            </mat-toolbar>
+        </div>
+        <div class="main">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</mat-sidenav-container>

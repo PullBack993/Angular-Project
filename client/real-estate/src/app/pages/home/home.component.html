@@ -1,7 +1,9 @@
 <ng-container *ngIf="!isLoading">
+    <div class="img-container">
     <div class="bg-image">
         <h1 class="title">Само правилните имоти</h1>
         <app-search></app-search>
+    </div>
     </div>
 
     <h1 class="projects-name">Най-нови и проспективни проекти</h1>
@@ -24,9 +26,9 @@
 
     <h1 class="projects-name">Най-нови публикувани обяви</h1>
 
-    <div class="container">
+    <div class="container ">
         <ng-container *ngFor="let ad of ads">
-            <div class="container-data" [routerLink]="'/details/' + ad._id">
+            <div class="container-data col-sm" [routerLink]="'/details/' + ad._id">
 
                 <a class="" aria-label="Premium Projekte in Wien">
                     <img src="{{ad.imageUrls[0]}}" alt="{{ad.title}}" class="container-data-image">

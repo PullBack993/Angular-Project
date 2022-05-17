@@ -32,10 +32,34 @@
     .service {
       width: 20%;
       text-align: center;
-
     }
     .button {
       width: 40%;
+    }
+  }
+}
+@media only screen and (max-width: 570px) {
+  .container {
+    width: 90%;
+    padding: 0.5em;
+    .search {
+      flex-direction: column;
+      .p-element {
+        width: 100%;
+      }
+      .service {
+        width: 100%;
+        //TODO find how to select the prime ng class
+        // .p-element > div > .p-dropdown .p-component {
+        //   width: 100% !important;
+        // }
+      }
+      .search {
+        width: 100%;
+        // .p-element > .p-inputnumber  {
+        //   width: 100%;
+        // }
+      }
     }
   }
 }
