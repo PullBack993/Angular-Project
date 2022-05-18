@@ -1,31 +1,9 @@
 <header>
     <ng-container *ngIf="isMobile">
-    <app-asidenav></app-asidenav>
+    <app-asidenav [isAuth]="userIsAuthenticated"></app-asidenav>
     </ng-container>
-    <!-- <li class="navbar-logo">
-            <img class="logo" src="assets/images/6878.png" alt="" routerLink="" />
-        </li>
-        <mat-sidenav #sidebar mode='side' opened>
-            <app-asidenav></app-asidenav>
-        </mat-sidenav> -->
-    <!-- <mat-sidenav-content>
-            <div class="content">
-                <div class="toolbar">
-                    <mat-toolbar>
-                        <mat-icon (click)="sidebar.toggle()">menu</mat-icon>
-                        <div class="box">
-                            <mat-icon>search</mat-icon>
-                            <mat-icon>bookmark_border</mat-icon>
-                            <mat-icon>mail_outline</mat-icon>
-                        </div>
-                    </mat-toolbar>
-                </div>
-                <div class="main">
-                    <router-outlet></router-outlet>
-                </div>
-            </div>
-        </mat-sidenav-content> -->
-
+ 
+    
     <ng-container *ngIf="!isMobile"> 
         <nav class="navbar">
             <ul class="navbar-links">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IAdType, ICity } from 'src/app/models/ads';
 import { estateTypes, cities } from '../helper';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -7,7 +7,8 @@ import { AdsService } from 'src/app/services/ads.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SearchComponent implements OnInit {
   cities!: ICity[];

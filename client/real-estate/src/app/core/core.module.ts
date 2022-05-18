@@ -4,11 +4,11 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
-import { ComponentsModule } from '../components/components.module'
+import { ComponentsModule } from '../components/components.module';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -22,8 +22,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MessageModule,
     MatSidenavModule,
     ComponentsModule,
-    MatSidenavModule,
-    
+    MatSidenavModule
   ],
   exports: [FooterComponent, HeaderComponent],
   providers: [

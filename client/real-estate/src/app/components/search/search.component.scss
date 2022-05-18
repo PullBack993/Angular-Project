@@ -39,27 +39,46 @@
   }
 }
 @media only screen and (max-width: 570px) {
-  .container {
-    width: 90%;
-    padding: 0.5em;
-    .search {
-      flex-direction: column;
-      .p-element {
-        width: 100%;
-      }
-      .service {
-        width: 100%;
-        //TODO find how to select the prime ng class
-        // .p-element > div > .p-dropdown .p-component {
-        //   width: 100% !important;
-        // }
-      }
+  //I have to use !important and ViewEncapsulation.None because I can't select primeNG(class)
+  .container-form {
+    margin-top: 1rem;
+}
+
+    .container {
+      width: 90%;
+      padding: 0.5em;
+      margin-top: 1rem;
+
       .search {
-        width: 100%;
-        // .p-element > .p-inputnumber  {
-        //   width: 100%;
-        // }
+        flex-direction: column;
+        margin: 0px 15px !important;
+
+        .p-element {
+          width: 100%;
+        }
+
+        .search {
+          width: 100%;
+        }
+        .service {
+          width: 100%;
+        }
+      }
+    }
+    .container .search-input-town {
+      text-indent: 0px !important;
+    }
+
+    .drop-down {
+      margin-top: 0.5rem;
+      width: 100% !important;
+      margin-left: 0px !important;
+    }
+    .button{
+      margin-top: 1rem;
+      width: 100% !important ;
+      .btn{
+        margin-left: 0px !important;
       }
     }
   }
-}

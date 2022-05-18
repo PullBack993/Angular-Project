@@ -73,7 +73,6 @@ header {
     &-text:hover .navbar-down {
       display: none;
     }
-
     &-submenu {
       display: none;
       position: absolute;
@@ -83,6 +82,7 @@ header {
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px $shadowColor;
       z-index: 1;
+
       li {
         float: none;
         color: $letterColor;
@@ -91,11 +91,13 @@ header {
         display: block;
         text-align: left;
         margin: auto;
+        
         &:hover {
           height: auto;
           overflow: visible;
           background-color: $mainBg;
         }
+    
       }
     }
 
@@ -106,7 +108,7 @@ header {
     }
   }
 }
-
+    
 @media (max-width: 570px) {
   header {
     .navbar {
@@ -123,18 +125,19 @@ header {
       //   font-size: 1.5em;
 
       // }
-
+      
       .navbar-dropdown {
         width: 16%;
         .navbar-down,
         .navbar-up {
           display: none;
         }
+       
         .navbar-submenu {
+         
           margin-left: -3.5rem;
         }
       }
     }
   }
- 
 }

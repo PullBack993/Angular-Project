@@ -1,15 +1,28 @@
 <mat-sidenav-container class="container">
     <mat-sidenav #sidebar mode='side' opened>
+        
         <ul class="navbar-links">
 
+            <li *ngIf="isAuth" class="navbar-dropdown" routerLink="/auth/profile">
+                <a>
+                    <img  (click)="sidebar.close()" class="profile" src="{{currentUser.userData.imageUrl}}" alt="">
+                    <p class="username">{{currentUser.userData.username}}</p>
+                </a>
+            </li>
+            <li *ngIf="isAuth" (click)="onLogout()" class="navbar-dropdown">
+                <button class="logout-btn">
+                    <div class="navbar-dropdown-text">Изход</div>
+                </button>
+            </li>
+
             <li class="navbar-dropdown">
-                <div   class="navbar-dropdown-text">Търсене
+                <div class="navbar-dropdown-text">Търсене
 
                 </div>
 
                 <ul class="navbar-submenu">
                     <a routerLink="properties">
-                        <li class="navbar-title">
+                        <li  (click)="sidebar.close()" class="navbar-title">
                             Имоти
                             <p (click)="sidebar.close()" class="navbar-text-holder">Намери твоят нов дом</p>
                         </li>
@@ -55,12 +68,12 @@
                     <a routerLink="create/ad">
                         <li (click)="sidebar.close()" class="navbar-title">
                             Добави обява
-                            <p  class="navbar-text-holder">Намерете правилния наемател</p>
+                            <p class="navbar-text-holder">Намерете правилния наемател</p>
                         </li>
                     </a>
-
                 </ul>
-            </li>
+
+
 
             <li class="navbar-dropdown">
                 <div class="navbar-dropdown-text">Финансиране
@@ -82,28 +95,30 @@
                     <div (click)="sidebar.close()" class="navbar-dropdown-text">Добави обява</div>
                 </a>
             </li>
-
-
         </ul>
 
+        <li *ngIf="!isAuth" class="navbar-dropdown" routerLink="/auth/login">
+            <a>
+                <div class="navbar-dropdown-text">Вход</div>
+            </a>
+        </li>
+       
     </mat-sidenav>
 
     <div class="content">
         <div class="toolbar">
             <mat-toolbar>
+
                 <div class="content-left">
                     <li class="navbar-logo">
                         <img class="logo" src="../../../assets/images/6878.png" alt="" routerLink="" />
                     </li>
-                    <mat-icon (click)="sidebar.toggle()">menu</mat-icon>
-
                 </div>
 
                 <div class="box">
-                    <mat-icon>search</mat-icon>
-                    <mat-icon>bookmark_border</mat-icon>
-                    <mat-icon>mail_outline</mat-icon>
+                    <mat-icon class="sidebar" (click)="sidebar.toggle()">menu</mat-icon>
                 </div>
+
             </mat-toolbar>
         </div>
         <div class="main">
