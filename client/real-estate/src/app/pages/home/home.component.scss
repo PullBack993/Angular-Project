@@ -109,16 +109,26 @@
   background-color: rgba(0, 0, 0, 0.53);
 }
 
-@media only screen and (max-width: 570px) {
-  .title{
+@media only screen and (max-width: 720px) {
+  .title {
     font-size: 1.5rem;
-    padding-top: .5em;
+    padding-top: 0.5em;
+  }
+  .projects-name {
+    font-size: 25px;
+    margin-top: 1rem;
   }
   .container {
     display: inline-block;
-    &-data{
+    position: relative;
+    box-shadow: none;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &-data {
       width: 100%;
       margin: 1.2em 0;
     }
   }
 }
+

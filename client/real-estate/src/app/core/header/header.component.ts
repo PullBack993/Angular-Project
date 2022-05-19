@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.screenSubs = this.observer.observe(['(max-width: 650px)']).subscribe((res) => {
+    this.screenSubs = this.observer.observe(['(max-width: 720px)']).subscribe((res) => {
       if (res.matches) {
         console.log('true');
         this.isMobile = true;

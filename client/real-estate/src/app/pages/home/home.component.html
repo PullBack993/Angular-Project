@@ -10,7 +10,7 @@
 
     <div class="container">
         <ng-container *ngFor="let ad of projects">
-            <div class="container-data" [routerLink]="'/details/' + ad._id">
+            <div class="container-data col-sm" [routerLink]="'/details/' + ad._id">
                 <a class="" aria-label="Premium Projekte in Wien">
                     <img src="{{ad.imageUrls[0]}}" alt="{{ad.title}}" class="container-data-image">
                 </a>

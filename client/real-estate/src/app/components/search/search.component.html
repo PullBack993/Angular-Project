@@ -6,13 +6,13 @@
                 optionLabel="name">
             </p-dropdown>
             <div class="service">
-                <p-dropdown formControlName="adType"  [styleClass]="'drop-down'"  [style]="{'text-align':'left','margin-left':'15px','width':'205px','height': '48px'}"
+                <p-dropdown formControlName="adType"  [styleClass]="'drop-down'"  [style]="{'text-align':'left','margin-left':'15px','width':'94%','height': '48px'}"
                     [options]="adType"  optionLabel="adType">
                 </p-dropdown>
             </div>
-            <div>
+            <div class="service">
                 <p-dropdown formControlName="estateType"  
-                    [style]="{'margin-left':'15px','width':'205px','height': '48px'}" [options]="type"
+                    [style]="{'margin-left':'15px','text-align':'left','width':'100%','height': '48px'}" [options]="type"
                     [styleClass]="'drop-down'"
                     [placeholder]="'Вид на имота'" optionLabel="type">
                 </p-dropdown>
@@ -21,12 +21,12 @@
 
         <div class="search">
             <p-inputNumber mode="currency" currency="EUR"   [styleClass]="'drop-down'" [useGrouping]="false" formControlName="price"
-                placeholder="Цена до" name="price" [style]="{'margin-left':'30px','width':'270px','height': '48px'}"
+                placeholder="Цена до" name="price" [style]="{'width':'100%','height': '48px'}"
                 title="price" inputId="inputnumber">
             </p-inputNumber>
 
             <p-inputNumber [useGrouping]="false"   [styleClass]="'drop-down'" formControlName="area" placeholder="Площ от"
-                [style]="{'margin-left':'15px','width':'270px','height': '48px'}" inputId="inputnumber">
+                [style]="{'margin-left':'15px','width':'100%','height': '48px'}" inputId="inputnumber">
             </p-inputNumber>
 
             <div class="button">

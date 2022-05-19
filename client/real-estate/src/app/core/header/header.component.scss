@@ -15,7 +15,7 @@ header {
       list-style: none;
       li {
         display: inline;
-        margin-right: 15px;
+        margin-right: 1rem;
         a {
           text-decoration: none;
 
@@ -109,35 +109,14 @@ header {
   }
 }
     
-@media (max-width: 570px) {
-  header {
-    .navbar {
-      .navbar-logo {
-        margin: 0px;
-        & img {
-          width: 45px;
-          margin-top: 1rem;
-        }
-      }
-      // .bar-container {
-      //   display: block;
-      //   margin-top: 1rem;
-      //   font-size: 1.5em;
-
-      // }
-      
-      .navbar-dropdown {
-        width: 16%;
-        .navbar-down,
-        .navbar-up {
-          display: none;
-        }
-       
-        .navbar-submenu {
-         
-          margin-left: -3.5rem;
-        }
-      }
+@media only screen and (max-width: 1200px) {
+  .navbar-links > li{
+    margin-right: 0px !important;
+  }
+   .navbar-dropdown{
+        padding: 14px 12px !important;
     }
+  .addAd{
+   display: none !important;
   }
 }
