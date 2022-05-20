@@ -67,8 +67,9 @@
   width: 305px;
 }
 
-:host ::ng-deep .p-float-label label {
+.p-float-label > label {
   top: 20%;
+  
 }
 .invalid {
   border: 1px solid $error;
@@ -80,7 +81,7 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 720px) {
   .img {
     width: 13%;
   }
@@ -95,7 +96,7 @@
     }
   }
 
-.p-ripple.p-element.p-button.p-component.p-disabled{
-  width: 100% !important;
-}
+  .p-ripple.p-element.p-button.p-component.p-disabled {
+    width: 100% !important;
+  }
 }

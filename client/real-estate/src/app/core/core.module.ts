@@ -10,6 +10,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 import { ComponentsModule } from '../components/components.module';
 
+
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [FooterComponent, HeaderComponent],
   imports: [
@@ -19,6 +25,9 @@ import { ComponentsModule } from '../components/components.module';
     MessagesModule,
     MessageModule,
     ComponentsModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   exports: [FooterComponent, HeaderComponent],
   providers: [

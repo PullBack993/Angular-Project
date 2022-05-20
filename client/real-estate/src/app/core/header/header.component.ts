@@ -1,16 +1,18 @@
-import { Component, OnDestroy, OnInit, OnChanges, ViewChild,  } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { faEnvelope, faCaretDown, faCaretUp, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { MessageService, MessageType } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/user.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material/sidenav';
+import { IUser } from 'src/app/models/user';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy, OnChanges  {
+export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
   icons = {
     faEnvelope,
     faCaretDown,
@@ -18,13 +20,20 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges  {
     faBars
   };
 
-  isMobile!: boolean;
   userIsAuthenticated: boolean = false;
   showButtons: boolean = false;
   errorMessage!: string;
   isErrorType!: boolean;
   messageSubs!: Subscription;
   screenSubs!: Subscription;
+
+  isMobile: boolean = false;
+  isAuth: boolean = false;
+
+  @ViewChild(MatSidenav)
+  sidenav!: MatSidenav;
+  showFiller: boolean = false;
+  currentUser!: IUser;
 
   constructor(
     private authService: UserService,
@@ -33,15 +42,8 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges  {
   ) {}
 
   ngOnInit() {
-    this.screenSubs = this.observer.observe(['(max-width: 720px)']).subscribe((res) => {
-      if (res.matches) {
-        console.log('true');
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-        console.log('false');
-      }
-    });
+    this.checkSideMenu();
+
     this.messageSubs = this.messageService.onMessage$.subscribe((newMessage) => {
       this.errorMessage = newMessage.text;
       this.isErrorType = newMessage.type === MessageType.error;
@@ -55,18 +57,27 @@ export class HeaderComponent implements OnInit, OnDestroy, OnChanges  {
     this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
       this.userIsAuthenticated = isAuthenticated;
     });
+    if (this.userIsAuthenticated) {
+      this.authService.getUser$().subscribe((userData) => {
+        this.currentUser = userData;
+      });
+    }
   }
-
-  ngOnChanges(): void {
-    this.screenSubs = this.observer.observe(['(max-width: 720px)']).subscribe((res) => {
-      if (res.matches) {
-        console.log('true');
-        this.isMobile = true;
-      } else {
-        this.isMobile = false;
-        console.log('false');
+  private checkSideMenu(): void {
+    this.observer.observe(['(max-width: 720px)']).subscribe((res) => {
+      if (Object.values(res.breakpoints)[0] == true && this.sidenav != undefined) {
+        if (res.matches) {
+          this.sidenav.mode = 'over';
+          this.sidenav.close();
+        } else {
+          this.sidenav.mode = 'side';
+          this.sidenav.open();
+        }
       }
     });
+  }
+  ngAfterViewInit(): void {
+    this.checkSideMenu();
   }
 
   onLogout() {

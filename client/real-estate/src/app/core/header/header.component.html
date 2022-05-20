@@ -1,22 +1,17 @@
-<header>
-    <ng-container *ngIf="isMobile">
-    <app-asidenav [isAuth]="userIsAuthenticated"></app-asidenav>
-    </ng-container>
- 
-    
-    <ng-container *ngIf="!isMobile"> 
-        <nav class="navbar">
+ <header>
+    <ng-container class="main-header">
+        <nav class="navbar-main">
             <ul class="navbar-links">
                 <li class="navbar-logo">
                     <img class="logo" src="assets/images/6878.png" alt="" routerLink="" />
                 </li>
-
+    
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Търсене
                         <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
                         <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
                     </div>
-
+    
                     <ul class="navbar-submenu">
                         <a routerLink="properties">
                             <li class="navbar-title">
@@ -24,14 +19,14 @@
                                 <p class="navbar-text-holder">Намери твоят нов дом</p>
                             </li>
                         </a>
-
+    
                         <a routerLink="new-projects">
                             <li>
                                 Нови Проекти
                                 <p class="navbar-text-holder">Нови апартаменти и къщи</p>
                             </li>
                         </a>
-
+    
                         <a routerLink="retail-outlet">
                             <li>
                                 Търговски обекти
@@ -40,7 +35,7 @@
                         </a>
                     </ul>
                 </li>
-
+    
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Продавам
                         <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
@@ -53,17 +48,17 @@
                                 <p class="navbar-text-holder">Намерете правилния клиент</p>
                             </li>
                         </a>
-
-
+    
+    
                     </ul>
                 </li>
-
+    
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Наемам
                         <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
                         <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
                     </div>
-
+    
                     <ul class="navbar-submenu">
                         <a routerLink="create/ad">
                             <li class="navbar-title">
@@ -71,15 +66,15 @@
                                 <p class="navbar-text-holder">Намерете правилния наемател</p>
                             </li>
                         </a>
-
+    
                     </ul>
                 </li>
-
+    
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Финансиране
                         <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
                         <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
-
+    
                     </div>
                     <ul class="navbar-submenu">
                         <a routerLink="calculator">
@@ -97,7 +92,7 @@
                         <div class="navbar-dropdown-text">Добави обява</div>
                     </a>
                 </li>
-
+    
                 <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" routerLink="/auth/login">
                     <a>
                         <div class="navbar-dropdown-text">Вход</div>
@@ -114,10 +109,141 @@
                     </button>
                 </li>
             </ul>
-
-
         </nav>
-    </ng-container> 
+    </ng-container>
+
+
+    <ng-container  class="second-header">
+        <mat-sidenav-container class="container">
+            <mat-sidenav #sidebar mode='side'>
+    
+                <ul class="navbar-links">
+    
+                    <li *ngIf="currentUser" class="navbar-dropdown" (click)="sidebar.close()" routerLink="/auth/profile">
+                        <a>
+                            <img  class="profile" src="{{currentUser.userData.imageUrl}}" alt="">
+                            <p class="username">{{currentUser.userData.username}}</p>
+                        </a>
+                    </li>
+                    <li *ngIf="isAuth" (click)="onLogout()" (click)="sidebar.close()" class="navbar-dropdown">
+                        <button class="logout-btn">
+                            <div  class="navbar-dropdown-text">Изход</div>
+                        </button>
+                    </li>
+    
+                    <li class="navbar-dropdown">
+                        <div class="navbar-dropdown-text">Търсене
+    
+                        </div>
+    
+                        <ul class="navbar-submenu">
+                            <a routerLink="properties" (click)="sidebar.close()">
+                                <li  class="navbar-title">
+                                    Имоти
+                                    <p  class="navbar-text-holder">Намери твоят нов дом</p>
+                                </li>
+                            </a>
+    
+                            <a routerLink="new-projects" (click)="sidebar.close()">
+                                <li>
+                                    Нови Проекти
+                                    <p  class="navbar-text-holder">Нови апартаменти и къщи</p>
+                                </li>
+                            </a>
+    
+                            <a routerLink="retail-outlet" (click)="sidebar.close()">
+                                <li>
+                                    Търговски обекти
+                                    <p  class="navbar-text-holder">Офиси,Търговски обекти,Заведения
+                                    </p>
+                                </li>
+                            </a>
+                        </ul>
+                    </li>
+    
+                    <li class="navbar-dropdown">
+                        <div class="navbar-dropdown-text">Продавам
+    
+                        </div>
+                        <ul class="navbar-submenu">
+                            <a routerLink="create/ad" (click)="sidebar.close()">
+                                <li class="navbar-title">
+                                    Добави обява
+                                    <p class="navbar-text-holder">Намерете правилния клиент</p>
+                                </li>
+                            </a>
+    
+    
+                        </ul>
+                    </li>
+    
+                    <li class="navbar-dropdown">
+                        <div class="navbar-dropdown-text">Наемам
+                        </div>
+    
+                        <ul class="navbar-submenu">
+                            <a routerLink="create/ad" (click)="sidebar.close()">
+                                <li  class="navbar-title">
+                                    Добави обява
+                                    <p class="navbar-text-holder">Намерете правилния наемател</p>
+                                </li>
+                            </a>
+                        </ul>
+    
+    
+    
+                    <li class="navbar-dropdown">
+                        <div class="navbar-dropdown-text">Финансиране
+    
+                        </div>
+                        <ul class="navbar-submenu">
+                            <a routerLink="calculator" (click)="sidebar.close()">
+                                <li class="navbar-title">
+                                    Кредитен калкулатор
+                                    <p class="navbar-text-holder">Изчисли месечна вноска</p>
+                                </li>
+                            </a>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-links">
+                    <li class="navbar-dropdown" routerLink="create/ad" (click)="sidebar.close()">
+                        <a>
+                            <div  class="navbar-dropdown-text">Добави обява</div>
+                        </a>
+                    </li>
+                </ul>
+    
+                <li *ngIf="!isAuth" class="navbar-dropdown" (click)="sidebar.close()" routerLink="/auth/login">
+                    <a>
+                        <div (click)="sidebar.close()" class="navbar-dropdown-text">Вход</div>
+                    </a>
+                </li>
+    
+            </mat-sidenav>
+    
+            <div class="content">
+                <div class="toolbar">
+                    <mat-toolbar>
+    
+                        <div class="content-left">
+                            <li class="navbar-logo">
+                                <img class="logo" src="../../../assets/images/6878.png" alt="" routerLink="" />
+                            </li>
+                        </div>
+    
+                        <div class="box">
+                            <mat-icon class="sidebar" (click)="sidebar.toggle()">menu</mat-icon>
+                        </div>
+    
+                    </mat-toolbar>
+                </div>
+            </div>
+        </mat-sidenav-container>
+    </ng-container>
+ 
+    
+   
 </header>
 <ng-container *ngIf="!!errorMessage">
     <p-message *ngIf="isErrorType" severity="error" text="{{errorMessage}}"

@@ -81,7 +81,7 @@
                         text="Моля въведете валиден имейл" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
-            <button type="button" class="btn btn-outline-primary" (click)="filePicker.click()">Качи
+            <button type="button" class="btn btn-outline-primary w-60" (click)="filePicker.click()">Качи
                 профилна снимка</button>
             <input class="filePicker" formControlName="image" type="file" accept="image/*" #filePicker
                 (change)="onImagePicked($event) ">
@@ -94,10 +94,10 @@
                 </div>
             </div>
         </div>
-        <div class="d-inline-flex grid gap-3 col-5">
+        <div class="d-flex gap-3 inserted justify-content-center">
             <button type="submit" [disabled]="form.invalid" (click)="onSubmit()"
-                class="btn btn-primary m-0 d-grid gap-2 col-6">Запази</button>
-            <button type="button" class="btn btn-danger m-0 d-grid gap-2 col-6" (click)="home()">Откажи</button>
+                class="btn btn-primary m-0 d-grid gap-2 col-4  ">Запази</button>
+            <button type="button" class="btn btn-danger m-0 d-grid gap-2 col-4" (click)="home()">Откажи</button>
         </div>
     </ng-container>
 
