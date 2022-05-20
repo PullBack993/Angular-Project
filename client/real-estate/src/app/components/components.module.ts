@@ -14,27 +14,17 @@ import { SharedModule } from '../shared/shared.module';
 import { ConfirmationService } from 'primeng/api';
 import { SpinerComponent } from './spiner/spiner.component';
 
-import { AsidenavComponent } from './asidenav/asidenav.component'; 
-import { MatSidenavModule } from '@angular/material/sidenav';
-
-
-
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
-  declarations: [SearchComponent, AdViewsComponent, DetailsViewComponent, SpinerComponent, AsidenavComponent],
+  declarations: [SearchComponent, AdViewsComponent, DetailsViewComponent, SpinerComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     PrimeNgModule,
-    MatSidenavModule,
-    MatIconModule,
     SharedModule,
-    MatToolbarModule
   ],
-  exports: [SearchComponent, AdViewsComponent, DetailsViewComponent, SpinerComponent, AsidenavComponent],
+  exports: [SearchComponent, AdViewsComponent, DetailsViewComponent, SpinerComponent],
   providers: [
     MessageService,
     ConfirmationService,
