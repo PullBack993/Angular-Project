@@ -28,9 +28,7 @@
                 </label>
 
                 <ng-container *ngIf="checkTouch('email', loginFormGroup)">
-                    <!-- Имайл полето е задължително
-                    Моля въведете валиден Имайл
-                    <app-errors [controlName]="'email'" [sourceGroup]="loginFormGroup" [message]="'Имайл полето е задължително"></app-errors> -->
+                 
                     <p *ngIf="loginFormGroup.get('email')?.errors?.['required']">
                         <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
                             text="Имейл полето е задължително" styleClass="mr-2"></p-message>

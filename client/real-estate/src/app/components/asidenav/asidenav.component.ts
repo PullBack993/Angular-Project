@@ -15,10 +15,12 @@ export class AsidenavComponent implements OnInit, AfterViewInit, OnChanges {
   sidenav!: MatSidenav;
   showFiller: boolean = false;
   currentUser!: IUser;
+  vs: boolean = false
 
   constructor(private observer: BreakpointObserver, private authService: UserService) {}
 
   ngOnInit(): void {
+    this.vs = true
     if (this.isAuth) {
       this.authService.getUser$().subscribe((userData) => {
         this.currentUser = userData;
@@ -31,17 +33,18 @@ export class AsidenavComponent implements OnInit, AfterViewInit, OnChanges {
          this.currentUser = userData;
        });
      }
+      this.observer.observe(['(max-width: 720px)']).subscribe((res) => {
+        if (res.matches) {
+          this.sidenav.mode = 'over';
+          this.sidenav.close();
+        } else {
+          this.sidenav.mode = 'side';
+          this.sidenav.open();
+        }
+      });
   }
   ngAfterViewInit(): void {
-    this.observer.observe(['(max-width: 720px)']).subscribe((res) => {
-      if (res.matches) {
-        this.sidenav.mode = 'over';
-        this.sidenav.close();
-      } else {
-        this.sidenav.mode = 'side';
-        this.sidenav.open();
-      }
-    });
+   
   }
   onLogout() {
     this.authService.logout();

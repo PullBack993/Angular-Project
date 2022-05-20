@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, OnChanges, ViewChild,  } from '@angular/core';
 import { faEnvelope, faCaretDown, faCaretUp, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { MessageService, MessageType } from 'src/app/services/message.service';
@@ -10,7 +10,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy, OnChanges  {
   icons = {
     faEnvelope,
     faCaretDown,
@@ -54,6 +54,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
       this.userIsAuthenticated = isAuthenticated;
+    });
+  }
+
+  ngOnChanges(): void {
+    this.screenSubs = this.observer.observe(['(max-width: 720px)']).subscribe((res) => {
+      if (res.matches) {
+        console.log('true');
+        this.isMobile = true;
+      } else {
+        this.isMobile = false;
+        console.log('false');
+      }
     });
   }
 

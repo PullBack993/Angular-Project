@@ -10,8 +10,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 import { ComponentsModule } from '../components/components.module';
 
-import { MatSidenavModule } from '@angular/material/sidenav';
-
 @NgModule({
   declarations: [FooterComponent, HeaderComponent],
   imports: [
@@ -20,9 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     FontAwesomeModule,
     MessagesModule,
     MessageModule,
-    MatSidenavModule,
     ComponentsModule,
-    MatSidenavModule
   ],
   exports: [FooterComponent, HeaderComponent],
   providers: [

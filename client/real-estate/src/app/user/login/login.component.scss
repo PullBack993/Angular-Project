@@ -39,6 +39,7 @@
   }
   .container {
     text-align: center;
+    width: 100%;
     &-input {
       display: inline-block;
     }
@@ -71,12 +72,30 @@
 }
 .invalid {
   border: 1px solid $error;
-  label{
-    color:  $error;
+  label {
+    color: $error;
   }
-  &-a{
-    color:  $error;
+  &-a {
+    color: $error;
+  }
+}
 
+@media only screen and (max-width: 480px) {
+  .img {
+    width: 13%;
   }
-  
+  .login-page {
+    grid-template-rows: 35px;
+    grid-column-gap: 20px !important;
+  }
+  .container-input {
+    width: 100%;
+    span.p-float-label > input {
+      width: 100%;
+    }
+  }
+
+.p-ripple.p-element.p-button.p-component.p-disabled{
+  width: 100% !important;
+}
 }
