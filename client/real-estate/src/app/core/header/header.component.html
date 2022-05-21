@@ -119,13 +119,13 @@
     
                 <ul class="navbar-links">
     
-                    <li *ngIf="currentUser" class="navbar-dropdown" (click)="sidebar.close()" routerLink="/auth/profile">
+                    <li *ngIf="userIsAuthenticated && !!currentUser" class="navbar-dropdown" (click)="sidebar.close()" routerLink="/auth/profile">
                         <a>
                             <img  class="profile" src="{{currentUser.userData.imageUrl}}" alt="">
                             <p class="username">{{currentUser.userData.username}}</p>
                         </a>
                     </li>
-                    <li *ngIf="isAuth" (click)="onLogout()" (click)="sidebar.close()" class="navbar-dropdown">
+                    <li *ngIf="userIsAuthenticated" (click)="sidebar.close()" (click)="onLogout()" class="navbar-dropdown">
                         <button class="logout-btn">
                             <div  class="navbar-dropdown-text">Изход</div>
                         </button>
@@ -214,7 +214,7 @@
                     </li>
                 </ul>
     
-                <li *ngIf="!isAuth" class="navbar-dropdown" (click)="sidebar.close()" routerLink="/auth/login">
+                <li *ngIf="!userIsAuthenticated " class="navbar-dropdown" (click)="sidebar.close()" routerLink="/auth/login">
                     <a>
                         <div (click)="sidebar.close()" class="navbar-dropdown-text">Вход</div>
                     </a>

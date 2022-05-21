@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild, OnChanges } from '@angular/core';
 import { faEnvelope, faCaretDown, faCaretUp, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { MessageService, MessageType } from 'src/app/services/message.service';
@@ -12,7 +12,7 @@ import { IUser } from 'src/app/models/user';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
+export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges {
   icons = {
     faEnvelope,
     faCaretDown,
@@ -43,7 +43,25 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     this.checkSideMenu();
+    // this.userIsAuthenticated = this.authService.getIsAuth();
+    
+     this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
+       this.userIsAuthenticated = isAuthenticated;
 
+       if (isAuthenticated) {
+         console.log('yes');
+         this.authService.getUser$().subscribe((userData) => {
+           this.currentUser = userData;
+         });
+       }
+     });
+
+    if (this.userIsAuthenticated) {
+      console.log('yes');
+      this.authService.getUser$().subscribe((userData) => {
+        this.currentUser = userData;
+      });
+    }
     this.messageSubs = this.messageService.onMessage$.subscribe((newMessage) => {
       this.errorMessage = newMessage.text;
       this.isErrorType = newMessage.type === MessageType.error;
@@ -53,11 +71,11 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit {
         }, 3000);
       }
     });
-    this.userIsAuthenticated = this.authService.getIsAuth();
-    this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
-      this.userIsAuthenticated = isAuthenticated;
-    });
+   
+  }
+  ngOnChanges(): void {
     if (this.userIsAuthenticated) {
+      console.log('yes');
       this.authService.getUser$().subscribe((userData) => {
         this.currentUser = userData;
       });

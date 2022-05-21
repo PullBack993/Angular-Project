@@ -38,14 +38,18 @@
   }
   .container {
     text-align: center;
+    display: flex;
+    flex-direction: column;
     &-input {
-      display: inline-block;
+      margin: auto;
+      max-width: 305px;
     }
     &-password {
-      display: block;
+      margin: auto;
       margin-bottom: 25px;
     }
     &-repass {
+      margin: auto;
       margin-bottom: 25px;
     }
     &-repass > input {
@@ -54,6 +58,7 @@
   }
 }
 .p-float-label {
+  margin: auto;
   margin: 25px 0px;
 }
 .p-float-label > input {
@@ -68,6 +73,10 @@
 :host ::ng-deep .p-float-label label {
   top: 20%;
 }
+.p-element {
+  width: 305px;
+  margin: auto;
+}
 
 .invalid {
   border: 1px solid $error;
@@ -76,5 +85,15 @@
   }
   &-text {
     color: $error;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .p-float-label > label {
+    // margin-left: 1.7rem !important;
+    top: 20%;
+  }
+  .img {
+    width: 13%;
   }
 }

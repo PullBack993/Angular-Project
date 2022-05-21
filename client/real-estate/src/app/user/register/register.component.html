@@ -20,40 +20,40 @@
 
         <div class="container-input">
 
-            <span class="p-float-label">
+            <div class="p-float-label">
                 <input [class.invalid]="checkTouch('username', registerFormGroup)" id="float-input-invalid"
                     formControlName="username" type="text" pInputText>
                 <label for="float-input-invalid" [class.invalid-text]="checkTouch('username', registerFormGroup)"
-                    class="ng-invalid ng-dirty">Потребителско име</label>
-            </span>
+                    class="ng-invalid ng-dirty ">Потребителско име</label>
+            </div>
 
             <ng-container *ngIf="checkTouch('username', registerFormGroup)">
                 <p *ngIf="registerFormGroup.get('username')?.errors?.['required']">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                    <p-message [style]="{'width':'305px'}" severity="error"
                         text="Полето е задължително" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
 
-            <span class="p-float-label">
+            <div class="p-float-label">
                 <input [class.invalid]="checkTouch('email', registerFormGroup)" id="float-input" type="text"
                     formControlName="email" pInputText>
                 <label [class.invalid-text]="checkTouch('email', registerFormGroup)" class="ng-invalid ng-dirty"
                     for="float-input">Имейл</label>
-            </span>
+            </div>
 
             <ng-container *ngIf="checkTouch('email', registerFormGroup)">
                 <p *ngIf="registerFormGroup.get('email')?.errors?.['required']">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                    <p-message [style]="{'width':'305px'}" severity="error"
                         text="Имейл полето е задължително" styleClass="mr-2"></p-message>
                 </p>
                 <p *ngIf="registerFormGroup.get('email')?.errors?.['email']">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                    <p-message [style]="{'width':'305px'}" severity="error"
                         text="Моля въведете валиден имейл" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
         </div>
 
-        <span class="container-password" formGroupName="passwords">
+        <div class="container-password" formGroupName="passwords">
             <p-password [class.invalid]="checkTouch('password', passwordsGroup)" formControlName="password"
                 [inputStyle]="{'width':'305px'}" [placeholder]="'Парола'" [promptLabel]="'Въведи пароoлa'"
                 [weakLabel]="'слаба'" [mediumLabel]="'средна'" [strongLabel]="'силна'" [feedback]="true">
@@ -69,7 +69,7 @@
                         text="Паролата трябва да бъде най-малко 4 символа" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
-        </span>
+        </div>
         <div class="container-repass" formGroupName="passwords">
             <input formControlName="rePass" [class.invalid]="checkTouch('rePass', passwordsGroup)" type="password"
                 id="inputtext" pInputText placeholder="Повтори парола">
