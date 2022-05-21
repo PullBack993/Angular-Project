@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
 
   ngOnInit() {
     this.checkSideMenu();
-    // this.userIsAuthenticated = this.authService.getIsAuth();
+    this.userIsAuthenticated = this.authService.getIsAuth();
     
      this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
        this.userIsAuthenticated = isAuthenticated;

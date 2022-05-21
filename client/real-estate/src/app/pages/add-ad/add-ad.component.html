@@ -31,11 +31,11 @@
                 </ng-container>
             </div>
 
-            <div class=" drop-container container-tag">
-                <span class="p-float-label title">
+            <div class="drop-container container-tag">
+                <div class="p-float-label ">
                     <input formControlName="title" type="text" maxlength="58" pInputText>
                     <label for="float-input">Заглавие/Ключови думи</label>
-                </span>
+                </div>
                 <ng-container *ngIf="checkTouch('title', addFormGroup)">
 
                     <p class="msg" *ngIf="addFormGroup.get('title')?.errors?.['required']">
@@ -129,7 +129,7 @@
                     </p-inputNumber>
                     <label for="inputnumber">етаж</label>
                 </span>
-                
+
             </div>
         </div>
 
@@ -150,19 +150,21 @@
                         </p-radioButton>
                         <label class="radio-btn-text" for="city1">Отдавам под наем</label>
                     </div>
-
-                    <p-inputSwitch (click)="onCheck()"></p-inputSwitch><span class="check">Нов
-                        проект?</span>
+                    <div class="container-check">
+                        <p-inputSwitch (click)="onCheck()"></p-inputSwitch>
+                        <div class="check">Нов проект?
+                        </div>
+                    </div>
                 </div>
 
-                <div class="drop-container container-tag">
+                <div class="drop-container container-tag tel-num">
 
-                    <span class="p-float-label ">
+                    <div class="p-float-label">
                         <p-inputNumber [useGrouping]="false" value="number" formControlName="telNumber" id="float-input"
                             inputId="inputnumber">
                         </p-inputNumber>
                         <label for="inputnumber">телефонен номер</label>
-                    </span>
+                    </div>
                     <ng-container *ngIf="checkTouch('telNumber', addFormGroup)">
                         <p class="msg" *ngIf="addFormGroup.get('telNumber')?.errors?.['required']">
                             <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
@@ -176,11 +178,10 @@
 
 
         <div class="input">
-            <span class="p-float-label ">
-                <textarea id="float-input" rows="10" cols="30" [autoResize]="true" formControlName="moreInfo"
-                    pInputTextarea></textarea>
+            <div class="p-float-label">
+                <textarea [autoResize]="true" formControlName="moreInfo" pInputTextarea></textarea>
                 <label for="float-input">Допълнителна информация</label>
-            </span>
+            </div>
             <ng-container *ngIf="checkTouch('moreInfo', addFormGroup)">
                 <p class="msg" *ngIf="addFormGroup.get('moreInfo')?.errors?.['required']">
                     <p-message severity="error" text="Полето е задължително" styleClass="mr-2">

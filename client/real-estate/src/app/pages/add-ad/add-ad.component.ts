@@ -1,4 +1,4 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICity, IConstructionType, IAdType, ITags } from '../../models/ads';
 import { estateTypes, cities, construction, tags, townOptions } from '../../components/helper';
@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-add-ad',
   templateUrl: './add-ad.component.html',
-  styleUrls: ['./add-ad.component.scss']
+  styleUrls: ['./add-ad.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AddAdComponent implements OnInit {
   tags: ITags[];
@@ -38,7 +39,7 @@ export class AddAdComponent implements OnInit {
     location: new FormControl('', [Validators.required]),
     region: new FormControl('', [Validators.required]),
     area: new FormControl(null, [Validators.required]),
-    floor: new FormControl(null, ),
+    floor: new FormControl(null),
     constructionType: new FormControl('', [Validators.required]),
     tags: new FormControl('', [Validators.required]),
     telNumber: new FormControl(null, [Validators.required]),
@@ -120,8 +121,7 @@ export class AddAdComponent implements OnInit {
     this.createService.createAd(formData).subscribe({
       complete: () => {
         this.router.navigate(['/properties']);
-      },
-      
+      }
     });
   }
 }
