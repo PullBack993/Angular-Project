@@ -6,7 +6,7 @@
 
 ---
 
-# **Full stack application with Angular and Node JS**
+# **Full stack(MEAN) application with Angular and Node JS**
 
 
 <h2 text="bold">Tech Stack: </h2>
