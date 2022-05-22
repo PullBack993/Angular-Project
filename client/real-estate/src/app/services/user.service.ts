@@ -110,7 +110,7 @@ export class UserService {
     console.log('create duration' + duration);
     this.tokenTime = setTimeout(() => {
       this.logout();
-      this.route.navigate(['/login'])
+      this.route.navigate(['/auth/login']);
     }, duration * 1000);
   }
 

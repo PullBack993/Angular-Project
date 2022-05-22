@@ -62,7 +62,6 @@
       color: white;
       padding: 4px;
       border-radius: 11px;
-      overflow-x: hidden;
     }
   }
   .object-info {
@@ -108,4 +107,80 @@
   background-color: $whiteBrown;
   overflow-x: hidden;
   opacity: 0.3;
+}
+
+@media screen and (max-width: 980px) {
+  .main-container-child {
+    width: 80%;
+    margin: auto;
+  }
+  .main-container {
+    max-height: none;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-container .text-container {
+    margin-left: 12%;
+    margin-top: 1em;
+    width: 100%;
+    .ng-star-inserted {
+      width: 15%;
+      text-align: center;
+    }
+    .description-container-text {
+      width: 55%;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .text-container {
+    width: 100% !important;
+    .ng-star-inserted {
+      width: 20% !important;
+      text-align: center;
+    }
+  }
+  .main-container-child {
+    width: 100%;
+    margin-right: none;
+    .image-container {
+      width: 39%;
+    }
+  }
+
+  .main-container .text-container {
+    margin-left: 5%;
+  }
+  .description-container-text {
+    width: 90% !important;
+  }
+}
+@media screen and (max-width: 530px) {
+  .ng-star-inserted {
+    margin-top: 0px !important;
+  }
+   div.main-container > div > ul > li{
+    width: 50% !important;
+    } 
+  .tags {
+    margin-top: 10px !important;
+   
+  }
+  h2 {
+    width: 95% !important;
+  }
+  .main-container .object-options > li {
+    padding: 3px;
+    .text-container {
+      margin: 0.5em !important;
+    }
+  }
+  .object-options {
+    display: flex;
+    padding: 0px;
+    flex-direction: column;
+  }
 }

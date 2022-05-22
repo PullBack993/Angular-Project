@@ -2,8 +2,8 @@
 <app-spiner *ngIf="!adData" [isLoading]="!adData"></app-spiner>
 
 <ng-container *ngIf="adData">
-    <div class="main">
-        <div class="container">
+    <div class="main-container">
+        <div class="main-container-child">
             <img class="images" [src]="getImage()">
             <div (click)="prev()" *ngIf="images.length  < images.length + _activeIndex ">
                 <i class="p-galleria-thumbnail-prev-icon pi pi-chevron-left"></i>

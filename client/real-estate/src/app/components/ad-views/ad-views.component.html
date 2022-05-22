@@ -44,7 +44,7 @@
                 <h2>{{ad.title | shorten: 60}}</h2>
                 <ul class="object-options">
                     <ng-container *ngFor="let tag of ad.tags">
-                        <li>{{tag}}</li>
+                        <li class="tags">{{tag}}</li>
                     </ng-container>
                 </ul>
 
@@ -56,7 +56,7 @@
                 <h3 class="description">Описание:</h3>
                 <div class="description-container">
                     <div class="description-container-text">
-                        {{ad.moreInfo | shorten: 130}}
+                        {{ad.moreInfo | shorten: 120}}
                     </div>
                 </div>
             </div>

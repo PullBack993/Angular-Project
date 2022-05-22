@@ -1,11 +1,13 @@
 @import '../../../style/color';
 
-.main {
-  margin-top: 15px;
-  .container {
+.main-container {
+  width: 100%;
+  margin-top: 1.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+  &-child {
     position: relative;
     display: flex;
-    margin: 10px;
 
     .images {
       width: 60%;
@@ -26,9 +28,6 @@
       background: #4a4a4a4d;
       border-radius: 50%;
       opacity: 0.7;
-
-
-
     }
     .p-galleria-thumbnail-after-icon {
       position: absolute;
@@ -133,23 +132,22 @@
     }
   }
 }
-.edit-btn{
+.edit-btn {
   margin-right: 5px;
   margin-left: 15px;
 }
 
-
 .progress-spinner {
-    position: fixed;
-    z-index: 999;
-    height: 2em;
-    width: 2em;
-    overflow: show;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 /* Transparent Overlay */
@@ -161,5 +159,43 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.53);
+  background-color: rgba(0, 0, 0, 0.53);
+}
+
+@media screen and (max-width: 1200px) {
+  .p-galleria-thumbnail-after-icon {
+    left: 48% !important;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .main-container-child {
+    flex-direction: column;
+  }
+  .main-container .images {
+    width: 96%;
+    height: 450px;
+    // height: 60% -80% ???
+  }
+  .main-container .p-galleria-thumbnail-after-icon {
+    bottom: 70%;
+    left: 80% !important;
+  }
+  .main-container .p-galleria-thumbnail-prev-icon {
+    bottom: 70%;
+    left: 2%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .main-container{
+    margin-left: .3em;
+  } .images {
+
+    width: 98% !important;
+  }
+
+  .main-container .p-galleria-thumbnail-after-icon {
+    left: 78% !important;
+  }
 }
