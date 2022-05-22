@@ -72,12 +72,13 @@ I didn't want to do just one app and pass the exam, what is more important for m
 # **What I used ?**
 -Server side:
   * CRUD + (search,sort,pagination) operations using mongoose orm and mongodb
-  * Custom error handling in express
-  * Routing in express
+  * Custom error handling (Express)
+  * Routing(Express)
   * User authentication:
     * JWT token
     * Bcrypt
     * ExpressJWT
+    
    * User authorization:
         * Custom authorization
    * Route middlewares
