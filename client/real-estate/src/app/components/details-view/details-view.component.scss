@@ -132,10 +132,6 @@
     }
   }
 }
-.edit-btn {
-  margin-right: 5px;
-  margin-left: 15px;
-}
 
 .progress-spinner {
   position: fixed;
@@ -185,13 +181,20 @@
     bottom: 70%;
     left: 2%;
   }
+  p-button.p-element > button {
+    width: 19% !important;
+  }
+  p-button.p-element{
+    margin-right: 1rem;
+  }
+
 }
 
 @media screen and (max-width: 450px) {
-  .main-container{
-    margin-left: .3em;
-  } .images {
-
+  .main-container {
+    margin-left: 0.3em;
+  }
+  .images {
     width: 98% !important;
   }
 

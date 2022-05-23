@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ICity, IConstructionType, IAdType, ITags, IAds, ILocation, IRegion, ICreateAd } from '../../models/ads';
@@ -11,12 +11,13 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  styleUrls: ['./edit.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class EditComponent implements OnInit,OnDestroy {
+export class EditComponent implements OnInit, OnDestroy {
   adData!: IAds;
   private subscription!: Subscription;
- 
+
   tags: ITags[];
   cities!: ICity[];
   townOptions!: IRegion;
@@ -54,7 +55,7 @@ export class EditComponent implements OnInit,OnDestroy {
     moreInfo: new FormControl('', [Validators.required])
   });
 
-   constructor(
+  constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
     private adService: AdsService,
@@ -68,7 +69,7 @@ export class EditComponent implements OnInit,OnDestroy {
     this.inputTags = [];
     this.constType = [{}];
   }
-  
+
   ngOnInit(): void {
     this.activateRoute.params.subscribe(({ id }) => {
       this.getAd(id);
@@ -79,7 +80,6 @@ export class EditComponent implements OnInit,OnDestroy {
       this.adData = res;
     });
   }
-
 
   setLocation(value: string) {
     this.shouldDisabled = false;
@@ -124,7 +124,6 @@ export class EditComponent implements OnInit,OnDestroy {
   onClear() {
     this.uploadedFiles = [];
     this.isDisabled = !this.isDisabled;
-
   }
   changeFromChild(event: any): void {
     const currentValue: string = event.value.searchValue;
@@ -143,7 +142,6 @@ export class EditComponent implements OnInit,OnDestroy {
     this.addFormGroup.get('image')?.updateValueAndValidity();
     this.messageService.add({ severity: 'Информация', summary: 'Успешно качен фаил', detail: '' });
   }
-
 
   checkTouch(controlName: string, sourceGroup: FormGroup) {
     return sourceGroup.controls[controlName]?.touched && sourceGroup.controls[controlName].invalid;
@@ -216,6 +214,6 @@ export class EditComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe()
+    this.subscription.unsubscribe();
   }
 }

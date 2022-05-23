@@ -4,10 +4,15 @@
   box-shadow: $box-shadow;
   margin-left: 13%;
   width: 78%;
+  border-radius: 0.8rem;
   .header {
     padding-top: 10px;
     text-align: center;
     font-size: 25px;
+  }
+  .main-form {
+    margin-bottom: 1em;
+    border-radius: 8rem;
   }
   .drop-down-container {
     display: flex;
@@ -26,8 +31,14 @@
   width: 98%;
   margin: auto;
   height: 217px;
+  max-height: 217px;
+  margin-top: 2em;
 }
-
+.p-inputtextarea {
+  height: 240px !important;
+  max-height: 240px !important;
+  overflow: scroll !important;
+}
 .p-fluid .p-button {
   width: 40%;
   text-align: center;
@@ -62,4 +73,83 @@
 .msg {
   margin: 0px;
   padding: 0px;
+}
+
+@media screen and (max-width: 1200px) {
+  .card {
+    margin-top: 30px !important;
+  }
+  .container-check {
+    display: flex;
+  }
+  .title {
+    font-size: 0px;
+    margin-top: 0px;
+  }
+  .p-float-label > label {
+    font-size: 16px;
+    margin-top: -10px;
+  }
+  .p-float-label {
+    width: 100%;
+  }
+  .drop-down-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 0px !important;
+    flex-direction: column;
+  }
+  .tel-num {
+    width: 100% !important;
+    margin-bottom: 10px;
+    margin-left: 0px !important;
+  }
+  .drop-container {
+    width: 96%;
+    margin-bottom: 25px;
+    margin-left: 10px;
+  }
+  .container-section {
+    flex-direction: column;
+  }
+  .radio-container {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .p-fluid {
+    margin-left: 5% !important;
+    width: 90%;
+    margin-right: 5% !important;
+    .container-section {
+      padding: 0;
+      .radio-container {
+        flex-direction: column;
+        .container-check {
+          margin-top: 10px;
+          display: flex;
+        }
+        .container-btn {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  .p-fileupload-buttonbar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p-button.p-element {
+    margin-top: 10px !important;
+  }
+  .p-fluid .p-fileupload .p-button {
+    width: 98% !important;
+  }
+  p-button.p-element .submit {
+    width: 92%;
+    margin-left: 1.3em;
+    margin-bottom: 1em;
+  }
 }

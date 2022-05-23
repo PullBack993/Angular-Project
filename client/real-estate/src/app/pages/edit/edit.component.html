@@ -1,7 +1,7 @@
 <div class="p-fluid grid" *ngIf="adData">
     <h1 class="header">Редактирай обява</h1>
 
-    <form action="POST" [formGroup]="addFormGroup" (ngSubmit)="onCreate($event)">
+    <form class="main-form" action="POST" [formGroup]="addFormGroup" (ngSubmit)="onCreate($event)">
 
 
         <div class="drop-down-container">
@@ -146,7 +146,7 @@
         </div>
 
 
-        <div class="container">
+        <div class="container-check">
 
             <div class="container-section">
                 <div class="radio-container">
@@ -164,9 +164,11 @@
                         <label class="radio-btn-text" for="city1">Отдавам под наем</label>
                     </div>
 
-                    <p-inputSwitch [ngModel]="checked" [ngModelOptions]="{standalone: true}" (click)="onCheck()">
-                    </p-inputSwitch><span class="check">Нов
-                        проект?</span>
+                    <div class="container-check">
+                        <p-inputSwitch [ngModel]="checked" [ngModelOptions]="{standalone: true}" (click)="onCheck()">
+                        </p-inputSwitch><span class="check">Нов проект?</span>
+                    </div>
+
                 </div>
 
                 <div class="drop-container container-tag">
@@ -190,7 +192,7 @@
 
         <div class="input">
             <span class="p-float-label ">
-                <textarea id="float-input" rows="10" cols="30" [autoResize]="true" formControlName="moreInfo"
+                <textarea  [autoResize]="true" formControlName="moreInfo"
                     [ngModel]="adData.moreInfo" pInputTextarea></textarea>
                 <label for="float-input">Допълнителна информация</label>
             </span>
@@ -225,6 +227,6 @@
         </div>
         <p-progressSpinner *ngIf="loading"></p-progressSpinner>
 
-        <p-button [disabled]="addFormGroup.invalid || loading" label="Публикувай" type="submit"></p-button>
+        <p-button [styleClass]="'submit'" [disabled]="addFormGroup.invalid || loading" label="Публикувай" type="submit"></p-button>
     </form>
 </div>
