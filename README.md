@@ -37,7 +37,7 @@
 [![Heroku server API](https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg)](https://real-estate-angular-project.herokuapp.com/)
 
 ### Client-AWS:<a href="http://real-estate-properties.s3-website.eu-west-3.amazonaws.com/"> *(website)*</a>
-[![Clien-AWS](https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg)](http://real-estate-properties.s3-website.eu-west-3.amazonaws.com/)
+[![Clien-AWS](http://real-estate-real.s3-website.eu-central-1.amazonaws.com/)
 
 
 ---
