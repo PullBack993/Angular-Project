@@ -5,6 +5,8 @@
   margin-left: 13%;
   width: 78%;
   border-radius: 0.8rem;
+  margin-bottom: 1em;
+
   .header {
     padding-top: 10px;
     text-align: center;
@@ -19,12 +21,21 @@
     width: 100%;
     margin-bottom: 20px;
   }
+  .title {
+    font-size: 0px;
+    margin-top: 0px;
+  }
+}
+p-button.p-element .submit {
+  width: 40%;
+  margin: 1em 1.2em;
 }
 
 .container-section {
   margin-bottom: 10px;
   display: flex;
   width: 100%;
+  margin-left: 1rem;
 }
 
 .input {
@@ -54,6 +65,9 @@
 
   .container-btn {
     margin-right: 15px;
+  }
+  .container-check {
+    display: flex;
   }
 }
 
@@ -151,5 +165,11 @@
     width: 92%;
     margin-left: 1.3em;
     margin-bottom: 1em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  p-button.p-element .submit {
+    width: 90%;
   }
 }

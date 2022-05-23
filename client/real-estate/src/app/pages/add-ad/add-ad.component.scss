@@ -4,11 +4,14 @@
   box-shadow: $box-shadow;
   margin-left: 13%;
   width: 78%;
+   margin-bottom: 1em;
+    border-radius: 1rem;
   .header {
     padding-top: 10px;
     text-align: center;
     font-size: 25px;
   }
+   
   .drop-down-container {
     display: flex;
     width: 100%;
@@ -20,6 +23,7 @@
   display: flex;
   width: 100%;
   padding-top: 15px;
+  margin-left: 1rem;
 }
 
 .input {
@@ -38,9 +42,8 @@
   width: 98%;
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 0 2px 4px -1px #33333352, 0 8px 12px 0 #3333333d, 0 2px 16px 0 #33333329;
   opacity: 0.8;
-  margin-top: 0px;
+  margin: 0px;
 }
 .p-inputtextarea {
   height: 240px !important;
@@ -59,8 +62,13 @@
   .container-btn {
     margin-right: 15px;
   }
+ 
 }
-
+ p-button.p-element .submit {
+   width: 40%;
+    margin: 1em 1.2em;
+    
+  }
 .check {
   text-align: center;
   margin-top: 2px;
@@ -79,6 +87,7 @@
 .msg {
   margin: 0px;
   padding: 0px;
+  
 }
 
 @media screen and (max-width: 1200px) {
@@ -144,8 +153,8 @@
       }
     }
     .p-fileupload-buttonbar {
-      display: flex !important;
-      flex-direction: column !important;
+      display: flex ;
+      flex-direction: column ;
     }
   }
 
@@ -154,5 +163,14 @@
   }
   p-button.p-element > button {
     width: 98% !important;
+  }
+  p-button.p-element .submit {
+    width: 92% !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  p-button.p-element .submit {
+    width: 90%;
   }
 }

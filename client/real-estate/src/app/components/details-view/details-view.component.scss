@@ -5,6 +5,7 @@
   margin-top: 1.5em;
   margin-left: 1em;
   margin-right: 1em;
+  margin-bottom: 2rem;
   &-child {
     position: relative;
     display: flex;
@@ -131,6 +132,9 @@
       margin-bottom: 30px;
     }
   }
+  p-button.p-element{
+ margin-right: 1rem;
+}
 }
 
 .progress-spinner {
@@ -184,9 +188,7 @@
   p-button.p-element > button {
     width: 19% !important;
   }
-  p-button.p-element{
-    margin-right: 1rem;
-  }
+ 
 
 }
 

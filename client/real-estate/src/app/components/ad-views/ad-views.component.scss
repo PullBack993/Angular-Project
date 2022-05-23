@@ -1,11 +1,13 @@
 @import '../../../style/color';
 
+
 .main-container {
   display: flex;
   max-height: 342px;
   margin-bottom: 20px;
   margin-top: 20px;
   cursor: pointer;
+ 
 
   &-child {
     height: 340px;

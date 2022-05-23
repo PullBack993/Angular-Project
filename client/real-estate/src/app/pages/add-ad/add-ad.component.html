@@ -209,6 +209,6 @@
         </div>
         <p-progressSpinner *ngIf="loading"></p-progressSpinner>
 
-        <p-button [disabled]="addFormGroup.invalid || loading" label="Публикувай" type="submit"></p-button>
+        <p-button [styleClass]="'submit'" [disabled]="addFormGroup.invalid || loading" label="Публикувай" type="submit"></p-button>
     </form>
 </div>

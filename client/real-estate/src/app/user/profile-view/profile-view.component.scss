@@ -7,14 +7,14 @@
   h3 {
     text-align: center;
   }
-  .container {
+  .container-view {
     display: flex;
     margin-top: 10px;
+    justify-content: center;
   }
 
   .card-profile-image {
-    height: 126px;
-    width: 126px;
+    width: 180px;
    padding-top: 16px;
     margin: auto;
     text-align: center;

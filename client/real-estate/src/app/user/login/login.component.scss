@@ -24,7 +24,7 @@
     justify-content: center;
     align-items: center;
 
-    &-register {
+    &-register-btn {
       text-decoration: none;
       font-weight: 48px;
       font-size: 20px;
@@ -37,20 +37,20 @@
       color: #2563eb;
     }
   }
-  .container {
+  .form-container {
     text-align: center;
     width: 100%;
-    &-input {
+    .container-input {
       display: inline-block;
     }
-    &-password {
+    .container-password {
       display: block;
       margin-bottom: 25px;
     }
-    &-repass {
+    .container-repass {
       margin-bottom: 25px;
     }
-    &-repass > input {
+    .container-repass > input {
       width: 305px;
     }
   }
@@ -71,6 +71,9 @@
   top: 20%;
   
 }
+ .p-ripple{
+    width: 80%;
+  }
 .invalid {
   border: 1px solid $error;
   label {
@@ -79,6 +82,7 @@
   &-a {
     color: $error;
   }
+ 
 }
 
 @media only screen and (max-width: 720px) {
@@ -95,8 +99,9 @@
       width: 100%;
     }
   }
-
-  .p-ripple.p-element.p-button.p-component.p-disabled {
+  .p-ripple{
     width: 100% !important;
   }
+
+ 
 }

@@ -25,11 +25,12 @@
     align-items: center;
 
     &-register {
+      text-decoration: none;
       font-weight: 48px;
       font-size: 24px;
       color: #2563eb;
     }
-    &-login {
+    &-login-btn {
       text-decoration: none;
       font-weight: 48px;
       font-size: 20px;
@@ -42,39 +43,58 @@
     flex-direction: column;
     &-input {
       margin: auto;
-      max-width: 305px;
+      width: 86%;
     }
+
     &-password {
       margin: auto;
       margin-bottom: 25px;
+      width: 86%;
+      & div {
+        width: 100%;
+      }
     }
+
     &-repass {
       margin: auto;
       margin-bottom: 25px;
+      width: 86%;
     }
     &-repass > input {
-      width: 305px;
+      width: 100%;
     }
   }
 }
+.p-component.p-element{
+  width: 100%;
+}
+p-button.p-element{
+  width: 86%;
+}
+
+
+
 .p-float-label {
   margin: auto;
   margin: 25px 0px;
 }
 .p-float-label > input {
   margin: 0px;
-  width: 305px;
+  width: 100%;
 }
 
 .p-password-input {
-  width: 305px;
+  width: 100%;
+}
+.p-ripple{
+  width: 86%;
 }
 
 :host ::ng-deep .p-float-label label {
   top: 20%;
 }
 .p-element {
-  width: 305px;
+  width: 100%;
   margin: auto;
 }
 
@@ -86,11 +106,11 @@
   &-text {
     color: $error;
   }
+
 }
 
 @media screen and (max-width: 720px) {
   .p-float-label > label {
-    // margin-left: 1.7rem !important;
     top: 20%;
   }
   .img {

@@ -3,7 +3,7 @@
 <section class="main">
     <header class="login-page">
         <article>
-            <a class="login-page-login" routerLink="/auth/login">
+            <a class="login-page-login-btn" routerLink="/auth/login">
                 Вход
             </a>
         </article>
@@ -15,7 +15,7 @@
     </header>
 
     <form [formGroup]="registerFormGroup" action="post" class="container">
-        <p-message *ngIf="errorMessage" [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+        <p-message *ngIf="errorMessage" [style]="{'margin-top': '10px'}" severity="error"
             [text]="errorMessage" styleClass="mr-2"></p-message>
 
         <div class="container-input">
@@ -29,7 +29,7 @@
 
             <ng-container *ngIf="checkTouch('username', registerFormGroup)">
                 <p *ngIf="registerFormGroup.get('username')?.errors?.['required']">
-                    <p-message [style]="{'width':'305px'}" severity="error"
+                    <p-message  severity="error"
                         text="Полето е задължително" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
@@ -43,11 +43,11 @@
 
             <ng-container *ngIf="checkTouch('email', registerFormGroup)">
                 <p *ngIf="registerFormGroup.get('email')?.errors?.['required']">
-                    <p-message [style]="{'width':'305px'}" severity="error"
+                    <p-message  severity="error"
                         text="Имейл полето е задължително" styleClass="mr-2"></p-message>
                 </p>
                 <p *ngIf="registerFormGroup.get('email')?.errors?.['email']">
-                    <p-message [style]="{'width':'305px'}" severity="error"
+                    <p-message  severity="error"
                         text="Моля въведете валиден имейл" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
@@ -55,17 +55,17 @@
 
         <div class="container-password" formGroupName="passwords">
             <p-password [class.invalid]="checkTouch('password', passwordsGroup)" formControlName="password"
-                [inputStyle]="{'width':'305px'}" [placeholder]="'Парола'" [promptLabel]="'Въведи пароoлa'"
+                 [placeholder]="'Парола'" [promptLabel]="'Въведи пароoлa'"
                 [weakLabel]="'слаба'" [mediumLabel]="'средна'" [strongLabel]="'силна'" [feedback]="true">
             </p-password>
             <ng-container *ngIf="checkTouch('password', passwordsGroup)" class="invalid invalid-a">
 
                 <p *ngIf="passwordsGroup.get('password')?.errors?.['required']">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                    <p-message [style]="{ 'margin-top': '10px'}" severity="error"
                         text="Паролата е задължителна" styleClass="mr-2"></p-message>
                 </p>
                 <p *ngIf="passwordsGroup.get('password')?.errors?.['minlength']">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                    <p-message [style]="{ 'margin-top': '10px'}" severity="error"
                         text="Паролата трябва да бъде най-малко 4 символа" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
@@ -76,22 +76,22 @@
             <ng-container *ngIf="checkTouch('rePass', passwordsGroup)" class="invalid invalid-a">
             
                 <p *ngIf="passwordsGroup.get('rePass')?.errors?.['required']">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error" text="Паролата е задължителна"
+                    <p-message [style]="{ 'margin-top': '10px'}" severity="error" text="Паролата е задължителна"
                         styleClass="mr-2"></p-message>
                 </p>
                 <p *ngIf="passwordsGroup.get('rePass')?.errors?.['minlength']">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                    <p-message [style]="{ 'margin-top': '10px'}" severity="error"
                         text="Паролата трябва да бъде най-малко 4 символа" styleClass="mr-2"></p-message>
                 </p>
                 <p *ngIf="passwordsGroup.get('rePass')?.errors && passwordsGroup.get('password')?.touched && passwordsGroup.get('password')?.valid ">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                    <p-message [style]="{ 'margin-top': '10px'}" severity="error"
                         text="Паролите не съвпадат" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
 
         </div>
         <p-button label="Click" (click)="onRegister()" [disabled]="registerFormGroup.invalid || loading" 
-            [style]="{'width':'305px'}" label="Регистрация"></p-button>
+            label="Регистрация"></p-button>
         <p-progressSpinner *ngIf="loading"></p-progressSpinner>
     </form>
 </section>
