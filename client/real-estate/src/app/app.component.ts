@@ -9,6 +9,7 @@ import { UserService } from './services/user.service';
   animations: [trigger('blink', [state('void', style({ opacity: 0 })), transition('void <=> *', [animate('1s')])])]
 })
 export class AppComponent implements OnInit {
+
   constructor(private authService: UserService){}
 
   ngOnInit(): void {

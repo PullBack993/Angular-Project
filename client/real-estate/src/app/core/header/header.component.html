@@ -93,17 +93,17 @@
                     </a>
                 </li>
     
-                <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" routerLink="/auth/login">
+                <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" id="isNotUser" routerLink="/auth/login">
                     <a>
                         <div class="navbar-dropdown-text">Вход</div>
                     </a>
                 </li>
-                <li *ngIf="userIsAuthenticated" class="navbar-dropdown" routerLink="/auth/profile">
+                <li *ngIf="userIsAuthenticated" class="navbar-dropdown" id="isUser" routerLink="/auth/profile">
                     <a>
                         <div class="navbar-dropdown-text">Профил</div>
                     </a>
                 </li>
-                <li *ngIf="userIsAuthenticated" (click)="onLogout()" class="navbar-dropdown">
+                <li *ngIf="userIsAuthenticated" (click)="onLogout()" id="logout-btn" class="navbar-dropdown logout-btn">
                     <button class="logout-btn">
                         <div class="navbar-dropdown-text">Изход</div>
                     </button>

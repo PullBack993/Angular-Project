@@ -21,14 +21,12 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
   };
 
   userIsAuthenticated: boolean = false;
-  showButtons: boolean = false;
   errorMessage!: string;
   isErrorType!: boolean;
   messageSubs!: Subscription;
   screenSubs!: Subscription;
 
   isMobile: boolean = false;
-  isAuth: boolean = false;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -82,7 +80,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
     }
   }
   private checkSideMenu(): void {
-    this.observer.observe(['(max-width: 720px)']).subscribe((res) => {
+    this.screenSubs = this.observer.observe(['(max-width: 720px)']).subscribe((res) => {
       if (Object.values(res.breakpoints)[0] == true && this.sidenav != undefined) {
         if (res.matches) {
           this.sidenav.mode = 'over';

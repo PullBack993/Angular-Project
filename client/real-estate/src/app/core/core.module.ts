@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
@@ -9,7 +9,6 @@ import { MessageModule } from 'primeng/message';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 import { ComponentsModule } from '../components/components.module';
-
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 
@@ -36,6 +35,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
       useClass: ErrorHandlerInterceptor,
       multi: true
     }
-  ]
+  ],
+
 })
 export class CoreModule {}
