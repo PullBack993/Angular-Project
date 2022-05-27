@@ -246,8 +246,8 @@
    
 </header>
 <ng-container *ngIf="!!errorMessage">
-    <p-message *ngIf="isErrorType" severity="error" text="{{errorMessage}}"
+    <p-message *ngIf="isErrorType" id='non-err-type' severity="error" text="{{errorMessage}}"
         [style]="{'position': 'absolute', 'margin-left':'80%'}"></p-message>
-    <p-message *ngIf="!isErrorType" severity="success" text="{{errorMessage}}"
+    <p-message *ngIf="!isErrorType" id='err-type' severity="success" text="{{errorMessage}}"
         [style]="{'position': 'absolute', 'margin-left':'80%'}"></p-message>
 </ng-container>

@@ -2,6 +2,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderComponent } from './header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -9,7 +16,15 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule],
+      imports: [
+        HttpClientModule,
+        RouterTestingModule,
+        FontAwesomeModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        BrowserAnimationsModule
+      ],
       declarations: [HeaderComponent]
     }).compileComponents();
   });
@@ -17,7 +32,7 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();    
+    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -34,9 +49,20 @@ describe('HeaderComponent', () => {
   it('Should test isMobile', () => {
     expect(component.isMobile).toBeFalse();
   });
+
   it('Should test isMobile', () => {
     component.isMobile = true;
+    fixture.detectChanges();
     expect(component.isMobile).toBeTrue();
   });
- 
+
+  it('Should test logout button ', () => {
+    component.userIsAuthenticated = true;
+    fixture.detectChanges();
+
+    spyOn(component, 'onLogout').and.callThrough();
+    const logoutBtn = fixture.debugElement.nativeElement.querySelector('#logout-btn');
+    logoutBtn.click();
+    expect(component.onLogout).toHaveBeenCalled();
+  });
 });

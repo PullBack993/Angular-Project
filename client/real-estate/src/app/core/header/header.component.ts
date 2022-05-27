@@ -21,16 +21,15 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
   };
 
   userIsAuthenticated: boolean = false;
+  isMobile: boolean = false;
+
   errorMessage!: string;
   isErrorType!: boolean;
   messageSubs!: Subscription;
   screenSubs!: Subscription;
 
-  isMobile: boolean = false;
-
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  showFiller: boolean = false;
   currentUser!: IUser;
 
   constructor(
@@ -47,7 +46,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
        this.userIsAuthenticated = isAuthenticated;
 
        if (isAuthenticated) {
-         console.log('yes');
          this.authService.getUser$().subscribe((userData) => {
            this.currentUser = userData;
          });
@@ -55,7 +53,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
      });
 
     if (this.userIsAuthenticated) {
-      console.log('yes');
       this.authService.getUser$().subscribe((userData) => {
         this.currentUser = userData;
       });
@@ -73,7 +70,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
   }
   ngOnChanges(): void {
     if (this.userIsAuthenticated) {
-      console.log('yes');
       this.authService.getUser$().subscribe((userData) => {
         this.currentUser = userData;
       });
