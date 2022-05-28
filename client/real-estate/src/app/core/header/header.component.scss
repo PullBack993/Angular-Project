@@ -199,12 +199,19 @@ header {
       li {
         display: inline;
         margin-right: 15px;
-        .profile {
-          border-radius: 50%;
-          width: 50%;
-          margin-left: 25%;
+        
         }
-        .username {
+        
+        .img-container{
+          display:flex;
+          justify-content: center;
+          flex-direction: column;
+          .username{
+            border-radius: 25%;
+            margin: auto;
+            width: 50%;
+          }
+        .current-username {
           text-align: center;
           margin-top: 0.5rem;
           color: $letterColor;
