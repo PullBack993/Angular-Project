@@ -19,12 +19,12 @@
             <p-message *ngIf="errorMessage" [style]="{ 'margin-top': '10px'}" severity="error" [text]="errorMessage"
                 styleClass="mr-2"></p-message>
 
-            <span class="p-float-label">
+            <span class="p-float-label email">
                 <input id="float-input" type="text" pInputText name="email" formControlName="email"
                     [class.invalid]="checkTouch('email', loginFormGroup)">
 
                 <label for="float-input" class="ng-invalid ng-dirty"
-                    [class.invalid-a]="checkTouch('email', loginFormGroup)">Имейл
+                    [class.invalid-err]="checkTouch('email', loginFormGroup)">Имейл
                 </label>
 
                 <ng-container *ngIf="checkTouch('email', loginFormGroup)">
@@ -41,12 +41,12 @@
 
             </span>
 
-            <span class="p-float-label">
+            <span class="p-float-label login-password">
                 <input id="float-input" type="password" pInputText name="password" formControlName="password"
                     [class.invalid]="checkTouch('password', loginFormGroup)">
 
                 <label for="float-input" class="ng-dirty ng-invalid"
-                    [class.invalid-a]="checkTouch('password', loginFormGroup)">Парола
+                    [class.invalid-err]="checkTouch('password', loginFormGroup)">Парола
                 </label>
 
                 <ng-container *ngIf="checkTouch('password', loginFormGroup)" class="invalid invalid-a">
@@ -64,10 +64,10 @@
                 </ng-container>
             </span>
 
+            <p-button (click)="onLogin()" type="submit" [styleClass]="'submit-btn'"  [disabled]="loginFormGroup.invalid || loading"  [style]="{'margin-top': '10px'}"
+            
+                label="Вход"> </p-button>
         </div>
-        <p-button (click)="onLogin()" type="submit" [styleClass]="'submit-btn'"  [disabled]="loginFormGroup.invalid || loading"  [style]="{'width':'83%'}"
-        
-            label="Вход"> </p-button>
             <p-progressSpinner *ngIf="loading"></p-progressSpinner>
     </form>
 </section>

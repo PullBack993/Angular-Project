@@ -64,9 +64,9 @@
   }
  
 }
- p-button.p-element .submit {
-   width: 40%;
-    margin: 1em 1.2em;
+.submit-container{
+   width: 53%;
+    padding: 1em;
     
   }
 .check {
@@ -87,7 +87,6 @@
 .msg {
   margin: 0px;
   padding: 0px;
-  
 }
 
 @media screen and (max-width: 1200px) {
@@ -153,8 +152,8 @@
       }
     }
     .p-fileupload-buttonbar {
-      display: flex ;
-      flex-direction: column ;
+      display: flex !important;
+      flex-direction: column !important;
     }
   }
 
@@ -164,13 +163,18 @@
   p-button.p-element > button {
     width: 98% !important;
   }
-  p-button.p-element .submit {
-    width: 92% !important;
+  .submit-container{
+   width: 100% !important;
   }
+
 }
 
 @media screen and (max-width: 480px) {
   p-button.p-element .submit {
     width: 90%;
+  }
+   .submit-container{
+   width: 100% !important;
+    
   }
 }

@@ -65,16 +65,9 @@
     }
   }
 }
-.p-component.p-element{
-  width: 100%;
-}
-p-button.p-element{
-  width: 86%;
-}
 
 
-
-.p-float-label {
+.username, .email {
   margin: auto;
   margin: 25px 0px;
 }
@@ -86,14 +79,14 @@ p-button.p-element{
 .p-password-input {
   width: 100%;
 }
-.p-ripple{
+.register.p-ripple{
   width: 86%;
 }
 
 :host ::ng-deep .p-float-label label {
   top: 20%;
 }
-.p-element {
+.password > .p-element {
   width: 100%;
   margin: auto;
 }

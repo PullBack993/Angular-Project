@@ -61,7 +61,7 @@ header {
       }
       &-text {
         font-size: 16px;
-        color: white;
+        color: black;
       }
 
       &:hover div {
@@ -242,6 +242,7 @@ header {
       }
       &-text {
         font-size: 16px;
+        color: white !important;
         
       }
 

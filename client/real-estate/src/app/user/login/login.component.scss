@@ -55,7 +55,7 @@
     }
   }
 }
-.p-float-label {
+.email {
   margin: 25px 0px;
 }
 .p-float-label > input {
@@ -63,25 +63,22 @@
   width: 305px;
 }
 
-.p-password-input {
-  width: 305px;
-}
-
 .p-float-label > label {
   top: 20%;
   
 }
- .p-ripple{
-    width: 80%;
+ .submit-btn.p-button{
+    width: 100%;
   }
 .invalid {
   border: 1px solid $error;
   label {
     color: $error;
   }
-  &-a {
+  &-err {
     color: $error;
   }
+
  
 }
 
@@ -99,7 +96,5 @@
       width: 100%;
     }
   }
-  .p-ripple{
-    width: 100% !important;
-  }
+ 
 }

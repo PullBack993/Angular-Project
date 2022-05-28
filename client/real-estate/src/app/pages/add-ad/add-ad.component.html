@@ -197,7 +197,7 @@
                 (onClear)="onClear()" [invalidFileTypeMessageSummary]="'Невалиден тип на фаила'"
                 [invalidFileTypeMessageDetail]="'Позволени са само jpg,png,jpeg'" [chooseLabel]="'избери'"
                 [cancelLabel]="'откажи всички'" [showUploadButton]="isDisabled" [uploadLabel]="'Качи снимка/и'"
-                [fileLimit]="5" [multiple]="true" accept="image/*" [maxFileSize]="5000000">
+                [fileLimit]="5" [multiple]="true" accept="image/*" [styleClass]="'upload-file'" [maxFileSize]="5000000">
 
                 <ng-template pTemplate="content">
                     <ul *ngIf="[uploadedFiles].length">
@@ -208,7 +208,8 @@
             </p-fileUpload>
         </div>
         <p-progressSpinner *ngIf="loading"></p-progressSpinner>
-
+        <div class="submit-container">
         <p-button [styleClass]="'submit'" [disabled]="addFormGroup.invalid || loading" label="Публикувай" type="submit"></p-button>
+        </div>
     </form>
 </div>

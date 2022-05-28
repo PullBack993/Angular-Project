@@ -8,11 +8,11 @@
 
     <h1 class="projects-name">Най-нови и проспективни проекти</h1>
 
-    <div class="container">
+    <div class="project-container">
         <ng-container *ngFor="let ad of projects">
-            <div class="container-data col-sm" [routerLink]="'/details/' + ad._id">
+            <div class="project-container-data col-sm" [routerLink]="'/details/' + ad._id">
                 <a class="" aria-label="Premium Projekte in Wien">
-                    <img src="{{ad.imageUrls[0]}}" alt="{{ad.title}}" class="container-data-image">
+                    <img src="{{ad.imageUrls[0]}}" alt="{{ad.title}}" class="project-container-data-image">
                 </a>
                 <div class="description-container">
                     <h3 class="description-container-name">
@@ -26,12 +26,12 @@
 
     <h1 class="projects-name">Най-нови публикувани обяви</h1>
 
-    <div class="container ">
+    <div class="project-container">
         <ng-container *ngFor="let ad of ads">
-            <div class="container-data col-sm" [routerLink]="'/details/' + ad._id">
+            <div class="project-container-data col-sm" [routerLink]="'/details/' + ad._id">
 
                 <a class="" aria-label="Premium Projekte in Wien">
-                    <img src="{{ad.imageUrls[0]}}" alt="{{ad.title}}" class="container-data-image">
+                    <img src="{{ad.imageUrls[0]}}" alt="{{ad.title}}" class="project-container-data-image">
                 </a>
 
                 <div class="description-container">

@@ -20,7 +20,7 @@
 
         <div class="container-input">
 
-            <div class="p-float-label">
+            <div class="p-float-label username">
                 <input [class.invalid]="checkTouch('username', registerFormGroup)" id="float-input-invalid"
                     formControlName="username" type="text" pInputText>
                 <label for="float-input-invalid" [class.invalid-text]="checkTouch('username', registerFormGroup)"
@@ -34,7 +34,7 @@
                 </p>
             </ng-container>
 
-            <div class="p-float-label">
+            <div class="p-float-label email">
                 <input [class.invalid]="checkTouch('email', registerFormGroup)" id="float-input" type="text"
                     formControlName="email" pInputText>
                 <label [class.invalid-text]="checkTouch('email', registerFormGroup)" class="ng-invalid ng-dirty"
@@ -56,7 +56,7 @@
         <div class="container-password" formGroupName="passwords">
             <p-password [class.invalid]="checkTouch('password', passwordsGroup)" formControlName="password"
                  [placeholder]="'Парола'" [promptLabel]="'Въведи пароoлa'"
-                [weakLabel]="'слаба'" [mediumLabel]="'средна'" [strongLabel]="'силна'" [feedback]="true">
+                [weakLabel]="'слаба'" [styleClass]="'password'" [mediumLabel]="'средна'" [strongLabel]="'силна'" [feedback]="true">
             </p-password>
             <ng-container *ngIf="checkTouch('password', passwordsGroup)" class="invalid invalid-a">
 
@@ -90,7 +90,7 @@
             </ng-container>
 
         </div>
-        <p-button label="Click" (click)="onRegister()" [disabled]="registerFormGroup.invalid || loading" 
+        <p-button label="Click" (click)="onRegister()" [styleClass]="'register'" [disabled]="registerFormGroup.invalid || loading" 
             label="Регистрация"></p-button>
         <p-progressSpinner *ngIf="loading"></p-progressSpinner>
     </form>

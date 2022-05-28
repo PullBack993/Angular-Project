@@ -26,9 +26,9 @@
   color: $mainColorDark;
 }
 
-.container {
+.project-container {
   justify-content: center;
-  width: 100%;
+  width: 85%;
   height: 390px;
   margin-bottom: 8px;
   margin-top: 8px;
@@ -37,6 +37,7 @@
   object-fit: cover;
   text-align: center;
   cursor: pointer;
+  margin: auto;
 
   &-data {
     width: 27%;
@@ -84,31 +85,6 @@
   }
 }
 
-.progress-spinner {
-  position: fixed;
-  z-index: 1;
-  height: 2em;
-  width: 2em;
-  overflow: show;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-/* Transparent Overlay */
-.progress-spinner:before {
-  content: '';
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.53);
-}
-
 @media only screen and (max-width: 720px) {
   .title {
     margin-top: 0px;
@@ -119,7 +95,7 @@
     font-size: 25px;
     margin-top: 1rem;
   }
-  .container {
+  .project-container {
     display: inline-block;
     position: relative;
     box-shadow: none;
