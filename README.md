@@ -36,8 +36,8 @@
 ### API-Heroku : <a href="https://real-estate-upload-bucket.s3.eu-central-1.amazonaws.com/Server-Rest-Api-Endpoints.docx">*(web api endpoints)*</a>
 [![Heroku server API](https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg)](https://real-estate-angular-project.herokuapp.com/)
 
-### Client-AWS:<a href="http://real-estate-real.s3-website.eu-central-1.amazonaws.com/"> *(website)*</a>
-[![Clien-AWS](https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-ar21.svg)](http://real-estate-real.s3-website.eu-central-1.amazonaws.com/)
+### Client-Firebase:<a href="https://real-estate-real-prop.web.app/"> *(website)*</a>
+[![Clien-Firebase](https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg)](https://real-estate-real-prop.web.app/)
                                                                               
 
 ---
