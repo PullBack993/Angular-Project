@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "real-estate-real-prop": {
+      "hosting": {
+        "real-estate": [
+          "real-estate-real-prop"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "real-estate-real-prop"
+  }
+}
