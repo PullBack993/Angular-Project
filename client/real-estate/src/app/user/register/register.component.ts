@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   registerFormGroup: FormGroup = this.fb.group({
-    username: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     passwords: new FormGroup({
       password: this.passwordControl,
