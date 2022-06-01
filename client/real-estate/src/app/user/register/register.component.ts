@@ -33,8 +33,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.authStatusSubscription = this.userService.getAuthStatusListener().subscribe((authStatus) => {
-      this.loading = false;
+    this.authStatusSubscription = this.userService.getAuthStatusListener().subscribe((status) => {
+        this.loading = false;
     });
   }
 
