@@ -110,4 +110,5 @@ describe('Register form controller', () => {
       expect(control?.valid).toBeTrue();
     });
   });
+ 
 });

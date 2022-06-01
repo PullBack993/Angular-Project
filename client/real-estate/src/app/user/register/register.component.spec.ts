@@ -44,4 +44,11 @@ describe('RegisterComponent', () => {
 
     expect(button.disabled).toBeFalsy();
   });
+   it('shoud test checkTouch method', () => {
+     component.registerFormGroup.controls['username'].markAsTouched();
+
+     fixture.detectChanges()
+     
+     expect(component.checkTouch('username', component.registerFormGroup)).toBeTrue();
+   });
 });
