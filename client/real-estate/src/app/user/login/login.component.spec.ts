@@ -1,13 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed,fakeAsync,tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import {  Observable, of} from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let userService: UserService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,6 +22,7 @@ describe('LoginComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
+
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -42,11 +46,23 @@ describe('LoginComponent', () => {
     expect(button.disabled).toBeFalsy();
   });
 
-  it('shouldz test checkTouch method', () => {
+  it('should test checkTouch method', () => {
     component.loginFormGroup.controls['email'].markAsTouched();
 
     fixture.detectChanges();
 
     expect(component.checkTouch('email', component.loginFormGroup)).toBeTrue();
   });
+
+  it('should load userService(login)', fakeAsync(() => {
+    userService = TestBed.inject(UserService);
+    const fakeRes: Observable<void> = of(undefined);
+    spyOn(userService, 'login').and.callFake(() => fakeRes);
+
+    tick();
+    fixture.detectChanges();
+    component.onLogin();
+
+    expect(userService.login).toHaveBeenCalled();
+  }));
 });
