@@ -19,101 +19,120 @@ describe('Test form controller', () => {
     expect(component.addFormGroup.valid).toBeFalsy();
   });
 
-  describe('Form controller unhappy case(invalid)', () => {
+  describe('Form controller unhappy cases(invalid)', () => {
     it('should make adType control required', () => {
-      let control = component.addFormGroup.get('adType');
-
-      control?.setValue('');
-
-      expect(control?.valid).toBeFalsy();
+      checkValidity('adType');
     });
 
     it('should make image control required', () => {
-      let control = component.addFormGroup.get('image');
-
-      control?.setValue('');
-
-      expect(control?.valid).toBeFalsy();
+      checkValidity('image');
     });
 
     it('should make title control required', () => {
-      let control = component.addFormGroup.get('title');
+      checkValidity('title');
+    });
 
-      control?.setValue('');
-
-      expect(control?.valid).toBeFalsy();
+    it('should make title control required(more then 58)', () => {
+      let moreThenMaxLength = '59aaaaaaaaaassssssssssddddddddddffffffffffgggggggggghhhhhhh';
+      checkValidity('title', moreThenMaxLength);
     });
 
     it('should make estateType control required', () => {
-      let control = component.addFormGroup.get('estateType');
-
-      control?.setValue('');
-
-      expect(control?.valid).toBeFalsy();
+      checkValidity('estateType');
     });
 
     it('should make price control required', () => {
-      let control = component.addFormGroup.get('price');
-
-      control?.setValue('');
-
-      expect(control?.valid).toBeFalsy();
+      checkValidity('price');
     });
 
     it('should make location control required', () => {
-      let control = component.addFormGroup.get('location');
-
-      control?.setValue('');
-
-      expect(control?.valid).toBeFalsy();
+      checkValidity('location');
     });
-      
+
     it('should make region control required', () => {
-      let control = component.addFormGroup.get('region');
-
-      control?.setValue('');
-
-      expect(control?.valid).toBeFalsy();
+      checkValidity('region');
     });
 
     it('should make area control required', () => {
-      let control = component.addFormGroup.get('area');
-
-      control?.setValue('');
-
-      expect(control?.valid).toBeFalsy();
+      checkValidity('area');
     });
 
-     it('should make constructionType control required', () => {
-       let control = component.addFormGroup.get('constructionType');
+    it('should make constructionType control required', () => {
+      checkValidity('constructionType');
+    });
 
-       control?.setValue('');
+    it('should make tags control required', () => {
+      checkValidity('tags');
+    });
 
-       expect(control?.valid).toBeFalsy();
-     });
-      
-     it('should make tags control required', () => {
-       let control = component.addFormGroup.get('tags');
+    it('should make telNumber control required', () => {
+      checkValidity('telNumber');
+    });
 
-       control?.setValue('');
+    it('should make moreInfo control required', () => {
+      checkValidity('moreInfo');
+    });
 
-       expect(control?.valid).toBeFalsy();
-     });
+    function checkValidity(controlName: string, value: string = '') {
+      let control = component.addFormGroup.get(controlName);
 
-       it('should make telNumber control required', () => {
-         let control = component.addFormGroup.get('telNumber');
+      control?.setValue(value || '');
 
-         control?.setValue('');
+      expect(control?.valid).toBeFalsy();
+    }
+  });
 
-         expect(control?.valid).toBeFalsy();
-       });
-      
-        it('should make moreInfo control required', () => {
-          let control = component.addFormGroup.get('moreInfo');
+  describe('Form controller happy cases(valid)', () => {
+    it('should make adType control required', () => {
+      checkValidity('adType', 'value');
+    });
 
-          control?.setValue('');
+    it('should make image control required', () => {
+      checkValidity('image', 'value');
+    });
 
-          expect(control?.valid).toBeFalsy();
-        });
+    it('should make estateType control required', () => {
+      checkValidity('estateType', 'panel');
+    });
+
+    it('should make price control required', () => {
+      checkValidity('price', '12 000');
+    });
+
+    it('should make location control required', () => {
+      checkValidity('location', 'VR');
+    });
+
+    it('should make region control required', () => {
+      checkValidity('region', 'VR');
+    });
+
+    it('should make area control required', () => {
+      checkValidity('area', '123');
+    });
+
+    it('should make constructionType control required', () => {
+      checkValidity('constructionType', 'aDs');
+    });
+
+    it('should make tags control required', () => {
+      checkValidity('tags', '1');
+    });
+
+    it('should make telNumber control required', () => {
+      checkValidity('telNumber', '444');
+    });
+
+    it('should make moreInfo control required', () => {
+      checkValidity('moreInfo', 'a');
+    });
+
+    function checkValidity(controlName: string, value: string = '') {
+      let control = component.addFormGroup.get(controlName);
+
+      control?.setValue(value || 'value=none');
+
+      expect(control?.valid).toBeTrue();
+    }
   });
 });
