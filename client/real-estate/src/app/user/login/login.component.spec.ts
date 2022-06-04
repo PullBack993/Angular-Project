@@ -1,16 +1,17 @@
-import { ComponentFixture, TestBed,fakeAsync,tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import {  Observable, of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let userService: UserService;
+  let onLoginBtn: HTMLButtonElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,12 +19,15 @@ describe('LoginComponent', () => {
       declarations: [LoginComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
+
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
 
     component = fixture.componentInstance;
+    onLoginBtn = fixture.debugElement.nativeElement.querySelector('#submit-btn');
+
     fixture.detectChanges();
   });
 
@@ -32,18 +36,16 @@ describe('LoginComponent', () => {
   });
 
   it('should check submit button(disabled)', () => {
-    const button = fixture.debugElement.nativeElement.querySelector('#submit-btn');
-    expect(button.disabled).toBeTrue();
+    expect(onLoginBtn.disabled).toBeTrue();
   });
 
   it('should check submit button(active)', () => {
-    const button = fixture.debugElement.nativeElement.querySelector('#submit-btn');
     component.loginFormGroup.get('email')?.setValue('user@email.com');
     component.loginFormGroup.get('password')?.setValue('12345');
 
     fixture.detectChanges();
 
-    expect(button.disabled).toBeFalsy();
+    expect(onLoginBtn.disabled).toBeFalsy();
   });
 
   it('should test checkTouch method', () => {
@@ -52,6 +54,13 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
 
     expect(component.checkTouch('email', component.loginFormGroup)).toBeTrue();
+  });
+  it('should check buttom onLogin', () => {
+    onLoginBtn.click();
+
+    fixture.detectChanges();
+
+    expect(component.loading).toBeTrue;
   });
 
   it('should load userService(login)', fakeAsync(() => {
