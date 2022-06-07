@@ -113,6 +113,7 @@ I didn't want to do just one app and pass the exam, what is more important for m
     * Custom image upload
 
 # TODO:
+- [ ] Unit/Integration testing
 - [ ] Confirm email
 - [ ] Change password
 - [ ] Admin panel
