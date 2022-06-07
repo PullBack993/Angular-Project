@@ -1,5 +1,6 @@
 @import '../../../style/images-paths.scss';
 @import '../../../style/color';
+
 .img-container {
   height: 500px;
   .bg-image {
@@ -46,6 +47,13 @@
     object-fit: cover;
     border-radius: 10px;
     position: relative;
+       transform: scale(1);
+      transition: all .4s ease;
+    &:hover {
+      transform: scale(1.03);
+      transition: all .4s ease;
+    }
+
     &-image {
       object-fit: cover;
       max-width: 100%;
@@ -108,4 +116,3 @@
     }
   }
 }
-
