@@ -1,9 +1,7 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed  } from '@angular/core/testing';
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
-import { MessageService } from '../services/message.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 
 describe('ErrorHandlerInterceptor', () => {
@@ -15,7 +13,7 @@ describe('ErrorHandlerInterceptor', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ErrorHandlerInterceptor, UserService, MessageService, Router]
+      providers: [ErrorHandlerInterceptor, UserService]
     });
     interceptor = TestBed.inject(ErrorHandlerInterceptor);
   });
