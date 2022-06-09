@@ -7,27 +7,27 @@
                 </li>
     
                 <li class="navbar-dropdown">
-                    <div class="navbar-dropdown-text">Търсене
+                    <div class="navbar-dropdown-text" >Търсене
                         <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
                         <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
                     </div>
     
                     <ul class="navbar-submenu">
-                        <a routerLink="properties">
+                        <a routerLink="properties" id="properties">
                             <li class="navbar-title">
                                 Имоти
                                 <p class="navbar-text-holder">Намери твоят нов дом</p>
                             </li>
                         </a>
     
-                        <a routerLink="new-projects">
+                        <a routerLink="new-projects" id="new-projects">
                             <li>
                                 Нови Проекти
                                 <p class="navbar-text-holder">Нови апартаменти и къщи</p>
                             </li>
                         </a>
     
-                        <a routerLink="retail-outlet">
+                        <a routerLink="retail-outlet" id="retail-outlet">
                             <li>
                                 Търговски обекти
                                 <p class="navbar-text-holder">Офиси,Търговски обекти,Заведения</p>
@@ -42,7 +42,7 @@
                         <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
                     </div>
                     <ul class="navbar-submenu">
-                        <a routerLink="create/ad">
+                        <a routerLink="create/ad" id="create">
                             <li class="navbar-title">
                                 Добави обява
                                 <p class="navbar-text-holder">Намерете правилния клиент</p>
@@ -60,7 +60,7 @@
                     </div>
     
                     <ul class="navbar-submenu">
-                        <a routerLink="create/ad">
+                        <a routerLink="create/ad" id="create">
                             <li class="navbar-title">
                                 Добави обява
                                 <p class="navbar-text-holder">Намерете правилния наемател</p>
@@ -77,7 +77,7 @@
     
                     </div>
                     <ul class="navbar-submenu">
-                        <a routerLink="calculator">
+                        <a routerLink="calculator" id="calculator">
                             <li class="navbar-title">
                                 Кредитен калкулатор
                                 <p class="navbar-text-holder">Изчисли месечна вноска</p>
@@ -87,18 +87,18 @@
                 </li>
             </ul>
             <ul class="navbar-links">
-                <li class="addAd navbar-dropdown" routerLink="create/ad">
+                <li class="addAd navbar-dropdown" routerLink="create/ad" id="create">
                     <a>
                         <div class="navbar-dropdown-text">Добави обява</div>
                     </a>
                 </li>
     
-                <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" id="isNotUser" routerLink="/auth/login">
+                <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" id="isNotUser" routerLink="/auth/login" id="login">
                     <a>
                         <div class="navbar-dropdown-text">Вход</div>
                     </a>
                 </li>
-                <li *ngIf="userIsAuthenticated" class="navbar-dropdown" id="isUser" routerLink="/auth/profile">
+                <li *ngIf="userIsAuthenticated" class="navbar-dropdown" id="isUser" routerLink="/auth/profile" >
                     <a>
                         <div class="navbar-dropdown-text">Профил</div>
                     </a>

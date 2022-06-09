@@ -10,7 +10,7 @@ import {EditComponent} from './edit/edit.component'
 import { SearchAdsComponent } from './search-ads/search-ads.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
