@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { RegisterComponent } from './register/register.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent

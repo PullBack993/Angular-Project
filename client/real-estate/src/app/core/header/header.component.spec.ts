@@ -52,16 +52,19 @@ describe('HeaderComponent', () => {
 
   it('Should test isMobile', () => {
     component.isMobile = true;
+
     fixture.detectChanges();
+
     expect(component.isMobile).toBeTrue();
   });
 
   it('Should test logout button ', () => {
+    const logoutBtn = fixture.debugElement.nativeElement.querySelector('#logout-btn');
     component.userIsAuthenticated = true;
+    spyOn(component, 'onLogout').and.callThrough();
+
     fixture.detectChanges();
 
-    spyOn(component, 'onLogout').and.callThrough();
-    const logoutBtn = fixture.debugElement.nativeElement.querySelector('#logout-btn');
     logoutBtn.click();
     expect(component.onLogout).toHaveBeenCalled();
   });
