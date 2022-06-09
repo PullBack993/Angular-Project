@@ -1,19 +1,18 @@
-import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HeaderComponent } from './header.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { HeaderComponent } from './header.component';
 import { PagesModule } from 'src/app/pages/pages.module';
-import { AppComponent } from 'src/app/app.component';
-import { routes as pagesRoutes } from 'src/app/pages/app-pages-routing.module';
 import { UserService } from 'src/app/services/user.service';
 import { AuthGuard } from 'src/app/user/auth.guard';
+import { UserModule } from 'src/app/user/user.module';
+import { routes as mainRoutes } from 'src/app/app-routing.module';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -24,17 +23,10 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientModule,
-        RouterTestingModule.withRoutes(pagesRoutes),
-        FontAwesomeModule,
-        MatIconModule,
-        MatToolbarModule,
-        MatSidenavModule,
-        BrowserAnimationsModule
-      ],
-      declarations: [HeaderComponent],
-      providers: [PagesModule, AppComponent, AuthGuard]
+      imports: [HttpClientModule, RouterTestingModule.withRoutes(mainRoutes), BrowserAnimationsModule],
+      declarations: [],
+      providers: [UserModule, PagesModule, AuthGuard],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 
@@ -44,7 +36,8 @@ describe('HeaderComponent', () => {
 
     router = TestBed.inject(Router);
     location = TestBed.inject(Location);
-
+    TestBed.inject(UserModule);
+    TestBed.inject(PagesModule);
     fixture.detectChanges();
   });
 
@@ -79,8 +72,9 @@ describe('HeaderComponent', () => {
     logoutBtn.click();
     expect(component.onLogout).toHaveBeenCalled();
   });
-  describe('Test header routing paths', () => {
 
+  describe('Test header routing paths', () => {
+    
     function checkNavigate(cssSelector: String, navigationPath: String) {
       fixture.debugElement.nativeElement.querySelector(cssSelector).click();
 
@@ -88,6 +82,7 @@ describe('HeaderComponent', () => {
 
       expect(location.path()).toBe(navigationPath);
     }
+
     it('Should navigate to /new-projects', fakeAsync(() => {
       checkNavigate('#new-projects', '/new-projects');
     }));
@@ -111,6 +106,26 @@ describe('HeaderComponent', () => {
       checkNavigate('#calculator', '/calculator');
     }));
 
-   
+    it('Should navigate to /auth/profile', fakeAsync(() => {
+      userService = TestBed.inject(UserService);
+      spyOn(userService, 'getIsAuth').and.returnValue(true);
+      component.userIsAuthenticated = true;
+
+      fixture.detectChanges();
+
+      checkNavigate('#isUser', '/auth/profile');
+    }));
+    
+    it('Should navigate to /auth/login', fakeAsync(() => {
+      checkNavigate('#login', '/auth/login');
+    }));
+
+    it('Should navigate to /auth/logout', fakeAsync(() => {
+      component.userIsAuthenticated = true;
+
+      fixture.detectChanges();
+
+      checkNavigate('#logout-btn', '/');
+    }));
   });
 });
