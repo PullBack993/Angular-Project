@@ -115,20 +115,21 @@
 
     <ng-container  class="second-header">
         <mat-sidenav-container class="container">
-            <mat-sidenav #sidebar mode='side'>
+            <mat-sidenav id="sidebar" #sidebar mode='side'>
     
                 <ul class="navbar-links">
     
                     <li *ngIf="userIsAuthenticated && !!currentUser" class="navbar-dropdown" (click)="sidebar.close()" routerLink="/auth/profile">
                         <a class="img-container">
-                            <ng-container *ngIf="currentUser.userData.imageUrl">
-                                <img src="{{currentUser.userData.imageUrl}}" class="username">
+                            <ng-container *ngIf="currentUser.userData.imageUrl" >
+                                <img src="{{currentUser.userData.imageUrl}}" class="username" id="user-img" >
                             </ng-container>
+
                             <ng-container *ngIf="!currentUser.userData.imageUrl">
-                                <img src="{{defaultImg}}" class="username">
-                            
+                                <img src="{{defaultImg}}" class="username" >
                             </ng-container>
-                                <p class="current-username">{{currentUser.userData.username}}</p>
+                            
+                            <p class="current-username">{{currentUser.userData.username}}</p>
                         </a>
                     </li>
                     <li *ngIf="userIsAuthenticated" (click)="sidebar.close()" (click)="onLogout()" class="navbar-dropdown">

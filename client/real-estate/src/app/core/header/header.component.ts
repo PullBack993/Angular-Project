@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
     faCaretUp,
     faBars
   };
+
   defaultImg: string = '../../../assets/images/profileImg.png';
   userIsAuthenticated: boolean = false;
   isMobile: boolean = false;
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
   isErrorType!: boolean;
   messageSubs!: Subscription;
   screenSubs!: Subscription;
+  authServiceSub!: Subscription;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -42,21 +44,16 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
     this.checkSideMenu();
     this.userIsAuthenticated = this.authService.getIsAuth();
 
-    this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
+    this.authServiceSub = this.authService.getAuthStatusListener().subscribe((isAuthenticated) => {
       this.userIsAuthenticated = isAuthenticated;
 
-      if (isAuthenticated) {
+      if (this.userIsAuthenticated) {
         this.authService.getUser$().subscribe((userData) => {
           this.currentUser = userData;
         });
       }
     });
 
-    if (this.userIsAuthenticated) {
-      this.authService.getUser$().subscribe((userData) => {
-        this.currentUser = userData;
-      });
-    }
     this.messageSubs = this.messageService.onMessage$.subscribe((newMessage) => {
       this.errorMessage = newMessage.text;
       this.isErrorType = newMessage.type === MessageType.error;
@@ -67,6 +64,7 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
       }
     });
   }
+  //TODO check this method
   ngOnChanges(): void {
     if (this.userIsAuthenticated) {
       this.authService.getUser$().subscribe((userData) => {
@@ -98,5 +96,6 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
   ngOnDestroy(): void {
     this.screenSubs.unsubscribe();
     this.messageSubs.unsubscribe();
+    this.authServiceSub.unsubscribe();
   }
 }

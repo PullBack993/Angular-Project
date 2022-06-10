@@ -13,6 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 import { AuthGuard } from 'src/app/user/auth.guard';
 import { UserModule } from 'src/app/user/user.module';
 import { routes as mainRoutes } from 'src/app/app-routing.module';
+import { mockUserData } from 'src/app/models/user.unittesting';
+import { of } from 'rxjs';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -38,6 +40,7 @@ describe('HeaderComponent', () => {
     location = TestBed.inject(Location);
     TestBed.inject(UserModule);
     TestBed.inject(PagesModule);
+    userService = TestBed.inject(UserService);
     fixture.detectChanges();
   });
 
@@ -74,7 +77,6 @@ describe('HeaderComponent', () => {
   });
 
   describe('Test header routing paths', () => {
-    
     function checkNavigate(cssSelector: String, navigationPath: String) {
       fixture.debugElement.nativeElement.querySelector(cssSelector).click();
 
@@ -115,7 +117,7 @@ describe('HeaderComponent', () => {
 
       checkNavigate('#isUser', '/auth/profile');
     }));
-    
+
     it('Should navigate to /auth/login', fakeAsync(() => {
       checkNavigate('#login', '/auth/login');
     }));
@@ -127,5 +129,20 @@ describe('HeaderComponent', () => {
 
       checkNavigate('#logout-btn', '/');
     }));
+  });
+
+  describe('Test header in mobile mode', () => {
+    fit('should test string interpolation with user(and image)', () => {
+      component.isMobile = true;
+      component.userIsAuthenticated = true;
+      component.currentUser = mockUserData;
+      let compiled = fixture.debugElement.nativeElement;
+      compiled.querySelector('#sidebar').click();
+
+      fixture.detectChanges();
+
+      expect(compiled.querySelector('#user-img').src).toContain(mockUserData.userData.imageUrl);
+      expect(compiled.querySelector('.current-username').innerHTML).toContain(mockUserData.userData.username);
+    });
   });
 });

@@ -1,24 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
-import { IUserDto, IUser } from '../models/user';
+import { IUser } from '../models/user';
 import { UserService } from './user.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { RouterTestingModule } from '@angular/router/testing';
+import { mockUserData } from '../models/user.unittesting';
 
-const mockData: IUserDto = {
-  token: '123',
-  expiresIn: 30,
-  userData: {
-    email: 'asd@gmail.com',
-    id: '123',
-    isAdmin: false,
-    isBroker: false,
-    isNew: false,
-    likedAd: [],
-    username: 'asd'
-  }
-};
 
 describe('UserService', () => {
   let authService: UserService;
@@ -38,26 +26,14 @@ describe('UserService', () => {
   });
 
   it('Should test getUser observable', (done) => {
-    let mochUserData: IUser = {
-      success: true,
-      userData: {
-        email: 'asd@gmail.com',
-        imageUrl: 'http://asd',
-        id: '1',
-        isAdmin: false,
-        isBroker: false,
-        isNew: false,
-        likedAd: [],
-        username: 'ttt'
-      }
-    };
+
     authService.getUser$().subscribe((data: IUser) => {
-      expect(mochUserData).toBe(data);
+      expect(mockUserData).toBe(data);
     });
     const req = httpController.expectOne(environment.apiUrl + '/editUser');
     expect(req.cancelled).toBeFalse();
     expect(req.request.responseType).toEqual('json');
-    req.flush(mochUserData);
+    req.flush(mockUserData);
     httpController.verify();
     done();
   });
