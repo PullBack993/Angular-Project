@@ -11,6 +11,7 @@ const BACKEND_URL = environment.apiUrl
 @Injectable({
   providedIn: 'root'
 })
+  
 export class AdsService {
   private _searchData = new BehaviorSubject<any>(undefined);
 
@@ -41,12 +42,11 @@ export class AdsService {
 
   editAd(files: {}, id: string) {
     return this.http.put(BACKEND_URL + `/edit/${id}`, files).subscribe({
-      complete: () => {
-        console.log('sucess');
+      next: () => {
          this.messageService.notifyForMessage({ text: `Успешно редактирана обява!`, type: MessageType.success });
         this.router.navigate(['/properties']);
       },
-      error: (err) => {
+      error: () => {
         this.router.navigate(['']);
       }
     });
@@ -54,7 +54,7 @@ export class AdsService {
 
   deleteById(id: string) {
     this.http.delete(BACKEND_URL + `/delete/${id}`).subscribe({
-      next: (data) => {
+      next: () => {
         this.router.navigate(['/properties']);
          this.messageService.notifyForMessage({ text: `Успешно изтрита обява!`, type: MessageType.success });
       }

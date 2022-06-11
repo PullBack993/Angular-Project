@@ -26,10 +26,10 @@ describe('UserService', () => {
   });
 
   it('Should test getUser observable', (done) => {
-
     authService.getUser$().subscribe((data: IUser) => {
       expect(mockUserData).toBe(data);
     });
+    //TODO change it 
     const req = httpController.expectOne(environment.apiUrl + '/editUser');
     expect(req.cancelled).toBeFalse();
     expect(req.request.responseType).toEqual('json');
@@ -38,9 +38,5 @@ describe('UserService', () => {
     done();
   });
 
-  it('Should test login method', (done) => {
-    let a = authService.login({ email: "asd", password: '123' })
-    console.log(a)
-      done()
-  });
+ 
 });

@@ -140,5 +140,5 @@ export interface ISearch {
   estateType?: string;
   area?: number;
   price?: number;
-   limit: number;
+  limit: number;
 }

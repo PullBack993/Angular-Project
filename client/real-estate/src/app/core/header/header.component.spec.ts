@@ -132,7 +132,7 @@ describe('HeaderComponent', () => {
   });
 
   describe('Test header in mobile mode', () => {
-    fit('should test string interpolation with user(and image)', () => {
+    it('should test string interpolation with user(and image)', () => {
       component.isMobile = true;
       component.userIsAuthenticated = true;
       component.currentUser = mockUserData;
