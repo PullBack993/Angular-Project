@@ -9,6 +9,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    //TODO
+    // clip-path:   polygon(0px 0px, 95.38% -9px, 95.38% 32.02vh, 0px 0px);
+
   }
 }
 
@@ -46,12 +49,12 @@
     box-shadow: $box-shadow;
     object-fit: cover;
     border-radius: 10px;
-    position: relative;
-       transform: scale(1);
-      transition: all .4s ease;
+    // position: relative;
+    transform: scale(1);
+    transition: all 0.4s ease;
     &:hover {
       transform: scale(1.03);
-      transition: all .4s ease;
+      transition: all 0.4s ease;
     }
 
     &-image {
@@ -69,7 +72,6 @@
       font-size: 20px;
     }
     .description-inner-container {
-      position: absolute;
       font-size: 20px;
       bottom: 10px;
       text-align: center;

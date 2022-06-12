@@ -1,5 +1,6 @@
 @import '../../../style/images-paths.scss';
 @import '../../../style/color';
+@import '../../../style/animation';
 
 .title {
   text-align: center;
@@ -19,6 +20,9 @@
   box-shadow: $box-shadow;
   margin-top: 50px;
   opacity: 0.8;
+  animation: moveInRight 1s ease-out;
+  backface-visibility: hidden;
+
   &-form {
     width: 100%;
     display: block;
@@ -26,8 +30,8 @@
   .search {
     display: flex;
     margin: 15px;
-    p-inputNumber{
-      width: 100%
+    p-inputNumber {
+      width: 100%;
     }
     &-input-town {
       width: 60%;
@@ -45,43 +49,43 @@
   //I have to use !important and ViewEncapsulation.None because I can't select primeNG(class)
   .container-form {
     margin-top: 1rem;
-}
+  }
 
-    .container-main {
-      width: 90%;
-      padding: 0.5em;
-      margin-top: 1rem;
+  .container-main {
+    width: 90%;
+    padding: 0.5em;
+    margin-top: 1rem;
+
+    .search {
+      flex-direction: column;
+      margin: 0px 15px !important;
+
+      .p-element {
+        width: 100%;
+      }
 
       .search {
-        flex-direction: column;
-        margin: 0px 15px !important;
-
-        .p-element {
-          width: 100%;
-        }
-
-        .search {
-          width: 100%;
-        }
-        .service {
-          width: 100%;
-        }
+        width: 100%;
       }
-    }
-    .container .search-input-town {
-      text-indent: 0px !important;
-    }
-
-    .drop-down {
-      margin-top: 0.5rem;
-      width: 100% !important;
-      margin-left: 0px !important;
-    }
-    .button{
-      margin-top: 1rem;
-      width: 100% !important ;
-      .btn{
-        margin-left: 0px !important;
+      .service {
+        width: 100%;
       }
     }
   }
+  .container .search-input-town {
+    text-indent: 0px !important;
+  }
+
+  .drop-down {
+    margin-top: 0.5rem;
+    width: 100% !important;
+    margin-left: 0px !important;
+  }
+  .button {
+    margin-top: 1rem;
+    width: 100% !important ;
+    .btn {
+      margin-left: 0px !important;
+    }
+  }
+}

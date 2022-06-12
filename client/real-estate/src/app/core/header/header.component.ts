@@ -37,7 +37,8 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
   constructor(
     private authService: UserService,
     private messageService: MessageService,
-    private observer: BreakpointObserver
+    private observer: BreakpointObserver,
+    
   ) {}
 
   ngOnInit() {
