@@ -1,4 +1,4 @@
-@import '../../../style/color';
+@import '../../../style/colors';
 
 header {
   .mat-drawer-container {
@@ -45,9 +45,7 @@ header {
         margin-top: 10px;
       }
     }
-    // .bar-container {
-    //   display: none;
-    // }
+
     &-dropdown {
       border: none;
       outline: none;
@@ -103,10 +101,12 @@ header {
         display: block;
         text-align: left;
         margin: auto;
-
+        transition: all 0.2s;
+        &:active {
+          transform: translateY(2px);
+          box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+        }
         &:hover {
-          height: auto;
-          overflow: visible;
           background-color: $mainBg;
         }
       }
@@ -136,20 +136,19 @@ header {
   .navbar-main {
     display: none !important;
   }
-   .mat-drawer-container {
+  .mat-drawer-container {
     display: contents !important;
   }
-  
-  .mat-sidenav-container {
-    display: contents ;
 
+  .mat-sidenav-container {
+    display: contents;
   }
   mat-sidenav {
     background: #25314e;
     width: 50%;
     height: 100%;
   }
-  
+
   mat-sidenav-content {
     height: 100vh !important;
     display: contents !important;
@@ -158,7 +157,7 @@ header {
       margin-left: 30px;
     }
   }
-    
+
   mat-toolbar {
     .content-left {
       display: flex;
@@ -194,23 +193,21 @@ header {
       .logout-btn {
         padding: 0px;
         background-color: inherit;
-
       }
       li {
         display: inline;
         margin-right: 15px;
-        
+      }
+
+      .img-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .username {
+          border-radius: 25%;
+          margin: auto;
+          width: 50%;
         }
-        
-        .img-container{
-          display:flex;
-          justify-content: center;
-          flex-direction: column;
-          .username{
-            border-radius: 25%;
-            margin: auto;
-            width: 50%;
-          }
         .current-username {
           text-align: center;
           margin-top: 0.5rem;
@@ -226,7 +223,6 @@ header {
     }
 
     &-logo {
-      
       cursor: pointer;
       img {
         width: 60px;
@@ -250,7 +246,6 @@ header {
       &-text {
         font-size: 16px;
         color: white !important;
-        
       }
 
       &:hover div {
@@ -310,9 +305,7 @@ header {
   }
 }
 
-
 @media only screen and (max-width: 480px) {
-
   mat-sidenav {
     background: #25314e;
     width: 60%;

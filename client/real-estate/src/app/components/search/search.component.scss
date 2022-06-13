@@ -1,6 +1,6 @@
 @import '../../../style/images-paths.scss';
-@import '../../../style/color';
-@import '../../../style/animation';
+@import '../../../style/colors';
+@import '../../../style/animations';
 
 .title {
   text-align: center;
@@ -20,7 +20,7 @@
   box-shadow: $box-shadow;
   margin-top: 50px;
   opacity: 0.8;
-  animation: moveInRight 1s ease-out;
+  animation: moveInRight 1.3s ease-out;
   backface-visibility: hidden;
 
   &-form {
@@ -42,6 +42,16 @@
     }
     .button {
       width: 100%;
+      transition: all .2s;
+      
+    }
+    .button:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0,0,0,.2)
+    }
+    .button:active{
+      transform: translateY(2px);
+      box-shadow: 0 10px 10px rgba(0,0,0,.2)
     }
   }
 }

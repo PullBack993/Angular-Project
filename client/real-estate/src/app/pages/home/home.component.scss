@@ -1,5 +1,6 @@
 @import '../../../style/images-paths.scss';
-@import '../../../style/color';
+@import '../../../style/colors';
+@import '../../../style//animations';
 
 .img-container {
   height: 500px;
@@ -7,11 +8,8 @@
     height: 95%;
     background-image: url('#{$bgImg}');
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
-    //TODO
-    // clip-path:   polygon(0px 0px, 95.38% -9px, 95.38% 32.02vh, 0px 0px);
-
+    animation: blink 1s linear ;
   }
 }
 
@@ -21,6 +19,19 @@
   margin: 0px;
   margin-top: 10px;
   color: $letterSubmenuColor;
+  &-add-item {
+    position: relative;
+  }
+  &-add-item::after {
+    position: absolute;
+    content: '';
+    border-bottom: 3px solid #7299ef;
+    width: 100%;
+    top: 2.5rem;
+    left: 0rem;
+    clip-path: polygon(-11px -36px, 110% 6px, 100% 9vh, -36px -10px);
+    animation: moveInLeft 2.5s ease-in-out;
+  }
 }
 
 .projects-name {

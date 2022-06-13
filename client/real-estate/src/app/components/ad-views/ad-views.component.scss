@@ -1,13 +1,20 @@
-@import '../../../style/color';
-
+@import '../../../style/colors';
 
 .main-container {
   display: flex;
-  max-height: 342px;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  max-height: 340px;
+  margin: 2rem 0;
+  // margin-top: 20px;
   cursor: pointer;
- 
+  transition: all .2s ease;
+  transform: scale(0.99);
+  overflow: hidden;
+  &:hover {
+  overflow: hidden;
+
+    transform: scale(1.0);
+    transition: all 0.4s ease;
+  }
 
   &-child {
     height: 340px;
@@ -164,12 +171,11 @@
   .ng-star-inserted {
     margin-top: 0px !important;
   }
-   div.main-container > div > ul > li{
+  div.main-container > div > ul > li {
     width: 50% !important;
-    } 
+  }
   .tags {
     margin-top: 10px !important;
-   
   }
   h2 {
     width: 95% !important;
