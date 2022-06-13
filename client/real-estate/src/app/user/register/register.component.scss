@@ -1,4 +1,4 @@
-@import '../../../style/color';
+@import '../../../style/colors';
 
 .img {
   width: 7%;
@@ -66,8 +66,8 @@
   }
 }
 
-
-.username, .email {
+.username,
+.email {
   margin: auto;
   margin: 25px 0px;
 }
@@ -79,7 +79,7 @@
 .p-password-input {
   width: 100%;
 }
-.register.p-ripple{
+.register.p-ripple {
   width: 86%;
 }
 
@@ -99,7 +99,6 @@
   &-text {
     color: $error;
   }
-
 }
 
 @media screen and (max-width: 720px) {
