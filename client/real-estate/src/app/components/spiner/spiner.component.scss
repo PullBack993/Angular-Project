@@ -1,5 +1,3 @@
-@import '../../../style//colors';
-
 .progress-spinner {
   position: fixed;
   z-index: 999;
@@ -22,5 +20,5 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right bottom, $baby-blue-op-9, $letterColor);
+  background: black;
 }
