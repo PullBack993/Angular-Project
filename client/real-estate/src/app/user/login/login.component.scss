@@ -58,6 +58,7 @@
 .email {
   margin: 25px 0px;
 }
+
 .p-float-label > input {
   margin: 0px;
   width: 305px;
@@ -65,11 +66,11 @@
 
 .p-float-label > label {
   top: 20%;
-  
+  margin-left: .4rem;
 }
- .submit-btn.p-button{
-    width: 100%;
-  }
+.submit-btn.p-button {
+  width: 100%;
+}
 .invalid {
   border: 1px solid $error;
   label {
@@ -78,8 +79,6 @@
   &-err {
     color: $error;
   }
-
- 
 }
 
 @media only screen and (max-width: 720px) {
@@ -96,5 +95,4 @@
       width: 100%;
     }
   }
- 
 }

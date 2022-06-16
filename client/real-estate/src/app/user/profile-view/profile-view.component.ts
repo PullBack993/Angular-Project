@@ -30,8 +30,8 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit() {
-    this.homeItem = [{ label: 'Профил', icon: 'pi pi-fw pi-home' }];
-    this.editItem = [{ label: 'Редактирай', icon: 'pi pi-fw pi-pencil' }];
+    this.homeItem = [{ label: 'Profil', icon: 'pi pi-fw pi-home' }];
+    this.editItem = [{ label: 'Bearbeiten', icon: 'pi pi-fw pi-pencil' }];
     this.activeItem = this.homeItem[0];
     this.homeInit();
   }

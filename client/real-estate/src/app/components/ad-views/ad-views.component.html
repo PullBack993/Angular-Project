@@ -49,11 +49,11 @@
                 </ul>
 
                 <ul class="object-info">
-                    <li class="ufaLY">{{ad.estateType}}<span>Вид имот</span></li>
-                    <li class="ufaLY">{{ad.area}} m²<span>Площ</span></li>
+                    <li class="ufaLY">{{ad.estateType}}<span>Art der Immobilie</span></li>
+                    <li class="ufaLY">{{ad.area}} m²<span>Fläche</span></li>
                     <li class="price">{{ad.price}} €</li>
                 </ul>
-                <h3 class="description">Описание:</h3>
+                <h3 class="description">Beschreibung:</h3>
                 <div class="description-container">
                     <div class="description-container-text">
                         {{ad.moreInfo | shorten: 120}}
@@ -64,6 +64,6 @@
         <div class="line"></div>
     </ng-container>
     <ng-container *ngIf="adsData.length <= 0">
-        <p class="d-flex justify-content-center">Няма намерени резултати</p>
+        <p class="d-flex justify-content-center not-found">Es wurden keine Ergebnisse gefunden</p>
     </ng-container>
 </ng-container>

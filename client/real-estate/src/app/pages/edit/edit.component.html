@@ -1,5 +1,5 @@
 <div class="p-fluid grid" *ngIf="adData">
-    <h1 class="header">Редактирай обява</h1>
+    <h1 class="header">Inserat erstellen</h1>
 
     <form class="main-form" action="POST" [formGroup]="addFormGroup" (ngSubmit)="onCreate($event)">
 
@@ -7,14 +7,14 @@
         <div class="drop-down-container">
             <div class="drop-container first">
                 <p-dropdown class="drop-down-container-first " formControlName="location"
-                    [placeholder]="'Местоположение'" [style]="{'height': '48px'}" [options]="cities"
+                    [placeholder]="'Bundesland'" [style]="{'height': '48px'}" [options]="cities"
                     [class.invalid]="checkTouch('location', addFormGroup)" [ngModel]="setLocation(adData.location)"
                     (onChange)="changeFromChild($event)" optionLabel="name">
                 </p-dropdown>
 
                 <ng-container *ngIf="checkTouch('location', addFormGroup)">
                     <p class="msg" *ngIf="addFormGroup.get('location')?.errors?.['required']">
-                        <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                        <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                         </p-message>
                     </p>
                 </ng-container>
@@ -22,13 +22,13 @@
 
 
             <div class="drop-container">
-                <p-dropdown class="drop-down-container-second" [placeholder]="'Район'" formControlName="region"
+                <p-dropdown class="drop-down-container-second" [placeholder]="'Gemeinden'" formControlName="region"
                     [style]="{'height': '48px'}" [disabled]="shouldDisabled" [ngModel]="region[index]"
                     [options]="region" optionLabel="name">
                 </p-dropdown>
                 <ng-container *ngIf="checkTouch('region', addFormGroup)">
                     <p class="msg" *ngIf="addFormGroup.get('region')?.errors?.['required']">
-                        <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                        <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                         </p-message>
                     </p>
                 </ng-container>
@@ -37,12 +37,12 @@
             <div class=" drop-container container-tag">
                 <span class="p-float-label title">
                     <input formControlName="title" [ngModel]="adData.title" type="text" maxlength="58" pInputText>
-                    <label for="float-input">Заглавие/Ключови думи</label>
+                    <label for="float-input">Titel / Schlüsselwörter</label>
                 </span>
                 <ng-container *ngIf="checkTouch('title', addFormGroup)">
 
                     <p class="msg" *ngIf="addFormGroup.get('title')?.errors?.['required']">
-                        <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                        <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                         </p-message>
                     </p>
                 </ng-container>
@@ -55,11 +55,11 @@
 
             <div class="drop-container first">
                 <p-dropdown formControlName="estateType" class="drop-down-second" [style]="{'height': '48px'}"
-                    [options]="type" [placeholder]="'Вид на имота'" [ngModel]="setEstateType(adData.estateType)"
+                    [options]="type" [placeholder]="'Art der Immobilie'" [ngModel]="setEstateType(adData.estateType)"
                     optionLabel="type"></p-dropdown>
                 <ng-container *ngIf="checkTouch('estateType', addFormGroup)">
                     <p class="msg" *ngIf="addFormGroup.get('estateType')?.errors?.['required']">
-                        <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                        <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                         </p-message>
                     </p>
                 </ng-container>
@@ -67,11 +67,11 @@
 
             <div class="drop-container container-tag">
                 <p-multiSelect formControlName="tags" [options]="tags" [selectionLimit]="4" [(ngModel)]="inputTags"
-                    class="p-float-label tag" [placeholder]="'Тагове'" optionLabel="tag" defaultValue="true">
+                    class="p-float-label tag" [placeholder]="'Stichworte'" optionLabel="tag" defaultValue="true">
                 </p-multiSelect>
                 <ng-container *ngIf="checkTouch('tags', addFormGroup)">
                     <p class="msg" *ngIf="addFormGroup.get('tags')?.errors?.['required']">
-                        <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                        <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                         </p-message>
                     </p>
                 </ng-container>
@@ -80,13 +80,13 @@
             <div class="drop-container container-tag">
 
                 <p-multiSelect formControlName="constructionType" [(ngModel)]="constType" [options]="constructionType"
-                    [selectionLimit]="1" class="p-float-label construction" [placeholder]="'Вид строителство'"
+                    [selectionLimit]="1" class="p-float-label construction" [placeholder]="'Bauart'"
                     defaultValue="true" optionLabel="type">
                 </p-multiSelect>
 
                 <ng-container *ngIf="checkTouch('constructionType', addFormGroup)">
                     <p class="msg" *ngIf="addFormGroup.get('constructionType')?.errors?.['required']">
-                        <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                        <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                         </p-message>
                     </p>
                 </ng-container>
@@ -101,11 +101,11 @@
                     <p-inputNumber mode="currency" currency="EUR" [ngModel]="adData.price" [useGrouping]="false"
                         formControlName="price" name="price" title="price" inputId="inputnumber">
                     </p-inputNumber>
-                    <label for="inputnumber">цена</label>
+                    <label for="inputnumber">Price</label>
                 </span>
                 <ng-container *ngIf="checkTouch('price', addFormGroup)">
                     <p class="msg" *ngIf="addFormGroup.get('price')?.errors?.['required']">
-                        <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                        <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                         </p-message>
                     </p>
                 </ng-container>
@@ -117,11 +117,11 @@
                     <p-inputNumber [useGrouping]="false" [ngModel]="adData.area" formControlName="area"
                         inputId="inputnumber">
                     </p-inputNumber>
-                    <label for="inputnumber">квадратура</label>
+                    <label for="inputnumber">Fläche m²</label>
                 </span>
                 <ng-container *ngIf="checkTouch('area', addFormGroup)">
                     <p class="msg" *ngIf="addFormGroup.get('area')?.errors?.['required']">
-                        <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                        <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                         </p-message>
                     </p>
                 </ng-container>
@@ -134,11 +134,11 @@
                     <p-inputNumber [useGrouping]="false" [ngModel]="adData.floor" formControlName="floor"
                         inputId="inputnumber">
                     </p-inputNumber>
-                    <label for="inputnumber">етаж</label>
+                    <label for="inputnumber">Etage</label>
                 </span>
                 <ng-container *ngIf="checkTouch('floor', addFormGroup)">
                     <p class="msg" *ngIf="addFormGroup.get('floor')?.errors?.['required']">
-                        <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                        <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                         </p-message>
                     </p>
                 </ng-container>
@@ -154,19 +154,19 @@
                         <p-radioButton formControlName="adType" name="adType" [ngModel]="adData.adType" value="sell"
                             class="radio-btn" inputId="sell">
                         </p-radioButton>
-                        <label for="city1">Продавам</label>
+                        <label for="city1">Verkaufen</label>
                     </div>
 
                     <div class="container-btn">
                         <p-radioButton name="adType" formControlName="adType" [ngModel]="adData.adType" value="rent"
                             class="radio-btn" inputId="rent">
                         </p-radioButton>
-                        <label class="radio-btn-text" for="city1">Отдавам под наем</label>
+                        <label class="radio-btn-text" for="city1">Vermieten</label>
                     </div>
 
                     <div class="container-check">
                         <p-inputSwitch [ngModel]="checked" [ngModelOptions]="{standalone: true}" (click)="onCheck()">
-                        </p-inputSwitch><span class="check">Нов проект?</span>
+                        </p-inputSwitch><span class="check">Neubauprojekt?</span>
                     </div>
 
                 </div>
@@ -177,11 +177,11 @@
                         <p-inputNumber [useGrouping]="false" [ngModel]="adData.telNumber" value="number"
                             formControlName="telNumber" id="float-input" inputId="inputnumber">
                         </p-inputNumber>
-                        <label for="inputnumber">телефонен номер</label>
+                        <label for="inputnumber">Telefonnummer</label>
                     </span>
                     <ng-container *ngIf="checkTouch('telNumber', addFormGroup)">
                         <p class="msg" *ngIf="addFormGroup.get('telNumber')?.errors?.['required']">
-                            <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                            <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                             </p-message>
                         </p>
                     </ng-container>
@@ -194,11 +194,11 @@
             <span class="p-float-label ">
                 <textarea  [autoResize]="true" formControlName="moreInfo"
                     [ngModel]="adData.moreInfo" pInputTextarea></textarea>
-                <label for="float-input">Допълнителна информация</label>
+                <label for="float-input">Beschreibung</label>
             </span>
             <ng-container *ngIf="checkTouch('moreInfo', addFormGroup)">
                 <p class="msg" *ngIf="addFormGroup.get('moreInfo')?.errors?.['required']">
-                    <p-message severity="error" text="Полето е задължително" styleClass="mr-2">
+                    <p-message severity="error" text="Feld ist erforderlich" styleClass="mr-2">
                     </p-message>
                 </p>
             </ng-container>
@@ -208,17 +208,17 @@
 
         <div class="card">
             <p-message severity="warn"
-                text="ВНИМАНИЕ! При добавяне на нови снимки старите ще бъдат изтрити перманентно!">
+                text="AUFMERKSAMKEIT! Beim Hinzufügen neuer Fotos werden die alten dauerhaft gelöscht!">
             </p-message>
             <p-fileUpload name="img" type="file" [customUpload]="true" (uploadHandler)="onUpload($event)"
-                (onClear)="onClear()" [invalidFileTypeMessageSummary]="'Невалиден тип на фаила'"
-                [invalidFileTypeMessageDetail]="'Позволени са само jpg,png,jpeg'" [chooseLabel]="'избери'"
-                [cancelLabel]="'откажи всички'" [showUploadButton]="isDisabled" [uploadLabel]="'Качи снимка/и'"
+                (onClear)="onClear()" [invalidFileTypeMessageSummary]="'Ungültiger Dateityp'"
+                [invalidFileTypeMessageDetail]="'Erlaubt sind nur jpg,png,jpeg'" [chooseLabel]="'Wählen'"
+                [cancelLabel]="'Alle ablehnen'" [showUploadButton]="isDisabled" [uploadLabel]="'Foto/s hochladen'"
                 [fileLimit]="5" [multiple]="true" accept="image/*" [maxFileSize]="5000000">
 
                 <ng-template pTemplate="content">
                     <ul *ngIf="[uploadedFiles].length">
-                        <li *ngFor="let file of uploadedFiles">'Успешно качен фаил:'{{file.name}} - {{file.size}} bytes
+                        <li *ngFor="let file of uploadedFiles">'Datei erfolgreich hochgeladen:'{{file.name}} - {{file.size}} bytes
                         </li>
                     </ul>
                 </ng-template>
@@ -227,6 +227,6 @@
         </div>
         <p-progressSpinner *ngIf="loading"></p-progressSpinner>
 
-        <p-button [styleClass]="'submit'" [disabled]="addFormGroup.invalid || loading" label="Публикувай" type="submit"></p-button>
+        <p-button [styleClass]="'submit'" [disabled]="addFormGroup.invalid || loading" label="Veröffentlichen" type="submit"></p-button>
     </form>
 </div>

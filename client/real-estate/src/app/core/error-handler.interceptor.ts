@@ -11,10 +11,12 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err) => {
         this.messageService.notifyForMessage({
-          text: err?.error?.message || 'Нещо се обърка опитайте онтово!',
+          text: err?.error?.message || 'Etwas ging schief, versuche es noch einmal!',
           type: MessageType.error
-        })
-        return throwError(err);
+        });
+        return throwError(() => {
+          err
+        });
       })
     );
   }

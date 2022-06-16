@@ -1,11 +1,13 @@
 const SEARCH_VALUES = [
-  "ОФИС",
-  "МАГАЗИН",
-  "ЗАВЕДЕНИЕ",
-  "СКЛАД",
-  "ПРОМ. ПОМЕЩЕНИЕ",
-  "БИЗНЕС ИМОТ",
-  "ЗЕМЕДЕЛСКА ЗЕМЯ",
+  "Büro",
+  "Einzelhandel",
+  "Lokale",
+  "Industrie",
+  "Garagen",
+  "Gewerbliche Grundstücke",
+  "Grundstücke",
+  "Land- und Forstwirtschaft",
+  "Hotels und Pensionen",
 ];
 
 module.exports = {

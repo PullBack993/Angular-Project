@@ -15,12 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-
 import {ConfirmPopupModule} from 'primeng/confirmpopup';
-
-
-
-
 
 @NgModule({
   declarations: [],

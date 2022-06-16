@@ -1,42 +1,40 @@
 export const construction = [
-  { type: 'Панел' },
-  { type: 'Тухла' },
-  { type: 'ЕПК' },
-  { type: 'ПК' },
-  { type: 'Гредоред' },
-  { type: 'Сглобяема конструкция' }
+  { type: 'Massivhaus' },
+  { type: 'Fertighaus' },
+  { type: 'Fachwerkhauser' },
+  { type: 'Blockhäuser' },
+  { type: 'Holzhaus' },
 ];
 
 export const tags = [
-  { tag: 'Нов Проект' },
-  { tag: 'Парк' },
-  { tag: 'Обзаведен' },
-  { tag: 'Топ Локация' },
-  { tag: 'Парко Място' },
-  { tag: 'След Oсновен Ремонт' }
+  { tag: 'Neubauprojekt' },
+  { tag: 'Balkon' },
+  { tag: 'Terrasse' },
+  { tag: 'Garten' },
+  { tag: 'Parkplatz' },
+  { tag: 'Teilmöbliert' },
+  { tag: 'Möbliert' }
+
 ];
 
 export const estateTypes = [
-  { type: '1-СТАЕН' },
-  { type: '2-СТАЕН' },
-  { type: '3-СТАЕН' },
-  { type: '4-СТАЕН' },
-  { type: 'МНОГОСТАЕН' },
-  { type: 'МЕЗОНЕТ' },
-  { type: 'ОФИС' },
-  { type: 'АТЕЛИЕ' },
-  { type: 'ТАВАН' },
-  { type: 'ЕТАЖ ОТ КЪЩА' },
-  { type: 'КЪЩА' },
-  { type: 'ВИЛА' },
-  { type: 'МАГАЗИН' },
-  { type: 'ЗАВЕДЕНИЕ' },
-  { type: 'СКЛАД' },
-  { type: 'ГАРАЖ' },
-  { type: 'ПРОМ. ПОМЕЩЕНИЕ' },
-  { type: 'ПАРЦЕЛ' },
-  { type: 'ЗЕМЕДЕЛСКА ЗЕМЯ' },
-  { type: 'БИЗНЕС ИМОТ' }
+  { type: '1-Zimmer' },
+  { type: '2-Zimmer' },
+  { type: '3-Zimmer' },
+  { type: '4-Zimmer' },
+  { type: '5+ Zimmer' },
+  { type: 'Maisonette' },
+  { type: 'Büro' },
+  { type: 'Häuser' },
+  { type: 'Villen' },
+  { type: 'Einzelhandel' },
+  { type: 'Lokale' },
+  { type: 'Industrie' },
+  { type: 'Garagen' },
+  { type: 'Gewerbliche Grundstücke' },
+  { type: 'Grundstücke' },
+  { type: 'Land- und Forstwirtschaft' },
+  { type: 'Hotels und Pensionen' }
 ];
 
 export const cities = () => {

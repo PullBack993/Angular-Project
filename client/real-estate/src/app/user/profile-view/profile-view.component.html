@@ -17,7 +17,7 @@
             <div class="col-lg-4 order-lg-3">
                 <div class="card-profile-image">
                     <ng-container *ngIf="currentUser.userData.imageUrl">
-                    <img src="{{currentUser.userData.imageUrl}}" class="img-thumbnail rounded-circle image">
+                    <img src="{{currentUser.userData.imageUrl}}" class="image">
                     </ng-container>
                     <ng-container *ngIf="!currentUser.userData.imageUrl">
                     <img src="{{defaultImg}}" class="img-thumbnail rounded-circle image">
@@ -31,13 +31,13 @@
         </div>
         <div class="content-container card-text  mx-auto " style="width: 250px; ">
             <div class="username">
-                <p class="text-muted mb-0 fw-lighter fs-9   mt-3">Потребителско име:</p>
+                <p class="text-muted mb-0 fw-lighter fs-9   mt-3">Benutzername:</p>
                 <p class="name fs-7">{{currentUser.userData.username}}</p>
             </div>
         </div>
-        <div class="content-container   mx-auto" style="width: 250px; ">
+        <div class="content-container mx-auto" style="width: 250px; ">
             <div class="email ">
-                <p class="text-muted mb-0 fs-6">Имеил</p>
+                <p class="text-muted mb-0 fs-6">E-Mail</p>
                 <p class="email-text pr-3 ">{{currentUser.userData.email}}</p>
             </div>
         </div>
@@ -55,7 +55,7 @@
             <ng-container *ngIf="checkTouch('username', form)">
                 <p *ngIf="form.get('username')?.errors?.['required']">
                     <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
-                        text="Полето е задължително" styleClass="mr-2"></p-message>
+                        text="Feld ist erforderlich" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
 
@@ -63,26 +63,22 @@
                 placeholder="Имейл" [ngModel]="currentUser.userData.email" formControlName="email" aria-label="email"
                 aria-describedby="basic-addon1">
 
+      
+
             <ng-container *ngIf="checkTouch('email', form)">
                 <p *ngIf="form.get('email')?.errors?.['required']">
                     <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
-                        text="Полето е задължително" styleClass="mr-2"></p-message>
+                        text="E-Mail Feld ist erforderlich"tyleClass="mr-2"></p-message>
+                </p>
+                <p *ngIf="form.get('email')?.errors?.['email']">
+                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
+                        text="Bitte geben Sie eine gültige Email-Adresse ein" styleClass="mr-2"></p-message>
                 </p>
             </ng-container>
+            <button type="button" class="btn btn-outline-primary w-60" (click)="filePicker.click()">
+                Profilbild hochladen
+            </button>
 
-
-            <ng-container *ngIf="">
-                <p *ngIf="">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
-                        text="Имейл полето е задължително" styleClass="mr-2"></p-message>
-                </p>
-                <p *ngIf="">
-                    <p-message [style]="{'width':'305px', 'margin-top': '10px'}" severity="error"
-                        text="Моля въведете валиден имейл" styleClass="mr-2"></p-message>
-                </p>
-            </ng-container>
-            <button type="button" class="btn btn-outline-primary w-60" (click)="filePicker.click()">Качи
-                профилна снимка</button>
             <input class="filePicker" formControlName="image" type="file" accept="image/*" #filePicker
                 (change)="onImagePicked($event) ">
             <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
@@ -95,9 +91,16 @@
             </div>
         </div>
         <div class="d-flex gap-3 inserted justify-content-center">
+
             <button type="submit" [disabled]="form.invalid" (click)="onSubmit()"
-                class="btn btn-primary m-0 d-grid gap-2 col-4  ">Запази</button>
-            <button type="button" class="btn btn-danger m-0 d-grid gap-2 col-4" (click)="home()">Откажи</button>
+                class="btn btn-primary m-0 d-grid gap-2 col-4  ">
+                Speichern
+            </button>
+
+            <button type="button" class="btn btn-danger m-0 d-grid gap-2 col-4" (click)="home()">
+                Absagen
+            </button>
+
         </div>
     </ng-container>
 

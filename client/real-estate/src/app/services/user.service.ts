@@ -78,7 +78,7 @@ export class UserService {
       this.saveAuthData(token, expirationData, this.userId);
       this.route.navigate(['']);
     }
-    this.messageService.notifyForMessage({ text: `Добре дошъл!`, type: MessageType.success });
+    this.messageService.notifyForMessage({ text: `Herzlich willkommen!`, type: MessageType.success });
   }
   autoAuthUser() {
     const authInfo = this.getAuthData();

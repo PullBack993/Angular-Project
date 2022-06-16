@@ -2,7 +2,7 @@
 
 .main {
   margin: auto;
-  width:40%;
+  width: 40%;
 
   h3 {
     text-align: center;
@@ -15,19 +15,25 @@
 
   .card-profile-image {
     width: 180px;
-   padding-top: 16px;
+    padding-top: 16px;
     margin: auto;
     text-align: center;
+  }
+  .image {
+    shape-outside: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    height: 10rem;
+    width: 10rem;
   }
 }
 
 .container {
   text-align: center;
-  justify-content: center
+  justify-content: center;
 }
-.container-input{
+.container-input {
   width: 70%;
-margin: auto;
+  margin: auto;
 }
 .p-float-label {
   margin: 25px 0px;
@@ -47,12 +53,15 @@ margin: auto;
   &-text {
     color: $error;
   }
+  &:focus {
+    color: $error;
+  }
 }
 
 @media screen and (max-width: 720px) {
   .main {
     margin: auto;
-  width:100%;
+    width: 100%;
 
     .card-profile-image {
       margin: auto;

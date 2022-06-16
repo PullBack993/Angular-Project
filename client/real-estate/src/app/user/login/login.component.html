@@ -4,12 +4,12 @@
     <header class="login-page">
         <article>
             <a class="login-page-login" >
-                Вход
+                Anmelden
             </a>
         </article>
         <article>
             <a class="login-page-register-btn" routerLink="/auth/register">
-                Регистрация
+                Registrieren
             </a>
         </article>
     </header>
@@ -24,18 +24,19 @@
                     [class.invalid]="checkTouch('email', loginFormGroup)">
 
                 <label for="float-input" class="ng-invalid ng-dirty"
-                    [class.invalid-err]="checkTouch('email', loginFormGroup)">Имейл
+                    [class.invalid-err]="checkTouch('email', loginFormGroup)">E-Mail
                 </label>
 
                 <ng-container *ngIf="checkTouch('email', loginFormGroup)">
                  
                     <p *ngIf="loginFormGroup.get('email')?.errors?.['required']">
-                        <p-message [style]="{ 'margin-top': '10px'}" severity="error"
-                            text="Имейл полето е задължително" styleClass="mr-2"></p-message>
+                        <p-message [style]="{ 'margin-top': '10px','max-width': '305px'}" severity="error" 
+                            text="E-Mail-Feld ist erforderlich" styleClass="mr-2"></p-message>
                     </p>
                     <p *ngIf="loginFormGroup.get('email')?.errors?.['email']">
-                        <p-message [style]="{ 'margin-top': '10px'}" severity="error"
-                            text="Моля въведете валиден имейл" styleClass="mr-2"></p-message>
+                        <p-message [style]="{ 'margin-top': '10px','max-width': '305px'}" severity="error"
+                            text="Bitte geben Sie eine gültige Email-Adresse ein" styleClass="mr-2">
+                        </p-message>
                     </p>
                 </ng-container>
 
@@ -46,19 +47,19 @@
                     [class.invalid]="checkTouch('password', loginFormGroup)">
 
                 <label for="float-input" class="ng-dirty ng-invalid"
-                    [class.invalid-err]="checkTouch('password', loginFormGroup)">Парола
+                    [class.invalid-err]="checkTouch('password', loginFormGroup)">Passwort
                 </label>
 
                 <ng-container *ngIf="checkTouch('password', loginFormGroup)" class="invalid invalid-a">
 
                     <p *ngIf="loginFormGroup.get('password')?.errors?.['required']">
                         <p-message [style]="{ 'margin-top': '10px'}" severity="error"
-                            text="Паролата е задължителна" styleClass="mr-2"></p-message>
+                            text="Passwort ist erforderlich" styleClass="mr-2"></p-message>
                     </p>
 
                     <p *ngIf="loginFormGroup.get('password')?.errors?.['minlength']">
-                        <p-message [style]="{ 'margin-top': '10px'}" severity="error"
-                            text="Паролата трябва да бъде най-малко 4 символа" styleClass="mr-2"></p-message>
+                        <p-message [style]="{ 'margin-top': '10px','max-width': '305px'}" severity="error"
+                            text="Das Passwort muss mindestens 4 Zeichen lang sein" styleClass="mr-2"></p-message>
                     </p>
 
                 </ng-container>
@@ -66,7 +67,7 @@
 
             <p-button (click)="onLogin()" type="submit" id="submit-btn" [styleClass]="'submit-btn'"  [disabled]="loginFormGroup.invalid || loading"  [style]="{'margin-top': '10px'}"
             
-                label="Вход"> </p-button>
+                label="Anmelden"> </p-button>
         </div>
             <p-progressSpinner *ngIf="loading"></p-progressSpinner>
     </form>

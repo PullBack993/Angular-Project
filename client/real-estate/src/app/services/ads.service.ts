@@ -43,7 +43,7 @@ export class AdsService {
   editAd(files: {}, id: string) {
     return this.http.put(BACKEND_URL + `/edit/${id}`, files).subscribe({
       next: () => {
-         this.messageService.notifyForMessage({ text: `Успешно редактирана обява!`, type: MessageType.success });
+         this.messageService.notifyForMessage({ text: `Anzeige erfolgreich bearbeitet!`, type: MessageType.success });
         this.router.navigate(['/properties']);
       },
       error: () => {
@@ -56,7 +56,7 @@ export class AdsService {
     this.http.delete(BACKEND_URL + `/delete/${id}`).subscribe({
       next: () => {
         this.router.navigate(['/properties']);
-         this.messageService.notifyForMessage({ text: `Успешно изтрита обява!`, type: MessageType.success });
+         this.messageService.notifyForMessage({ text: `Anzeige erfolgreich gelöscht!`, type: MessageType.success });
       }
     });
   }

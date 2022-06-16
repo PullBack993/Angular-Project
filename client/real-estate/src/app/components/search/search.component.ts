@@ -13,11 +13,11 @@ import { AdsService } from 'src/app/services/ads.service';
 export class SearchComponent implements OnInit {
   cities!: ICity[];
   type: IAdType[];
-  adType: { adType: string }[] = [{ adType: 'НАЕМИ' }, { adType: 'КУПИ' }];
+  adType: { adType: string }[] = [{ adType: 'Miete' }, { adType: 'Kauf' }];
 
   form: FormGroup = this.fb.group({
     location: new FormControl(),
-    adType: new FormControl('НАЕМИ'),
+    adType: new FormControl('Miete'),
     estateType: new FormControl(),
     price: new FormControl(),
     area: new FormControl()
@@ -28,11 +28,10 @@ export class SearchComponent implements OnInit {
     this.type = estateTypes;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSearch() {
-    const estateType = this.form?.value?.adType == 'НАЕМИ' ? 'rent' : 'sell';
+    const estateType = this.form?.value?.adType == 'Miete' ? 'rent' : 'sell';
     const body = {
       location: this.form.value?.location?.name,
       adType: estateType,

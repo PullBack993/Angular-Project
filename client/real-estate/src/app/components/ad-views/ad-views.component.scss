@@ -1,18 +1,18 @@
 @import '../../../style/colors';
+@import '../../../style/animations';
 
 .main-container {
   display: flex;
   max-height: 340px;
   margin: 2rem 0;
-  // margin-top: 20px;
   cursor: pointer;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   transform: scale(0.99);
   overflow: hidden;
   &:hover {
-  overflow: hidden;
+    overflow: hidden;
 
-    transform: scale(1.0);
+    transform: scale(1);
     transition: all 0.4s ease;
   }
 
@@ -116,6 +116,12 @@
   background-color: $whiteBrown;
   overflow-x: hidden;
   opacity: 0.3;
+}
+
+.not-found {
+  font-size: 2rem;
+  margin-top: 2rem;
+  animation: moveTopBotom 1s ease-in
 }
 
 @media screen and (max-width: 980px) {
