@@ -80,7 +80,7 @@ export class AddAdComponent implements OnInit {
     }
     this.addFormGroup.patchValue({ image: this.uploadedFiles });
     this.addFormGroup.get('image')?.updateValueAndValidity();
-    this.messageService.add({ severity: 'Информация', summary: 'Успешно качен фаил', detail: '' });
+    this.messageService.add({ severity: 'Information', summary: 'Datei erfolgreich hochgeladen', detail: '' });
   }
 
   ngOnInit(): void {}

@@ -61,12 +61,12 @@ export class DetailsViewComponent implements OnInit {
   confirm(event: Event) {
     this.confirmationService.confirm({
       target: event.target as HTMLInputElement,
-      message: 'Сигурен ли си че искаш да изтриеш публикацията?',
+      message: 'Möchten Sie den Beitrag wirklich löschen?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.activatedRoute.params.subscribe(({ id }) => {
-           this.adsService.deleteById(id);
-         });
+          this.adsService.deleteById(id);
+        });
       },
       reject: () => {
         //reject action
