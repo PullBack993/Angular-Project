@@ -17,7 +17,7 @@
   text-align: center;
   font-size: 41px;
   margin: 0px;
-  margin-top: 10px;
+  padding-top: 10px;
   color: $letterSubmenuColor;
   &-add-item {
     position: relative;
@@ -111,6 +111,9 @@
     margin-top: 0px;
     font-size: 1.5rem;
     padding-top: 0.5em;
+      &-add-item::after {
+    top: 1.5rem;
+  }
   }
   .projects-name {
     font-size: 25px;

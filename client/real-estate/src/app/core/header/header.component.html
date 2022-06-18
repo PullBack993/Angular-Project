@@ -8,8 +8,9 @@
 
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Suchen
-                        <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
-                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                        <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+                        <!-- <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon> -->
+                        <!-- <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon> -->
                     </div>
 
                     <ul class="navbar-submenu">
@@ -38,8 +39,8 @@
 
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Verkaufen
-                        <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
-                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                                            <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+
                     </div>
                     <ul class="navbar-submenu">
                         <a routerLink="create/ad" id="create">
@@ -55,8 +56,10 @@
 
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Vermieten
-                        <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
-                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                        <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+
+                        <!-- <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon> -->
                     </div>
 
                     <ul class="navbar-submenu">
@@ -72,8 +75,10 @@
 
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Finanzieren
-                        <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
-                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon>
+                        <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+
+                        <!-- <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
+                        <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon> -->
 
                     </div>
                     <ul class="navbar-submenu">
@@ -87,23 +92,29 @@
                 </li>
             </ul>
             <ul class="navbar-links">
-                <li class="addAd navbar-dropdown" routerLink="create/ad" id="create">
-                    <a>
-                        <div class="navbar-dropdown-text">Inserat erstellen</div>
+                <li class="add-ad navbar-dropdown" routerLink="create/ad" id="create">
+                    <a class="login-side">
+                        <div class="login-side-container">
+                            <mat-icon class="navbar-dropdown-icon">library_add</mat-icon>Inserat erstellen</div>
+                    </a>
+
+                </li>
+
+                <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" id="isNotUser" routerLink="/auth/login">
+                    <a class="login-side">
+                        <div class="login-side-container">
+                            <mat-icon class="navbar-dropdown-icon">person_outline</mat-icon>
+                            Anmelden
+                        </div>
                     </a>
                 </li>
 
-                <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" id="isNotUser" routerLink="/auth/login"
-                    id="login">
-                    <a>
-                        <div class="navbar-dropdown-text">Anmelden</div>
-                    </a>
-                </li>
                 <li *ngIf="userIsAuthenticated" class="navbar-dropdown" id="isUser" routerLink="/auth/profile">
                     <a>
                         <div class="navbar-dropdown-text">Mein Konto</div>
                     </a>
                 </li>
+
                 <li *ngIf="userIsAuthenticated" (click)="onLogout()" id="logout-btn" class="navbar-dropdown logout-btn">
                     <button class="logout-btn">
                         <div class="navbar-dropdown-text">Abmelden</div>
@@ -227,7 +238,10 @@
                 <li *ngIf="!userIsAuthenticated " class="navbar-dropdown" (click)="sidebar.close()"
                     routerLink="/auth/login">
                     <a>
-                        <div (click)="sidebar.close()" class="navbar-dropdown-text">Anmelden</div>
+                        <div (click)="sidebar.close()" class="navbar-dropdown-text">
+                            <mat-icon class="navbar-dropdown-icon">person_outline</mat-icon>
+                            Anmelden
+                        </div>
                     </a>
                 </li>
 

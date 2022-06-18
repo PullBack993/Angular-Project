@@ -20,9 +20,10 @@ header {
   }
   .navbar {
     &-links {
-      display: flex;
+      display: inline-flex;
       padding: 0;
       margin: 0;
+      align-items: baseline;
       list-style: none;
       li {
         display: inline;
@@ -42,7 +43,6 @@ header {
       img {
         width: 60px;
         border-radius: 13px;
-        margin-top: 10px;
       }
     }
 
@@ -53,6 +53,7 @@ header {
       padding: 14px 16px;
       cursor: pointer;
       background-color: inherit;
+
       & > button {
         border: none;
         background-color: white;
@@ -61,28 +62,40 @@ header {
         font-size: 16px;
         color: black;
       }
+      &-icon {
+        transform: translateY(5px);
+      }
 
       &:hover div {
-        margin-top: 3px;
+        margin-top: auto;
         border-bottom: 2px solid $main;
-        display: inline;
+        padding-top: 1px;
+      }
+      &:hover .navbar-down {
+        transform: rotate(180deg);
+        transition: transform 0.3s ease-in-out;
+        padding-top: 1px;
       }
 
       &:hover ul {
         display: block;
       }
+
+      .login-side {
+        display: inline;
+      }
     }
 
-    &-up {
-      display: none;
-    }
+    // &-up {
+    //   display: none;
+    // }
 
-    &-text:hover .navbar-up {
-      display: inline;
-    }
-    &-text:hover .navbar-down {
-      display: none;
-    }
+    // &-text:hover .navbar-up {
+    //   display: inline;
+    // }
+    // &-text:hover .navbar-down {
+    //   display: none;
+    // }
     &-submenu {
       display: none;
       position: absolute;
@@ -127,7 +140,7 @@ header {
   .navbar-dropdown {
     padding: 14px 12px !important;
   }
-  .addAd {
+  .add-ad {
     display: none !important;
   }
 }
@@ -184,7 +197,7 @@ header {
     height: 65px !important;
     margin: 0;
     &-links {
-      display: flex;
+      display: flex !important;
       flex-direction: column;
       padding: 0;
       margin: 0;
@@ -253,22 +266,18 @@ header {
         border-bottom: 2px solid $main;
         display: inline;
       }
-
-      &:hover ul {
-        display: block;
-      }
     }
 
-    &-up {
-      display: none;
-    }
+    // &-up {
+    //   display: none;
+    // }
 
-    &-text:hover .navbar-up {
-      display: inline;
-    }
-    &-text:hover .navbar-down {
-      display: none;
-    }
+    // &-text:hover .navbar-up {
+    //   display: inline;
+    // }
+    // &-text:hover .navbar-down {
+    //   display: none;
+    // }
 
     &-submenu {
       display: none;
