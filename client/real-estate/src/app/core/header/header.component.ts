@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, AfterViewInit, ViewChild, OnChanges } from '@angular/core';
-import { faEnvelope, faCaretDown, faCaretUp, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faCaretDown, faCaretUp, faBars, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { MessageService, MessageType } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/user.service';
@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit, OnDestroy, AfterViewInit, OnChan
     faEnvelope,
     faCaretDown,
     faCaretUp,
-    faBars
+    faBars,
+    faSignOutAlt,
   };
 
   defaultImg: string = '../../../assets/images/profileImg.png';

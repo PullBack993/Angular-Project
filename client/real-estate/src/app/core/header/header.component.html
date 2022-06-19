@@ -8,9 +8,12 @@
 
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Suchen
-                        <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
-                        <!-- <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon> -->
-                        <!-- <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon> -->
+                        <div class="icon-container">
+
+                            <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+                            <!-- <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon> -->
+                            <!-- <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon> -->
+                        </div>
                     </div>
 
                     <ul class="navbar-submenu">
@@ -39,7 +42,11 @@
 
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Verkaufen
-                                            <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+                        <div class="icon-container">
+
+                            <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+                        </div>
+
 
                     </div>
                     <ul class="navbar-submenu">
@@ -56,7 +63,10 @@
 
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Vermieten
-                        <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+                        <div class="icon-container">
+
+                            <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+                        </div>
 
                         <!-- <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
                         <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon> -->
@@ -75,8 +85,9 @@
 
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Finanzieren
-                        <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
-
+                        <div class="icon-container">
+                            <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
+                        </div>
                         <!-- <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon>
                         <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon> -->
 
@@ -94,15 +105,16 @@
             <ul class="navbar-links">
                 <li class="add-ad navbar-dropdown" routerLink="create/ad" id="create">
                     <a class="login-side">
-                        <div class="login-side-container">
-                            <mat-icon class="navbar-dropdown-icon">library_add</mat-icon>Inserat erstellen</div>
+                        <div class="login-side-container ">
+                            <mat-icon class="navbar-dropdown-icon">library_add</mat-icon>Inserat erstellen
+                        </div>
                     </a>
 
                 </li>
 
                 <li *ngIf="!userIsAuthenticated" class="navbar-dropdown" id="isNotUser" routerLink="/auth/login">
                     <a class="login-side">
-                        <div class="login-side-container">
+                        <div class="login-side-container ">
                             <mat-icon class="navbar-dropdown-icon">person_outline</mat-icon>
                             Anmelden
                         </div>
@@ -110,14 +122,22 @@
                 </li>
 
                 <li *ngIf="userIsAuthenticated" class="navbar-dropdown" id="isUser" routerLink="/auth/profile">
-                    <a>
-                        <div class="navbar-dropdown-text">Mein Konto</div>
+                    <a class="login-side">
+                        <div class="login-side-container ">
+                            <mat-icon class="navbar-dropdown-icon">person_outline</mat-icon>Mein Konto
+                        </div>
                     </a>
                 </li>
 
                 <li *ngIf="userIsAuthenticated" (click)="onLogout()" id="logout-btn" class="navbar-dropdown logout-btn">
                     <button class="logout-btn">
-                        <div class="navbar-dropdown-text">Abmelden</div>
+                        <div class="navbar-dropdown-text" style="display: inline-flex">
+                            <div class="login-side-container " >
+                        <fa-icon class="navbar-dropdown-icon" [icon]="icons.faSignOutAlt"></fa-icon>
+                                
+                                <!-- <i class="fas fa-sign-out-alt  navbar-dropdown-icon"></i> -->
+                            </div>
+                            </div>
                     </button>
                 </li>
             </ul>

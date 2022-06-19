@@ -1,4 +1,5 @@
 @import '../../../style/colors';
+@import '../../../style/animations';
 
 header {
   .mat-drawer-container {
@@ -53,6 +54,18 @@ header {
       padding: 14px 16px;
       cursor: pointer;
       background-color: inherit;
+           &:after  {
+           display: block;
+          content: '';
+          margin-top: auto;
+          padding-top: 1px;
+          border-bottom: solid 2px $main;
+          transform: scaleX(0);
+          transition: transform 0.3s ease-in-out;
+        }
+          &:hover:after  {
+            transform: scaleX(1);
+          }
 
       & > button {
         border: none;
@@ -61,41 +74,42 @@ header {
       &-text {
         font-size: 16px;
         color: black;
+        
+           
       }
+
+      .icon-container {
+        display: inline;
+        position: relative;
+        top: 6px;
+        border-bottom: none;
+      }
+
       &-icon {
         transform: translateY(5px);
       }
 
-      &:hover div {
-        margin-top: auto;
-        border-bottom: 2px solid $main;
-        padding-top: 1px;
-      }
       &:hover .navbar-down {
         transform: rotate(180deg);
         transition: transform 0.3s ease-in-out;
-        padding-top: 1px;
+        padding-top: 1px;  
       }
-
+     
+      
       &:hover ul {
         display: block;
       }
 
       .login-side {
         display: inline;
+        &:hover .login-side-container {
+          margin-top: auto;
+          border-bottom: 2px solid $main;
+          padding-top: 1px;
+        }
       }
     }
 
-    // &-up {
-    //   display: none;
-    // }
-
-    // &-text:hover .navbar-up {
-    //   display: inline;
-    // }
-    // &-text:hover .navbar-down {
-    //   display: none;
-    // }
     &-submenu {
       display: none;
       position: absolute;
@@ -226,12 +240,11 @@ header {
           margin-top: 0.5rem;
           color: $letterColor;
         }
-        a {
-          text-decoration: none;
-
-          color: $letterColor;
-          width: 100%;
-        }
+        // a {
+        //   text-decoration: none;
+        //   color: $letterColor;
+        //   width: 100%;
+        // }
       }
     }
 
@@ -267,17 +280,6 @@ header {
         display: inline;
       }
     }
-
-    // &-up {
-    //   display: none;
-    // }
-
-    // &-text:hover .navbar-up {
-    //   display: inline;
-    // }
-    // &-text:hover .navbar-down {
-    //   display: none;
-    // }
 
     &-submenu {
       display: none;
