@@ -54,18 +54,19 @@ header {
       padding: 14px 16px;
       cursor: pointer;
       background-color: inherit;
-           &:after  {
-           display: block;
-          content: '';
-          margin-top: auto;
-          padding-top: 1px;
-          border-bottom: solid 2px $main;
-          transform: scaleX(0);
-          transition: transform 0.3s ease-in-out;
-        }
-          &:hover:after  {
-            transform: scaleX(1);
-          }
+
+      &:after {
+        display: block;
+        content: '';
+        margin-top: auto;
+        padding-top: 1px;
+        border-bottom: solid 2px $main;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+      }
+      &:hover:after {
+        transform: scaleX(1);
+      }
 
       & > button {
         border: none;
@@ -74,8 +75,6 @@ header {
       &-text {
         font-size: 16px;
         color: black;
-        
-           
       }
 
       .icon-container {
@@ -83,30 +82,27 @@ header {
         position: relative;
         top: 6px;
         border-bottom: none;
+        transition: all 0.9s;
       }
 
       &-icon {
         transform: translateY(5px);
       }
 
+      .navbar-down {
+        transition: all 0.5s ease-in-out;
+      }
       &:hover .navbar-down {
         transform: rotate(180deg);
-        transition: transform 0.3s ease-in-out;
-        padding-top: 1px;  
+        padding-top: 1px;
       }
-     
-      
+
       &:hover ul {
         display: block;
       }
 
       .login-side {
         display: inline;
-        &:hover .login-side-container {
-          margin-top: auto;
-          border-bottom: 2px solid $main;
-          padding-top: 1px;
-        }
       }
     }
 
