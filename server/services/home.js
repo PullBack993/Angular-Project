@@ -27,7 +27,16 @@ async function getAll(limit) {
   data.total_results = count;
   return data;
 }
+async function rent(limit) {
+  let data = await Home.find({ adType: "rent" }).limit(limit)
+  const count = await Home.find({ adType: "rent" }).count();
 
+   data.total_pages = Math.ceil(count / 10);
+   data.total_results = count;
+
+   return data
+  
+}
 async function getNewProjects(limit) {
   let data = await Home.find({ isNewProject: true })
     .sort({ date: -1 })
@@ -113,4 +122,5 @@ module.exports = {
   getAll,
   getNewProjects,
   getRetailOutlet,
+  rent,
 };

@@ -11,8 +11,7 @@
                         <div class="icon-container">
 
                             <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
-                            <!-- <fa-icon class="navbar-down" [icon]="icons.faCaretDown"></fa-icon> -->
-                            <!-- <fa-icon class="navbar-up" [icon]="icons.faCaretUp"></fa-icon> -->
+                           
                         </div>
                     </div>
 
@@ -31,6 +30,7 @@
                             </li>
                         </a>
 
+                       
                         <a routerLink="retail-outlet" id="retail-outlet">
                             <li>
                                 Gewerbe
@@ -63,6 +63,7 @@
 
                 <li class="navbar-dropdown">
                     <div class="navbar-dropdown-text">Vermieten
+
                         <div class="icon-container">
 
                             <mat-icon class="navbar-down">keyboard_arrow_down</mat-icon>
@@ -79,6 +80,8 @@
                                 <p class="navbar-text-holder">Finde passende Mieter</p>
                             </li>
                         </a>
+
+                      
 
                     </ul>
                 </li>
@@ -185,6 +188,14 @@
                                 </li>
                             </a>
 
+                            <a routerLink="rent" id="rent" (click)="sidebar.close()">
+                                <li class="navbar-title">
+                                    Mieten
+                                    <p class="navbar-text-holder">Finde dein neue Mietwohnung</p>
+                                </li>
+                            </a>
+
+
                             <a routerLink="new-projects" (click)="sidebar.close()">
                                 <li>
                                     Neubauprojekte
@@ -229,6 +240,8 @@
                                     <p class="navbar-text-holder">Finde passende Mieter</p>
                                 </li>
                             </a>
+
+                            
                         </ul>
 
 

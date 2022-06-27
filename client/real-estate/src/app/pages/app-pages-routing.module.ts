@@ -16,10 +16,7 @@ export const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent
   },
-  {
-    path: 'properties',
-    component: PropertyComponent
-  },
+
   {
     path: 'search',
     component: SearchAdsComponent
@@ -34,14 +31,7 @@ export const routes: Routes = [
     path: 'details/:id',
     component: DetailsComponent
   },
-  {
-    path: 'new-projects',
-    component: PropertyComponent
-  },
-  {
-    path: 'retail-outlet',
-    component: PropertyComponent
-  },
+ 
   {
     path: 'create/ad',
     component: CreateAdComponent,
@@ -51,7 +41,25 @@ export const routes: Routes = [
   {
     path: 'calculator',
     component: CalculatorComponent
-  }
+  },
+
+  //Properties views
+   {
+    path: 'properties',
+    component: PropertyComponent
+  },
+  {
+    path: 'rent',
+    component: PropertyComponent
+  },
+  {
+    path: 'new-projects',
+    component: PropertyComponent
+  },
+  {
+    path: 'retail-outlet',
+    component: PropertyComponent
+  },
 ];
 
 @NgModule({
