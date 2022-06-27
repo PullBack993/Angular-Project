@@ -2,17 +2,17 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 
-import { AddAdComponent } from './add-ad.component';
+import { CreateAdComponent } from './create-ad.component';
 import { AdsService } from '../../services/ads.service';
 
 describe('Test form controller', () => {
-  let component: AddAdComponent;
+  let component: CreateAdComponent;
   let messageService: MessageService;
   let createService: AdsService;
   let router: Router;
 
   beforeEach(() => {
-    component = new AddAdComponent(new FormBuilder(), messageService, createService, router);
+    component = new CreateAdComponent(new FormBuilder(), messageService, createService, router);
   });
 
   it('should test form controller(validity)', () => {

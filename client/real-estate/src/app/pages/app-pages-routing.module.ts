@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../user/auth.guard';
-import { AddAdComponent } from './add-ad/add-ad.component';
+import { CreateAdComponent } from './create-ad/create-ad.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
@@ -44,10 +44,10 @@ export const routes: Routes = [
   },
   {
     path: 'create/ad',
-    component: AddAdComponent,
+    component: CreateAdComponent,
     canActivate: [AuthGuard]
   },
-  
+
   {
     path: 'calculator',
     component: CalculatorComponent

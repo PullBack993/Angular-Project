@@ -4,7 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { PropertyComponent } from './property/property.component';
 import { HomeComponent } from './home/home.component';
-import { AddAdComponent } from './add-ad/add-ad.component';
+import { CreateAdComponent } from './create-ad/create-ad.component';
 
 import { CalculatorComponent } from './calculator/calculator.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -24,7 +24,7 @@ import { SharedModule } from '../shared/shared.module'
 @NgModule({
   declarations: [
     PropertyComponent,
-    AddAdComponent,
+    CreateAdComponent,
     CalculatorComponent,
     HomeComponent,
     EditComponent,

@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-add-ad',
-  templateUrl: './add-ad.component.html',
-  styleUrls: ['./add-ad.component.scss'],
+  selector: 'app-create-ad',
+  templateUrl: './create-ad.component.html',
+  styleUrls: ['./create-ad.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AddAdComponent implements OnInit {
+export class CreateAdComponent implements OnInit {
   tags: ITags[];
   cities!: ICity[];
   region!: ICity[];

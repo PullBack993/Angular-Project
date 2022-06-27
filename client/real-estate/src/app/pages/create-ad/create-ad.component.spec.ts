@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddAdComponent } from './add-ad.component';
+import { AddAdComponent } from './create-ad.component';
 
 describe('AddAdComponent', () => {
   let component: AddAdComponent;
