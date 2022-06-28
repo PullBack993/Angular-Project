@@ -35,7 +35,6 @@ router.post("/search", async (req, res) => {
       }
       return accObj;
     }, {});
-    console.log(query)
 
     const data = await search(query);
     res.status(200).send({ message: "success", data });

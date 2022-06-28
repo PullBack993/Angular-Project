@@ -39,11 +39,14 @@ header {
     }
 
     &-logo {
-      display: block;
+      padding-right: 3rem;
       cursor: pointer;
+      list-style: none;
       img {
         width: 60px;
         border-radius: 13px;
+        position: absolute;
+        top: 0.9rem;
       }
     }
 
@@ -213,6 +216,7 @@ header {
       margin: 0;
       margin-top: 0.7rem;
       list-style: none;
+      position: relative;
       .logout-btn {
         padding: 0px;
         background-color: inherit;
@@ -236,21 +240,14 @@ header {
           margin-top: 0.5rem;
           color: $letterColor;
         }
-        // a {
-        //   text-decoration: none;
-        //   color: $letterColor;
-        //   width: 100%;
-        // }
       }
     }
 
     &-logo {
+      top: 0.5rem;
       cursor: pointer;
-      img {
-        width: 60px;
-        border-radius: 13px;
-        margin-top: 10px;
-      }
+      width: 60px;
+      border-radius: 13px;
     }
 
     &-dropdown {
@@ -270,11 +267,6 @@ header {
         color: white !important;
       }
 
-      &:hover div {
-        margin-top: 3px;
-        border-bottom: 2px solid $main;
-        display: inline;
-      }
     }
 
     &-submenu {
@@ -317,5 +309,8 @@ header {
     background: #25314e;
     width: 60%;
     height: 100%;
+  }
+  .logo{
+     top: 0.5rem!important;
   }
 }

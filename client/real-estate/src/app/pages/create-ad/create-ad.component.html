@@ -209,7 +209,7 @@
         </div>
         <p-progressSpinner *ngIf="loading"></p-progressSpinner>
         <div class="submit-container">
-        <p-button [styleClass]="'submit'" [disabled]="addFormGroup.invalid || loading" label="Veröffentlichen" type="submit"></p-button>
+        <p-button [styleClass]="'submit'" id="submit-btn" [disabled]="addFormGroup.invalid || loading" label="Veröffentlichen" type="submit"></p-button>
         </div>
     </form>
 </div>
