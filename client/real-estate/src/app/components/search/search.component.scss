@@ -30,6 +30,10 @@
   .search {
     display: flex;
     margin: 15px;
+    
+      .p-element {
+        width: 100%;
+      }
     p-inputNumber {
       width: 100%;
     }
@@ -41,10 +45,11 @@
       text-align: center;
     }
     .button {
-      width: 100%;
+      width: 100% ;
       transition: all .2s;
-      
+     
     }
+   
     .button:hover{
       transform: translateY(-2px);
       box-shadow: 0 10px 20px rgba(0,0,0,.2)
@@ -96,6 +101,8 @@
     width: 100% !important ;
     .btn {
       margin-left: 0px !important;
+      
+
     }
   }
 }
