@@ -305,7 +305,7 @@
 </header>
 <ng-container *ngIf="!!errorMessage">
     <p-message *ngIf="isErrorType" id='non-err-type' severity="error" text="{{errorMessage}}"
-        [style]="{'position': 'absolute', 'margin-left':'80%'}"></p-message>
+        [style]="{'position': 'absolute', 'left':'70%','z-index': '100', 'margin-right': '20px'}"></p-message>
     <p-message *ngIf="!isErrorType" id='err-type' severity="success" text="{{errorMessage}}"
-        [style]="{'position': 'absolute', 'margin-left':'80%'}"></p-message>
+        [style]="{'position': 'absolute', 'left':'70%' , 'z-index': '100', 'margin-right': '20px'}"></p-message>
 </ng-container>
