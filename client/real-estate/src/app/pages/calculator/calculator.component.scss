@@ -1,0 +1,25 @@
+@import '../../../style/colors';
+
+.calculator {
+  width: 90%;
+  display: flex;
+  border: solid 1px black;
+  margin: 2rem;
+  &-side-left {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    background-color: $darkBgColor;
+    .loan-months .loan-amount input {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      height: 2.5rem;
+    }
+    .loan-amount {
+      margin-top: 2rem;
+    }
+  }
+  &-side-right {
+    width: 50%;
+  }
+}
