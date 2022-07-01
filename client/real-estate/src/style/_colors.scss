@@ -8,10 +8,15 @@ $attend: #dc637f;
 $error: #e24c4c;
 
 $bgColor: #fafafa;
-$whiteBgColor: rgb(176, 182, 196, 0.05);
-$darkBgColor: #f3f4f8;
+$whiteBgColor:#f3f4f8; 
+
+$grayBgColorOpen: rgba(176, 182, 196, 0.187);
+$grayBgColorMiddle: rgba(100, 100, 100, 0.42);
+$grayBgColorDark: rgba(176, 182, 196, 0.767);
+
 
 $letterColor: rgb(53, 49, 49);
+$letterColorBlack: rgb(0, 0, 0);
 
 $white: #fff;
 $bgSubmenueColor: #56e2e2;

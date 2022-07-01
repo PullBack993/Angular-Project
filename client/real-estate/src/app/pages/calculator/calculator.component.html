@@ -4,6 +4,7 @@
 
             <div class="amount">
                 <div class="field-name">Kaufpreis / Kreditbetrag</div>
+
                 <span class="euro-symbol">&euro;</span>
                 <input class="loan-amount" type="number" name="Kaufpreis" pattern="[0-9]+">
             </div>
@@ -21,13 +22,14 @@
             </div>
 
             <div class="rate">
-                <div class="field-name">Zinsen</div>
+                <div class="field-name percentage" data-format="%">Zinsen</div>
                 <input type="number" class="loan-rate">
             </div>
 
             <div class="own">
                 <div class="field-name">Eigenmittel</div>
                 <input type="number" class="own-part">
+                <button class="calc-btn">Jetzt berechnen</button>
             </div>
         </div>
     </div>
@@ -35,7 +37,47 @@
     <div class="calculator-side-right">
         <div class="monthly">
             <span class="monthly-title">Kreditrate monatlich</span>
-            <div class="monthly-pay" data-format=&euro;>1233</div>
+            <div class="monthly-pay" data-format=&euro;>93.22</div>
         </div>
+
+        <div class="paid">
+            <span class="paid-total">Kreditbetrag</span>
+            <span class="paid-amount">&euro;5.000</span>
+        </div>
+
+        <div class="paid-rate">
+            <span class="paid-total">Gezahlte Zinsen insgesamt</span>
+            <span class="paid-amount">&euro;592.91</span>
+        </div>
+
+        <div class="more-coast">
+            <h5 class="more-coast-title">Kaufnebenkosten</h5>
+            <div class="tax">+ Grunderwerbsteuer (3,5%)
+                <div clasa="coast">7.000 €</div>
+            </div>
+            <div class="tax">+ Errichtung des Kaufvertrags (2%)
+                <div clasa="coast">4.000 €</div>
+            </div>
+            <div class="tax">+ Eintrag Eigentumsrecht (1,1%)
+
+                <div clasa="coast">2.200 €</div>
+            </div>
+            <div class="tax">+ Hypothek Eintrag (1,2%)
+                <div clasa="coast">2.400 €</div>
+            </div>
+            <div class="tax end-tax">+ Maklergebühren (3,6%)
+
+                <div clasa="coast">7.200 €</div>
+            </div>
+
+
+        </div>
+        <div class="total">
+            <div class="total-percentage">≈ 11.4% &#9432;
+                <span class="total-percentage-info">Es handelt sich dabei um Schätzwerte, deine finalen Kaufnebenkosten können davon abweichen.</span>
+            </div>
+            <div class="total-addition"> 11.400&euro;</div>
+        </div>
+
     </div>
 </div>
