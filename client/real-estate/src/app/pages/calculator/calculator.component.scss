@@ -1,25 +1,107 @@
 @import '../../../style/colors';
 
 .calculator {
-  width: 90%;
+  width: 75%;
   display: flex;
-  border: solid 1px black;
-  margin: 2rem;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: solid 1px $whiteBrown;
+  border-radius: 2px;
+
   &-side-left {
     display: flex;
     width: 50%;
     flex-direction: column;
     background-color: $darkBgColor;
-    .loan-months .loan-amount input {
-      -webkit-appearance: none;
-      -moz-appearance: textfield;
-      height: 2.5rem;
-    }
-    .loan-amount {
-      margin-top: 2rem;
+    position: relative;
+    &-container {
+      .amount,
+      .months,
+      .rate,
+      .own,
+      .years {
+        margin: 1rem;
+        .field-name {
+          font-weight: 600;
+          font-size: 0.9rem;
+          margin-bottom: 5px;
+        }
+        .euro-symbol {
+          position: absolute;
+          margin-top: 0.55rem;
+          margin-left: 0.5rem;
+          font-size: 1.1rem;
+        }
+      }
+
+      .amount {
+        margin-top: 1rem;
+        .loan-amount {
+          padding-left: 1.4rem;
+        }
+      }
+      .own {
+        margin-bottom: 1rem;
+      }
+      .months {
+        margin-bottom: 0.4rem;
+        & .loan-months {
+          margin: 0;
+        }
+      }
+
+      .years {
+        margin-top: 0.4rem;
+      }
+      .additional-info {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-left: 1rem;
+        color: $attend;
+      }
+
+      .loan-months,
+      .loan-amount,
+      .loan-rate,
+      .loan-years,
+      .own-part {
+        width: 100%;
+        border: 1px solid $whiteBrown;
+        border-radius: 4px;
+        height: 2.9rem;
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+
+        &:focus {
+          outline: none !important;
+          border: 1px solid $whiteBlue;
+          box-shadow: 0 0 10px $whiteBrown;
+          background-color: $whiteBgColor;
+        }
+      }
     }
   }
+
   &-side-right {
     width: 50%;
+  }
+  .monthly {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    &-title {
+      margin: 1rem;
+    }
+   
+    &-pay {
+      &::before {
+        content: attr(data-format);
+        position: absolute;
+        top: 3.6rem;
+        left: 13.5rem;
+      }
+    }
   }
 }

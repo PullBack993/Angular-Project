@@ -1,20 +1,41 @@
 <div class="calculator">
     <div class="calculator-side-left">
-        <div class="loan-amount">
-            <div>Kaufpreis</div>
-            <input type="number">
-        </div>
+        <div class="calculator-side-left-container">
 
-        <div class="loan-months">
-            <div>Kreditdauer</div>
-            <input type="number">
-        </div>
+            <div class="amount">
+                <div class="field-name">Kaufpreis / Kreditbetrag</div>
+                <span class="euro-symbol">&euro;</span>
+                <input class="loan-amount" type="number" name="Kaufpreis" pattern="[0-9]+">
+            </div>
 
-        <div>Zinsen</div>
-        <input type="number" class="rate">
-        <input type="number" class="own-part">
+            <div class="months">
+                <div class="field-name">Kreditdauer / Laufzeit (Monate)</div>
+                <input class="loan-months" type="number">
+            </div>
+
+            <span class="additional-info">Oder</span>
+
+            <div class="years">
+                <div class="field-name">Kreditdauer / Laufzeit (Jahre)</div>
+                <input class="loan-years" type="number">
+            </div>
+
+            <div class="rate">
+                <div class="field-name">Zinsen</div>
+                <input type="number" class="loan-rate">
+            </div>
+
+            <div class="own">
+                <div class="field-name">Eigenmittel</div>
+                <input type="number" class="own-part">
+            </div>
+        </div>
     </div>
-    <div class="calculator-side-right">
 
+    <div class="calculator-side-right">
+        <div class="monthly">
+            <span class="monthly-title">Kreditrate monatlich</span>
+            <div class="monthly-pay" data-format=&euro;>1233</div>
+        </div>
     </div>
 </div>
