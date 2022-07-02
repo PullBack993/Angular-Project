@@ -164,19 +164,23 @@
     &-title {
       text-align: center;
       padding: 1rem;
-        &::after {
-      content: '';
-      border-bottom: 1px solid $grayBgColorMiddle;
-      display: block;
-      margin: 0.5rem 2rem;
-    }
+      &::after {
+        content: '';
+        border-bottom: 1px solid $grayBgColorMiddle;
+        display: block;
+        margin: 0.5rem 2rem;
+      }
     }
     .tax {
       display: flex;
-      justify-content: space-between;
-      margin: 0 5rem;
-    }
-    .end-tax {
+      &-title {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 5rem;
+      }
+      &-coast {
+        margin-left: 3.3rem;
+      }
     }
   }
   .total {
@@ -202,5 +206,19 @@
     &-percentage:hover .total-percentage-info {
       visibility: visible;
     }
+  }
+}
+
+.chart {
+  margin-left: 10rem;
+  circle.buy {
+    stroke-dasharray: var(--buy) 100;
+  }
+  circle.more-coast {
+    stroke-dasharray: var(--coast) 100;
+  }
+
+  circle.current-rate {
+    stroke-dasharray: var(--c) 100;
   }
 }

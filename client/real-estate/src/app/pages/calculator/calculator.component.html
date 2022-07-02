@@ -52,8 +52,13 @@
 
         <div class="more-coast">
             <h5 class="more-coast-title">Kaufnebenkosten</h5>
-            <div class="tax">+ Grunderwerbsteuer (3,5%)
-                <div clasa="coast">7.000 €</div>
+            <div class="tax">
+                <div class="tax-title">+ Grunderwerbsteuer (<div (blur)="onBlur($event)" (keypress)="onKeyPress($event)"
+                        (dblclick)="onDblClick($event)" [attr.contenteditable]="allowEdit">{{propTransferTax}}
+                    </div>%)
+                </div>
+
+                <div class="tax-coast">7.000 €</div>
             </div>
             <div class="tax">+ Errichtung des Kaufvertrags (2%)
                 <div clasa="coast">4.000 €</div>
@@ -74,10 +79,29 @@
         </div>
         <div class="total">
             <div class="total-percentage">≈ 11.4% &#9432;
-                <span class="total-percentage-info">Es handelt sich dabei um Schätzwerte, deine finalen Kaufnebenkosten können davon abweichen.</span>
+                <span class="total-percentage-info">Es handelt sich dabei um Schätzwerte, deine finalen Kaufnebenkosten
+                    können davon abweichen.</span>
             </div>
             <div class="total-addition"> 11.400&euro;</div>
         </div>
 
     </div>
+
+</div>
+
+<div class="chart">
+
+    <svg focusable="false" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" tabindex="-1" width="200"
+        viewBox="0 0 100 100">
+        <circle class="bar buy" style="--buy: 50" cx="50" cy="50" r="40" stroke="#2563eb" stroke-width="10" fill="none"
+            pathLength="100" transform="rotate(-90 50 50)" />
+
+        <circle class="bar more-coast" style="--coast: 25" cx="50" cy="50" r="40" stroke="#f2ca26" stroke-width="10"
+            fill="none" pathLength="100" transform="rotate(90 50 50)" />
+
+        <circle class="bar current-rate" style="--c: 25" cx="50" cy="50" r="40" stroke="#00d9b1" stroke-width="10"
+            fill="none" pathLength="100" transform="rotate(180 50 50)" />
+
+    </svg>
+
 </div>
