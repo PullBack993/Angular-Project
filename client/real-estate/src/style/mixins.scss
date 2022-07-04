@@ -1,0 +1,9 @@
+@mixin chartBall($color){
+  background-color: $color;
+    border-radius: 50%;
+      content: '';
+      margin-right: 5px;
+      width: 0.8rem;
+      height: 0.8rem;
+      display: inline-flex;
+}

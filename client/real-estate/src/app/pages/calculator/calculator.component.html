@@ -36,7 +36,11 @@
 
     <div class="calculator-side-right">
         <div class="monthly">
-            <span class="monthly-title">Kreditrate monatlich</span>
+            <span class="monthly-title">Kreditrate monatlich &#9432;
+                <span class="monthly-title-info">Es handelt sich dabei um Schätzwerte, deine finalen Kaufnebenkosten
+                    können davon abweichen.</span>
+            </span>
+
             <div class="monthly-pay" data-format=&euro;>93.22</div>
         </div>
 
@@ -53,27 +57,70 @@
         <div class="more-coast">
             <h5 class="more-coast-title">Kaufnebenkosten</h5>
             <div class="tax">
-                <div class="tax-title">+ Grunderwerbsteuer (<div (blur)="onBlur($event)" (keypress)="onKeyPress($event)"
-                        (dblclick)="onDblClick($event)" [attr.contenteditable]="allowEdit">{{propTransferTax}}
-                    </div>%)
+                <div class="tax-title">+ Grunderwerbsteuer
+                    (
+                    <div (blur)="onBlur($event)" class="tax-title-editable" name="propTransferTax"
+                        (keypress)="onKeyPress($event)" (dblclick)="onDblClick($event)"
+                        [attr.contenteditable]="allowEdit">{{propTransferTax}}
+                    </div>
+                    %)
                 </div>
-
                 <div class="tax-coast">7.000 €</div>
-            </div>
-            <div class="tax">+ Errichtung des Kaufvertrags (2%)
-                <div clasa="coast">4.000 €</div>
-            </div>
-            <div class="tax">+ Eintrag Eigentumsrecht (1,1%)
 
-                <div clasa="coast">2.200 €</div>
             </div>
-            <div class="tax">+ Hypothek Eintrag (1,2%)
-                <div clasa="coast">2.400 €</div>
-            </div>
-            <div class="tax end-tax">+ Maklergebühren (3,6%)
 
-                <div clasa="coast">7.200 €</div>
+            <div class="tax">
+                <div class="tax-title">+ Errichtung des Kaufvertrags
+                    (
+                    <div (blur)="onBlur($event)" class="tax-title-editable" name="propSale"
+                        (keypress)="onKeyPress($event)" (dblclick)="onDblClick($event)"
+                        [attr.contenteditable]="allowEdit">{{propSale}}
+                    </div>
+                    %)
+                </div>
+                <div class="tax-coast">4.000 €</div>
+
             </div>
+
+
+            <div class="tax">
+                <div class="tax-title">+ Eintrag Eigentumsrecht
+                    (
+                    <div (blur)="onBlur($event)" name="ownershipCoast" class="tax-title-editable"
+                        (keypress)="onKeyPress($event)" (dblclick)="onDblClick($event)"
+                        [attr.contenteditable]="allowEdit">{{ownershipCoast}}
+                    </div>
+                    %)
+                </div>
+                <div class="tax-coast">2.200 €</div>
+
+            </div>
+
+            <div class="tax">
+                <div class="tax-title">+ Hypothek Eintrag
+                    (
+                    <div (blur)="onBlur($event)" name="mortgageEntry" class="tax-title-editable"
+                        (keypress)="onKeyPress($event)" (dblclick)="onDblClick($event)"
+                        [attr.contenteditable]="allowEdit">{{mortgageEntry}}
+                    </div>
+                    %)
+                </div>
+                <div class="tax-coast">2.400 €</div>
+
+            </div>
+
+            <div class="tax">
+                <div class="tax-title">+ Maklergebühren
+                    (
+                    <div (blur)="onBlur($event)" name="brokerFee" class="tax-title-editable"
+                        (keypress)="onKeyPress($event)" (dblclick)="onDblClick($event)"
+                        [attr.contenteditable]="allowEdit">{{brokerFee}}
+                    </div>
+                    %)
+                </div>
+                <div class="tax-coast">7.200 €</div>
+            </div>
+
 
 
         </div>
@@ -99,9 +146,48 @@
         <circle class="bar more-coast" style="--coast: 25" cx="50" cy="50" r="40" stroke="#f2ca26" stroke-width="10"
             fill="none" pathLength="100" transform="rotate(90 50 50)" />
 
-        <circle class="bar current-rate" style="--c: 25" cx="50" cy="50" r="40" stroke="#00d9b1" stroke-width="10"
+        <circle class="bar current-rate" style="--rate: 25" cx="50" cy="50" r="40" stroke="#56e2e2" stroke-width="10"
             fill="none" pathLength="100" transform="rotate(180 50 50)" />
-
     </svg>
+    <div class="chart-info">
+        <div class="chart-info-total-needs">Kreditbedarf
+            <span>
+                239.000 €
+            </span>
+        </div>
+        <li class="chart-info-container">
+            <div class="chart-info-container-buy">
+                <span>
+                    83% Kaufpreis
+                </span>
+            </div>
+            <span>
+                200.000€
+            </span>
+        </li>
 
+        <li class="chart-info-container">
+            <div class="chart-info-container-more-coast">
+                <span>
+                    11.5% Kaufpreis
+                </span>
+            </div>
+            <span>
+                23.000€
+            </span>
+        </li>
+
+        <li class="chart-info-container">
+            <div class="chart-info-container-rate">
+                <span>
+                    8% Kaufpreis
+                </span>
+            </div>
+
+            <span>
+                16.000€
+            </span>
+        </li>
+
+    </div>
 </div>

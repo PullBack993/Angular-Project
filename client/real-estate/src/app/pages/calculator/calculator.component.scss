@@ -1,4 +1,5 @@
 @import '../../../style/colors';
+@import '../../../style/mixins';
 
 .calculator {
   width: 80%;
@@ -120,6 +121,22 @@
     &-title {
       margin: 1rem;
       margin-bottom: 0;
+      &-info {
+        overflow: hidden;
+        visibility: hidden;
+        background-color: #00000091;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        top: 1.5rem;
+      }
+    }
+
+    &-title:hover .monthly-title-info {
+      visibility: visible;
     }
 
     &-pay {
@@ -164,6 +181,7 @@
     &-title {
       text-align: center;
       padding: 1rem;
+
       &::after {
         content: '';
         border-bottom: 1px solid $grayBgColorMiddle;
@@ -173,13 +191,17 @@
     }
     .tax {
       display: flex;
+      justify-content: space-between;
       &-title {
         display: flex;
         justify-content: space-between;
-        margin: 0 5rem;
+        margin-left: 5rem;
+        &-editable {
+          margin: 0 0.2rem;
+        }
       }
       &-coast {
-        margin-left: 3.3rem;
+        margin-right: 5rem;
       }
     }
   }
@@ -192,7 +214,6 @@
       margin-left: 7.5rem;
       &-info {
         visibility: hidden;
-        width: 350px;
         background-color: #00000091;
         color: #fff;
         text-align: center;
@@ -211,6 +232,7 @@
 
 .chart {
   margin-left: 10rem;
+  display: flex;
   circle.buy {
     stroke-dasharray: var(--buy) 100;
   }
@@ -219,6 +241,42 @@
   }
 
   circle.current-rate {
-    stroke-dasharray: var(--c) 100;
+    stroke-dasharray: var(--rate) 100;
+  }
+  &-info {
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    &-total-needs {
+      margin: 1rem 0;
+      font-size: 1.4rem;
+      margin-left: 1rem;
+      & > span {
+        margin-left: 1rem;
+      }
+    }
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      &-buy,
+      &-more-coast,
+      &-rate {
+        align-items: center;
+        color: $letterColorMidDark;
+        display: flex;
+      }
+
+      &-buy::before {
+        @include chartBall($main);
+      }
+
+      &-more-coast::before {
+        @include chartBall($chartYellow);
+      }
+      &-rate::before {
+        @include chartBall($bgSubmenueColor);
+      }
+    }
   }
 }
