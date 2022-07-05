@@ -33,12 +33,12 @@
           content: attr(data-format);
           position: absolute;
           top: 2.2rem;
-          left: 30rem;
+          left:  95%;
           font-size: 1.1rem;
         }
         .euro-symbol {
           position: absolute;
-          margin-top: 0.55rem;
+          margin-top: 0.65rem;
           margin-left: 0.5rem;
           font-size: 1.1rem;
         }
@@ -94,6 +94,12 @@
         -webkit-appearance: none;
         -moz-appearance: textfield;
 
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none !important;
+          -moz-appearance: textfield;
+        }
+
         &:focus {
           outline: none !important;
           border: 1px solid $whiteBlue;
@@ -144,13 +150,13 @@
       font-weight: 900;
       padding-left: 1.5rem;
       color: $letterColorBlack;
-      transform: scale(1, 0.9);
+      transform: scale(1, 1);
       &::before {
         font-size: 1.5rem;
         content: attr(data-format);
         position: absolute;
         top: 0.8rem;
-        left: 12.5rem;
+        left: 38%;
       }
     }
   }
