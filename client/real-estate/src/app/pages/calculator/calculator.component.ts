@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-calculator',
@@ -6,7 +7,6 @@ import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } fr
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent implements OnInit {
-  // @ViewChild('contentWrapper') contentWrapper: ElementRef;
   propTransferTax: number = 3.5;
   propSale: number = 2;
   ownershipCoast: number = 1.1;
@@ -14,18 +14,26 @@ export class CalculatorComponent implements OnInit {
   brokerFee: number = 3.6;
   allowEdit: boolean = false;
 
-  constructor() {}
+  formBuil: FormGroup = this.fb.group({
+    buyPrice: new FormControl(200000, [Validators.required]),
+    creditDurationMonths: new FormControl(200, [Validators.required, Validators.maxLength(3) ]),
+    creditDurationYears: new FormControl(20, [Validators.required , Validators.maxLength(3)]),
+    ratePercentage: new FormControl(5, [Validators.required, Validators.maxLength(2)]),
+    ownPart: new FormControl(50000)
+  });
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
   onDblClick($event: MouseEvent): void {
     this.allowEdit = !this.allowEdit;
     let currentNumber = Number((<HTMLTextAreaElement>$event.target).innerHTML);
-    // path[]
     let currentValue: string | null = (<HTMLTextAreaElement>$event.target).attributes[1].nodeValue;
     this.setFieldValue(currentValue, currentNumber);
   }
 
   setFieldValue(fieldName: string | null, currentNumber: number) {
+    //TOOD improve if else
     if (fieldName == 'propTransferTax') {
       this.propTransferTax = currentNumber;
       return this.propTransferTax;
@@ -66,7 +74,12 @@ export class CalculatorComponent implements OnInit {
       (<HTMLTextAreaElement>$event.target).textContent = '0 ';
     }
   }
-
+  isNumber($event: KeyboardEvent) {
+    if (/[0-9]/gm.test($event.key) == false ) {
+      $event.preventDefault();
+    }
+    
+  }
   onKeyPress($event: KeyboardEvent) {
     //TODO Bug if don't have any value user can't typ
     let totalLength = (<HTMLTextAreaElement>$event.target).innerHTML.length || 0;
@@ -74,5 +87,26 @@ export class CalculatorComponent implements OnInit {
     if (/[0-9]\.[0-9]|[0-9]+|\./gm.test($event.key) == false || totalLength > 3) {
       $event.preventDefault();
     }
+  }
+
+  onChange(event: Event) {
+    let currentFormName = (event.target as HTMLInputElement).attributes[2].nodeValue;
+    if (currentFormName === 'creditDurationYears') {
+      this.formBuil.patchValue({ creditDurationMonths: this.formBuil.value.creditDurationYears * 12 });
+    } else if (currentFormName === 'creditDurationMonths') {
+      this.formBuil.patchValue({ creditDurationYears: Number(( this.formBuil.value.creditDurationMonths / 12).toFixed(2)) });
+    }
+  }
+
+  onSubmit(event: HTMLElement) {
+    console.log(event);
+    console.log(this.formBuil.value.buyPrice);
+    console.log(this.formBuil.value.creditDurationMonths);
+    console.log(this.formBuil.value.creditDurationYears);
+    console.log(this.formBuil.value.ratePercentage);
+    console.log(this.formBuil.value.ownPart);
+
+    // let result = sum * (rate + rate / ((1 + rate) ** time - 1)) * time;
+    // console.log(Math.floor(result * 100) / 100);
   }
 }
