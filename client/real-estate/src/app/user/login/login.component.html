@@ -3,7 +3,7 @@
 <section class="main">
     <header class="login-page">
         <article>
-            <a class="login-page-login" >
+            <a class="login-page-login">
                 Anmelden
             </a>
         </article>
@@ -28,9 +28,9 @@
                 </label>
 
                 <ng-container *ngIf="checkTouch('email', loginFormGroup)">
-                 
+
                     <p *ngIf="loginFormGroup.get('email')?.errors?.['required']">
-                        <p-message [style]="{ 'margin-top': '10px','max-width': '305px'}" severity="error" 
+                        <p-message [style]="{ 'margin-top': '10px','max-width': '305px'}" severity="error"
                             text="E-Mail-Feld ist erforderlich" styleClass="mr-2"></p-message>
                     </p>
                     <p *ngIf="loginFormGroup.get('email')?.errors?.['email']">
@@ -53,8 +53,8 @@
                 <ng-container *ngIf="checkTouch('password', loginFormGroup)" class="invalid invalid-a">
 
                     <p *ngIf="loginFormGroup.get('password')?.errors?.['required']">
-                        <p-message [style]="{ 'margin-top': '10px'}" severity="error"
-                            text="Passwort ist erforderlich" styleClass="mr-2"></p-message>
+                        <p-message [style]="{ 'margin-top': '10px'}" severity="error" text="Passwort ist erforderlich"
+                            styleClass="mr-2"></p-message>
                     </p>
 
                     <p *ngIf="loginFormGroup.get('password')?.errors?.['minlength']">
@@ -65,10 +65,10 @@
                 </ng-container>
             </span>
 
-            <p-button (click)="onLogin()" type="submit" id="submit-btn" [styleClass]="'submit-btn'"  [disabled]="loginFormGroup.invalid || loading"  [style]="{'margin-top': '10px'}"
-            
-                label="Anmelden"> </p-button>
+            <p-button (click)="onLogin()" type="submit" id="submit-btn" [styleClass]="'submit-btn'"
+                [disabled]="loginFormGroup.invalid || loading" [style]="{'margin-top': '10px'}"
+                [class.dis]="loginFormGroup.invalid" label="Anmelden"> </p-button>
         </div>
-            <p-progressSpinner *ngIf="loading"></p-progressSpinner>
+        <p-progressSpinner *ngIf="loading"></p-progressSpinner>
     </form>
 </section>

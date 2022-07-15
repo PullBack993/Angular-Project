@@ -91,8 +91,9 @@
                 </p>
             </ng-container>
 
-        </div>
-        <p-button label="Click" id="reg-btn" (click)="onRegister()" [styleClass]="'register'"
+        </div> 
+        <p-button label="Click" id="reg-btn" (click)="onRegister()" [styleClass]="'register'" 
+        [class.dis]="registerFormGroup.invalid"
             [disabled]="registerFormGroup.invalid || loading" label="Registrieren"></p-button>
         <p-progressSpinner *ngIf="loading"></p-progressSpinner>
     </form>

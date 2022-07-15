@@ -13,11 +13,12 @@ export class CalculatorComponent implements OnInit {
   mortgageEntry: number = 1.2;
   brokerFee: number = 3.6;
   allowEdit: boolean = false;
+  err: boolean = false;
 
   formBuil: FormGroup = this.fb.group({
     buyPrice: new FormControl(200000, [Validators.required]),
-    creditDurationMonths: new FormControl(200, [Validators.required, Validators.maxLength(3) ]),
-    creditDurationYears: new FormControl(20, [Validators.required , Validators.maxLength(3)]),
+    creditDurationMonths: new FormControl(200, [Validators.required, Validators.maxLength(3)]),
+    creditDurationYears: new FormControl(20, [Validators.required, Validators.maxLength(2)]),
     ratePercentage: new FormControl(5, [Validators.required, Validators.maxLength(2)]),
     ownPart: new FormControl(50000)
   });
@@ -25,6 +26,9 @@ export class CalculatorComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
+  checkErrors(controlName: string, sourceGroup: FormGroup) {
+   return sourceGroup.controls[controlName]?.errors || !sourceGroup.controls[controlName].hasError
+  }
   onDblClick($event: MouseEvent): void {
     this.allowEdit = !this.allowEdit;
     let currentNumber = Number((<HTMLTextAreaElement>$event.target).innerHTML);
@@ -75,10 +79,9 @@ export class CalculatorComponent implements OnInit {
     }
   }
   isNumber($event: KeyboardEvent) {
-    if (/[0-9]/gm.test($event.key) == false ) {
+    if (/[0-9]/gm.test($event.key) == false) {
       $event.preventDefault();
     }
-    
   }
   onKeyPress($event: KeyboardEvent) {
     //TODO Bug if don't have any value user can't typ
@@ -94,7 +97,9 @@ export class CalculatorComponent implements OnInit {
     if (currentFormName === 'creditDurationYears') {
       this.formBuil.patchValue({ creditDurationMonths: this.formBuil.value.creditDurationYears * 12 });
     } else if (currentFormName === 'creditDurationMonths') {
-      this.formBuil.patchValue({ creditDurationYears: Number(( this.formBuil.value.creditDurationMonths / 12).toFixed(2)) });
+      this.formBuil.patchValue({
+        creditDurationYears: Number((this.formBuil.value.creditDurationMonths / 12).toFixed(2))
+      });
     }
   }
 

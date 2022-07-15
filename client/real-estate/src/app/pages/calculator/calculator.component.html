@@ -6,33 +6,37 @@
                 <div class="field-name">Kaufpreis / Kreditbetrag</div>
 
                 <span class="euro-symbol">&euro;</span>
-                <input class="loan-amount" type="number" name="Kaufpreis" (keypress)="isNumber($event)"  formControlName="buyPrice" >
+                <input class="loan-amount" type="number" name="Kaufpreis" (keypress)="isNumber($event)"
+                    formControlName="buyPrice">
             </div>
 
-            <div class="months" >
-                <div class="field-name">Kreditdauer / Laufzeit (Monate)</div>
-                <input class="loan-months" type="text" (change)="onChange($event)" (keypress)="isNumber($event)"  formControlName="creditDurationMonths">
+            <div class="months">
+                <div class="field-name" [class.err]="checkErrors('creditDurationMonths', formBuil)">Kreditdauer /
+                    Laufzeit (Monate)</div>
+                <input class="loan-months" type="text" (change)="onChange($event)" (keypress)="isNumber($event)"
+                    formControlName="creditDurationMonths" [class.err]="checkErrors('creditDurationMonths', formBuil)">
                 <ng-container *ngIf="formBuil.get('creditDurationMonths')?.errors?.['required']">
-                    <p>Feld ist erforderlich</p>
+                    <p class="err">Feld ist erforderlich</p>
                 </ng-container>
 
                 <ng-container *ngIf="formBuil.get('creditDurationMonths')?.errors?.['maxlength']">
-                    <p>Laufzeit kann nicht mehr als 3 Zeichen lang sein.</p>
+                    <p class="err">Laufzeit kann nicht mehr als 3 Zeichen lang sein.</p>
                 </ng-container>
             </div>
 
             <span class="additional-info">Oder</span>
 
             <div class="years">
-                <div class="field-name">Kreditdauer / Laufzeit (Jahre)</div>
-                <input class="loan-years" type="text" (keypress)="isNumber($event)" (change)="onChange($event)"
-                    formControlName="creditDurationYears">
-                    <ng-container *ngIf="formBuil.get('creditDurationYears')?.errors?.['required']">
-                        <p>Feld ist erforderlich</p>
-                    </ng-container>
-                    <ng-container *ngIf="formBuil.get('creditDurationYears')?.errors?.['maxlength']">
-                        <p>Laufzeit kann nicht mehr als 2 Zeichen lang sein.</p>
-                    </ng-container>
+                <div class="field-name " [class.err]="checkErrors('creditDurationYears', formBuil)">Kreditdauer /
+                    Laufzeit (Jahre)</div>
+                <input class="loan-years " type="text" (keypress)="isNumber($event)" (change)="onChange($event)"
+                    formControlName="creditDurationYears" [class.err]="checkErrors('creditDurationYears', formBuil)">
+                <ng-container *ngIf="formBuil.get('creditDurationYears')?.errors?.['required']">
+                    <p class="err">Feld ist erforderlich</p>
+                </ng-container>
+                <ng-container *ngIf="formBuil.get('creditDurationYears')?.errors?.['maxlength']">
+                    <p class="err">Laufzeit kann nicht mehr als 2 Zeichen lang sein.</p>
+                </ng-container>
             </div>
 
             <div class="rate">
@@ -43,7 +47,7 @@
             <div class="own">
                 <div class="field-name">Eigenmittel</div>
                 <input type="number" class="own-part" (keypress)="isNumber($event)" formControlName="ownPart">
-                <button class="calc-btn">Jetzt berechnen</button>
+                <button class="calc-btn" type="submit" [disabled]="formBuil.invalid" [class.disabled]="formBuil.invalid">Jetzt berechnen</button>
             </div>
         </form>
     </div>

@@ -24,6 +24,7 @@
       .years {
         margin: 1rem;
         position: relative;
+
         .field-name {
           font-weight: 600;
           font-size: 0.9rem;
@@ -33,7 +34,7 @@
           content: attr(data-format);
           position: absolute;
           top: 2.2rem;
-          left:  95%;
+          left: 95%;
           font-size: 1.1rem;
         }
         .euro-symbol {
@@ -41,6 +42,15 @@
           margin-top: 0.65rem;
           margin-left: 0.5rem;
           font-size: 1.1rem;
+        }
+        .err {
+          color: $error;
+          &:focus {
+            outline: none !important;
+            border: 1px solid $error;
+            box-shadow: 0 0 10px $error;
+            background-color: $error_bg;
+          }
         }
       }
 
@@ -63,6 +73,10 @@
           color: $white;
           font-weight: 500;
           font-size: 1.1rem;
+        }
+        .disabled{
+          cursor: auto;
+          background: #89B3F9
         }
       }
       .months {
@@ -107,6 +121,15 @@
           background-color: $whiteBgColor;
         }
       }
+
+      .error-1 {
+        color: red;
+        &::after .error-years {
+          display: block;
+          color: red;
+        }
+      }
+
       .loan-rate {
         padding-right: 2rem;
       }

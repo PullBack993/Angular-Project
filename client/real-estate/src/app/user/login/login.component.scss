@@ -66,7 +66,7 @@
 
 .p-float-label > label {
   top: 20%;
-  margin-left: .4rem;
+  margin-left: 0.4rem;
 }
 #submit-btn,
 .p-button {
@@ -79,6 +79,9 @@
   }
   &-err {
     color: $error;
+  }
+  .dis {
+    pointer-events: none;
   }
 }
 
