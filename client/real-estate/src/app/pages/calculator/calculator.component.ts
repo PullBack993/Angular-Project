@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { checkBuyPrice } from '../../user/util';
 
 @Component({
   selector: 'app-calculator',
@@ -15,20 +16,30 @@ export class CalculatorComponent implements OnInit {
   allowEdit: boolean = false;
   err: boolean = false;
 
+  buyPriceControl = new FormControl(200000, [Validators.required]);
+
   formBuil: FormGroup = this.fb.group({
-    buyPrice: new FormControl(200000, [Validators.required]),
+    buyPrice: this.buyPriceControl,
+    // buyPrice: new FormControl(200000, [Validators.required]),
     creditDurationMonths: new FormControl(200, [Validators.required, Validators.maxLength(3)]),
     creditDurationYears: new FormControl(20, [Validators.required, Validators.maxLength(2)]),
     ratePercentage: new FormControl(5, [Validators.required, Validators.maxLength(2)]),
-    ownPart: new FormControl(50000)
+    ownPart: new FormControl('', [checkBuyPrice(this.buyPriceControl)])
   });
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {}
   checkErrors(controlName: string, sourceGroup: FormGroup) {
-   return sourceGroup.controls[controlName]?.errors || !sourceGroup.controls[controlName].hasError
+    return sourceGroup.controls[controlName]?.errors;
   }
+
+  // checkBuyPrice() {
+  //   if (this.formBuil.value['ownPart'] >= this.formBuil.value['buyPrice']) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
   onDblClick($event: MouseEvent): void {
     this.allowEdit = !this.allowEdit;
     let currentNumber = Number((<HTMLTextAreaElement>$event.target).innerHTML);
@@ -104,14 +115,19 @@ export class CalculatorComponent implements OnInit {
   }
 
   onSubmit(event: HTMLElement) {
-    console.log(event);
-    console.log(this.formBuil.value.buyPrice);
-    console.log(this.formBuil.value.creditDurationMonths);
-    console.log(this.formBuil.value.creditDurationYears);
-    console.log(this.formBuil.value.ratePercentage);
-    console.log(this.formBuil.value.ownPart);
+    // console.log(event);
+    let { buyPrice, creditDurationMonths, creditDurationYears, ratePercentage, ownPart } = this.formBuil.value;
+    ratePercentage = ratePercentage  / 100 / creditDurationMonths
+    // console.log(this.formBuil.value.buyPrice);
+    // console.log(this.formBuil.value.creditDurationMonths);
+    // console.log(this.formBuil.value.creditDurationYears);
+    // console.log(this.formBuil.value.ratePercentage);
+    // console.log(this.formBuil.value.ownPart);
 
-    // let result = sum * (rate + rate / ((1 + rate) ** time - 1)) * time;
-    // console.log(Math.floor(result * 100) / 100);
+    let result =
+      buyPrice *
+      (ratePercentage + ratePercentage / ((1 + ratePercentage) ** creditDurationMonths - 1)) * creditDurationMonths;
+    // console.log(result)x
+    console.log(Math.floor(result * 100) / 100);
   }
 }

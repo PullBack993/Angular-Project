@@ -1,4 +1,4 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 export function passwordChecker(passwordFormControl: AbstractControl) {
   return (rePassFormControl: AbstractControl) => {
@@ -10,3 +10,15 @@ export function passwordChecker(passwordFormControl: AbstractControl) {
 }
 
 
+export function checkBuyPrice(control: AbstractControl)  {
+  return (value: any) => {
+    
+    if (control.value < value.value) {
+      return { valid: true }
+    }
+    return null
+
+  }
+
+  
+}

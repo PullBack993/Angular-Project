@@ -62,6 +62,16 @@
       }
       .own {
         margin-bottom: 1rem;
+        .last-part {
+          display: flex;
+          width: 100%;
+          &-input{
+            width: 100%;
+            .own-part{
+              width: 100%;
+            }
+          }
+        }
         .calc-btn {
           width: 41%;
           margin-left: 1rem;
@@ -74,9 +84,9 @@
           font-weight: 500;
           font-size: 1.1rem;
         }
-        .disabled{
+        .disabled {
           cursor: auto;
-          background: #89B3F9
+          background: #89b3f9;
         }
       }
       .months {

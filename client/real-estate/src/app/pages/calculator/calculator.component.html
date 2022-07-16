@@ -3,16 +3,20 @@
         <form class="calculator-side-left-container" [formGroup]="formBuil" (ngSubmit)="onSubmit($event)">
 
             <div class="amount">
-                <div class="field-name">Kaufpreis / Kreditbetrag</div>
+                <div class="field-name" [class.err]="checkErrors('buyPrice', formBuil)">Kaufpreis / Kreditbetrag</div>
 
                 <span class="euro-symbol">&euro;</span>
-                <input class="loan-amount" type="number" name="Kaufpreis" (keypress)="isNumber($event)"
-                    formControlName="buyPrice">
+                <input class="loan-amount" type="number" [class.err]="checkErrors('buyPrice', formBuil)"
+                    name="Kaufpreis" (keypress)="isNumber($event)" formControlName="buyPrice">
+                <ng-container *ngIf="formBuil.get('buyPrice')?.errors?.['required']">
+                    <p class="err">Feld ist erforderlich</p>
+                </ng-container>
             </div>
 
             <div class="months">
                 <div class="field-name" [class.err]="checkErrors('creditDurationMonths', formBuil)">Kreditdauer /
                     Laufzeit (Monate)</div>
+
                 <input class="loan-months" type="text" (change)="onChange($event)" (keypress)="isNumber($event)"
                     formControlName="creditDurationMonths" [class.err]="checkErrors('creditDurationMonths', formBuil)">
                 <ng-container *ngIf="formBuil.get('creditDurationMonths')?.errors?.['required']">
@@ -29,6 +33,7 @@
             <div class="years">
                 <div class="field-name " [class.err]="checkErrors('creditDurationYears', formBuil)">Kreditdauer /
                     Laufzeit (Jahre)</div>
+
                 <input class="loan-years " type="text" (keypress)="isNumber($event)" (change)="onChange($event)"
                     formControlName="creditDurationYears" [class.err]="checkErrors('creditDurationYears', formBuil)">
                 <ng-container *ngIf="formBuil.get('creditDurationYears')?.errors?.['required']">
@@ -40,14 +45,34 @@
             </div>
 
             <div class="rate">
-                <div class="field-name percentage" data-format="%">Zinsen</div>
-                <input type="number" class="loan-rate" (keypress)="isNumber($event)" formControlName="ratePercentage">
+                <div class="field-name percentage" data-format="%"
+                    [class.err]="checkErrors('ratePercentage', formBuil)">Zinsen</div>
+                <input type="text" class="loan-rate" (keypress)="isNumber($event)" formControlName="ratePercentage"
+                    [class.err]="checkErrors('ratePercentage', formBuil)">
+                <ng-container *ngIf="formBuil.get('ratePercentage')?.errors?.['required']">
+                    <p class="err">Field ist erforderlich</p>
+                </ng-container>
+                <ng-container *ngIf="formBuil.get('ratePercentage')?.errors?.['maxlength']">
+                    <p class="err">Zinsen kann nicht mehr als 2 Zeichen lang sein</p>
+                </ng-container>
             </div>
 
             <div class="own">
-                <div class="field-name">Eigenmittel</div>
-                <input type="number" class="own-part" (keypress)="isNumber($event)" formControlName="ownPart">
-                <button class="calc-btn" type="submit" [disabled]="formBuil.invalid" [class.disabled]="formBuil.invalid">Jetzt berechnen</button>
+                <div class="field-name" [class.err]="checkErrors('ownPart', formBuil)">Eigenmittel</div>
+                <div class="last-part">
+                    <div class="last-part-input">
+                        <input type="text" 
+                        class="own-part" 
+                         [class.err]="checkErrors('ownPart', formBuil)"
+                        (keypress)="isNumber($event)"
+                         formControlName="ownPart">
+                        <ng-container *ngIf="formBuil.get('ownPart')?.errors">
+                            <p class="err ">Eigenmittel kann nicht größer als Kaufpreis sein.</p>
+                        </ng-container>
+                    </div>
+                    <button class="calc-btn" type="submit" [disabled]="formBuil.invalid"
+                        [class.disabled]="formBuil.invalid">Jetzt berechnen</button>
+                </div>
             </div>
         </form>
     </div>
