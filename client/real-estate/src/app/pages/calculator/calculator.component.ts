@@ -117,17 +117,24 @@ export class CalculatorComponent implements OnInit {
   onSubmit(event: HTMLElement) {
     // console.log(event);
     let { buyPrice, creditDurationMonths, creditDurationYears, ratePercentage, ownPart } = this.formBuil.value;
-    ratePercentage = ratePercentage  / 100 / creditDurationMonths
+    // ratePercentage = ratePercentage  / 100 / creditDurationMonths
+    let divider: any = { 1: 1000, 2: 100, 3: 10, 4: 1 };
+    let divid= 0
+    for (const key in divider) {
+      if (creditDurationMonths.toString().length == key) {
+        divid = divider[key];
+        break;
+      }
+    }
+  let rate = ratePercentage / creditDurationMonths / divid;
+
     // console.log(this.formBuil.value.buyPrice);
     // console.log(this.formBuil.value.creditDurationMonths);
     // console.log(this.formBuil.value.creditDurationYears);
     // console.log(this.formBuil.value.ratePercentage);
     // console.log(this.formBuil.value.ownPart);
 
-    let result =
-      buyPrice *
-      (ratePercentage + ratePercentage / ((1 + ratePercentage) ** creditDurationMonths - 1)) * creditDurationMonths;
-    // console.log(result)x
+    let result = buyPrice * (rate + rate / ((1 + rate) ** creditDurationMonths - 1)) * creditDurationMonths;
     console.log(Math.floor(result * 100) / 100);
   }
 }
