@@ -61,11 +61,8 @@
                 <div class="field-name" [class.err]="checkErrors('ownPart', formBuil)">Eigenmittel</div>
                 <div class="last-part">
                     <div class="last-part-input">
-                        <input type="text" 
-                        class="own-part" 
-                         [class.err]="checkErrors('ownPart', formBuil)"
-                        (keypress)="isNumber($event)"
-                         formControlName="ownPart">
+                        <input type="text" class="own-part" [class.err]="checkErrors('ownPart', formBuil)"
+                            (keypress)="isNumber($event)" formControlName="ownPart">
                         <ng-container *ngIf="formBuil.get('ownPart')?.errors">
                             <p class="err ">Eigenmittel kann nicht größer als Kaufpreis sein.</p>
                         </ng-container>
@@ -84,17 +81,17 @@
                     können davon abweichen.</span>
             </span>
 
-            <div class="monthly-pay" data-format=&euro;>93.22</div>
+            <div class="monthly-pay"><span>&euro;</span> {{monthlyPay}}</div>
         </div>
 
         <div class="paid">
             <span class="paid-total">Kreditbetrag</span>
-            <span class="paid-amount">&euro;5.000</span>
+            <span class="paid-amount" >&euro; {{totalWithTax}}</span>
         </div>
 
         <div class="paid-rate">
             <span class="paid-total">Gezahlte Zinsen insgesamt</span>
-            <span class="paid-amount">&euro;592.91</span>
+            <span class="paid-amount">&euro;{{totalTax}}</span>
         </div>
 
         <div class="more-coast">

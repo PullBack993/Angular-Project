@@ -15,13 +15,16 @@ export class CalculatorComponent implements OnInit {
   brokerFee: number = 3.6;
   allowEdit: boolean = false;
   err: boolean = false;
+  totalTax: number = 54.353;
+  monthlyPay: number = 1.059;
+  totalWithTax: number = 254353.38;
 
   buyPriceControl = new FormControl(200000, [Validators.required]);
 
   formBuil: FormGroup = this.fb.group({
     buyPrice: this.buyPriceControl,
     // buyPrice: new FormControl(200000, [Validators.required]),
-    creditDurationMonths: new FormControl(200, [Validators.required, Validators.maxLength(3)]),
+    creditDurationMonths: new FormControl(240, [Validators.required, Validators.maxLength(3)]),
     creditDurationYears: new FormControl(20, [Validators.required, Validators.maxLength(2)]),
     ratePercentage: new FormControl(5, [Validators.required, Validators.maxLength(2)]),
     ownPart: new FormControl('', [checkBuyPrice(this.buyPriceControl)])
@@ -34,12 +37,6 @@ export class CalculatorComponent implements OnInit {
     return sourceGroup.controls[controlName]?.errors;
   }
 
-  // checkBuyPrice() {
-  //   if (this.formBuil.value['ownPart'] >= this.formBuil.value['buyPrice']) {
-  //     return false;
-  //   }
-  //   return true;
-  // }
   onDblClick($event: MouseEvent): void {
     this.allowEdit = !this.allowEdit;
     let currentNumber = Number((<HTMLTextAreaElement>$event.target).innerHTML);
@@ -115,26 +112,12 @@ export class CalculatorComponent implements OnInit {
   }
 
   onSubmit(event: HTMLElement) {
-    // console.log(event);
     let { buyPrice, creditDurationMonths, creditDurationYears, ratePercentage, ownPart } = this.formBuil.value;
-    // ratePercentage = ratePercentage  / 100 / creditDurationMonths
-    let divider: any = { 1: 1000, 2: 100, 3: 10, 4: 1 };
-    let divid= 0
-    for (const key in divider) {
-      if (creditDurationMonths.toString().length == key) {
-        divid = divider[key];
-        break;
-      }
-    }
-  let rate = ratePercentage / creditDurationMonths / divid;
-
-    // console.log(this.formBuil.value.buyPrice);
-    // console.log(this.formBuil.value.creditDurationMonths);
-    // console.log(this.formBuil.value.creditDurationYears);
-    // console.log(this.formBuil.value.ratePercentage);
-    // console.log(this.formBuil.value.ownPart);
-
+    let rate = ratePercentage / 100 / 12;
     let result = buyPrice * (rate + rate / ((1 + rate) ** creditDurationMonths - 1)) * creditDurationMonths;
-    console.log(Math.floor(result * 100) / 100);
+    
+    this.totalTax = Number((result - buyPrice).toFixed(2));
+    this.monthlyPay = Number((result / creditDurationMonths).toFixed(2));
+    this.totalWithTax = Number(result.toFixed(2))
   }
 }
