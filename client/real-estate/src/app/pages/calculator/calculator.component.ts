@@ -15,15 +15,14 @@ export class CalculatorComponent implements OnInit {
   brokerFee: number = 3.6;
   allowEdit: boolean = false;
   err: boolean = false;
-  totalTax: number = 54.353;
-  monthlyPay: number = 1.059;
-  totalWithTax: number = 254353.38;
+  totalTax: string = '116778.75'
+  monthlyPay: string = '1319.91';
+  totalWithTax: string = '316778.75';
 
   buyPriceControl = new FormControl(200000, [Validators.required]);
 
   formBuil: FormGroup = this.fb.group({
     buyPrice: this.buyPriceControl,
-    // buyPrice: new FormControl(200000, [Validators.required]),
     creditDurationMonths: new FormControl(240, [Validators.required, Validators.maxLength(3)]),
     creditDurationYears: new FormControl(20, [Validators.required, Validators.maxLength(2)]),
     ratePercentage: new FormControl(5, [Validators.required, Validators.maxLength(2)]),
@@ -115,9 +114,9 @@ export class CalculatorComponent implements OnInit {
     let { buyPrice, creditDurationMonths, creditDurationYears, ratePercentage, ownPart } = this.formBuil.value;
     let rate = ratePercentage / 100 / 12;
     let result = buyPrice * (rate + rate / ((1 + rate) ** creditDurationMonths - 1)) * creditDurationMonths;
-    
-    this.totalTax = Number((result - buyPrice).toFixed(2));
-    this.monthlyPay = Number((result / creditDurationMonths).toFixed(2));
-    this.totalWithTax = Number(result.toFixed(2))
+
+    this.totalTax = (result - buyPrice).toFixed(2).toLocaleString();
+    this.monthlyPay = (result / creditDurationMonths).toFixed(2).toLocaleString();
+    this.totalWithTax = result.toFixed(2).toLocaleString();
   }
 }
