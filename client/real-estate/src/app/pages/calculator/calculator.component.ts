@@ -15,6 +15,7 @@ export class CalculatorComponent implements OnInit {
   brokerFee: number = 3.6;
   allowEdit: boolean = false;
   err: boolean = false;
+  totalWithTaxValue: string = '7.000';
   totalTax: string = '116778.75'
   monthlyPay: string = '1319.91';
   totalWithTax: string = '316778.75';
@@ -47,6 +48,9 @@ export class CalculatorComponent implements OnInit {
     //TOOD improve if else
     if (fieldName == 'propTransferTax') {
       this.propTransferTax = currentNumber;
+      this.totalWithTaxValue = ((this.buyPriceControl.value * this.propTransferTax) / 100)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
       return this.propTransferTax;
     } else if (fieldName == 'propSale') {
       this.propSale = currentNumber;
@@ -76,8 +80,8 @@ export class CalculatorComponent implements OnInit {
     try {
       pattern.exec(currentNumberValue!)![0];
       currentNumber = Number(currentNumberValue);
-      let a = this.setFieldValue(currentValue, currentNumber);
-      (<HTMLTextAreaElement>$event.target).textContent = a?.toString() + ' ';
+      let currentField = this.setFieldValue(currentValue, currentNumber);
+      (<HTMLTextAreaElement>$event.target).textContent = currentField?.toString() + ' ';
 
       //set space to avoid blur to close after right arrow push
     } catch (err) {
@@ -85,11 +89,13 @@ export class CalculatorComponent implements OnInit {
       (<HTMLTextAreaElement>$event.target).textContent = '0 ';
     }
   }
+
   isNumber($event: KeyboardEvent) {
     if (/[0-9]/gm.test($event.key) == false) {
       $event.preventDefault();
     }
   }
+  
   onKeyPress($event: KeyboardEvent) {
     //TODO Bug if don't have any value user can't typ
     let totalLength = (<HTMLTextAreaElement>$event.target).innerHTML.length || 0;
@@ -115,6 +121,7 @@ export class CalculatorComponent implements OnInit {
     let rate = ratePercentage / 100 / 12;
     let result = buyPrice * (rate + rate / ((1 + rate) ** creditDurationMonths - 1)) * creditDurationMonths;
 
+    this.totalWithTaxValue = ((this.buyPriceControl.value * this.propTransferTax) / 100).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     this.totalTax = (result - buyPrice).toFixed(2).toLocaleString();
     this.monthlyPay = (result / creditDurationMonths).toFixed(2).toLocaleString();
     this.totalWithTax = result.toFixed(2).toLocaleString();
