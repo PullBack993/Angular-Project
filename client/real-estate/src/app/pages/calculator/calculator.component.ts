@@ -17,14 +17,14 @@ export class CalculatorComponent implements OnInit {
   totalExtaCoasts: string = '22,800';
   allowEdit: boolean = false;
   err: boolean = false;
-  totalWithTaxValue: string = '7.000';
-  propSaleValue: string = '4.000';
-  ownershipCoastValue: string = '2.200';
-  mortgageEntryValue: string = '2.400';
-  brokerFeeValue: string = '7.200';
-  totalTax: string = '116778.75';
-  monthlyPay: string = '1319.91';
-  totalWithTax: string = '316778.75';
+  totalWithTaxValue: string = '7,000';
+  propSaleValue: string = '4,000';
+  ownershipCoastValue: string = '2,200';
+  mortgageEntryValue: string = '2,400';
+  brokerFeeValue: string = '7,200';
+  totalTax: string = '116,778.75';
+  monthlyPay: string = '1,319.91';
+  totalWithTax: string = '316,778.75';
 
   buyPriceControl = new FormControl(200000, [Validators.required]);
 
@@ -55,34 +55,34 @@ export class CalculatorComponent implements OnInit {
       this.propTransferTax = currentNumber;
       this.totalWithTaxValue = ((this.buyPriceControl.value * this.propTransferTax) / 100)
         .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       return this.propTransferTax;
     } else if (fieldName == 'propSale') {
       this.propSale = Number(currentNumber);
       this.propSaleValue = ((this.buyPriceControl.value * this.propSale) / 100)
         .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
       return this.propSale;
     } else if (fieldName == 'ownershipCoast') {
       this.ownershipCoast = currentNumber;
       this.ownershipCoastValue = ((this.buyPriceControl.value * this.ownershipCoast) / 100)
         .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
       return this.ownershipCoast;
     } else if (fieldName == 'mortgageEntry') {
       this.mortgageEntry = currentNumber;
       this.mortgageEntryValue = ((this.buyPriceControl.value * this.mortgageEntry) / 100)
         .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
       return this.mortgageEntry;
     } else if (fieldName == 'brokerFee') {
       this.brokerFee = currentNumber;
       this.brokerFeeValue = ((this.buyPriceControl.value * this.brokerFee) / 100)
         .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
       return this.brokerFee;
     }
@@ -105,7 +105,7 @@ export class CalculatorComponent implements OnInit {
         this.propTransferTax + this.propSale + this.ownershipCoast + this.mortgageEntry + this.brokerFee;
       this.totalExtaCoasts = ((this.totalPercentage * this.buyPriceControl.value) / 100)
         .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       (<HTMLTextAreaElement>$event.target).textContent = currentField?.toString() + ' ';
 
       //set space to avoid blur to close after right arrow push
@@ -153,10 +153,11 @@ export class CalculatorComponent implements OnInit {
 
     this.totalPercentage =
       this.propTransferTax + this.propSale + this.ownershipCoast + this.mortgageEntry + this.brokerFee;
-    this.totalExtaCoasts = ((this.totalPercentage * this.buyPriceControl.value) / 100).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    this.totalExtaCoasts = ((this.totalPercentage * this.buyPriceControl.value) / 100).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-    this.totalTax = (result - buyPrice).toFixed(2).toLocaleString();
-    this.monthlyPay = (result / creditDurationMonths).toFixed(2).toLocaleString();
-    this.totalWithTax = result.toFixed(2).toLocaleString();
+    this.totalTax = (result - buyPrice).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    this.monthlyPay = (result / creditDurationMonths).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    this.totalWithTax = result.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
   }
 }
