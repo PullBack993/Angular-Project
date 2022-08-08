@@ -118,7 +118,7 @@
                     </div>
                     %)
                 </div>
-                <div class="tax-coast">4.000 €</div>
+                <div class="tax-coast">{{propSaleValue}} €</div>
 
             </div>
 
@@ -132,7 +132,7 @@
                     </div>
                     %)
                 </div>
-                <div class="tax-coast">2.200 €</div>
+                <div class="tax-coast">{{ownershipCoastValue}} €</div>
 
             </div>
 
@@ -145,7 +145,7 @@
                     </div>
                     %)
                 </div>
-                <div class="tax-coast">2.400 €</div>
+                <div class="tax-coast">{{mortgageEntryValue}} €</div>
 
             </div>
 
@@ -158,18 +158,18 @@
                     </div>
                     %)
                 </div>
-                <div class="tax-coast">7.200 €</div>
+                <div class="tax-coast">{{brokerFeeValue}} €</div>
             </div>
 
 
 
         </div>
         <div class="total">
-            <div class="total-percentage">≈ 11.4% &#9432;
+            <div class="total-percentage">≈ {{totalPercentage}}% &#9432;
                 <span class="total-percentage-info">Es handelt sich dabei um Schätzwerte, deine finalen Kaufnebenkosten
                     können davon abweichen.</span>
             </div>
-            <div class="total-addition"> 11.400&euro;</div>
+            <div class="total-addition"> {{totalExtaCoasts}}&euro;</div>
         </div>
 
     </div>
