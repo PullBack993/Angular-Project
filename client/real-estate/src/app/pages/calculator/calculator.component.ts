@@ -8,23 +8,26 @@ import { checkBuyPrice } from '../../user/util';
   styleUrls: ['./calculator.component.scss']
 })
 export class CalculatorComponent implements OnInit {
+  allowEdit: boolean = false;
+  err: boolean = false;
+  
   propTransferTax: number = 3.5;
   propSale: number = 2;
   ownershipCoast: number = 1.1;
   mortgageEntry: number = 1.2;
   brokerFee: number = 3.6;
   totalPercentage: number = 11.4;
-  totalExtaCoasts: string = '22,800';
-  allowEdit: boolean = false;
-  err: boolean = false;
+  
+  totalTax: string = '116,778.75';
+  monthlyPay: string = '1,319.91';
+  totalWithTax: string = '316,778.75';
+
   totalWithTaxValue: string = '7,000';
   propSaleValue: string = '4,000';
   ownershipCoastValue: string = '2,200';
   mortgageEntryValue: string = '2,400';
   brokerFeeValue: string = '7,200';
-  totalTax: string = '116,778.75';
-  monthlyPay: string = '1,319.91';
-  totalWithTax: string = '316,778.75';
+  totalExtaCoasts: string = '22,800';
 
   buyPriceControl = new FormControl(200000, [Validators.required]);
 
@@ -51,6 +54,7 @@ export class CalculatorComponent implements OnInit {
   }
   setFieldValue(fieldName: string | null, currentNumber: number) {
     //TOOD improve if else
+    //TODO function for replacer ','
     if (fieldName == 'propTransferTax') {
       this.propTransferTax = currentNumber;
       this.totalWithTaxValue = ((this.buyPriceControl.value * this.propTransferTax) / 100)
@@ -153,11 +157,12 @@ export class CalculatorComponent implements OnInit {
 
     this.totalPercentage =
       this.propTransferTax + this.propSale + this.ownershipCoast + this.mortgageEntry + this.brokerFee;
-    this.totalExtaCoasts = ((this.totalPercentage * this.buyPriceControl.value) / 100).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    this.totalExtaCoasts = ((this.totalPercentage * this.buyPriceControl.value) / 100)
+      .toFixed(0)
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     this.totalTax = (result - buyPrice).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     this.monthlyPay = (result / creditDurationMonths).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     this.totalWithTax = result.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
   }
 }
