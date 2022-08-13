@@ -8,6 +8,7 @@
                 <span class="euro-symbol">&euro;</span>
                 <input class="loan-amount" type="number" [class.err]="checkErrors('buyPrice', formBuil)"
                     name="Kaufpreis" (keypress)="isNumber($event)" formControlName="buyPrice">
+
                 <ng-container *ngIf="formBuil.get('buyPrice')?.errors?.['required']">
                     <p class="err">Feld ist erforderlich</p>
                 </ng-container>
@@ -46,7 +47,7 @@
 
             <div class="rate">
                 <div class="field-name percentage" data-format="%"
-                    [class.err]="checkErrors('ratePercentage', formBuil)">Zinsen</div>
+                    [class.err]="checkErrors('ratePercentage', formBuil)">Zinssatz</div>
                 <input type="text" class="loan-rate" (keypress)="isNumber($event)" formControlName="ratePercentage"
                     [class.err]="checkErrors('ratePercentage', formBuil)">
                 <ng-container *ngIf="formBuil.get('ratePercentage')?.errors?.['required']">
@@ -86,7 +87,7 @@
 
         <div class="paid">
             <span class="paid-total">Insgesamt für das Darlehen bezahlt</span>
-            <span class="paid-amount" >&euro; {{totalWithTax}}</span>
+            <span class="paid-amount">&euro; {{totalWithTax}}</span>
         </div>
 
         <div class="paid-rate">
@@ -169,7 +170,7 @@
                 <span class="total-percentage-info">Es handelt sich dabei um Schätzwerte, deine finalen Kaufnebenkosten
                     können davon abweichen.</span>
             </div>
-            <div class="total-addition"> {{totalExtaCoasts}}&euro;</div>
+            <div class="total-addition"> {{totalExtraCoasts}}&euro;</div>
         </div>
 
     </div>
@@ -192,42 +193,43 @@
 
     </svg>
     <div class="chart-info">
-        <div class="chart-info-total-needs">Kreditbedarf
+        <div class="chart-info-total-needs">Insgesamt bezahlt
             <span>
-                239.000 €
+                {{total}} €
             </span>
         </div>
         <li class="chart-info-container">
             <div class="chart-info-container-buy">
                 <span>
-                    83% Kaufpreis
+                    {{percentageCredit}}% Kredit Betrag
                 </span>
             </div>
             <span>
-                200.000€
+                {{buyPriceControl.value}} €
+
             </span>
         </li>
 
         <li class="chart-info-container">
             <div class="chart-info-container-more-coast">
                 <span>
-                    11.5% Kaufpreis
+                    {{percentageExtraCoast}}% Kaufnebenkosten
                 </span>
             </div>
             <span>
-                23.000€
+                {{totalExtraCoasts}}€
             </span>
         </li>
 
         <li class="chart-info-container">
             <div class="chart-info-container-rate">
                 <span>
-                    8% Kaufpreis
+                    {{formBuil.controls['ratePercentage'].value}}% Total Zinsbetrag
                 </span>
             </div>
 
             <span>
-                16.000€
+                {{totalTax}}€
             </span>
         </li>
 

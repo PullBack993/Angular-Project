@@ -10,14 +10,14 @@ import { checkBuyPrice } from '../../user/util';
 export class CalculatorComponent implements OnInit {
   allowEdit: boolean = false;
   err: boolean = false;
-  
+
   propTransferTax: number = 3.5;
   propSale: number = 2;
   ownershipCoast: number = 1.1;
   mortgageEntry: number = 1.2;
   brokerFee: number = 3.6;
   totalPercentage: number = 11.4;
-  
+
   totalTax: string = '116,778.75';
   monthlyPay: string = '1,319.91';
   totalWithTax: string = '316,778.75';
@@ -27,7 +27,12 @@ export class CalculatorComponent implements OnInit {
   ownershipCoastValue: string = '2,200';
   mortgageEntryValue: string = '2,400';
   brokerFeeValue: string = '7,200';
-  totalExtaCoasts: string = '22,800';
+  totalExtraCoasts: string = '22,800';
+
+  total: string = '0';
+  percentageCredit: string = '0';
+  percentageExtraCoast: string = '0';
+  percentagePaidInterest: string = '0';
 
   buyPriceControl = new FormControl(200000, [Validators.required]);
 
@@ -41,7 +46,13 @@ export class CalculatorComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.total = this.toDecimalPoints(
+      (
+        parseFloat(this.totalWithTax.replace(/,/gm, '')) + parseFloat(this.totalExtraCoasts.replace(/,/gm, ''))
+      ).toString()
+    );
+  }
   checkErrors(controlName: string, sourceGroup: FormGroup) {
     return sourceGroup.controls[controlName]?.errors;
   }
@@ -57,39 +68,32 @@ export class CalculatorComponent implements OnInit {
     //TODO function for replacer ','
     if (fieldName == 'propTransferTax') {
       this.propTransferTax = currentNumber;
-      this.totalWithTaxValue = ((this.buyPriceControl.value * this.propTransferTax) / 100)
-        .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      this.totalWithTaxValue = this.toDecimalPoints(
+        ((this.buyPriceControl.value * this.propTransferTax) / 100).toFixed(0)
+      );
       return this.propTransferTax;
     } else if (fieldName == 'propSale') {
       this.propSale = Number(currentNumber);
-      this.propSaleValue = ((this.buyPriceControl.value * this.propSale) / 100)
-        .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+      this.propSaleValue = this.toDecimalPoints(((this.buyPriceControl.value * this.propSale) / 100).toFixed(0));
       return this.propSale;
     } else if (fieldName == 'ownershipCoast') {
       this.ownershipCoast = currentNumber;
-      this.ownershipCoastValue = ((this.buyPriceControl.value * this.ownershipCoast) / 100)
-        .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+      this.ownershipCoastValue = this.toDecimalPoints(
+        ((this.buyPriceControl.value * this.ownershipCoast) / 100).toFixed(0)
+      );
       return this.ownershipCoast;
     } else if (fieldName == 'mortgageEntry') {
       this.mortgageEntry = currentNumber;
-      this.mortgageEntryValue = ((this.buyPriceControl.value * this.mortgageEntry) / 100)
-        .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+      this.mortgageEntryValue = this.toDecimalPoints(
+        ((this.buyPriceControl.value * this.mortgageEntry) / 100).toFixed(0)
+      );
       return this.mortgageEntry;
     } else if (fieldName == 'brokerFee') {
       this.brokerFee = currentNumber;
-      this.brokerFeeValue = ((this.buyPriceControl.value * this.brokerFee) / 100)
-        .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
+      this.brokerFeeValue = this.toDecimalPoints(((this.buyPriceControl.value * this.brokerFee) / 100).toFixed(0));
       return this.brokerFee;
     }
+
     return;
   }
 
@@ -107,9 +111,8 @@ export class CalculatorComponent implements OnInit {
       let currentField = this.setFieldValue(currentValue, currentNumber);
       this.totalPercentage =
         this.propTransferTax + this.propSale + this.ownershipCoast + this.mortgageEntry + this.brokerFee;
-      this.totalExtaCoasts = ((this.totalPercentage * this.buyPriceControl.value) / 100)
-        .toFixed(0)
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      this.totalExtraCoasts = this.toDecimalPoints(((this.totalPercentage * this.buyPriceControl.value) / 100)
+        .toFixed(0));
       (<HTMLTextAreaElement>$event.target).textContent = currentField?.toString() + ' ';
 
       //set space to avoid blur to close after right arrow push
@@ -157,12 +160,37 @@ export class CalculatorComponent implements OnInit {
 
     this.totalPercentage =
       this.propTransferTax + this.propSale + this.ownershipCoast + this.mortgageEntry + this.brokerFee;
-    this.totalExtaCoasts = ((this.totalPercentage * this.buyPriceControl.value) / 100)
-      .toFixed(0)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    this.totalExtraCoasts = this.toDecimalPoints(
+      ((this.totalPercentage * this.buyPriceControl.value) / 100).toFixed(0)
+    );
 
-    this.totalTax = (result - buyPrice).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    this.monthlyPay = (result / creditDurationMonths).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    this.totalWithTax = result.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    this.totalTax = this.toDecimalPoints((result - buyPrice).toFixed(2));
+    this.monthlyPay = this.toDecimalPoints((result / creditDurationMonths).toFixed(2));
+    this.totalWithTax = this.toDecimalPoints(result.toFixed(2));
+
+    this.total = this.toDecimalPoints(
+      (
+        this.stringToFloat(this.totalWithTax) + this.stringToFloat(this.totalExtraCoasts)
+      ).toString()
+    );
+    this.percentageExtraCoast = this.calcPercentage(
+      this.stringToFloat(this.totalExtraCoasts),
+      this.stringToFloat(this.total)
+    );
+
+    this.percentageCredit = this.calcPercentage(this.buyPriceControl.value, this.stringToFloat(this.total))
+  }
+  stringToFloat(value: string) {
+    return parseFloat(value.replace(/,/gm, ''))
+  }
+
+  toDecimalPoints(value: string) {
+    return value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  calcPercentage(currentValue: number, totalValue: number) {
+    console.log(currentValue)
+    console.log(totalValue);
+    return ((currentValue / totalValue) * 100).toFixed(2)
   }
 }
