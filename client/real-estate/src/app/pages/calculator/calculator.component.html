@@ -6,8 +6,9 @@
                 <div class="field-name" [class.err]="checkErrors('buyPrice', formBuil)">Kaufpreis / Kreditbetrag</div>
 
                 <span class="euro-symbol">&euro;</span>
-                <input class="loan-amount" type="number" [class.err]="checkErrors('buyPrice', formBuil)"
-                    name="Kaufpreis" (keypress)="isNumber($event)" formControlName="buyPrice">
+                <input class="loan-amount" type="string" [class.err]="checkErrors('buyPrice', formBuil)"
+                    name="Kaufpreis" (keypress)="isNumber($event)" formControlName="buyPrice" (keypress)="toDecimal($event)" >
+                <!-- <h2>{{ad.title | shorten: 60}}</h2> -->
 
                 <ng-container *ngIf="formBuil.get('buyPrice')?.errors?.['required']">
                     <p class="err">Feld ist erforderlich</p>
@@ -185,11 +186,11 @@
         <circle class="bar buy" style="--buy: 100" cx="50" cy="50" r="40" stroke="#2563eb" stroke-width="10" fill="none"
             pathLength="100" transform="rotate(-90 50 50)" />
 
-        <circle class="bar current-rate" style="--rate: 19.5" cx="50" cy="50" r="40" stroke="#56e2e2" stroke-width="10"
-            fill="none" pathLength="100" transform="rotate(-90 50 50)" />
+        <circle class="bar current-rate" style="--rate: {{chartRate}}" cx="50" cy="50" r="40" stroke="#56e2e2"
+            stroke-width="10" fill="none" pathLength="100" transform="rotate(-90 50 50)" />
 
-        <circle class="bar more-coast" style="--coast: 8" cx="50" cy="50" r="40" stroke="#f2ca26" stroke-width="10"
-            fill="none" pathLength="100" transform="rotate(-90 50 50)" />
+        <circle class="bar more-coast" style="--coast: {{chartCoast}}" cx="50" cy="50" r="40" stroke="#f2ca26"
+            stroke-width="10" fill="none" pathLength="100" transform="rotate(-90 50 50)" />
 
     </svg>
     <div class="chart-info">
@@ -205,7 +206,7 @@
                 </span>
             </div>
             <span>
-                {{buyPriceControl.value}} €
+                {{buyPriceControl.value | toDecimalPipe}} €
 
             </span>
         </li>
@@ -224,7 +225,7 @@
         <li class="chart-info-container">
             <div class="chart-info-container-rate">
                 <span>
-                    {{formBuil.controls['ratePercentage'].value}}% Total Zinsbetrag
+                    {{percentagePaidInterest}}% Total Zinsbetrag
                 </span>
             </div>
 

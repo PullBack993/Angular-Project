@@ -30,11 +30,14 @@ export class CalculatorComponent implements OnInit {
   totalExtraCoasts: string = '22,800';
 
   total: string = '0';
-  percentageCredit: string = '0';
-  percentageExtraCoast: string = '0';
-  percentagePaidInterest: string = '0';
+  percentageCredit: string = '58.90';
+  percentageExtraCoast: string = '6.71';
+  percentagePaidInterest: string = '34.39';
 
-  buyPriceControl = new FormControl(200000, [Validators.required]);
+  chartRate: number = 41.1;
+  chartCoast: number = 6.71;
+
+  buyPriceControl = new FormControl('200,000', [Validators.required]);
 
   formBuil: FormGroup = this.fb.group({
     buyPrice: this.buyPriceControl,
@@ -47,6 +50,7 @@ export class CalculatorComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
+
     this.total = this.toDecimalPoints(
       (
         parseFloat(this.totalWithTax.replace(/,/gm, '')) + parseFloat(this.totalExtraCoasts.replace(/,/gm, ''))
@@ -66,31 +70,32 @@ export class CalculatorComponent implements OnInit {
   setFieldValue(fieldName: string | null, currentNumber: number) {
     //TOOD improve if else
     //TODO function for replacer ','
+    let buyPrice = this.stringToFloat(this.buyPriceControl.value)
     if (fieldName == 'propTransferTax') {
       this.propTransferTax = currentNumber;
       this.totalWithTaxValue = this.toDecimalPoints(
-        ((this.buyPriceControl.value * this.propTransferTax) / 100).toFixed(0)
+        ((buyPrice * this.propTransferTax) / 100).toFixed(0)
       );
       return this.propTransferTax;
     } else if (fieldName == 'propSale') {
       this.propSale = Number(currentNumber);
-      this.propSaleValue = this.toDecimalPoints(((this.buyPriceControl.value * this.propSale) / 100).toFixed(0));
+      this.propSaleValue = this.toDecimalPoints(((buyPrice * this.propSale) / 100).toFixed(0));
       return this.propSale;
     } else if (fieldName == 'ownershipCoast') {
       this.ownershipCoast = currentNumber;
       this.ownershipCoastValue = this.toDecimalPoints(
-        ((this.buyPriceControl.value * this.ownershipCoast) / 100).toFixed(0)
+        ((buyPrice * this.ownershipCoast) / 100).toFixed(0)
       );
       return this.ownershipCoast;
     } else if (fieldName == 'mortgageEntry') {
       this.mortgageEntry = currentNumber;
       this.mortgageEntryValue = this.toDecimalPoints(
-        ((this.buyPriceControl.value * this.mortgageEntry) / 100).toFixed(0)
+        ((buyPrice * this.mortgageEntry) / 100).toFixed(0)
       );
       return this.mortgageEntry;
     } else if (fieldName == 'brokerFee') {
       this.brokerFee = currentNumber;
-      this.brokerFeeValue = this.toDecimalPoints(((this.buyPriceControl.value * this.brokerFee) / 100).toFixed(0));
+      this.brokerFeeValue = this.toDecimalPoints(((buyPrice * this.brokerFee) / 100).toFixed(0));
       return this.brokerFee;
     }
 
@@ -111,8 +116,9 @@ export class CalculatorComponent implements OnInit {
       let currentField = this.setFieldValue(currentValue, currentNumber);
       this.totalPercentage =
         this.propTransferTax + this.propSale + this.ownershipCoast + this.mortgageEntry + this.brokerFee;
-      this.totalExtraCoasts = this.toDecimalPoints(((this.totalPercentage * this.buyPriceControl.value) / 100)
-        .toFixed(0));
+      this.totalExtraCoasts = this.toDecimalPoints(
+        ((this.totalPercentage * this.buyPriceControl.value) / 100).toFixed(0)
+      );
       (<HTMLTextAreaElement>$event.target).textContent = currentField?.toString() + ' ';
 
       //set space to avoid blur to close after right arrow push
@@ -127,7 +133,20 @@ export class CalculatorComponent implements OnInit {
       $event.preventDefault();
     }
   }
+  toDecimal(e: Event) {
+    console.log((e.target as HTMLInputElement).value)
+    console.log('a')
+    console.log((e.target as HTMLInputElement).value);
+    console.log(this.buyPriceControl.value)
 
+    // let b = this.toDecimalPoints(this.stringToFloat(this.buyPriceControl.value).toString());
+    // console.log(b)
+    // this.buyPriceControl.setValue(a);
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+    console.log('ttt')
+  }
   onKeyPress($event: KeyboardEvent) {
     //TODO Bug if don't have any value user can't typ
     let totalLength = (<HTMLTextAreaElement>$event.target).innerHTML.length || 0;
@@ -151,6 +170,7 @@ export class CalculatorComponent implements OnInit {
   onSubmit(event: HTMLElement) {
     let { buyPrice, creditDurationMonths, creditDurationYears, ratePercentage, ownPart } = this.formBuil.value;
     let rate = ratePercentage / 100 / 12;
+    buyPrice = this.stringToFloat(buyPrice);
     let result = buyPrice * (rate + rate / ((1 + rate) ** creditDurationMonths - 1)) * creditDurationMonths;
     this.setFieldValue('propTransferTax', this.propTransferTax);
     this.setFieldValue('propSale', this.propSale);
@@ -161,7 +181,7 @@ export class CalculatorComponent implements OnInit {
     this.totalPercentage =
       this.propTransferTax + this.propSale + this.ownershipCoast + this.mortgageEntry + this.brokerFee;
     this.totalExtraCoasts = this.toDecimalPoints(
-      ((this.totalPercentage * this.buyPriceControl.value) / 100).toFixed(0)
+      ((this.totalPercentage * this.stringToFloat(this.buyPriceControl.value)) / 100).toFixed(0)
     );
 
     this.totalTax = this.toDecimalPoints((result - buyPrice).toFixed(2));
@@ -169,19 +189,24 @@ export class CalculatorComponent implements OnInit {
     this.totalWithTax = this.toDecimalPoints(result.toFixed(2));
 
     this.total = this.toDecimalPoints(
-      (
-        this.stringToFloat(this.totalWithTax) + this.stringToFloat(this.totalExtraCoasts)
-      ).toString()
+      (this.stringToFloat(this.totalWithTax) + this.stringToFloat(this.totalExtraCoasts)).toFixed(2)
     );
     this.percentageExtraCoast = this.calcPercentage(
       this.stringToFloat(this.totalExtraCoasts),
       this.stringToFloat(this.total)
     );
 
-    this.percentageCredit = this.calcPercentage(this.buyPriceControl.value, this.stringToFloat(this.total))
+    this.percentageCredit = this.calcPercentage(this.stringToFloat(this.buyPriceControl.value), this.stringToFloat(this.total));
+    this.percentagePaidInterest = this.calcPercentage(
+      this.stringToFloat(this.totalTax),
+      this.stringToFloat(this.total)
+    );
+
+    this.chartRate = this.stringToFloat(this.percentageExtraCoast) + this.stringToFloat(this.percentagePaidInterest);
+    this.chartCoast = this.stringToFloat(this.percentageExtraCoast);
   }
   stringToFloat(value: string) {
-    return parseFloat(value.replace(/,/gm, ''))
+    return parseFloat(value.replace(/,/gm, ''));
   }
 
   toDecimalPoints(value: string) {
@@ -189,8 +214,8 @@ export class CalculatorComponent implements OnInit {
   }
 
   calcPercentage(currentValue: number, totalValue: number) {
-    console.log(currentValue)
+    console.log(currentValue);
     console.log(totalValue);
-    return ((currentValue / totalValue) * 100).toFixed(2)
+    return ((currentValue / totalValue) * 100).toFixed(2);
   }
 }
