@@ -31,7 +31,20 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {}
 
   onSearch() {
-    const estateType = this.form?.value?.adType == 'Miete' ? 'rent' : 'sell';
+    // == 'Miete' ? 'sell' : 'rent';
+    let currentValue = this.form?.controls['adType'].value;
+    let estateType = '';
+    if (currentValue.adType == 'Miete' || currentValue == 'Miete') {
+      this.form.value.adType = 'Miete';
+      estateType = 'rent';
+    }
+    if (currentValue.adType == 'Kauf' || currentValue == 'Kauf') {
+      this.form.value.adType = 'Kauf';
+      estateType = 'sell';
+    } 
+
+    console.log(this.form?.value?.adType);
+    console.log(estateType);
     const body = {
       location: this.form.value?.location?.name,
       adType: estateType,

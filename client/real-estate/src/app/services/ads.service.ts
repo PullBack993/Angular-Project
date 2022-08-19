@@ -20,10 +20,12 @@ export class AdsService {
   constructor(private http: HttpClient,private messageService:MessageService, private router: Router) {}
 
   search(searchParams: ISearch) {
+    console.log(searchParams)
     this.http.post(BACKEND_URL +'/home/search', searchParams).subscribe({
       next: (data) => {
         this._searchData.next(data);
         this.router.navigate(['/search']);
+        console.log(this.currentSearchData$)
       }
     });
   }

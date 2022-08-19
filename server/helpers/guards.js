@@ -30,13 +30,12 @@ function authJwt() {
     algorithms: ["HS256"],
   }).unless({
     path: [
-      // Development all path will be available ==>  // { url: /(.*)/ },
-
-      { url: /\/api\/search\/(.*)/, methods: ["GET", "OPTIONS"] },
+      // For devolpment ==> All paths allow { url: /(.*)/ },
       { url: /\/api\/details\/(.*)/, methods: ["GET", "OPTIONS"] },
       { url: /\/api\/catalog\/(.*)/, method: ["GET", "OPTIONS"] },
       { url: /\/api\/home\/(.*)/, method: ["GET", "OPTION"] },
       { url: "/api/home", method: ["GET", "OPTION"] },
+      `/api/home/search`,
       `/api/login`,
       `/api/register`,
       "/",

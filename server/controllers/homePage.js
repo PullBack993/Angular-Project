@@ -5,7 +5,7 @@ const router = require("express").Router();
 router.get("/", async (req, res) => {
   try {
     const projects = await getLastTree();
-    const limit = 3; 
+    const limit = 3;
 
     const lastAd = await getLatest(limit);
     res.status(200).send({
@@ -35,8 +35,9 @@ router.post("/search", async (req, res) => {
       }
       return accObj;
     }, {});
-
+    console.log(query);
     const data = await search(query);
+    console.log(data)
     res.status(200).send({ message: "success", data });
   } catch (err) {
     console.log(err);
