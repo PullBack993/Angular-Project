@@ -43,7 +43,7 @@ export class CalculatorComponent implements OnInit {
     buyPrice: this.buyPriceControl,
     creditDurationMonths: new FormControl(240, [Validators.required, Validators.maxLength(3)]),
     creditDurationYears: new FormControl(20, [Validators.required, Validators.maxLength(2)]),
-    ratePercentage: new FormControl(5, [Validators.required, Validators.maxLength(2)])
+    ratePercentage: new FormControl(5, [Validators.required, Validators.maxLength(4)])
   });
 
   constructor(private fb: FormBuilder) {}
@@ -121,7 +121,8 @@ export class CalculatorComponent implements OnInit {
   }
 
   isNumber($event: KeyboardEvent) {
-    if (/[0-9]+|[1-9]?\,[1-9]+/gm.test($event.key) == false) {
+    console.log($event.key);
+    if (/[0-9|\.]+/gm.test($event.key.toString()) == false) {
       $event.preventDefault();
     }
   }

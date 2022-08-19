@@ -60,37 +60,50 @@
           padding-left: 1.4rem;
         }
       }
-      .btn{
+      .btn {
         width: 100%;
-          .calc {
-        width: 45%;
-        background: $main;
-        cursor: pointer;
-        height: 2.75rem;
-        border-radius: 5px;
-        border: none;
-        color: $white;
-        font-weight: 500;
-        font-size: 1.1rem;
+        .calc {
+          width: 45%;
+          background: $main;
+          cursor: pointer;
+          height: 2.75rem;
+          border-radius: 5px;
+          border: none;
+          color: $white;
+          font-weight: 500;
+          font-size: 1.1rem;
+          &:active {
+            transform: translateY(2px);
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+          }
+        }
+        .disabled {
+          cursor: auto;
+          background: $btnBgDisabled;
+          &:active{
+            transform: translateY(1px);
+            transform: translateX(1px);
+            box-shadow: none;
+          }
+        }
+        .clear {
+          width: 45%;
+          margin-left: 1rem;
+          background: $white;
+          cursor: pointer;
+          height: 2.75rem;
+          border-radius: 5px;
+          border-color: $main;
+          color: $main;
+          font-weight: 500;
+          font-size: 1.1rem;
+          &:active {
+            transform: translateY(2px);
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+          }
+        }
       }
-      .disabled {
-        cursor: auto;
-        background: $btnBgDisabled;
-      }
-      .clear{
-         width: 45%;
-        margin-left: 1rem;
-        background: $white;
-        cursor: pointer;
-        height: 2.75rem;
-        border-radius:  5px;
-        border-color: $main;
-        color: $main;
-        font-weight: 500;
-        font-size: 1.1rem;
-      }
-      }
-    
+
       .months {
         margin-bottom: 0.4rem;
         & .loan-months {
