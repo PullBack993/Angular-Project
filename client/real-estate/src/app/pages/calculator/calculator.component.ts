@@ -18,39 +18,37 @@ export class CalculatorComponent implements OnInit {
   brokerFee: number = 3.6;
   totalPercentage: number = 11.4;
 
-  totalTax: string = '116,778.75';
-  monthlyPay: string = '1,319.91';
-  totalWithTax: string = '316,778.75';
+  totalTax: string = '58,389.38';
+  monthlyPay: string = '659.96';
+  totalWithTax: string = '158,389.38';
 
-  totalWithTaxValue: string = '7,000';
-  propSaleValue: string = '4,000';
-  ownershipCoastValue: string = '2,200';
-  mortgageEntryValue: string = '2,400';
-  brokerFeeValue: string = '7,200';
-  totalExtraCoasts: string = '22,800';
+  totalWithTaxValue: string = '3,500';
+  propSaleValue: string = '2,000';
+  ownershipCoastValue: string = '1,100';
+  mortgageEntryValue: string = '1,200';
+  brokerFeeValue: string = '3,600';
+  totalExtraCoasts: string = '11,400';
 
   total: string = '0';
   percentageCredit: string = '58.90';
-  percentageExtraCoast: string = '6.71';
+  percentageExtraCoast: string = ' 6.71';
   percentagePaidInterest: string = '34.39';
 
   chartRate: number = 41.1;
   chartCoast: number = 6.71;
 
-  buyPriceControl = new FormControl('200,000', [Validators.required]);
+  buyPriceControl = new FormControl('100,000', [Validators.required]);
 
   formBuil: FormGroup = this.fb.group({
     buyPrice: this.buyPriceControl,
     creditDurationMonths: new FormControl(240, [Validators.required, Validators.maxLength(3)]),
     creditDurationYears: new FormControl(20, [Validators.required, Validators.maxLength(2)]),
-    ratePercentage: new FormControl(5, [Validators.required, Validators.maxLength(2)]),
-    ownPart: new FormControl('', [checkBuyPrice(this.buyPriceControl)])
+    ratePercentage: new FormControl(5, [Validators.required, Validators.maxLength(2)])
   });
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-
     this.total = this.toDecimalPoints(
       (
         parseFloat(this.totalWithTax.replace(/,/gm, '')) + parseFloat(this.totalExtraCoasts.replace(/,/gm, ''))
@@ -70,12 +68,10 @@ export class CalculatorComponent implements OnInit {
   setFieldValue(fieldName: string | null, currentNumber: number) {
     //TOOD improve if else
     //TODO function for replacer ','
-    let buyPrice = this.stringToFloat(this.buyPriceControl.value)
+    let buyPrice = this.stringToFloat(this.buyPriceControl.value);
     if (fieldName == 'propTransferTax') {
       this.propTransferTax = currentNumber;
-      this.totalWithTaxValue = this.toDecimalPoints(
-        ((buyPrice * this.propTransferTax) / 100).toFixed(0)
-      );
+      this.totalWithTaxValue = this.toDecimalPoints(((buyPrice * this.propTransferTax) / 100).toFixed(0));
       return this.propTransferTax;
     } else if (fieldName == 'propSale') {
       this.propSale = Number(currentNumber);
@@ -83,15 +79,11 @@ export class CalculatorComponent implements OnInit {
       return this.propSale;
     } else if (fieldName == 'ownershipCoast') {
       this.ownershipCoast = currentNumber;
-      this.ownershipCoastValue = this.toDecimalPoints(
-        ((buyPrice * this.ownershipCoast) / 100).toFixed(0)
-      );
+      this.ownershipCoastValue = this.toDecimalPoints(((buyPrice * this.ownershipCoast) / 100).toFixed(0));
       return this.ownershipCoast;
     } else if (fieldName == 'mortgageEntry') {
       this.mortgageEntry = currentNumber;
-      this.mortgageEntryValue = this.toDecimalPoints(
-        ((buyPrice * this.mortgageEntry) / 100).toFixed(0)
-      );
+      this.mortgageEntryValue = this.toDecimalPoints(((buyPrice * this.mortgageEntry) / 100).toFixed(0));
       return this.mortgageEntry;
     } else if (fieldName == 'brokerFee') {
       this.brokerFee = currentNumber;
@@ -129,23 +121,29 @@ export class CalculatorComponent implements OnInit {
   }
 
   isNumber($event: KeyboardEvent) {
-    if (/[0-9]/gm.test($event.key) == false) {
+    if (/[0-9]+|[1-9]?\,[1-9]+/gm.test($event.key) == false) {
       $event.preventDefault();
     }
   }
-  toDecimal(e: Event) {
-    console.log((e.target as HTMLInputElement).value)
-    console.log('a')
-    console.log((e.target as HTMLInputElement).value);
-    console.log(this.buyPriceControl.value)
+  ngOnChange(value: SimpleChanges) {
+    console.log('simple changes');
+    console.log(value);
+  }
+  setComma(e: Event) {
+    if ((e.target as HTMLInputElement).value == '') {
+      return;
+    }
+    let currentValue = this.stringToFloat(this.buyPriceControl.value).toString();
+    this.buyPriceControl.setValue('0');
+    this.buyPriceControl.setValue(this.toDecimalPoints(currentValue));
 
     // let b = this.toDecimalPoints(this.stringToFloat(this.buyPriceControl.value).toString());
     // console.log(b)
     // this.buyPriceControl.setValue(a);
   }
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes)
-    console.log('ttt')
+    console.log(changes);
+    console.log('ttt');
   }
   onKeyPress($event: KeyboardEvent) {
     //TODO Bug if don't have any value user can't typ
@@ -168,7 +166,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   onSubmit(event: HTMLElement) {
-    let { buyPrice, creditDurationMonths, creditDurationYears, ratePercentage, ownPart } = this.formBuil.value;
+    let { buyPrice, creditDurationMonths, creditDurationYears, ratePercentage } = this.formBuil.value;
     let rate = ratePercentage / 100 / 12;
     buyPrice = this.stringToFloat(buyPrice);
     let result = buyPrice * (rate + rate / ((1 + rate) ** creditDurationMonths - 1)) * creditDurationMonths;
@@ -196,7 +194,10 @@ export class CalculatorComponent implements OnInit {
       this.stringToFloat(this.total)
     );
 
-    this.percentageCredit = this.calcPercentage(this.stringToFloat(this.buyPriceControl.value), this.stringToFloat(this.total));
+    this.percentageCredit = this.calcPercentage(
+      this.stringToFloat(this.buyPriceControl.value),
+      this.stringToFloat(this.total)
+    );
     this.percentagePaidInterest = this.calcPercentage(
       this.stringToFloat(this.totalTax),
       this.stringToFloat(this.total)
@@ -214,8 +215,13 @@ export class CalculatorComponent implements OnInit {
   }
 
   calcPercentage(currentValue: number, totalValue: number) {
-    console.log(currentValue);
-    console.log(totalValue);
     return ((currentValue / totalValue) * 100).toFixed(2);
+  }
+
+  clear(): void {
+    this.buyPriceControl.setValue('');
+    this.formBuil.controls['creditDurationMonths'].setValue('');
+    this.formBuil.controls['creditDurationYears'].setValue('');
+    this.formBuil.controls['ratePercentage'].setValue('');
   }
 }

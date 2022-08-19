@@ -3,11 +3,12 @@
         <form class="calculator-side-left-container" [formGroup]="formBuil" (ngSubmit)="onSubmit($event)">
 
             <div class="amount">
-                <div class="field-name" [class.err]="checkErrors('buyPrice', formBuil)">Kaufpreis / Kreditbetrag</div>
+                <div class="field-name" [class.err]="checkErrors('buyPrice', formBuil)">Kreditbetrag</div>
 
                 <span class="euro-symbol">&euro;</span>
                 <input class="loan-amount" type="string" [class.err]="checkErrors('buyPrice', formBuil)"
-                    name="Kaufpreis" (keypress)="isNumber($event)" formControlName="buyPrice" (keypress)="toDecimal($event)" >
+                    name="Kaufpreis" (keypress)="isNumber($event)" formControlName="buyPrice"
+                    (input)="setComma($event)">
                 <!-- <h2>{{ad.title | shorten: 60}}</h2> -->
 
                 <ng-container *ngIf="formBuil.get('buyPrice')?.errors?.['required']">
@@ -59,19 +60,13 @@
                 </ng-container>
             </div>
 
-            <div class="own">
-                <div class="field-name" [class.err]="checkErrors('ownPart', formBuil)">Eigenmittel</div>
-                <div class="last-part">
-                    <div class="last-part-input">
-                        <input type="text" class="own-part" [class.err]="checkErrors('ownPart', formBuil)"
-                            (keypress)="isNumber($event)" formControlName="ownPart">
-                        <ng-container *ngIf="formBuil.get('ownPart')?.errors">
-                            <p class="err ">Eigenmittel kann nicht größer als Kaufpreis sein.</p>
-                        </ng-container>
-                    </div>
-                    <button class="calc-btn" type="submit" [disabled]="formBuil.invalid"
-                        [class.disabled]="formBuil.invalid">Jetzt berechnen</button>
-                </div>
+            <div class="btn">
+
+
+                <button class="calc" type="submit" [disabled]="formBuil.invalid"
+                    [class.disabled]="formBuil.invalid">Jetzt berechnen</button>
+
+                <button class="clear" (click)="clear()" >Löschen</button>
             </div>
         </form>
     </div>
@@ -79,8 +74,10 @@
     <div class="calculator-side-right">
         <div class="monthly">
             <span class="monthly-title">Kreditrate monatlich &#9432;
-                <span class="monthly-title-info">Es handelt sich dabei um Schätzwerte, deine finalen Kaufnebenkosten
-                    können davon abweichen.</span>
+                <span class="monthly-title-info">
+                
+                Es handelt sich dabei um Schätzwerte, deine finale monatliche Kreditrate
+                können davon abweichen.</span>
             </span>
 
             <div class="monthly-pay"><span>&euro;</span> {{monthlyPay}}</div>
@@ -92,20 +89,25 @@
         </div>
 
         <div class="paid-rate">
-            <span class="paid-total">Gezahlte Zinsen insgesamt</span>
+            <span class="paid-total">Zinsen und Gebühren gesamt</span>
             <span class="paid-amount">&euro;{{totalTax}}</span>
         </div>
 
         <div class="more-coast">
             <h5 class="more-coast-title">Kaufnebenkosten</h5>
             <div class="tax">
-                <div class="tax-title">+ Grunderwerbsteuer
+               
+                <div class="tax-title">+ Grunderwerbsteuer 
                     (
+                        <span >&#9432;
+                            <span class="tax-title-info">Klicken Sie 3 mal um die Werte ändern zu können</span>
+                        </span>
                     <div (blur)="onBlur($event)" class="tax-title-editable" name="propTransferTax"
                         (keypress)="onKeyPress($event)" (dblclick)="onDblClick($event)"
                         [attr.contenteditable]="allowEdit">{{propTransferTax}}
                     </div>
-                    %)
+                   
+                    %) 
                 </div>
                 <div class="tax-coast">{{totalWithTaxValue}} €</div>
 
@@ -169,7 +171,7 @@
         <div class="total">
             <div class="total-percentage">≈ {{totalPercentage}}% &#9432;
                 <span class="total-percentage-info">Es handelt sich dabei um Schätzwerte, deine finalen Kaufnebenkosten
-                    können davon abweichen.</span>
+                können davon abweichen.</span>
             </div>
             <div class="total-addition"> {{totalExtraCoasts}}&euro;</div>
         </div>

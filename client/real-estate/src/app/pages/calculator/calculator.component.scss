@@ -60,35 +60,37 @@
           padding-left: 1.4rem;
         }
       }
-      .own {
-        margin-bottom: 1rem;
-        .last-part {
-          display: flex;
-          width: 100%;
-          &-input{
-            width: 100%;
-            .own-part{
-              width: 100%;
-            }
-          }
-        }
-        .calc-btn {
-          width: 41%;
-          margin-left: 1rem;
-          background: $main;
-          cursor: pointer;
-          height: 2.75rem;
-          border-radius: 5px;
-          border: none;
-          color: $white;
-          font-weight: 500;
-          font-size: 1.1rem;
-        }
-        .disabled {
-          cursor: auto;
-          background: #89b3f9;
-        }
+      .btn{
+        width: 100%;
+          .calc {
+        width: 45%;
+        background: $main;
+        cursor: pointer;
+        height: 2.75rem;
+        border-radius: 5px;
+        border: none;
+        color: $white;
+        font-weight: 500;
+        font-size: 1.1rem;
       }
+      .disabled {
+        cursor: auto;
+        background: $btnBgDisabled;
+      }
+      .clear{
+         width: 45%;
+        margin-left: 1rem;
+        background: $white;
+        cursor: pointer;
+        height: 2.75rem;
+        border-radius:  5px;
+        border-color: $main;
+        color: $main;
+        font-weight: 500;
+        font-size: 1.1rem;
+      }
+      }
+    
       .months {
         margin-bottom: 0.4rem;
         & .loan-months {
@@ -133,10 +135,10 @@
       }
 
       .error-1 {
-        color: red;
+        color: $error;
         &::after .error-years {
           display: block;
-          color: red;
+          color: $error;
         }
       }
 
@@ -163,15 +165,14 @@
       &-info {
         overflow: hidden;
         visibility: hidden;
-        background-color: #00000091;
-        color: #fff;
+        background-color: $bgBlack85;
+        color: $white;
         text-align: center;
         border-radius: 6px;
         padding: 5px 0;
         position: absolute;
         z-index: 1;
         top: 1.5rem;
-
       }
     }
 
@@ -188,8 +189,8 @@
 
       & > span {
         font-size: 1.5rem;
-       vertical-align: super;
-       margin-right: .5rem;
+        vertical-align: super;
+        margin-right: 0.5rem;
       }
     }
   }
@@ -235,9 +236,24 @@
         display: flex;
         justify-content: space-between;
         margin-left: 5rem;
+        position: relative;
+        &-info {
+          visibility: hidden;
+          background-color: $bgBlack85;
+          color: $white;
+          text-align: center;
+          border-radius: 6px;
+          position: absolute;
+          z-index: 1;
+          top: 1.5rem;
+          width: 100%;
+        }
         &-editable {
           margin: 0 0.2rem;
         }
+      }
+      &-title:hover .tax-title-info {
+        visibility: visible;
       }
       &-coast {
         margin-right: 5rem;
@@ -253,8 +269,8 @@
       margin-left: 7.5rem;
       &-info {
         visibility: hidden;
-        background-color: #00000091;
-        color: #fff;
+        background-color: $bgBlack85;
+        color: $white;
         text-align: center;
         border-radius: 6px;
         padding: 5px 0;
@@ -270,8 +286,8 @@
 }
 
 .chart {
-  margin-left: 10rem;
   display: flex;
+  padding: 0 29%;
   circle.buy {
     stroke-dasharray: var(--buy) 100;
   }
