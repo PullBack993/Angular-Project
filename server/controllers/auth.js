@@ -135,7 +135,7 @@ router.post("/reset-password", async (req, res) => {
     to: 'turgay993@abv.bg', // todo change it
     subject: "Reset Password Link - real-estate",
     html: // todo change url => localhost to real-estate
-      '<p>You requested for reset password, kindly use this <a href="http://localhost:4000/reset-password?token=' +
+      '<p>You requested for reset password, kindly use this <a href="http://localhost:4200/auth/reset-password?token=' +
       token +
       '">link</a> to reset your password</p>',
   };
@@ -150,6 +150,27 @@ router.post("/reset-password", async (req, res) => {
   });
 }
 
+router.post("/update-password", async (req, res) => {
+  try {
+    const { password, repass,token } = req.body;
+    // if expire data is < current date then error
+    checkInput(req.body);
+
+    if (password.length < 4)
+      res.status(400).send("Password cannot be less then 4 characters");
+    if (password.trim() != repass.trim())
+      res.status(400).send("Password don't match");
+
+    const user = await register(username.trim(), email.trim(), password.trim());
+
+    token = createToken(user);
+    const userData = removePassword(user);
+
+    res.status(201).send({ userData, token, expiresIn: 3600 });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+})
 const removePassword = (data) => {
   const { email, id, isAdmin, isBroker, isNew, likedAd, username, imageUrl } =
     data;

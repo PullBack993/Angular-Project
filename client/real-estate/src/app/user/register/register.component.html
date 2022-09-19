@@ -53,11 +53,20 @@
         </div>
 
         <div class="container-password" formGroupName="passwords">
-            <p-password [class.invalid]="checkTouch('password', passwordsGroup)" ngDefaultControl
-                formControlName="password" [placeholder]="'Passwort festlegen'" [promptLabel]="'Passwort festlegen'"
-                [weakLabel]="'Schwach'" [styleClass]="'password'" [mediumLabel]="'Durchschnitt'" [strongLabel]="'Stark'"
+
+            <p-password 
+                [class.invalid]="checkTouch('password', passwordsGroup)" 
+                ngDefaultControl
+                formControlName="password" 
+                [placeholder]="'Passwort festlegen'" 
+                [promptLabel]="'Passwort festlegen'"
+                [weakLabel]="'Schwach'" 
+                [styleClass]="'password'"
+                [mediumLabel]="'Durchschnitt'"
+                [strongLabel]="'Stark'"
                 [feedback]="true">
             </p-password>
+            
             <ng-container *ngIf="checkTouch('password', passwordsGroup)" class="invalid invalid-a">
 
                 <p *ngIf="passwordsGroup.get('password')?.errors?.['required']">

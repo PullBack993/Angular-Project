@@ -14,9 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../components/components.module';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, ProfileViewComponent],
+  declarations: [RegisterComponent, LoginComponent, ProfileViewComponent, PasswordResetComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
