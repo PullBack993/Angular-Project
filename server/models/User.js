@@ -8,7 +8,9 @@ const userSchema = new Schema({
     imageUrl: {type: String, default: ''},
     isBroker: { type: Boolean, default: false },
     isAdmin: {type: Boolean, default: false},
-    likedAd: [{ type: Schema.Types.ObjectId, ref: 'Ad' }]
+    likedAd: [{ type: Schema.Types.ObjectId, ref: 'Ad' }],
+    resetToken: { type: String },
+    resetExpireToken: {type: Date}
     // comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }]
 });
 

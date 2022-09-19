@@ -47,15 +47,14 @@ router.get("/catalog/:path/:limit", async (req, res) => {
     const limit = req.params.limit;
 
     const path = {
-      "properties": getAll,
+      properties: getAll,
       "new-projects": getNewProjects,
       "retail-outlet": getRetailOutlet,
-      "rent": rent,
+      rent: rent,
     };
 
     const currentFunction = path[req.params.path];
     data = await currentFunction(Number(limit) * 10);
-    console.log(data)
 
     res.status(200).send({
       message: "success",

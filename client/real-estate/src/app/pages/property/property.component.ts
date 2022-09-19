@@ -34,7 +34,6 @@ export class PropertyComponent implements OnInit, OnDestroy {
     });
   }
   paginate(event: any) {
-    console.log(event.page);
     this.getPagedAds(event.page + 1, this.path);
   }
   ngOnDestroy(): void {

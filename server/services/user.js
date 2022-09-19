@@ -9,6 +9,10 @@ async function getById(id) {
   }
   return user;
 }
+
+async function editUserResetToken(user) {
+  return await user.save()
+}
 async function editUser(userId, username, email, imageUrl) {
   const user = await User.findById(userId);
   user.username = username;
@@ -47,6 +51,7 @@ async function login(email, password) {
   return user;
 }
 
+
 async function getUserByEmail(email) {
   const user = await User.findOne({ email: new RegExp(`^${email}$`, "i") });
   return user;
@@ -57,4 +62,6 @@ module.exports = {
   login,
   editUser,
   getById,
+  getUserByEmail,
+  editUserResetToken,
 };

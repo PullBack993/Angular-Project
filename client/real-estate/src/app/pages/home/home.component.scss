@@ -9,7 +9,7 @@
     background-image: url('#{$bgImg}');
     background-position: center;
     background-size: cover;
-    animation: blink 1s linear ;
+    animation: blink 1s linear;
   }
 }
 
@@ -111,9 +111,9 @@
     margin-top: 0px;
     font-size: 1.5rem;
     padding-top: 0.5em;
-      &-add-item::after {
-    top: 1.5rem;
-  }
+    &-add-item::after {
+      top: 1.5rem;
+    }
   }
   .projects-name {
     font-size: 25px;

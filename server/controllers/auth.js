@@ -1,7 +1,15 @@
-const { register, login, editUser, getById } = require("../services/user");
+const {
+  register,
+  login,
+  editUser,
+  getById,
+  getUserByEmail,
+  editUserResetToken,
+} = require("../services/user");
 const jwt = require("jsonwebtoken");
 const { s3UploadImg } = require("../helpers/s3Upload");
 const { s3Delete } = require("../helpers/s3Delete");
+const { createTransport } = require("nodemailer");
 require("dotenv/config");
 
 const router = require("express").Router();
@@ -59,6 +67,7 @@ function checkInput(inputObj) {
     res.status(400).json("All fields required");
   }
 }
+
 router.get("/editUser", async (req, res) => {
   try {
     const id = req.user._id;
@@ -97,9 +106,54 @@ router.put("/editUser", s3UploadImg(), async (req, res) => {
   }
 });
 
+router.post("/reset-password", async (req, res) => {
+  const email = req.body.email;
+  const user = await getUserByEmail(email)
+  if (!user) {
+    return res.status(422).json({ error: 'User doesn\'t exist with that email' })
+  }
+
+  const resetToken = createToken(user);
+  user.resetExpireToken = Date.now() + 3600000; // 1h;
+  user.resetToken
+  editUserResetToken(user)
+  sendEmailResetPassword(email, resetToken);
+});
+
+ function sendEmailResetPassword(email,token) {
+  
+  const mail = createTransport( {
+    service: "gmail",
+    auth: {
+      user: process.env.MAIL_USERNAME,
+      pass: process.env.MAIL_PASSWORD,
+    },
+  });
+
+  let mailOptions = {
+    from: "Admin",
+    to: 'turgay993@abv.bg', // todo change it
+    subject: "Reset Password Link - real-estate",
+    html: // todo change url => localhost to real-estate
+      '<p>You requested for reset password, kindly use this <a href="http://localhost:4000/reset-password?token=' +
+      token +
+      '">link</a> to reset your password</p>',
+  };
+
+   mail.sendMail (mailOptions,  (error, info) => {
+    if (error) {
+      console.log(error);
+      console.log(info);
+    } else {
+      console.log(0);
+    }
+  });
+}
+
 const removePassword = (data) => {
   const { email, id, isAdmin, isBroker, isNew, likedAd, username, imageUrl } =
     data;
+
   const userData = {
     email,
     id,

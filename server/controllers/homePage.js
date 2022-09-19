@@ -14,7 +14,6 @@ router.get("/", async (req, res) => {
       latestProjects: projects,
     });
   } catch (err) {
-    console.log(err);
     res
       .status(500)
       .json({ err: err.message, message: "Internal server error" });
@@ -35,12 +34,9 @@ router.post("/search", async (req, res) => {
       }
       return accObj;
     }, {});
-    console.log(query);
     const data = await search(query);
-    console.log(data)
     res.status(200).send({ message: "success", data });
   } catch (err) {
-    console.log(err);
     res
       .status(500)
       .json({ err: err.message, message: "Internal server error" });
