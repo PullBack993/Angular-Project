@@ -15,6 +15,7 @@ import { ComponentsModule } from '../components/components.module';
 import { ProfileViewComponent } from './profile-view/profile-view.component';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { PasswordInputComponent } from '../components/password-input/password-input.component';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent, ProfileViewComponent, PasswordResetComponent],
@@ -30,7 +31,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     PasswordModule,
     ComponentsModule,
     ProgressSpinnerModule,
-    TabMenuModule
+    TabMenuModule,
   ]
 })
 export class UserModule {}

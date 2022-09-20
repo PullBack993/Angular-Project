@@ -13,18 +13,12 @@ import { MessageService } from 'primeng/api';
 import { SharedModule } from '../shared/shared.module';
 import { ConfirmationService } from 'primeng/api';
 import { SpinerComponent } from './spiner/spiner.component';
-
+import { PasswordInputComponent } from './password-input/password-input.component';
 
 @NgModule({
-  declarations: [SearchComponent, AdViewsComponent, DetailsViewComponent, SpinerComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    PrimeNgModule,
-    SharedModule,
-  ],
-  exports: [SearchComponent, AdViewsComponent, DetailsViewComponent, SpinerComponent],
+  declarations: [SearchComponent, AdViewsComponent, DetailsViewComponent, SpinerComponent, PasswordInputComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, PrimeNgModule, SharedModule],
+  exports: [SearchComponent, AdViewsComponent, DetailsViewComponent, SpinerComponent , PasswordInputComponent],
   providers: [
     MessageService,
     ConfirmationService,
