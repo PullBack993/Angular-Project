@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PasswordInputComponent implements OnInit {
   showPassword: boolean = false;
-  class: boolean = false;
+  focus: boolean = false;
   focusOut: boolean = false;
   constructor() {}
 
@@ -15,18 +15,18 @@ export class PasswordInputComponent implements OnInit {
 
   onFocus(event: Event) {
     const isValue = (event.target as HTMLInputElement).value;
-    console.log(isValue)
-    if (!this.class || !isValue) {
-      this.class = true;
-      console.log('true');
+    this.focusOut = false;
+
+    console.log(isValue);
+    if (!this.focus || !isValue) {
+      this.focus = true;
     }
   }
   onFocusOut(event: Event) {
     const isValue = (event.target as HTMLInputElement).value;
-    if (!isValue ) {
-      this.class = false;
-      this.focusOut = true
-      console.log(this.class)
-    } 
+    if (!isValue) {
+      this.focus = false;
+      this.focusOut = true;
+    }
   }
 }
