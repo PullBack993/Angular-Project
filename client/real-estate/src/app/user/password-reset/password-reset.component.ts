@@ -13,8 +13,6 @@ export class PasswordResetComponent implements OnInit {
 
   passwordControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
 
-
-
   resetFormGroup: FormGroup = this.fb.group({
       password: this.passwordControl,
       rePass: new FormControl('', [passwordChecker(this.passwordControl)])
@@ -25,7 +23,6 @@ export class PasswordResetComponent implements OnInit {
   ngOnInit(): void {}
 
   checkTouch1(controlName: string, sourceGroup: FormGroup) {
-    console.log('da');
     return sourceGroup.controls[controlName]?.touched && sourceGroup.controls[controlName].invalid;
   }
 
