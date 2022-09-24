@@ -11,11 +11,15 @@ import { Router } from '@angular/router';
 export class PasswordResetComponent implements OnInit {
   loading: boolean = false;
 
+  showPassword: boolean = false;
+  focus: boolean = false;
+  focusOut: boolean = false;
+
   passwordControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
 
   resetFormGroup: FormGroup = this.fb.group({
-      password: this.passwordControl,
-      rePass: new FormControl('', [passwordChecker(this.passwordControl)])
+    password: this.passwordControl,
+    rePass: new FormControl('', [passwordChecker(this.passwordControl)])
   });
 
   constructor(private router: Router, private fb: FormBuilder) {}
@@ -31,5 +35,22 @@ export class PasswordResetComponent implements OnInit {
     const passwords = this.resetFormGroup.value;
     const { password, repass } = passwords;
     console.log(this.router.url); // TODO check it,then take token
+  }
+
+  onFocus(event: Event) {
+    const isValue = (event.target as HTMLInputElement).value;
+    this.focusOut = false;
+
+    console.log(isValue);
+    if (!this.focus || !isValue) {
+      this.focus = true;
+    }
+  }
+  onFocusOut(event: Event) {
+    const isValue = (event.target as HTMLInputElement).value;
+    if (!isValue) {
+      this.focus = false;
+      this.focusOut = true;
+    }
   }
 }
