@@ -51,6 +51,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.errorMessage = '';
     const { username, email, passwords } = this.registerFormGroup.value;
     const { password, rePass } = passwords;
+    if (password !== rePass) {
+      this.errorMessage = "Die Passwörter müssen übereinstimmen"
+    this.loading = false;
+      
+       return;
+    }
     const body = { username, email, password, repass: rePass };
 
     this.userService.register(body);

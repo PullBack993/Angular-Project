@@ -94,7 +94,9 @@
                         text="Das Passwort muss mindestens 4 Zeichen lang sein" styleClass="mr-2"></p-message>
                 </p>
                 <p
-                    *ngIf="passwordsGroup.get('rePass')?.errors && passwordsGroup.get('password')?.touched && passwordsGroup.get('password')?.valid ">
+                    *ngIf="passwordsGroup.controls['rePass']?.errors?.passwordMissmatch &&
+                     passwordsGroup.get('password')?.touched &&
+                      passwordsGroup.get('password')?.valid ">
                     <p-message [style]="{ 'margin-top': '10px'}" severity="error" text="Die Passwörter müssen übereinstimmen"
                         styleClass="mr-2"></p-message>
                 </p>
