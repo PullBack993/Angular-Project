@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { AbstractControl, FormControl, ValidatorFn, FormGroup, ValidationErrors } from '@angular/forms';
 
 // export function passwordChecker(passwordFormControl: AbstractControl) {
 //   return (rePassFormControl: AbstractControl) => {
@@ -10,31 +10,43 @@ import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 //   };
 // }
 
-export function passwordChecker(passwordFormControl: AbstractControl) {
-  const validtorFn: ValidatorFn = (rePasswordFormControl: AbstractControl) => {
-    if (passwordFormControl.value !== rePasswordFormControl.value) {
-      
-      return {
-        passwordMissmatch: true
-      };
+export function confirmedValidation(controlName: string, matchingControlName: string) {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls[controlName];
+    const matchingControl = formGroup.controls[matchingControlName];
+    if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+      return;
     }
-
-    return null;
+    if (control.value !== matchingControl.value) {
+      matchingControl.setErrors({ confirmedValidator: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
   };
-
-  return validtorFn;
 }
 
-
-export function checkBuyPrice(control: AbstractControl)  {
-  return (value: any) => {
-    
-    if (control.value < value.value) {
-      return { valid: true }
+export function passwordChecker(passwordFormControl: AbstractControl) {
+  const password = passwordFormControl.value.passwords.password;
+  const rePass = passwordFormControl.value.passwords.rePass;
+  if (password !== '' && rePass != '') {
+    if (password !== rePass) {
+      passwordFormControl.get('passwords.rePass')?.setErrors({ mismatch: true });
+      return {mismatch: true}
+    } else {
+      return null;
     }
-    return null
-
   }
+  else
+  {
+    return null;
+  }
+}
 
-  
+export function checkBuyPrice(control: AbstractControl) {
+  return (value: any) => {
+    if (control.value < value.value) {
+      return { valid: true };
+    }
+    return null;
+  };
 }

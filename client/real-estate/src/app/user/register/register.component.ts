@@ -14,27 +14,33 @@ export class RegisterComponent implements OnInit, OnDestroy {
   errorMessage: string = '';
   loading: boolean = false;
   authStatusSubscription!: Subscription;
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   passwordControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
+  rePass = new FormControl('', [Validators.required, Validators.minLength(4)]);
 
   get passwordsGroup(): FormGroup {
     return this.registerFormGroup.controls['passwords'] as FormGroup;
   }
 
-  registerFormGroup: FormGroup = this.fb.group({
-    username: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    passwords: new FormGroup({
-      password: this.passwordControl,
-      rePass: new FormControl('', [passwordChecker(this.passwordControl)])
-    })
-  });
+  registerFormGroup: FormGroup = this.fb.group(
+    {
+      username: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      passwords: new FormGroup({
+        password: this.passwordControl,
+        rePass: this.rePass
+      })
+    },
+    {
+      validators: passwordChecker
+    }
+  );
 
-  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit(): void {
     this.authStatusSubscription = this.userService.getAuthStatusListener().subscribe((status) => {
-        this.loading = false;
+      this.loading = false;
     });
   }
 
@@ -52,10 +58,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const { username, email, passwords } = this.registerFormGroup.value;
     const { password, rePass } = passwords;
     if (password !== rePass) {
-      this.errorMessage = "Die Passwörter müssen übereinstimmen"
-    this.loading = false;
-      
-       return;
+      this.errorMessage = 'Die Passwörter müssen übereinstimmen';
+      this.loading = false;
+
+      return;
     }
     const body = { username, email, password, repass: rePass };
 

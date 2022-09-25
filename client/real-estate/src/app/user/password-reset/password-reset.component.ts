@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { passwordChecker } from '../util';
+import { passwordChecker, confirmedValidation } from '../util';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,16 +14,20 @@ export class PasswordResetComponent implements OnInit {
   showPassword: boolean = false;
   focus: boolean = false;
   focusOut: boolean = false;
-  passwordControl = new FormControl('', [ Validators.required, Validators.minLength(4)]);
 
-  resetFormGroup: FormGroup = this.fb.group({
-    password: this.passwordControl,
-    rePass: new FormControl('', [passwordChecker(this.passwordControl), Validators.required, Validators.minLength(4)])
-  });
+  resetFormGroup: FormGroup = this.fb.group(
+    {
+      password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      rePass: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    },
+    {
+      validators: passwordChecker
+    }
+  );
 
   constructor(private router: Router, private fb: FormBuilder) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   checkTouch1(controlName: string, sourceGroup: FormGroup) {
     return sourceGroup.controls[controlName]?.touched && sourceGroup.controls[controlName].invalid;
