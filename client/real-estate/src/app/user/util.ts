@@ -32,8 +32,11 @@ export function passwordChecker(passwordFormControl: AbstractControl) {
     if (password !== rePass) {
       passwordFormControl.get('passwords.rePass')?.setErrors({ mismatch: true });
       return {mismatch: true}
+    } if (password == rePass) {
+      passwordFormControl.get('passwords.rePass')?.setErrors(null);
+      return {mismatch: null}
     } else {
-      return null;
+      return null
     }
   }
   else
