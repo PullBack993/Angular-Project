@@ -52,10 +52,10 @@
             </ng-container>
         </div>
 
-        <div class="container-password" formGroupName="passwords">
+        <div class="container-password" >
 
             <p-password 
-                [class.invalid]="checkTouch('password', passwordsGroup)" 
+                [class.invalid]="checkTouch('password', registerFormGroup)" 
                 ngDefaultControl
                 formControlName="password" 
                 [placeholder]="'Passwort festlegen'" 
@@ -67,13 +67,13 @@
                 [feedback]="true">
             </p-password>
             
-            <ng-container *ngIf="checkTouch('password', passwordsGroup)" class="invalid invalid-a">
+            <ng-container *ngIf="checkTouch('password', registerFormGroup)" class="invalid invalid-a">
 
-                <p *ngIf="passwordsGroup.get('password')?.errors?.['required']">
+                <p *ngIf="registerFormGroup.get('password')?.errors?.['required']">
                     <p-message [style]="{ 'margin-top': '10px'}" severity="error" text="Feld ist erforderlich"
                         styleClass="mr-2"></p-message>
                 </p>
-                <p *ngIf="passwordsGroup.get('password')?.errors?.['minlength']">
+                <p *ngIf="registerFormGroup.get('password')?.errors?.['minlength']">
                     <p-message [style]="{ 'margin-top': '10px'}" severity="error"
                         text="Das Passwort muss mindestens 4 Zeichen lang sein" styleClass="mr-2"></p-message>
                 </p>
@@ -81,23 +81,23 @@
             </ng-container>
         </div>
 
-        <div class="container-repass" formGroupName="passwords">
-            <input formControlName="rePass" [class.invalid]="checkTouch('rePass', passwordsGroup)" type="password"
+        <div class="container-repass">
+            <input formControlName="rePass" [class.invalid]="checkTouch('rePass', registerFormGroup)" type="password"
                 id="inputtext" pInputText placeholder="Passwort wiederholen">
-            <ng-container *ngIf="checkTouch('rePass', passwordsGroup)" class="invalid invalid-a">
+            <ng-container *ngIf="checkTouch('rePass', registerFormGroup)" class="invalid invalid-a">
 
-                <p *ngIf="passwordsGroup.get('rePass')?.errors?.['required']">
+                <p *ngIf="registerFormGroup.get('rePass')?.errors?.['required']">
                     <p-message [style]="{ 'margin-top': '10px'}" severity="error" text="Password ist erforderlich"
                         styleClass="mr-2"></p-message>
                 </p>
-                <p *ngIf="passwordsGroup.get('rePass')?.errors?.['minlength']">
+                <p *ngIf="registerFormGroup.get('rePass')?.errors?.['minlength']">
                     <p-message [style]="{ 'margin-top': '10px'}" severity="error"
                         text="Das Passwort muss mindestens 4 Zeichen lang sein" styleClass="mr-2"></p-message>
                 </p>
                 <p *ngIf="
-                    passwordsGroup.controls['rePass']?.errors &&
-                    passwordsGroup.get('password')?.touched &&
-                    passwordsGroup.get('password')?.valid">
+                    registerFormGroup.controls['rePass']?.errors &&
+                    registerFormGroup.get('password')?.touched &&
+                    registerFormGroup.get('password')?.valid">
 
                     <p-message 
                         [style]="{ 'margin-top': '10px'}" 

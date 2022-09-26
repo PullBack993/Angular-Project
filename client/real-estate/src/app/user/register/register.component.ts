@@ -16,21 +16,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
   authStatusSubscription!: Subscription;
   constructor(private fb: FormBuilder, private userService: UserService) {}
 
-  passwordControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
-  rePass = new FormControl('', [Validators.required, Validators.minLength(4)]);
 
-  get passwordsGroup(): FormGroup {
-    return this.registerFormGroup.controls['passwords'] as FormGroup;
-  }
 
   registerFormGroup: FormGroup = this.fb.group(
     {
       username: new FormControl('', [Validators.required, Validators.minLength(2)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      passwords: new FormGroup({
-        password: this.passwordControl,
-        rePass: this.rePass
-      })
+        password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+        rePass: new FormControl('', [Validators.required, Validators.minLength(4)]),
     },
     {
       validators: passwordChecker
