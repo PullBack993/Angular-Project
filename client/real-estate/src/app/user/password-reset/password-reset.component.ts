@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { passwordChecker, confirmedValidation } from '../util';
+import { passwordChecker } from '../util';
 import { Router } from '@angular/router';
 
 @Component({
