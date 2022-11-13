@@ -1,27 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { passwordChecker } from '../util';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-password-reset',
   templateUrl: './password-reset.component.html',
-  styleUrls: ['./password-reset.component.scss']
+  styleUrls: ['./password-reset.component.scss'],
 })
 export class PasswordResetComponent implements OnInit {
   loading: boolean = false;
 
   showPassword: boolean = false;
   focus: boolean = false;
+  focus1: boolean = false;
   focusOut: boolean = false;
+  focusOut1: boolean = false;
 
   resetFormGroup: FormGroup = this.fb.group(
     {
-      password: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      rePass: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      rePass: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
     },
     {
-      validators: passwordChecker
+      validators: passwordChecker,
     }
   );
 
@@ -30,9 +43,15 @@ export class PasswordResetComponent implements OnInit {
   ngOnInit(): void {}
 
   checkTouch1(controlName: string, sourceGroup: FormGroup) {
-    return sourceGroup.controls[controlName]?.touched && sourceGroup.controls[controlName].invalid;
+    return (
+      sourceGroup.controls[controlName]?.touched &&
+      sourceGroup.controls[controlName].invalid
+    );
   }
-
+  asd() {
+    console.log('tess');
+    (document.getElementsByClassName('ac')[0] as HTMLElement).style.color = '$error';
+  }
   onChange() {
     this.loading = true;
     const passwords = this.resetFormGroup.value;
@@ -40,19 +59,35 @@ export class PasswordResetComponent implements OnInit {
     console.log(this.router.url); // TODO check it,then take token
   }
 
-  onFocus(event: Event) {
+  onFocus(event: Event, field: string) {
     const isValue = (event.target as HTMLInputElement).value;
-    this.focusOut = false;
+    if (field === 'password') {
+      this.focusOut = false;
 
-    if (!this.focus || !isValue) {
-      this.focus = true;
+      if (!this.focus || !isValue) {
+        this.focus = true;
+      }
+    } else if (field === 'rePass') {
+      this.focusOut1 = false;
+      if (!this.focus1 || !isValue) {
+        this.focus1 = true;
+      }
     }
   }
-  onFocusOut(event: Event) {
+
+  onFocusOut(event: Event, field: string) {
     const isValue = (event.target as HTMLInputElement).value;
-    if (!isValue) {
-      this.focus = false;
-      this.focusOut = true;
+    if (field === 'password') {
+      if (!isValue) {
+        this.focus = false;
+        this.focusOut = true;
+      }
+    } else if (field === 'rePass') {
+      if (!isValue) {
+        console.log('rePass1');
+        this.focus1 = false;
+        this.focusOut1 = true;
+      }
     }
   }
 }
