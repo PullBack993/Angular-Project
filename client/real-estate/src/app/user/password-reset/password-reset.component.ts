@@ -41,8 +41,6 @@ export class PasswordResetComponent implements OnInit {
   }
 
   onFocus(event: Event) {
-    let a = (event.target as HTMLInputElement)
-    console.log(a)
     const isValue = (event.target as HTMLInputElement).value;
     this.focusOut = false;
 
