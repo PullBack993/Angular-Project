@@ -21,7 +21,7 @@ export class PasswordResetComponent implements OnInit {
   focus1: boolean = false;
   focusOut: boolean = false;
   focusOut1: boolean = false;
-
+  setColor: boolean = false;
   resetFormGroup: FormGroup = this.fb.group(
     {
       password: new FormControl('', [
@@ -40,18 +40,21 @@ export class PasswordResetComponent implements OnInit {
 
   constructor(private router: Router, private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.resetFormGroup.controls['validators'].valueChanges.subscribe(
+      (value) => {
+        console.log(value);
+      }
+    );
+  }
 
   checkTouch1(controlName: string, sourceGroup: FormGroup) {
     return (
       sourceGroup.controls[controlName]?.touched &&
-      sourceGroup.controls[controlName].invalid
+      sourceGroup.controls[controlName]?.invalid
     );
   }
-  asd() {
-    console.log('tess');
-    (document.getElementsByClassName('ac')[0] as HTMLElement).style.color = '$error';
-  }
+
   onChange() {
     this.loading = true;
     const passwords = this.resetFormGroup.value;
